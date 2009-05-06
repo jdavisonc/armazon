@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using DatabaseAccess;
 
 
+
 namespace Armazon.Models
 {
     public class AdministracionFachada
@@ -21,7 +22,11 @@ namespace Armazon.Models
             CategoriaManager categoriaMgr = CategoriaManager.getInstance();
             return categoriaMgr.findAllCategorias();
         }
-
+        public IQueryable<Sucursal> findAllSucursales()
+        {
+            SucursalManager sucursalMgr = SucursalManager.getInstance();
+            return sucursalMgr.findAllSucursales();
+        }
 
     }
 }
