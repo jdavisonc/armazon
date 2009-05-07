@@ -15,11 +15,6 @@
         <fieldset>
             <legend>Fields</legend>
             <p>
-                <label for="SucursalID">SucursalID:</label>
-                <%= Html.TextBox("SucursalID", Model.SucursalID) %>
-                <%= Html.ValidationMessage("SucursalID", "*") %>
-            </p>
-            <p>
                 <label for="Nombre">Nombre:</label>
                 <%= Html.TextBox("Nombre", Model.Nombre) %>
                 <%= Html.ValidationMessage("Nombre", "*") %>

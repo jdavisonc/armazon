@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Sucursal>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Usuario>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Create
@@ -20,19 +20,9 @@
                 <%= Html.ValidationMessage("Nombre", "*") %>
             </p>
             <p>
-                <label for="Direccion">Direccion:</label>
-                <%= Html.TextBox("Direccion") %>
-                <%= Html.ValidationMessage("Direccion", "*") %>
-            </p>
-            <p>
-                <label for="Latitud">Latitud:</label>
-                <%= Html.TextBox("Latitud") %>
-                <%= Html.ValidationMessage("Latitud", "*") %>
-            </p>
-            <p>
-                <label for="Longitud">Longitud:</label>
-                <%= Html.TextBox("Longitud") %>
-                <%= Html.ValidationMessage("Longitud", "*") %>
+                <label for="Password">Password:</label>
+                <%= Html.TextBox("Password") %>
+                <%= Html.ValidationMessage("Password", "*") %>
             </p>
             <p>
                 <input type="submit" value="Create" />
