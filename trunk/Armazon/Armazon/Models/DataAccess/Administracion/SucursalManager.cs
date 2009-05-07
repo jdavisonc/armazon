@@ -32,7 +32,7 @@ namespace DatabaseAccess
             return db.Sucursals;
         }
 
-        public Sucursal getCategoria(int id)
+        public Sucursal getSucursal(int id)
         {
             return db.Sucursals.SingleOrDefault(c => c.SucursalID == id);
         }
