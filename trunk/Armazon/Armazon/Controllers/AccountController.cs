@@ -102,6 +102,8 @@ namespace Armazon.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsAuth.SignIn(userName, false /* createPersistentCookie */);
+                    
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else

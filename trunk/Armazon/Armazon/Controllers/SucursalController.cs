@@ -29,7 +29,10 @@ namespace Armazon.Controllers
         {
             AdministracionFachada adminSuc = new AdministracionFachada();
             var sucursal = adminSuc.geSucursal(id);
-            return View(sucursal);
+            if (sucursal == null)
+                return View("NotFound");
+            else
+                return View(sucursal);
         }
 
         //
@@ -55,7 +58,7 @@ namespace Armazon.Controllers
                 UpdateModel(suc);
                 AdministracionFachada adminSuc = new AdministracionFachada();
                 adminSuc.addSucursal(suc);
-                adminSuc.save();
+                adminSuc.saveSucursal();
                 return RedirectToAction("Index");
             }
             catch
@@ -70,8 +73,11 @@ namespace Armazon.Controllers
         public ActionResult Edit(int id)
         {
             AdministracionFachada adminSuc = new AdministracionFachada();
-            var sucursal = adminSuc.geSucursal(id); 
-            return View(sucursal);
+            var sucursal = adminSuc.geSucursal(id);
+            if (sucursal == null)
+                return View("NotFound");
+            else
+                return View(sucursal);
         }
 
         //
@@ -86,11 +92,10 @@ namespace Armazon.Controllers
                 Sucursal suc = adminFac.geSucursal(id);
                 suc.Direccion = Request.Form["Direccion"];
                 suc.Nombre = Request.Form["Nombre"];
-                suc.SucursalID = int.Parse(Request.Form["SucursalID"]);
                 suc.Latitud =  float.Parse(Request.Form["Latitud"]);
                 suc.Longitud = float.Parse(Request.Form["Longitud"]);
                 
-                adminFac.save();
+                adminFac.saveSucursal();
                 return RedirectToAction("Details", new { id = suc.SucursalID });
                 //return RedirectToAction("index");
             }
@@ -116,9 +121,12 @@ namespace Armazon.Controllers
             var suc = adminFac.geSucursal(id);
             if (suc == null)
                 return View("NotFound");
-            adminFac.deleteSucursal(id);
-            adminFac.save();
-            return View("Deleted");
+            else
+            {
+                adminFac.deleteSucursal(id);
+                adminFac.saveSucursal();
+                return View("Deleted");
+            }
         }    
     
     
