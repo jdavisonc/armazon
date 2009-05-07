@@ -27,7 +27,9 @@ namespace Armazon.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            AdministracionFachada adminSuc = new AdministracionFachada();
+            var sucursal = adminSuc.geSucursal(id);
+            return View(sucursal);
         }
 
         //
@@ -35,6 +37,8 @@ namespace Armazon.Controllers
 
         public ActionResult Create()
         {
+            AdministracionFachada adminSuc = new AdministracionFachada();
+            Sucursal suc = new Sucursal();
             return View();
         } 
 
@@ -44,10 +48,14 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
+            Sucursal suc = new Sucursal();
             try
             {
                 // TODO: Add insert logic here
-
+                UpdateModel(suc);
+                AdministracionFachada adminSuc = new AdministracionFachada();
+                adminSuc.addSucursal(suc);
+                adminSuc.save();
                 return RedirectToAction("Index");
             }
             catch
@@ -61,7 +69,9 @@ namespace Armazon.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            AdministracionFachada adminSuc = new AdministracionFachada();
+            var sucursal = adminSuc.geSucursal(id); 
+            return View(sucursal);
         }
 
         //
@@ -72,14 +82,49 @@ namespace Armazon.Controllers
         {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                AdministracionFachada adminFac = new AdministracionFachada();
+                Sucursal suc = adminFac.geSucursal(id);
+                suc.Direccion = Request.Form["Direccion"];
+                suc.Nombre = Request.Form["Nombre"];
+                suc.SucursalID = int.Parse(Request.Form["SucursalID"]);
+                suc.Latitud =  float.Parse(Request.Form["Latitud"]);
+                suc.Longitud = float.Parse(Request.Form["Longitud"]);
+                
+                adminFac.save();
+                return RedirectToAction("Details", new { id = suc.SucursalID });
+                //return RedirectToAction("index");
             }
             catch
             {
                 return View();
             }
         }
+        public ActionResult Delete(int id)
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            var suc = adminFac.geSucursal(id);
+            if (suc == null)
+                return View("NotFound");
+            else
+                return View(suc);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete(int id, string confirmButton)
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            var suc = adminFac.geSucursal(id);
+            if (suc == null)
+                return View("NotFound");
+            adminFac.deleteSucursal(id);
+            adminFac.save();
+            return View("Deleted");
+        }    
+    
+    
     }
+
+        
+
+
 }

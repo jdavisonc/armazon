@@ -88,7 +88,13 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Categoria\Index.aspx" />
+    <Content Include="Views\Sucursal\Create.aspx" />
+    <Content Include="Views\Sucursal\Delete.aspx" />
+    <Content Include="Views\Sucursal\Deleted.aspx" />
+    <Content Include="Views\Sucursal\Details.aspx" />
+    <Content Include="Views\Sucursal\Edit.aspx" />
     <Content Include="Views\Sucursal\Index.aspx" />
+    <Content Include="Views\Sucursal\NotFound.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
