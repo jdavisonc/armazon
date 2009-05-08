@@ -6,7 +6,7 @@ using Armazon.Models.DataTypes;
 
 namespace Armazon.Models.ServiceAccess
 {
-    interface IAccessStore
+    public interface IAccessStore
     {
         List<DTProduct> searchProducts(string fullText);
     }

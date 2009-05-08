@@ -46,10 +46,12 @@ namespace Armazon.Models.ServiceAccess
                     Item item = items[i];
                     System.Console.WriteLine(item.ItemAttributes.Title);
                 }
+                return list;
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine(ex);
+                return null;
             }
         }
 
