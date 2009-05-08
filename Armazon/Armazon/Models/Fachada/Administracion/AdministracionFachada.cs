@@ -13,21 +13,45 @@ using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
 
 
+
 namespace Armazon.Models
 {
     public class AdministracionFachada
     {
+        //Categoria
         public IQueryable<Categoria> findAllCategorias()
         {
             CategoriaManager categoriaMgr = CategoriaManager.getInstance();
             return categoriaMgr.findAllCategorias();
         }
+        public Categoria getCategoria(int num)
+        {
+            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
+            return categoriaMgr.getCategoria(num);
+        }
+        public void addCategoria(Categoria Categoria)
+        {
+            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
+            categoriaMgr.Add(Categoria);
+        }
+        public void deleteCategoria(int num)
+        {
+            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
+            categoriaMgr.Delete(categoriaMgr.getCategoria(num));
+        }
+        public void saveCategoria()
+        {
+            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
+            categoriaMgr.Save();
+        }
+
+        //Sucursal
         public IQueryable<Sucursal> findAllSucursales()
         {
             SucursalManager sucursalMgr = SucursalManager.getInstance();
             return sucursalMgr.findAllSucursales();
         }
-        public Sucursal geSucursal(int num)
+        public Sucursal getSucursal(int num)
         {
             SucursalManager sucursalMgr = SucursalManager.getInstance();
             return sucursalMgr.getSucursal(num);
@@ -49,34 +73,63 @@ namespace Armazon.Models
             SucursalManager sucursalMgr = SucursalManager.getInstance();
             sucursalMgr.Save();
         }
-        ////////////////////////////////////////////////////////
-        public IQueryable<Usuario> findAllUsuarios()
+        
+        // SubCategoria
+        public IQueryable<SubCategoria> findAllSubCategorias()
         {
-            UsuarioManager usrMgr = UsuarioManager.getInstance();
-            return usrMgr.findAllUsuarios();
+            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
+            return subCategoriaMgr.findAllSubCategorias();
         }
-        public Usuario getUsuario(int num)
+        public SubCategoria getSubCategoria(int num)
         {
-            UsuarioManager usrMgr = UsuarioManager.getInstance();
-            return usrMgr.getUsuario(num);
+            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
+            return subCategoriaMgr.getSubCategoria(num);
         }
 
-        public void addUsuario(Usuario usuario)
+        public void addSubCategoria(SubCategoria subCategoria)
         {
-            UsuarioManager usrMgr = UsuarioManager.getInstance();
-            usrMgr.Add(usuario);
+            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
+            subCategoriaMgr.Add(subCategoria);
         }
-        public void deleteUsuario(int num)
+        public void deleteSubCategoria(int num)
         {
-            UsuarioManager usrMgr = UsuarioManager.getInstance();
-            usrMgr.Delete(usrMgr.getUsuario(num));
+            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
+            subCategoriaMgr.Delete(subCategoriaMgr.getSubCategoria(num));
 
         }
-        public void saveUsuario()
+        public void saveSubCategoria()
         {
-            UsuarioManager usuarioMgr = UsuarioManager.getInstance();
-            usuarioMgr.Save();
-        }        
+            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
+            subCategoriaMgr.Save();
+        }
+
+        //Propiedad
+        public IQueryable<Propiedad> findAllPropiedades()
+        {
+            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
+            return propiedadMgr.findAllPropiedades();
+        }
+        public Propiedad getPropiedad(int num)
+        {
+            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
+            return propiedadMgr.getPropiedad(num);
+        }
+        public void addPropiedad(Propiedad propiedad)
+        {
+            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
+            propiedadMgr.Add(propiedad);
+        }
+        public void deletePropiedad(int num)
+        {
+            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
+            propiedadMgr.Delete(propiedadMgr.getPropiedad(num));
+
+        }
+        public void savePropiedad()
+        {
+            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
+            propiedadMgr.Save();
+        }
 
     }
 }
