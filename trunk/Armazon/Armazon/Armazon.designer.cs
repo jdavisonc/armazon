@@ -2545,7 +2545,9 @@ namespace Armazon
 		
 		private string _Direccion;
 		
-		private string _Coordenadas;
+		private double _Latitud;
+		
+		private double _Longitud;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2557,8 +2559,10 @@ namespace Armazon
     partial void OnNombreChanged();
     partial void OnDireccionChanging(string value);
     partial void OnDireccionChanged();
-    partial void OnCoordenadasChanging(string value);
-    partial void OnCoordenadasChanged();
+    partial void OnLatitudChanging(double value);
+    partial void OnLatitudChanged();
+    partial void OnLongitudChanging(double value);
+    partial void OnLongitudChanged();
     #endregion
 		
 		public Sucursal()
@@ -2626,22 +2630,42 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_Coordenadas", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Coordenadas
+		[Column(Storage="_Latitud", DbType="Float NOT NULL")]
+		public double Latitud
 		{
 			get
 			{
-				return this._Coordenadas;
+				return this._Latitud;
 			}
 			set
 			{
-				if ((this._Coordenadas != value))
+				if ((this._Latitud != value))
 				{
-					this.OnCoordenadasChanging(value);
+					this.OnLatitudChanging(value);
 					this.SendPropertyChanging();
-					this._Coordenadas = value;
-					this.SendPropertyChanged("Coordenadas");
-					this.OnCoordenadasChanged();
+					this._Latitud = value;
+					this.SendPropertyChanged("Latitud");
+					this.OnLatitudChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Longitud", DbType="Float NOT NULL")]
+		public double Longitud
+		{
+			get
+			{
+				return this._Longitud;
+			}
+			set
+			{
+				if ((this._Longitud != value))
+				{
+					this.OnLongitudChanging(value);
+					this.SendPropertyChanging();
+					this._Longitud = value;
+					this.SendPropertyChanged("Longitud");
+					this.OnLongitudChanged();
 				}
 			}
 		}
