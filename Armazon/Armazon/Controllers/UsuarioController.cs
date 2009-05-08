@@ -15,7 +15,7 @@ namespace Armazon.Controllers
         public ActionResult Index()
         {
             AdministracionFachada adminFac = new AdministracionFachada();
-            var usuarios = adminFac.findAllUsuarios();            
+            var usuarios = adminFac.findAllUsuario();            
             return View(usuarios);
         }
 
