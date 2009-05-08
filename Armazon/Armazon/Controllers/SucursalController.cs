@@ -28,11 +28,8 @@ namespace Armazon.Controllers
         public ActionResult Details(int id)
         {
             AdministracionFachada adminSuc = new AdministracionFachada();
-            var sucursal = adminSuc.geSucursal(id);
-            if (sucursal == null)
-                return View("NotFound");
-            else
-                return View(sucursal);
+            var sucursal = adminSuc.getSucursal(id);
+            return View(sucursal);
         }
 
         //
@@ -73,11 +70,8 @@ namespace Armazon.Controllers
         public ActionResult Edit(int id)
         {
             AdministracionFachada adminSuc = new AdministracionFachada();
-            var sucursal = adminSuc.geSucursal(id);
-            if (sucursal == null)
-                return View("NotFound");
-            else
-                return View(sucursal);
+            var sucursal = adminSuc.getSucursal(id); 
+            return View(sucursal);
         }
 
         //
@@ -89,9 +83,10 @@ namespace Armazon.Controllers
             try
             {
                 AdministracionFachada adminFac = new AdministracionFachada();
-                Sucursal suc = adminFac.geSucursal(id);
+                Sucursal suc = adminFac.getSucursal(id);
                 suc.Direccion = Request.Form["Direccion"];
                 suc.Nombre = Request.Form["Nombre"];
+                suc.SucursalID = int.Parse(Request.Form["SucursalID"]);
                 suc.Latitud =  float.Parse(Request.Form["Latitud"]);
                 suc.Longitud = float.Parse(Request.Form["Longitud"]);
                 
@@ -107,7 +102,7 @@ namespace Armazon.Controllers
         public ActionResult Delete(int id)
         {
             AdministracionFachada adminFac = new AdministracionFachada();
-            var suc = adminFac.geSucursal(id);
+            var suc = adminFac.getSucursal(id);
             if (suc == null)
                 return View("NotFound");
             else
@@ -118,15 +113,12 @@ namespace Armazon.Controllers
         public ActionResult Delete(int id, string confirmButton)
         {
             AdministracionFachada adminFac = new AdministracionFachada();
-            var suc = adminFac.geSucursal(id);
+            var suc = adminFac.getSucursal(id);
             if (suc == null)
                 return View("NotFound");
-            else
-            {
-                adminFac.deleteSucursal(id);
-                adminFac.saveSucursal();
-                return View("Deleted");
-            }
+            adminFac.deleteSucursal(id);
+            adminFac.saveSucursal();
+            return View("Deleted");
         }    
     
     
