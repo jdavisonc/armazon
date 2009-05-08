@@ -45,6 +45,7 @@ namespace Armazon.Models.ServiceAccess
                 {
                     Item item = items[i];
                     System.Console.WriteLine(item.ItemAttributes.Title);
+                    //item.ItemAttributes.
                 }
                 return list;
             }

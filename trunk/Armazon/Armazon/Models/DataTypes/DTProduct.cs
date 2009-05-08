@@ -9,6 +9,7 @@ namespace Armazon.Models.DataTypes
     {
         private int _id;
 
+
         public int Id
         {
             get { return _id; }
