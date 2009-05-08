@@ -18,6 +18,10 @@ namespace Armazon.Models
 {
     public class AdministracionFachada
     {
+
+        private string userName;
+        private string password;
+        
         //Categoria
         public IQueryable<Categoria> findAllCategorias()
         {
@@ -130,6 +134,50 @@ namespace Armazon.Models
             PropiedadManager propiedadMgr = PropiedadManager.getInstance();
             propiedadMgr.Save();
         }
+
+        //Usuario
+        public IQueryable<Usuario> findAllUsuario()
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            return UsuarioMgr.findAllUsuarios();
+        }
+        public Usuario getUsuario(int num)
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            return UsuarioMgr.getUsuario(num);
+        }
+        public void addUsuario(Usuario usuario)
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            UsuarioMgr.Add(usuario);
+        }
+        public void deleteUsuario(int num)
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            UsuarioMgr.Delete(UsuarioMgr.getUsuario(num));
+
+        }
+
+        public void saveUsuario()
+        {
+
+            UsuarioManager usuarioMgr = UsuarioManager.getInstance();
+            usuarioMgr.Save();
+        }
+        public void setUser(string userName, string password)
+        {
+            this.userName = userName;
+            this.password = password;
+        }
+        public string getUsername()
+        {
+            return this.userName;
+        }
+        public string getUserPassword()
+        {
+            return this.password;
+        }
+
 
     }
 }
