@@ -12,8 +12,7 @@ namespace Armazon.Models.DataAccess.Administracion
 
         private TagManager()
         {
-            db = new ArmazonDataContext();
-            
+            db = new ArmazonDataContext();            
         }
 
         public static TagManager getInstance()
@@ -30,7 +29,7 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.Tags;
         }
 
-        public Usuario getTag(int id)
+        public Tag getTag(int id)
         {
             return db.Tags.SingleOrDefault(c => c.TagID == id);                
         }

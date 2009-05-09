@@ -30,7 +30,7 @@ namespace Armazon.Models.Fachada.Operativa
         public void addTag(Tag tag)
         {
             TagManager TagMgr = TagManager.getInstance();
-            TagMgr.Add(Tag);
+            TagMgr.Add(tag);
         }
         public void deleteTag(int id)
         {
