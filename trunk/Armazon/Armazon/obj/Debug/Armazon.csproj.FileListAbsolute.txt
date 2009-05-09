@@ -1,5 +1,0 @@
-C:\Users\admin\Documents\Visual Studio 2008\Projects\Armazon\Armazon\Armazon\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\admin\Documents\Visual Studio 2008\Projects\Armazon\Armazon\Armazon\bin\Armazon.dll
-C:\Users\admin\Documents\Visual Studio 2008\Projects\Armazon\Armazon\Armazon\bin\Armazon.pdb
-C:\Users\admin\Documents\Visual Studio 2008\Projects\Armazon\Armazon\Armazon\obj\Debug\Armazon.dll
-C:\Users\admin\Documents\Visual Studio 2008\Projects\Armazon\Armazon\Armazon\obj\Debug\Armazon.pdb
