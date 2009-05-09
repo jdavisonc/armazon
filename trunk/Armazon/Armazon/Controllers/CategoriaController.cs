@@ -27,7 +27,12 @@ namespace Armazon.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            Categoria categoria = administracionFachada.getCategoria(id);
+            if (categoria == null)
+                return View("NotFound");
+            else
+                return View(categoria);
         }
 
         //
@@ -35,6 +40,7 @@ namespace Armazon.Controllers
 
         public ActionResult Create()
         {
+            Categoria categoria = new Categoria();
             return View();
         } 
 
@@ -44,10 +50,14 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
+            Categoria categoria = new Categoria();
             try
             {
                 // TODO: Add insert logic here
-
+                UpdateModel(categoria);
+                AdministracionFachada administracionFachada = new AdministracionFachada();
+                administracionFachada.addCategoria(categoria);
+                administracionFachada.saveCategoria();
                 return RedirectToAction("Index");
             }
             catch
@@ -61,7 +71,9 @@ namespace Armazon.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            var categoria = administracionFachada.getCategoria(id);
+            return View(categoria);
         }
 
         //
@@ -72,14 +84,41 @@ namespace Armazon.Controllers
         {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                AdministracionFachada administracionFachada = new AdministracionFachada();
+                Categoria categoria = administracionFachada.getCategoria(id);
+                categoria.Nombre = Request.Form["Nombre"];
+                administracionFachada.saveCategoria();
+                return RedirectToAction("Details", new { id = categoria.CategoriaID });
+                
             }
             catch
             {
                 return View();
             }
         }
+
+        public ActionResult Delete(int id)
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            var categoria = administracionFachada.getCategoria(id);
+            if (categoria == null)
+                return View("NotFound");
+            else
+                return View(categoria);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete(int id, string confirmButton)
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            var categoria = administracionFachada.getCategoria(id);
+            if (categoria == null)
+            {
+                return View("NotFound");
+            }
+            administracionFachada.deleteCategoria(id);
+            administracionFachada.saveCategoria();
+            return View("Deleted");
+        } 
     }
 }

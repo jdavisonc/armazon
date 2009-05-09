@@ -177,7 +177,5 @@ namespace Armazon.Models
         {
             return this.password;
         }
-
-
     }
 }
