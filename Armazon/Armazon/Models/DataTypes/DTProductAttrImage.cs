@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Armazon.Models.DataTypes
 {
-    public class DTProductAttrImage
+    public class DTProductAttrImage : DTProductAttr
     {
         private byte[] _imagen;
 
@@ -15,8 +15,9 @@ namespace Armazon.Models.DataTypes
             set { _imagen = value; }
         }
 
-        public DTProductAttrImage()
+        public DTProductAttrImage(string nombre, byte[] imagen) : base(nombre)
         {
+            _imagen = imagen;
         }
     }
 }

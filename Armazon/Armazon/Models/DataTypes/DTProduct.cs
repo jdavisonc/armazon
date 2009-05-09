@@ -8,7 +8,13 @@ namespace Armazon.Models.DataTypes
     public class DTProduct
     {
         private int _id;
+        private IList<DTProductAttr> _attrs;
 
+        public IList<DTProductAttr> Attrs
+        {
+            get { return _attrs; }
+            set { _attrs = value; }
+        }
 
         public int Id
         {
@@ -16,9 +22,9 @@ namespace Armazon.Models.DataTypes
             set { _id = value; }
         }
 
-        public DTProduct(int id)
+        public DTProduct()
         {
-            _id = id;
+            _attrs = new List<DTProductAttr>();
         }
         
     }
