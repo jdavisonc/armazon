@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Armazon.Models.DataTypes
 {
-    public class DTProductAttrString
+    public class DTProductAttrString : DTProductAttr
     {
         private string _valor;
 
@@ -15,8 +15,9 @@ namespace Armazon.Models.DataTypes
             set { _valor = value; }
         }
 
-        public DTProductAttrString()
+        public DTProductAttrString(string nombre, string valor) : base (nombre)
         {
+            _valor = valor;
         }
 
     }

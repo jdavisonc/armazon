@@ -15,8 +15,9 @@ namespace Armazon.Models.DataTypes
             set { _nombre = value; }
         }
 
-        public DTProductAttr()
+        public DTProductAttr(string nombre)
         {
+            _nombre = nombre;
         }
         
     }
