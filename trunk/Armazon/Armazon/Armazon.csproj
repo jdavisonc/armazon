@@ -74,7 +74,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SubCategoriaController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
-    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -96,6 +95,7 @@
     <Compile Include="Models\DataTypes\DTProductAttrInt.cs" />
     <Compile Include="Models\DataTypes\DTProductAttrString.cs" />
     <Compile Include="Models\Fachada\Administracion\AdministracionFachada.cs" />
+    <Compile Include="Models\Fachada\Operativa\OperativaFachada.cs" />
     <Compile Include="Models\ServiceAccess\AmazonService.cs" />
     <Compile Include="Models\ServiceAccess\ArmazonService.cs" />
     <Compile Include="Models\ServiceAccess\FabricAccessStore.cs" />

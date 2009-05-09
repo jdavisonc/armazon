@@ -12,8 +12,6 @@ using System.Xml.Linq;
 using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
 
-
-
 namespace Armazon.Models
 {
     public class AdministracionFachada
@@ -175,34 +173,6 @@ namespace Armazon.Models
         public string getUserPassword()
         {
             return this.password;
-        }
-
-        //Tag
-        public IQueryable<Tag> findAllTag()
-        {
-            TagManager TagMgr = TagManager.getInstance();
-            return TagMgr.findAllTags();
-        }
-        public Tag getTag(int id)
-        {
-            TagManager TagMgr = TagManager.getInstance();
-            return TagMgr.getTag(id);
-        }
-        public void addTag(Tag tag)
-        {
-            TagManager TagMgr = TagManager.getInstance();
-            TagMgr.Add(Tag);
-        }
-        public void deleteTag(int id)
-        {
-            TagManager TagMgr = TagManager.getInstance();
-            TagMgr.Delete(TagMgr.getTag(id));
-
-        }
-        public void saveTag()
-        {
-            TagManager tagMgr = TagManager.getInstance();
-            tagMgr.Save();
         }
     }
 }
