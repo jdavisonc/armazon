@@ -329,7 +329,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Carrito_Activo", Storage="_Carrito", ThisKey="CarritoID", OtherKey="CarritoID", IsForeignKey=true)]
+		[Association(Name="Carrito_Activo", Storage="_Carrito", ThisKey="CarritoID", IsForeignKey=true)]
 		public Carrito Carrito
 		{
 			get
@@ -363,7 +363,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Activo", Storage="_Usuario", ThisKey="UsuarioID", OtherKey="UsuarioID", IsForeignKey=true)]
+		[Association(Name="Usuario_Activo", Storage="_Usuario", ThisKey="UsuarioID", IsForeignKey=true)]
 		public Usuario Usuario
 		{
 			get
@@ -576,7 +576,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Carrito_Vendido", Storage="_Carrito", ThisKey="CarritoID", OtherKey="CarritoID", IsForeignKey=true)]
+		[Association(Name="Carrito_Vendido", Storage="_Carrito", ThisKey="CarritoID", IsForeignKey=true)]
 		public Carrito Carrito
 		{
 			get
@@ -610,7 +610,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="MetodoDePago_Vendido", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsForeignKey=true)]
+		[Association(Name="MetodoDePago_Vendido", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", IsForeignKey=true)]
 		public MetodoDePago MetodoDePago
 		{
 			get
@@ -644,7 +644,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Vendido", Storage="_Usuario", ThisKey="UsuarioID", OtherKey="UsuarioID", IsForeignKey=true)]
+		[Association(Name="Usuario_Vendido", Storage="_Usuario", ThisKey="UsuarioID", IsForeignKey=true)]
 		public Usuario Usuario
 		{
 			get
@@ -749,7 +749,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Carrito_Activo", Storage="_Activo", ThisKey="CarritoID", OtherKey="CarritoID", IsUnique=true, IsForeignKey=false)]
+		[Association(Name="Carrito_Activo", Storage="_Activo", ThisKey="CarritoID", IsUnique=true, IsForeignKey=false)]
 		public Activo Activo
 		{
 			get
@@ -778,7 +778,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Carrito_Vendido", Storage="_Vendido", ThisKey="CarritoID", OtherKey="CarritoID", IsUnique=true, IsForeignKey=false)]
+		[Association(Name="Carrito_Vendido", Storage="_Vendido", ThisKey="CarritoID", IsUnique=true, IsForeignKey=false)]
 		public Vendido Vendido
 		{
 			get
@@ -807,7 +807,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Carrito_Producto_Carrito", Storage="_Producto_Carritos", ThisKey="CarritoID", OtherKey="CarritoID")]
+		[Association(Name="Carrito_Producto_Carrito", Storage="_Producto_Carritos", OtherKey="CarritoID")]
 		public EntitySet<Producto_Carrito> Producto_Carritos
 		{
 			get
@@ -921,7 +921,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Categoria_SubCategoria", Storage="_SubCategorias", ThisKey="CategoriaID", OtherKey="CategoriaID")]
+		[Association(Name="Categoria_SubCategoria", Storage="_SubCategorias", OtherKey="CategoriaID")]
 		public EntitySet<SubCategoria> SubCategorias
 		{
 			get
@@ -1035,7 +1035,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="MetodoDePago_Vendido", Storage="_Vendidos", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID")]
+		[Association(Name="MetodoDePago_Vendido", Storage="_Vendidos", OtherKey="MetodoDePagoID")]
 		public EntitySet<Vendido> Vendidos
 		{
 			get
@@ -1212,7 +1212,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Producto_Carrito", Storage="_Producto_Carritos", ThisKey="ProductoID", OtherKey="ProductoID")]
+		[Association(Name="Producto_Producto_Carrito", Storage="_Producto_Carritos", OtherKey="ProductoID")]
 		public EntitySet<Producto_Carrito> Producto_Carritos
 		{
 			get
@@ -1225,7 +1225,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Producto_Tag", Storage="_Producto_Tags", ThisKey="ProductoID", OtherKey="ProductoID")]
+		[Association(Name="Producto_Producto_Tag", Storage="_Producto_Tags", OtherKey="ProductoID")]
 		public EntitySet<Producto_Tag> Producto_Tags
 		{
 			get
@@ -1238,7 +1238,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Producto_Usuario", Storage="_Producto_Usuarios", ThisKey="ProductoID", OtherKey="ProductoID")]
+		[Association(Name="Producto_Producto_Usuario", Storage="_Producto_Usuarios", OtherKey="ProductoID")]
 		public EntitySet<Producto_Usuario> Producto_Usuarios
 		{
 			get
@@ -1251,7 +1251,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Valor", Storage="_Valors", ThisKey="ProductoID", OtherKey="ProductoID")]
+		[Association(Name="Producto_Valor", Storage="_Valors", OtherKey="ProductoID")]
 		public EntitySet<Valor> Valors
 		{
 			get
@@ -1436,7 +1436,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Carrito_Producto_Carrito", Storage="_Carrito", ThisKey="CarritoID", OtherKey="CarritoID", IsForeignKey=true)]
+		[Association(Name="Carrito_Producto_Carrito", Storage="_Carrito", ThisKey="CarritoID", IsForeignKey=true)]
 		public Carrito Carrito
 		{
 			get
@@ -1470,7 +1470,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Producto_Carrito", Storage="_Producto", ThisKey="ProductoID", OtherKey="ProductoID", IsForeignKey=true)]
+		[Association(Name="Producto_Producto_Carrito", Storage="_Producto", ThisKey="ProductoID", IsForeignKey=true)]
 		public Producto Producto
 		{
 			get
@@ -1604,7 +1604,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Producto_Tag", Storage="_Producto", ThisKey="ProductoID", OtherKey="ProductoID", IsForeignKey=true)]
+		[Association(Name="Producto_Producto_Tag", Storage="_Producto", ThisKey="ProductoID", IsForeignKey=true)]
 		public Producto Producto
 		{
 			get
@@ -1638,7 +1638,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Tag_Producto_Tag", Storage="_Tag", ThisKey="TagID", OtherKey="TagID", IsForeignKey=true)]
+		[Association(Name="Tag_Producto_Tag", Storage="_Tag", ThisKey="TagID", IsForeignKey=true)]
 		public Tag Tag
 		{
 			get
@@ -1820,7 +1820,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Producto_Usuario", Storage="_Producto", ThisKey="ProductoID", OtherKey="ProductoID", IsForeignKey=true)]
+		[Association(Name="Producto_Producto_Usuario", Storage="_Producto", ThisKey="ProductoID", IsForeignKey=true)]
 		public Producto Producto
 		{
 			get
@@ -1854,7 +1854,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Producto_Usuario", Storage="_Usuario", ThisKey="UsuarioID", OtherKey="UsuarioID", IsForeignKey=true)]
+		[Association(Name="Usuario_Producto_Usuario", Storage="_Usuario", ThisKey="UsuarioID", IsForeignKey=true)]
 		public Usuario Usuario
 		{
 			get
@@ -1980,7 +1980,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Propiedad_SubCategoria_Propiedad", Storage="_SubCategoria_Propiedads", ThisKey="PropiedadID", OtherKey="PropiedadID")]
+		[Association(Name="Propiedad_SubCategoria_Propiedad", Storage="_SubCategoria_Propiedads", OtherKey="PropiedadID")]
 		public EntitySet<SubCategoria_Propiedad> SubCategoria_Propiedads
 		{
 			get
@@ -1993,7 +1993,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Propiedad_Valor", Storage="_Valors", ThisKey="PropiedadID", OtherKey="PropiedadID")]
+		[Association(Name="Propiedad_Valor", Storage="_Valors", OtherKey="PropiedadID")]
 		public EntitySet<Valor> Valors
 		{
 			get
@@ -2150,7 +2150,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="SubCategoria_SubCategoria_Propiedad", Storage="_SubCategoria_Propiedads", ThisKey="SubCategoriaID", OtherKey="SubCategoriaID")]
+		[Association(Name="SubCategoria_SubCategoria_Propiedad", Storage="_SubCategoria_Propiedads", OtherKey="SubCategoriaID")]
 		public EntitySet<SubCategoria_Propiedad> SubCategoria_Propiedads
 		{
 			get
@@ -2163,7 +2163,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Categoria_SubCategoria", Storage="_Categoria", ThisKey="CategoriaID", OtherKey="CategoriaID", IsForeignKey=true)]
+		[Association(Name="Categoria_SubCategoria", Storage="_Categoria", ThisKey="CategoriaID", IsForeignKey=true)]
 		public Categoria Categoria
 		{
 			get
@@ -2333,7 +2333,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Propiedad_SubCategoria_Propiedad", Storage="_Propiedad", ThisKey="PropiedadID", OtherKey="PropiedadID", IsForeignKey=true)]
+		[Association(Name="Propiedad_SubCategoria_Propiedad", Storage="_Propiedad", ThisKey="PropiedadID", IsForeignKey=true)]
 		public Propiedad Propiedad
 		{
 			get
@@ -2367,7 +2367,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="SubCategoria_SubCategoria_Propiedad", Storage="_SubCategoria", ThisKey="SubCategoriaID", OtherKey="SubCategoriaID", IsForeignKey=true)]
+		[Association(Name="SubCategoria_SubCategoria_Propiedad", Storage="_SubCategoria", ThisKey="SubCategoriaID", IsForeignKey=true)]
 		public SubCategoria SubCategoria
 		{
 			get
@@ -2675,7 +2675,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Tag_Producto_Tag", Storage="_Producto_Tags", ThisKey="TagID", OtherKey="TagID")]
+		[Association(Name="Tag_Producto_Tag", Storage="_Producto_Tags", OtherKey="TagID")]
 		public EntitySet<Producto_Tag> Producto_Tags
 		{
 			get
@@ -2688,7 +2688,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Tag_Usuario_Tag", Storage="_Usuario_Tags", ThisKey="TagID", OtherKey="TagID")]
+		[Association(Name="Tag_Usuario_Tag", Storage="_Usuario_Tags", OtherKey="TagID")]
 		public EntitySet<Usuario_Tag> Usuario_Tags
 		{
 			get
@@ -2847,7 +2847,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Activo", Storage="_Activos", ThisKey="UsuarioID", OtherKey="UsuarioID")]
+		[Association(Name="Usuario_Activo", Storage="_Activos", OtherKey="UsuarioID")]
 		public EntitySet<Activo> Activos
 		{
 			get
@@ -2860,7 +2860,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Vendido", Storage="_Vendidos", ThisKey="UsuarioID", OtherKey="UsuarioID")]
+		[Association(Name="Usuario_Vendido", Storage="_Vendidos", OtherKey="UsuarioID")]
 		public EntitySet<Vendido> Vendidos
 		{
 			get
@@ -2873,7 +2873,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Producto_Usuario", Storage="_Producto_Usuarios", ThisKey="UsuarioID", OtherKey="UsuarioID")]
+		[Association(Name="Usuario_Producto_Usuario", Storage="_Producto_Usuarios", OtherKey="UsuarioID")]
 		public EntitySet<Producto_Usuario> Producto_Usuarios
 		{
 			get
@@ -2886,7 +2886,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Usuario_Tag", Storage="_Usuario_Tags", ThisKey="UsuarioID", OtherKey="UsuarioID")]
+		[Association(Name="Usuario_Usuario_Tag", Storage="_Usuario_Tags", OtherKey="UsuarioID")]
 		public EntitySet<Usuario_Tag> Usuario_Tags
 		{
 			get
@@ -3047,7 +3047,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Tag_Usuario_Tag", Storage="_Tag", ThisKey="TagID", OtherKey="TagID", IsForeignKey=true)]
+		[Association(Name="Tag_Usuario_Tag", Storage="_Tag", ThisKey="TagID", IsForeignKey=true)]
 		public Tag Tag
 		{
 			get
@@ -3081,7 +3081,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Usuario_Tag", Storage="_Usuario", ThisKey="UsuarioID", OtherKey="UsuarioID", IsForeignKey=true)]
+		[Association(Name="Usuario_Usuario_Tag", Storage="_Usuario", ThisKey="UsuarioID", IsForeignKey=true)]
 		public Usuario Usuario
 		{
 			get
@@ -3239,7 +3239,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Propiedad_Valor", Storage="_Propiedad", ThisKey="PropiedadID", OtherKey="PropiedadID", IsForeignKey=true)]
+		[Association(Name="Propiedad_Valor", Storage="_Propiedad", ThisKey="PropiedadID", IsForeignKey=true)]
 		public Propiedad Propiedad
 		{
 			get
@@ -3273,7 +3273,7 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Valor", Storage="_Producto", ThisKey="ProductoID", OtherKey="ProductoID", IsForeignKey=true)]
+		[Association(Name="Producto_Valor", Storage="_Producto", ThisKey="ProductoID", IsForeignKey=true)]
 		public Producto Producto
 		{
 			get

@@ -15,5 +15,39 @@ namespace Armazon.Models.DataAccess.Administracion
             db = new ArmazonDataContext();
             
         }
+
+        public static TagManager getInstance()
+        {
+            if (instancia == null)
+            {
+                instancia = new TagManager();
+            }
+            return instancia;
+        }
+
+        public IQueryable<Tag> findAllTags()
+        {
+            return db.Tags;
+        }
+
+        public Usuario getTag(int id)
+        {
+            return db.Tags.SingleOrDefault(c => c.TagID == id);                
+        }
+
+        public void Add(Tag tag)
+        {
+            db.Tags.InsertOnSubmit(tag);
+        }
+
+        public void Delete(Tag tag)
+        {
+            db.Tags.DeleteOnSubmit(tag);
+        }
+
+        public void Save()
+        {
+            db.SubmitChanges();
+        }
     }
 }
