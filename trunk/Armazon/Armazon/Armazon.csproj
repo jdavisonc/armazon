@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Models\DataAccess\Administracion\CategoriaManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\MetododePagoManager.cs" />
+    <Compile Include="Models\DataAccess\Administracion\ProductoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\PropiedadManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\SubCategoriaManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\SucursalManager.cs" />
