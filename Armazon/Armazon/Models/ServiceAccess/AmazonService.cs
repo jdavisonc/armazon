@@ -24,8 +24,8 @@ namespace Armazon.Models.ServiceAccess
         {
             List<DTProduct> list = new List<DTProduct>();
             ItemSearchRequest request = new ItemSearchRequest();
-            request.SearchIndex = "Books";
-            request.Power = "title: " + fullText;
+            request.SearchIndex = "All";
+            request.Keywords = fullText;
             request.ResponseGroup = new string[] { "Small" };
             request.Sort = "salesrank";
 
@@ -44,15 +44,15 @@ namespace Armazon.Models.ServiceAccess
                 for (int i = 0; i < items.Length; i++)
                 {
                     Item item = items[i];
-                    System.Console.WriteLine(item.ItemAttributes.Title);
-                    //item.ItemAttributes.
+                    DTProduct dt = new DTProduct();
+                    dt.Attrs.Add(new DTProductAttrString("Titulo", item.ItemAttributes.Title));
+                    list.Add(dt);
                 }
                 return list;
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine(ex);
-                return null;
+                throw new Exception("Service Access: AmazonService, Error: " + ex.Message);
             }
         }
 
