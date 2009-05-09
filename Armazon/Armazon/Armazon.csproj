@@ -88,9 +88,13 @@
     <Compile Include="Models\DataAccess\Administracion\PropiedadManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\SubCategoriaManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\SucursalManager.cs" />
+    <Compile Include="Models\DataAccess\Administracion\TagManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\UsuarioManager.cs" />
     <Compile Include="Models\DataTypes\DTProductAttr.cs" />
     <Compile Include="Models\DataTypes\DTProduct.cs" />
+    <Compile Include="Models\DataTypes\DTProductAttrImage.cs" />
+    <Compile Include="Models\DataTypes\DTProductAttrInt.cs" />
+    <Compile Include="Models\DataTypes\DTProductAttrString.cs" />
     <Compile Include="Models\Fachada\Administracion\AdministracionFachada.cs" />
     <Compile Include="Models\ServiceAccess\AmazonService.cs" />
     <Compile Include="Models\ServiceAccess\ArmazonService.cs" />
