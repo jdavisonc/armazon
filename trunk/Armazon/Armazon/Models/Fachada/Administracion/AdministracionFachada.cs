@@ -170,9 +170,6 @@ namespace Armazon.Models
             usuarioMgr.Save();
         }
 
-
-
-
         //Producto
         public IQueryable<Producto> findAllProductos()
         {
@@ -199,6 +196,5 @@ namespace Armazon.Models
             ProductoManager productoMgr = ProductoManager.getInstance();
             productoMgr.Save();
         }
-
     }
 }
