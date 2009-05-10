@@ -2228,7 +2228,7 @@ namespace Armazon
 			this.SendPropertyChanging();
 			entity.SubCategoria = null;
 		}
-	}
+    }
 	
 	[Table(Name="dbo.SubCategoria_Propiedad")]
 	public partial class SubCategoria_Propiedad : INotifyPropertyChanging, INotifyPropertyChanged

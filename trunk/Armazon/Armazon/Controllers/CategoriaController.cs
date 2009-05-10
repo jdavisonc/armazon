@@ -40,7 +40,6 @@ namespace Armazon.Controllers
 
         public ActionResult Create()
         {
-            Categoria categoria = new Categoria();
             return View();
         } 
 
@@ -119,6 +118,7 @@ namespace Armazon.Controllers
             administracionFachada.deleteCategoria(id);
             administracionFachada.saveCategoria();
             return View("Deleted");
-        } 
+        }
+
     }
 }
