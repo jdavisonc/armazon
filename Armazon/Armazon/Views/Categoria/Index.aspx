@@ -25,8 +25,7 @@
             <td>
                 <%= Html.ActionLink("Modificar", "Edit", new { id=item.CategoriaID }) %> |
                 <%= Html.ActionLink("Eliminar", "Delete", new { id = item.CategoriaID })%> |
-                <%= Html.ActionLink("Detalles", "Details", new { id=item.CategoriaID })%> |
-                <%= Html.ActionLink("Crear SubCategoría", "SubCategoria", new { id=item.CategoriaID })%>
+                <%= Html.ActionLink("Detalles", "Details", new { id=item.CategoriaID })%>
             </td>
             <td>
                 <%= Html.Encode(item.CategoriaID) %>
