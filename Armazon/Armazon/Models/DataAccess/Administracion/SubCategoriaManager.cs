@@ -33,9 +33,13 @@ namespace Armazon.Models.DataAccess.Administracion
         }
 
 
-        public IQueryable<SubCategoria> findAllSubCategorias()
+        public IQueryable<SubCategoria> findAllSubCategorias(int categoriaID)
         {
-            return db.SubCategorias;
+            IQueryable<SubCategoria> subCategorias = (  from sc in db.SubCategorias
+                                                        where sc.CategoriaID == categoriaID
+                                                        select sc);
+
+            return subCategorias;
         }
 
         public SubCategoria getSubCategoria(int id)

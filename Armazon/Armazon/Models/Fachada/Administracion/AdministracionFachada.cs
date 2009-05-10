@@ -77,10 +77,10 @@ namespace Armazon.Models
         }
         
         // SubCategoria
-        public IQueryable<SubCategoria> findAllSubCategorias()
+        public IQueryable<SubCategoria> findAllSubCategorias(int categoriaID)
         {
             SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
-            return subCategoriaMgr.findAllSubCategorias();
+            return subCategoriaMgr.findAllSubCategorias(categoriaID);
         }
         public SubCategoria getSubCategoria(int num)
         {
