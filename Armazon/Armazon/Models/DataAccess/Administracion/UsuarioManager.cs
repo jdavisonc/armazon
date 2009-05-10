@@ -9,11 +9,17 @@ namespace Armazon.Models.DataAccess.Administracion
     {
         private static UsuarioManager instancia = null;
         private ArmazonDataContext db;
+        private int MinRequiredPasswordLength = 6;
+
+        public int MinRequiredPasswordLength1
+        {
+            get { return MinRequiredPasswordLength; }
+            set { MinRequiredPasswordLength = value; }
+        }
 
         private UsuarioManager()
         {
             db = new ArmazonDataContext();
-            
         }
 
         public static UsuarioManager getInstance()
@@ -25,6 +31,13 @@ namespace Armazon.Models.DataAccess.Administracion
             return instancia;
         }
 
+        public bool ValidateUser(string userName, string password)
+        {
+            var user = from a in db.Usuarios
+                       where ((a.Nombre.CompareTo(userName) == 0) && (a.Password.CompareTo(password) == 0))
+                       select a;
+            return (user != null);
+        }
 
         public IQueryable<Usuario> findAllUsuarios()
         {
