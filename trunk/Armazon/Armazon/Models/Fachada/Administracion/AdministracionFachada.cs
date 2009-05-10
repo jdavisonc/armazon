@@ -144,17 +144,34 @@ namespace Armazon.Models
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             return UsuarioMgr.getUsuario(num);
         }
+        public Usuario getUsuario(string userName)
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            return UsuarioMgr.getUsuario(userName);
+        }
         public void addUsuario(Usuario usuario)
         {
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             UsuarioMgr.Add(usuario);
         }
-        public bool validateUsuario(string userName, string password)
+        public bool validarUsuario(string userName, string password)
         {
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             return UsuarioMgr.ValidateUser(userName, password);
         }
-        public int getMinPasswordLength()
+        public bool cambiarContrasenaUsuario(string userName, string currentPassword, string newPassword)
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            Usuario user = UsuarioMgr.getUsuario(userName);
+            if (user.Password.CompareTo(currentPassword) == 0)
+            {
+                user.Password = newPassword;
+                UsuarioMgr.Save();
+                return true;
+            }
+            return false;
+        }
+        public int getMinLargoContrasena()
         {
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             return UsuarioMgr.MinRequiredPasswordLength1;

@@ -33,10 +33,10 @@ namespace Armazon.Models.DataAccess.Administracion
 
         public bool ValidateUser(string userName, string password)
         {
-            var user = from a in db.Usuarios
-                       where ((a.Nombre.CompareTo(userName) == 0) && (a.Password.CompareTo(password) == 0))
-                       select a;
-            return (user != null);
+            Usuario user = db.Usuarios.SingleOrDefault(c => c.Nombre == userName);
+            if ((user != null) && (user.Password.CompareTo(password) == 0))
+                return true;
+            return false;
         }
 
         public IQueryable<Usuario> findAllUsuarios()
@@ -47,6 +47,11 @@ namespace Armazon.Models.DataAccess.Administracion
         public Usuario getUsuario(int id)
         {
             return db.Usuarios.SingleOrDefault(c => c.UsuarioID == id);
+        }
+        
+        public Usuario getUsuario(string userName)
+        {
+            return db.Usuarios.SingleOrDefault(c => c.Nombre == userName);
         }
 
         public void Add(Usuario usuario)
