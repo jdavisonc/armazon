@@ -87,7 +87,6 @@ namespace Armazon.Controllers
                 categoria.Nombre = Request.Form["Nombre"];
                 administracionFachada.saveCategoria();
                 return RedirectToAction("Details", new { id = categoria.CategoriaID });
-                
             }
             catch
             {

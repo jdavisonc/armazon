@@ -69,7 +69,9 @@ namespace Armazon.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            var producto = administracionFachada.getProducto(id);
+            return View(producto);
         }
 
         //
@@ -80,9 +82,11 @@ namespace Armazon.Controllers
         {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                AdministracionFachada administracionFachada = new AdministracionFachada();
+                Producto producto = administracionFachada.getProducto(id);
+                producto.ProductoID = Request.Form["Nombre"];
+                administracionFachada.saveProducto();
+                return RedirectToAction("Details", new { id = categoria.CategoriaID });
             }
             catch
             {
