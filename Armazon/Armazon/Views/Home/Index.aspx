@@ -9,6 +9,7 @@
     
         <p><a href="/Categoria">Administación de Categorías</a></p>
         <p><a href="/SubCategoria">Administación de SubCategorías</a></p>
+        <p><a href="/Producto">Administación de Productos</a></p>
         <p><a href="/Sucursal">Administación de Sucursales</a></p>
         
 </asp:Content>
