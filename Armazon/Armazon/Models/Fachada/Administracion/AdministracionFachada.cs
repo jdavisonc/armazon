@@ -174,5 +174,33 @@ namespace Armazon.Models
         {
             return this.password;
         }
+
+        //Producto
+        public IQueryable<Producto> findAllProductos()
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            return productoMgr.findAllProductos();
+        }
+        public Producto getProducto(int id)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            return productoMgr.getProducto(id);
+        }
+        public void addProducto(Producto Producto)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            productoMgr.Add(Producto);
+        }
+        public void deleteProducto(int id)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            productoMgr.Delete(productoMgr.getProducto(id));
+        }
+        public void saveProducto()
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            productoMgr.Save();
+        }
+
     }
 }
