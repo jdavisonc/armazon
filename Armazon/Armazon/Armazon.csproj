@@ -131,6 +131,8 @@
     <Content Include="Views\Categoria\Edit.aspx" />
     <Content Include="Views\Categoria\Index.aspx" />
     <Content Include="Views\Categoria\NotFound.aspx" />
+    <Content Include="Views\Producto\Create.aspx" />
+    <Content Include="Views\Producto\Details.aspx" />
     <Content Include="Views\Producto\Index.aspx" />
     <Content Include="Views\SubCategoria\Create.aspx" />
     <Content Include="Views\SubCategoria\Delete.aspx" />
