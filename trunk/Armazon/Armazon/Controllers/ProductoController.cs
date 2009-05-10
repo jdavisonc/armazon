@@ -48,10 +48,14 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
+            Producto producto = new Producto();
             try
             {
                 // TODO: Add insert logic here
-
+                UpdateModel(producto);
+                AdministracionFachada administracionFachada = new AdministracionFachada();
+                administracionFachada.addProducto(producto);
+                administracionFachada.saveProducto();
                 return RedirectToAction("Index");
             }
             catch
