@@ -12,9 +12,6 @@
         <tr>
             <th></th>
             <th>
-                CategoriaID
-            </th>
-            <th>
                 Nombre
             </th>
         </tr>
@@ -23,13 +20,7 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Modificar", "Edit", new { id=item.CategoriaID }) %> |
-                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.CategoriaID })%> |
-                <%= Html.ActionLink("Detalles", "Details", new { id=item.CategoriaID })%> |
-                <%= Html.ActionLink("Crear SubCategoría", "SubCategoria", new { id=item.CategoriaID })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.CategoriaID) %>
+                <%= Html.ActionLink("Crear SubCategoría", "Create", new { id=item.CategoriaID })%>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>
@@ -39,9 +30,6 @@
     <% } %>
 
     </table>
-    <p>        
-       <%= Html.ActionLink("Crear Nueva", "Create") %>
-    </p>
     
 </asp:Content>
 

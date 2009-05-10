@@ -5,8 +5,10 @@
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%= Html.Encode(ViewData["Message"]) %></h2>
-    <p>
-        To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-    </p>
+    <h2>Armazon</h2>
+    
+        <p><a href="/Categoria">Administación de Categorías</a></p>
+        <p><a href="/SubCategoria">Administación de SubCategorías</a></p>
+        <p><a href="/Sucursal">Administación de Sucursales</a></p>
+        
 </asp:Content>

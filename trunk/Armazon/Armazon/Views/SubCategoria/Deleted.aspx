@@ -1,17 +1,17 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Categoría Eliminada
+	SubCategoría Eliminada
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Categoría Eliminada</h2>
+    <h2>SubCategoría Eliminada</h2>
     <div>
-        <p>La categoría ha sido eliminada con exito.</p>
+        <p>La subcategoría ha sido eliminada con exito.</p>
     </div>
     <div>
-        <p><a href="/Categoria">Ver Categorías</a></p>
+        <%=Html.ActionLink("Ver SubCategorias", "ListarSubCategoria", new { id = ViewData["CategoriaID"] })%>
     </div>
 
 </asp:Content>

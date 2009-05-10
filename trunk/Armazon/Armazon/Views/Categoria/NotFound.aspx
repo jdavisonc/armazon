@@ -1,17 +1,11 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Categoría Eliminada
+	NotFound
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Categoría Eliminada</h2>
-    <div>
-        <p>La categoría ha sido eliminada con exito.</p>
-    </div>
-    <div>
-        <p><a href="/Categoria">Ver Categorías</a></p>
-    </div>
+    <h2>No se encuentra la categoría</h2>
 
 </asp:Content>
