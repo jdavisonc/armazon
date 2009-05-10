@@ -17,8 +17,7 @@ namespace Armazon.Controllers
         public ActionResult Index()
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
-            var categorias = administracionFachada.findAllCategorias().ToList();
-            
+            var categorias = administracionFachada.findAllCategorias().ToList();            
             return View(categorias);
         }
 

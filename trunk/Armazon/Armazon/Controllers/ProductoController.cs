@@ -16,7 +16,9 @@ namespace Armazon.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            var productos = administracionFachada.findAllProductos().ToList();
+            return View(productos);
         }
 
         //
@@ -24,7 +26,12 @@ namespace Armazon.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            Producto producto = administracionFachada.getProducto(id);
+            if (producto == null)
+                return View("NotFound");
+            else
+                return View(producto);
         }
 
         //
