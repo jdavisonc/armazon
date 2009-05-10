@@ -283,7 +283,7 @@ namespace Armazon.Controllers
     // how to create an abstract wrapper around such a type in order to make the AccountController
     // code unit testable.
 
-    public interface IFormsAuthentication
+    /*public interface IFormsAuthentication
     {
         void SignIn(string userName, bool createPersistentCookie);
         void SignOut();
@@ -299,7 +299,7 @@ namespace Armazon.Controllers
         {
             FormsAuthentication.SignOut();
         }
-    }
+    }*/
 
     public interface IMembershipService
     {

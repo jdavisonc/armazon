@@ -149,31 +149,29 @@ namespace Armazon.Models
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             UsuarioMgr.Add(usuario);
         }
+        public bool validateUsuario(string userName, string password)
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            return UsuarioMgr.ValidateUser(userName, password);
+        }
+        public int getMinPasswordLength()
+        {
+            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
+            return UsuarioMgr.MinRequiredPasswordLength1;
+        }
         public void deleteUsuario(int num)
         {
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             UsuarioMgr.Delete(UsuarioMgr.getUsuario(num));
-
         }
         public void saveUsuario()
         {
-
             UsuarioManager usuarioMgr = UsuarioManager.getInstance();
             usuarioMgr.Save();
         }
-        public void setUser(string userName, string password)
-        {
-            this.userName = userName;
-            this.password = password;
-        }
-        public string getUsername()
-        {
-            return this.userName;
-        }
-        public string getUserPassword()
-        {
-            return this.password;
-        }
+
+
+
 
         //Producto
         public IQueryable<Producto> findAllProductos()
