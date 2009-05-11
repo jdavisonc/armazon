@@ -13,7 +13,7 @@ namespace Armazon.Controllers
     {
         //
         // GET: /Categoria/
-
+        [Authorize]
         public ActionResult Index()
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
@@ -36,7 +36,7 @@ namespace Armazon.Controllers
 
         //
         // GET: /Categoria/Create
-
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             return View();
@@ -45,7 +45,7 @@ namespace Armazon.Controllers
         //
         // POST: /Categoria/Create
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Post), Authorize(Roles = "Administrador")]
         public ActionResult Create(FormCollection collection)
         {
             Categoria categoria = new Categoria();

@@ -160,28 +160,6 @@ namespace Armazon.Models
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             UsuarioMgr.Add(usuario);
         }
-        public bool validarUsuario(string userName, string password)
-        {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
-            return UsuarioMgr.ValidateUser(userName, password);
-        }
-        public bool cambiarContrasenaUsuario(string userName, string currentPassword, string newPassword)
-        {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
-            Usuario user = UsuarioMgr.getUsuario(userName);
-            if (user.Password.CompareTo(currentPassword) == 0)
-            {
-                user.Password = newPassword;
-                UsuarioMgr.Save();
-                return true;
-            }
-            return false;
-        }
-        public int getMinLargoContrasena()
-        {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
-            return UsuarioMgr.MinRequiredPasswordLength1;
-        }
         public void deleteUsuario(int num)
         {
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
@@ -221,7 +199,7 @@ namespace Armazon.Models
         }
 
         //SubCategoria_Propiedad
-        public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
+        /*public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
         {
             SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
             return subCategoria_PropiedadMgr.findAllSubCategoria_Propiedades();
@@ -246,7 +224,7 @@ namespace Armazon.Models
         {
             SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
             subCategoria_PropiedadMgr.Save();
-        }
+        }*/
 
     }
 }
