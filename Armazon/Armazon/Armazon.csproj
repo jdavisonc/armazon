@@ -148,8 +148,11 @@
     <Content Include="Views\Sucursal\Edit.aspx" />
     <Content Include="Views\Sucursal\Index.aspx" />
     <Content Include="Views\Sucursal\NotFound.aspx" />
+    <Content Include="Views\Usuario\ChangePassword.aspx" />
+    <Content Include="Views\Usuario\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Usuario\Index.aspx" />
     <Content Include="Views\Usuario\LogOn.aspx" />
+    <Content Include="Views\Usuario\Profile.aspx" />
     <Content Include="Views\Usuario\Reg user error.aspx" />
     <Content Include="Views\Usuario\Register.aspx" />
     <Content Include="Views\Usuario\usuarioAgregado.aspx" />
