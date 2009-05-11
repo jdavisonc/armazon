@@ -286,4 +286,25 @@ namespace Armazon.Controllers
         }
     }
 
+    public class RequiresRoleAdministratorAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                string redirectOnSuccess = filterContext.HttpContext.Request.Url.AbsolutePath;
+                string redirectUrl = string.Format("?ReturnUrl={0}", redirectOnSuccess);
+                string loginUrl = "/Usuario/LogOn" + redirectUrl;
+                filterContext.HttpContext.Response.Redirect(loginUrl, true);
+            }
+            else
+            {
+                AdministracionFachada adminFach = new AdministracionFachada();
+                Usuario user = adminFach.getUsuario(filterContext.HttpContext.User.Identity.Name);
+                if (!user.Administrador)
+                    throw new UnauthorizedAccessException("You are not authorized to view this page");
+            }
+        }
+    }
+
 }
