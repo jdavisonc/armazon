@@ -199,7 +199,7 @@ namespace Armazon.Models
         }
 
         //SubCategoria_Propiedad
-        /*public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
+        public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
         {
             SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
             return subCategoria_PropiedadMgr.findAllSubCategoria_Propiedades();
@@ -224,7 +224,7 @@ namespace Armazon.Models
         {
             SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
             subCategoria_PropiedadMgr.Save();
-        }*/
+        }
 
     }
 }
