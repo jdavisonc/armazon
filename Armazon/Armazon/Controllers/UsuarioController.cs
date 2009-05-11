@@ -302,7 +302,24 @@ namespace Armazon.Controllers
                 AdministracionFachada adminFach = new AdministracionFachada();
                 Usuario user = adminFach.getUsuario(filterContext.HttpContext.User.Identity.Name);
                 if (!user.Administrador)
-                    throw new UnauthorizedAccessException("You are not authorized to view this page");
+                {
+                    string profile = "/Usuario/Profile";
+                    filterContext.HttpContext.Response.Redirect(profile, true);
+                }
+            }
+        }
+    }
+
+    public class RequiresLogInAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                string redirectOnSuccess = filterContext.HttpContext.Request.Url.AbsolutePath;
+                string redirectUrl = string.Format("?ReturnUrl={0}", redirectOnSuccess);
+                string loginUrl = "/Usuario/LogOn" + redirectUrl;
+                filterContext.HttpContext.Response.Redirect(loginUrl, true);
             }
         }
     }
