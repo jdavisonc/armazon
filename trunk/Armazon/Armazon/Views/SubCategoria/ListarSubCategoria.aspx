@@ -25,6 +25,7 @@
             <td>
                 <%= Html.ActionLink("Modificar", "Edit", new { id=item.SubCategoriaID }) %> |
                 <%= Html.ActionLink("Eliminar", "Delete", new { id = item.SubCategoriaID, categoriaID = item.CategoriaID })%> |
+                <%= Html.ActionLink("Asociar Propiedades", "AsociarPropiedades", new { id = item.SubCategoriaID })%> |
                 <%= Html.ActionLink("Detalles", "Details", new { id=item.SubCategoriaID })%>
             </td>
             <td>
@@ -40,7 +41,7 @@
     </table>
     <p>
         <%= Html.ActionLink("Crear Nueva", "Create", new { id = ViewData["CategoriaID"] })%> |
-        <%=Html.ActionLink("Ver Categorías", "Index") %>
+        <%=Html.ActionLink("Ver Categorías", "Index") %> |
     </p>
 
     
