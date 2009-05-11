@@ -131,8 +131,12 @@
     <Content Include="Views\Categoria\Index.aspx" />
     <Content Include="Views\Categoria\NotFound.aspx" />
     <Content Include="Views\Producto\Create.aspx" />
+    <Content Include="Views\Producto\Delete.aspx" />
+    <Content Include="Views\Producto\Deleted.aspx" />
     <Content Include="Views\Producto\Details.aspx" />
+    <Content Include="Views\Producto\Edit.aspx" />
     <Content Include="Views\Producto\Index.aspx" />
+    <Content Include="Views\Producto\NotFound.aspx" />
     <Content Include="Views\SubCategoria\Create.aspx" />
     <Content Include="Views\SubCategoria\Delete.aspx" />
     <Content Include="Views\SubCategoria\Deleted.aspx" />

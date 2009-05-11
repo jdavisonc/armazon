@@ -84,14 +84,38 @@ namespace Armazon.Controllers
             {
                 AdministracionFachada administracionFachada = new AdministracionFachada();
                 Producto producto = administracionFachada.getProducto(id);
-                producto.ProductoID = Request.Form["Nombre"];
+                //producto.ProductoID = Request.Form["ProductoID"];
                 administracionFachada.saveProducto();
-                return RedirectToAction("Details", new { id = categoria.CategoriaID });
+                return RedirectToAction("Details", new { id = producto.ProductoID });
             }
             catch
             {
                 return View();
             }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            var producto = administracionFachada.getProducto(id);
+            if (producto == null)
+                return View("NotFound");
+            else
+                return View(producto);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete(int id, string confirmButton)
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            var producto = administracionFachada.getProducto(id);
+            if (producto == null)
+            {
+                return View("NotFound");
+            }
+            administracionFachada.deleteProducto(id);
+            administracionFachada.saveProducto();
+            return View("Deleted");
         }
     }
 }
