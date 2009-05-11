@@ -17,8 +17,9 @@
     </fieldset>
     <p>
 
-        <%=Html.ActionLink("Edit", "Edit", new { id = Model.ProductoID })%> |
-        <%=Html.ActionLink("Back to List", "Index")%>
+        <%=Html.ActionLink("Modificar", "Edit", new { id = Model.ProductoID })%> |
+        <%= Html.ActionLink("Eliminar", "Delete", new { id = Model.ProductoID })%> |
+        <%=Html.ActionLink("Ver Productos", "Index")%>
     </p>
 
 </asp:Content>
