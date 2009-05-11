@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAC3253F-9071-4798-A46C-16F7A01F1A55}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -69,7 +69,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Armazon.dbml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\SubCategoriaDetailsFormVM.cs" />
+    <Compile Include="Controllers\AsociarPropiedadesFormVM.cs" />
+    <Compile Include="Controllers\PropiedadController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Models\DataAccess\Administracion\ProductoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\PropiedadManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\SubCategoriaManager.cs" />
+    <Compile Include="Models\DataAccess\Administracion\SubCategoria_PropiedadManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\SucursalManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\TagManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\UsuarioManager.cs" />
@@ -123,6 +125,14 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.3.2.js" />
+    <Content Include="Scripts\jquery-1.3.2.min-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />
@@ -137,6 +147,14 @@
     <Content Include="Views\Producto\Edit.aspx" />
     <Content Include="Views\Producto\Index.aspx" />
     <Content Include="Views\Producto\NotFound.aspx" />
+    <Content Include="Views\Propiedad\Create.aspx" />
+    <Content Include="Views\Propiedad\Delete.aspx" />
+    <Content Include="Views\Propiedad\Deleted.aspx" />
+    <Content Include="Views\Propiedad\Details.aspx" />
+    <Content Include="Views\Propiedad\Edit.aspx" />
+    <Content Include="Views\Propiedad\Index.aspx" />
+    <Content Include="Views\Propiedad\NotFound.aspx" />
+    <Content Include="Views\SubCategoria\AsociarPropiedades.aspx" />
     <Content Include="Views\SubCategoria\Create.aspx" />
     <Content Include="Views\SubCategoria\Delete.aspx" />
     <Content Include="Views\SubCategoria\Deleted.aspx" />
@@ -283,9 +301,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
