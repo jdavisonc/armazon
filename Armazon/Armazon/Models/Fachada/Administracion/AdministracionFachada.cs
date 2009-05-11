@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
 
+
 namespace Armazon.Models
 {
     public class AdministracionFachada
@@ -110,6 +111,11 @@ namespace Armazon.Models
         {
             PropiedadManager propiedadMgr = PropiedadManager.getInstance();
             return propiedadMgr.findAllPropiedades();
+        }
+        public IQueryable<Propiedad> propiedadesSubCategoria(int idSubCategoria)
+        {
+            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
+            return propiedadMgr.propiedadesSubCategoria(idSubCategoria);
         }
         public Propiedad getPropiedad(int num)
         {
@@ -213,5 +219,34 @@ namespace Armazon.Models
             ProductoManager productoMgr = ProductoManager.getInstance();
             productoMgr.Save();
         }
+
+        //SubCategoria_Propiedad
+        public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
+        {
+            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
+            return subCategoria_PropiedadMgr.findAllSubCategoria_Propiedades();
+        }
+        public SubCategoria_Propiedad getSubCategoria_Propiedad(int idSubCategoria, int idPropiedad)
+        {
+            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
+            return subCategoria_PropiedadMgr.getSubCategoria_Propiedad(idSubCategoria, idPropiedad);
+        }
+        public void addSubCategoria_Propiedad(SubCategoria_Propiedad subCategoria_Propiedad)
+        {
+            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
+            subCategoria_PropiedadMgr.Add(subCategoria_Propiedad);
+        }
+        public void deleteSubCategoria_Propiedad(int idSubCategoria, int idPropiedad)
+        {
+            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
+            subCategoria_PropiedadMgr.Delete(subCategoria_PropiedadMgr.getSubCategoria_Propiedad(idSubCategoria, idPropiedad));
+
+        }
+        public void saveSubCategoria_Propiedad()
+        {
+            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
+            subCategoria_PropiedadMgr.Save();
+        }
+
     }
 }

@@ -38,6 +38,15 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.Propiedads;
         }
 
+        public IQueryable<Propiedad> propiedadesSubCategoria(int idSubCategoria)
+        {
+            var propiedades = (from p in db.Propiedads
+                               join sp in db.SubCategoria_Propiedads on p.PropiedadID equals sp.PropiedadID
+                               where sp.SubCategoriaID == idSubCategoria
+                               select p);
+            return propiedades;
+        }
+
         public Propiedad getPropiedad(int id)
         {
             return db.Propiedads.SingleOrDefault(c => c.PropiedadID == id);

@@ -1,12 +1,12 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Categoria>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Propiedad>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Listar Categorías
+	Listar Propiedades
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Listar Categorías</h2>
+    <h2>Listar Propiedades</h2>
 
     <table>
         <tr>
@@ -20,7 +20,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Ver SubCategoría", "ListarSubCategoria", new { id=item.CategoriaID })%>
+                <%= Html.ActionLink("Modificar", "Edit", new { id=item.PropiedadID }) %> |
+                <%= Html.ActionLink("Eliminar", "Delete", new { id=item.PropiedadID }) %> |
+                <%= Html.ActionLink("Detalles", "Details", new { id=item.PropiedadID })%>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>
@@ -30,6 +32,10 @@
     <% } %>
 
     </table>
-    
+
+    <p>
+        <%= Html.ActionLink("Crear Nueva", "Create") %>
+    </p>
+
 </asp:Content>
 
