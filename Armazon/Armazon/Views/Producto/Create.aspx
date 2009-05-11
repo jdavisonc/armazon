@@ -20,14 +20,14 @@
                 <%= Html.ValidationMessage("ProductoID", "*") %>
             </p>
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Crear" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Ver Productos", "Index")%>
     </div>
 
 </asp:Content>
