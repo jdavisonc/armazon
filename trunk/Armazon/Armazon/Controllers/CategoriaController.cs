@@ -117,6 +117,5 @@ namespace Armazon.Controllers
             administracionFachada.saveCategoria();
             return View("Deleted");
         }
-
     }
 }
