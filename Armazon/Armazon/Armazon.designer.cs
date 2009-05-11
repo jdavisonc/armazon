@@ -2756,10 +2756,6 @@ namespace Armazon
 		
 		private string _Nombre;
 		
-		private string _Password;
-		
-		private bool _Administrador;
-		
 		private EntitySet<Activo> _Activos;
 		
 		private EntitySet<Vendido> _Vendidos;
@@ -2776,10 +2772,6 @@ namespace Armazon
     partial void OnUsuarioIDChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnAdministradorChanging(bool value);
-    partial void OnAdministradorChanged();
     #endregion
 		
 		public Usuario()
@@ -2827,46 +2819,6 @@ namespace Armazon
 					this._Nombre = value;
 					this.SendPropertyChanged("Nombre");
 					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-
-        [Column(Storage = "_Administrador", DbType = "bit", CanBeNull = false)]
-		public bool Administrador
-		{
-			get
-			{
-				return this._Administrador;
-			}
-			set
-			{
-				if ((this._Administrador != value))
-				{
-					this.OnAdministradorChanging(value);
-					this.SendPropertyChanging();
-					this._Administrador = value;
-					this.SendPropertyChanged("Administrador");
-					this.OnAdministradorChanged();
 				}
 			}
 		}

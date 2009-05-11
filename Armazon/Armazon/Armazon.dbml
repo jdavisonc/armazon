@@ -133,8 +133,6 @@
     <Type Name="Usuario">
       <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Member="Administrador" Type="System.String" CanBeNull="false" />
       <Association Name="Usuario_Activo" Member="Activos" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Activo" />
       <Association Name="Usuario_Vendido" Member="Vendidos" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Vendido" />
       <Association Name="Usuario_Producto_Usuario" Member="Producto_Usuarios" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Producto_Usuario" />

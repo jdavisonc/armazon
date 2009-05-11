@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAC3253F-9071-4798-A46C-16F7A01F1A55}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Armazon.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AsociarPropiedadesFormVM.cs" />
     <Compile Include="Controllers\PropiedadController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
@@ -77,7 +78,6 @@
     <Compile Include="Controllers\Prueba.cs" />
     <Compile Include="Controllers\SubCategoriaController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -134,6 +134,11 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Views\Account\ChangePassword.aspx" />
+    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Account\Profile.aspx" />
+    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />
@@ -171,14 +176,6 @@
     <Content Include="Views\Sucursal\Edit.aspx" />
     <Content Include="Views\Sucursal\Index.aspx" />
     <Content Include="Views\Sucursal\NotFound.aspx" />
-    <Content Include="Views\Usuario\ChangePassword.aspx" />
-    <Content Include="Views\Usuario\ChangePasswordSuccess.aspx" />
-    <Content Include="Views\Usuario\Index.aspx" />
-    <Content Include="Views\Usuario\LogOn.aspx" />
-    <Content Include="Views\Usuario\Profile.aspx" />
-    <Content Include="Views\Usuario\Reg user error.aspx" />
-    <Content Include="Views\Usuario\Register.aspx" />
-    <Content Include="Views\Usuario\usuarioAgregado.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\About.aspx" />
@@ -302,6 +299,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
