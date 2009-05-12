@@ -182,6 +182,11 @@ namespace Armazon.Models
             ProductoManager productoMgr = ProductoManager.getInstance();
             return productoMgr.getProducto(id);
         }
+        public Producto getProducto(String nombre)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            return productoMgr.getProducto(nombre);
+        }
         public void addProducto(Producto Producto)
         {
             ProductoManager productoMgr = ProductoManager.getInstance();

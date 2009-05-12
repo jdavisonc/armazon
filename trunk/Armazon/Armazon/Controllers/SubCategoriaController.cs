@@ -338,10 +338,13 @@ namespace Armazon.Controllers
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
 
+            String strNombre = Request.Form["txtNombre"];
             Producto nuevoProducto = new Producto();
+            nuevoProducto.Nombre = strNombre;
             administracionFachada.addProducto(nuevoProducto);
             administracionFachada.saveProducto();
-            int idProducto = 2;
+
+            int idProducto = administracionFachada.getProducto(strNombre).ProductoID;
 
             NameValueCollection parametros = Request.Params;
             for(int i=0; i < parametros.Count; i++)

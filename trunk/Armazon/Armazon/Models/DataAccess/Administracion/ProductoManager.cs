@@ -35,6 +35,11 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.Productos.SingleOrDefault(c => c.ProductoID == id);
         }
 
+        public Producto getProducto(String nombre)
+        {
+            return db.Productos.SingleOrDefault(c => c.Nombre == nombre);
+        }
+
         public void Add(Producto producto)
         {
             db.Productos.InsertOnSubmit(producto);
