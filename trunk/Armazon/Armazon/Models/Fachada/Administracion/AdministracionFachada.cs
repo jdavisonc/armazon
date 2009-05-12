@@ -160,10 +160,10 @@ namespace Armazon.Models
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             UsuarioMgr.Add(usuario);
         }
-        public void deleteUsuario(int num)
+        public void deleteUsuario(string userName)
         {
             UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
-            UsuarioMgr.Delete(UsuarioMgr.getUsuario(num));
+            UsuarioMgr.Delete(UsuarioMgr.getUsuario(userName));
         }
         public void saveUsuario()
         {
