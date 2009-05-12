@@ -33,7 +33,7 @@ namespace Armazon.Models.DataAccess.Administracion
 
         public MetodoDePago getMetododePago(int id)
         {
-            var metodoPago = db.MetodoDePagos.SingleOrDefault(c => c.MetodoDePagoID == id);
+            /*var metodoPago = db.MetodoDePagos.SingleOrDefault(c => c.MetodoDePagoID == id);
             if (metodoPago != null)
             {
                 var paypal = from ppal in db.MetodoDePagos
@@ -53,7 +53,7 @@ namespace Armazon.Models.DataAccess.Administracion
                 }
                 return (PayPal)paypal;
             }
-            else
+            else*/
                 return null;
         }
 
