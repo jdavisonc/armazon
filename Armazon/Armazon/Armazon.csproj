@@ -137,9 +137,11 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Account\Profile.aspx" />
     <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Account\SetToAdministrator.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />
