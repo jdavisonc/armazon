@@ -226,5 +226,33 @@ namespace Armazon.Models
             subCategoria_PropiedadMgr.Save();
         }
 
+
+        //Valor
+        public IQueryable<Valor> findAllValores()
+        {
+            ValorManager valorMgr = ValorManager.getInstance();
+            return valorMgr.findAllValores();
+        }
+        public Valor getValor(int idProducto, int idPropiedad)
+        {
+            ValorManager valorMgr = ValorManager.getInstance();
+            return valorMgr.getValor(idProducto, idPropiedad);
+        }
+        public void addValor(Valor valor)
+        {
+            ValorManager valorMgr = ValorManager.getInstance();
+            valorMgr.Add(valor);
+        }
+        public void deleteValor(int idProducto, int idPropiedad)
+        {
+            ValorManager valorMgr = ValorManager.getInstance();
+            valorMgr.Delete(valorMgr.getValor(idProducto, idPropiedad));
+
+        }
+        public void saveValor()
+        {
+            ValorManager valorMgr = ValorManager.getInstance();
+            valorMgr.Save();
+        }
     }
 }

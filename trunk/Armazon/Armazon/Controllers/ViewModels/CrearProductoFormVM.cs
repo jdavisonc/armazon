@@ -9,17 +9,14 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using System.Web.Mvc;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace Armazon.Controllers
+namespace Armazon.Controllers.ViewModels
 {
-    public class AsociarPropiedadesFormVM
+    public class CrearProductoFormVM
     {
         private SubCategoria subCategoria;
-        public List<Propiedad> disponibles;
-        private List<Propiedad> asociadas;
+        private List<Propiedad> propiedades;
 
         public SubCategoria getSubCategoria()
         {
@@ -31,24 +28,14 @@ namespace Armazon.Controllers
             this.subCategoria = subCategoria;
         }
 
-        public List<Propiedad> getDisponibles()
+        public List<Propiedad> getPropiedades()
         {
-            return this.disponibles;
+            return this.propiedades;
         }
 
-        public void setDisponibles(List<Propiedad> disponibles)
+        public void setPropiedades(List<Propiedad> propiedades)
         {
-            this.disponibles = disponibles;
-        }
-
-        public List<Propiedad> getAsociadas()
-        {
-            return this.asociadas;
-        }
-
-        public void setAsociadas(List<Propiedad> asociadas)
-        {
-            this.asociadas = asociadas;
+            this.propiedades = propiedades;
         }
     }
 }

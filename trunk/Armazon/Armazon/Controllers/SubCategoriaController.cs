@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 
 using Armazon.Models;
+using Armazon.Controllers.ViewModels;
+using System.Collections.Specialized;
 
 namespace Armazon.Controllers
 {
@@ -310,6 +312,57 @@ namespace Armazon.Controllers
             return View("AsociarPropiedades", form);
         }
 
+        
+        public ActionResult CrearProducto(int idSubCategoria)
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            IQueryable<Propiedad> propiedades = administracionFachada.propiedadesSubCategoria(idSubCategoria);
 
+            List<Propiedad> lstPropiedades = new List<Propiedad>();
+
+            foreach (Propiedad p in propiedades)
+            {
+                lstPropiedades.Add(p);
+            }
+
+            CrearProductoFormVM form = new CrearProductoFormVM();
+
+            form.setSubCategoria(administracionFachada.getSubCategoria(idSubCategoria));
+            form.setPropiedades(lstPropiedades);
+
+            return View(form);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CrearProducto()
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+
+            Producto nuevoProducto = new Producto();
+            administracionFachada.addProducto(nuevoProducto);
+            administracionFachada.saveProducto();
+            int idProducto = 2;
+
+            NameValueCollection parametros = Request.Params;
+            for(int i=0; i < parametros.Count; i++)
+            {
+                String strParametro = parametros.GetKey(i);
+                String strValor = parametros.Get(i);
+                int parametro;
+                if (int.TryParse(strParametro,out parametro))
+                {
+                    Valor nuevo = new Valor();
+                    nuevo.ProductoID = idProducto;
+                    nuevo.PropiedadID = parametro;
+                    nuevo.Valor1 = strValor;
+                    administracionFachada.addValor(nuevo);
+                    administracionFachada.saveValor();
+                }
+
+            }
+            
+
+            return View();
+        }
     }
 }
