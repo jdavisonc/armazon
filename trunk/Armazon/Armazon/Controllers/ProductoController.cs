@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Armazon.Models;
 using DatabaseAccess;
+using Armazon.Controllers.ViewModels;
 
 namespace Armazon.Controllers
 {
@@ -27,7 +28,9 @@ namespace Armazon.Controllers
         public ActionResult Details(int id)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
+            
             Producto producto = administracionFachada.getProducto(id);
+            
             if (producto == null)
                 return View("NotFound");
             else

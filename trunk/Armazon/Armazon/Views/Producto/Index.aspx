@@ -14,6 +14,9 @@
             <th>
                 ProductoID
             </th>
+            <th>
+                Nombre
+            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -26,6 +29,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.ProductoID) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Nombre) %>
             </td>
         </tr>
     
