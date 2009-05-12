@@ -31,40 +31,87 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.MetodoDePagos;
         }
 
-        public MetodoDePago getMetododePago(int id)
+        public IQueryable<MetodoDePago> getMetododePago(int id)
         {
             /*var metodoPago = db.MetodoDePagos.SingleOrDefault(c => c.MetodoDePagoID == id);
             if (metodoPago != null)
             {
                 var paypal = from ppal in db.MetodoDePagos
                              where ppal is PayPal && ppal.MetodoDePagoID == metodoPago.MetodoDePagoID
-                             select (PayPal)ppal;
+                             select ppal;
 
 
                 if (paypal == null)
                 {
                     var tarjeta = from card in db.MetodoDePagos
                                   where card is Tarjeta && card.MetodoDePagoID == metodoPago.MetodoDePagoID
-                                  select (Tarjeta)card;
+                                  select card;
                     if (tarjeta == null)
                         return null;
                     else
-                        return (Tarjeta)tarjeta;
+                        return tarjeta;
                 }
-                return (PayPal)paypal;
+                return paypal;
             }
             else*/
                 return null;
         }
 
-        public void Add(MetodoDePago pago)
+        public PayPal getMetododePagoPayPal(int id)
         {
-           // db.Sucursals.InsertOnSubmit(pago);
-        }
+            var metodoPago = db.MetodoDePagos.SingleOrDefault(c => c.MetodoDePagoID == id);
+            if (metodoPago != null)
+            {
+                var paypal = from ppal in db.MetodoDePagos
+                             where ppal is PayPal && ppal.MetodoDePagoID == metodoPago.MetodoDePagoID
+                             select ppal;
 
+                if (paypal == null)
+                    return null;
+                else
+                {
+                    PayPal paypalAux = (PayPal)paypal.ToList().First();
+                    return paypalAux;
+                }
+            }
+            else
+                return null;
+        }
+        public Tarjeta getMetododePagoTarjeta(int id)
+        {
+            var metodoPago = db.MetodoDePagos.SingleOrDefault(c => c.MetodoDePagoID == id);
+            if (metodoPago != null)
+            {
+                var tarjeta = from ppal in db.MetodoDePagos
+                             where ppal is Tarjeta && ppal.MetodoDePagoID == metodoPago.MetodoDePagoID
+                             select ppal;
+                if (tarjeta == null)
+                    return null;
+                else
+                {
+                    Tarjeta tarjetaAux = (Tarjeta)tarjeta.ToList().First();
+                    return tarjetaAux;
+                }
+            }
+            else
+                return null;
+        }
+        public void AddPayPal(PayPal pago)
+        {
+
+            db.MetodoDePagos.InsertOnSubmit(pago);
+            db.SubmitChanges();
+        }
+        public void AddTarjeta(Tarjeta tarjeta)
+        {
+
+            db.MetodoDePagos.InsertOnSubmit(tarjeta);
+            db.SubmitChanges();
+        }
 
         public void Delete(Sucursal sucursal)
         {
+           
             //db.Sucursals.DeleteOnSubmit(sucursal);
         }
 
