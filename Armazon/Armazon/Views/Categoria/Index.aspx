@@ -23,9 +23,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Modificar", "Edit", new { id = item.CategoriaID }) %> |
-                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.CategoriaID })%> |
-                <%= Html.ActionLink("Detalles", "Details", new { id = item.CategoriaID })%>
+                <%= Html.ActionLink("Modificar", "Edit", new { id = item.CategoriaID }).Replace("Modificar", "<img style=\"border:none\" src= \"/Content/modificar.gif\" TITLE=\"Modificar\" />")%> |
+                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.CategoriaID }).Replace("Eliminar", "<img style=\"border:none\" src= \"/Content/eliminar.gif\" TITLE=\"Eliminar\" />")%> |
+                <%= Html.ActionLink("Detalles", "Details", new { id = item.CategoriaID }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detalles.gif\" TITLE=\"Detalles\" />")%>
             </td>
             <td>
                 <%= Html.Encode(item.CategoriaID) %>
