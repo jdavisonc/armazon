@@ -20,9 +20,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Modificar", "Edit", new { id=item.PropiedadID }) %> |
-                <%= Html.ActionLink("Eliminar", "Delete", new { id=item.PropiedadID }) %> |
-                <%= Html.ActionLink("Detalles", "Details", new { id=item.PropiedadID })%>
+                <%= Html.ActionLink("Modificar", "Edit", new { id=item.PropiedadID }).Replace("Modificar", "<img style=\"border:none\" src= \"/Content/modificar.gif\" TITLE=\"Modificar\" />")%> |
+                <%= Html.ActionLink("Eliminar", "Delete", new { id=item.PropiedadID }).Replace("Eliminar", "<img style=\"border:none\" src= \"/Content/eliminar.gif\" TITLE=\"Eliminar\" />")%> |
+                <%= Html.ActionLink("Detalles", "Details", new { id=item.PropiedadID }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detalles.gif\" TITLE=\"Detalles\" />")%>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>
