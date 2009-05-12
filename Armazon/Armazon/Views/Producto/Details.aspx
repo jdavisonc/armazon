@@ -14,6 +14,16 @@
             ProductoID:
             <%= Html.Encode(Model.ProductoID)%>
         </p>
+        <p>
+            Nombre:
+            <%= Html.Encode(Model.Nombre)%>
+        </p>
+        <%for (int i = 0; i < Model.Valors.Count; i++ ){ %>
+            <p>
+                <%= Model.Valors.ElementAt(i).Propiedad.Nombre%>:
+                <%= Model.Valors.ElementAt(i).Valor1%>
+            </p>
+        <%} %>
     </fieldset>
     <p>
 

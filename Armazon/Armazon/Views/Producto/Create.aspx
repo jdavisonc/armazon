@@ -20,6 +20,11 @@
                 <%= Html.ValidationMessage("ProductoID", "*") %>
             </p>
             <p>
+                <label for="ProductoID">Nombre:</label>
+                <%= Html.TextBox("Nombre") %>
+                <%= Html.ValidationMessage("Nombre", "*")%>
+            </p>
+            <p>
                 <input type="submit" value="Crear" />
             </p>
         </fieldset>
