@@ -20,9 +20,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Modificar", "Edit", new { id = item.ProductoID })%> |
-                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.ProductoID })%> |
-                <%= Html.ActionLink("Detalles", "Details", new { id = item.ProductoID })%>
+                <%=Html.ActionLink("Modificar", "Edit", new { id = item.ProductoID }).Replace("Modificar", "<img style=\"border:none\" src= \"/Content/modificar.gif\" TITLE=\"Modificar\" />")%> |
+                <%=Html.ActionLink("Eliminar", "Delete", new { id = item.ProductoID }).Replace("Eliminar", "<img style=\"border:none\" src= \"/Content/eliminar.gif\" TITLE=\"Eliminar\" />")%> |
+                <%=Html.ActionLink("Detalles", "Details", new { id = item.ProductoID }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detalles.gif\" TITLE=\"Detalles\" />")%>
             </td>
             <td>
                 <%= Html.Encode(item.ProductoID) %>
@@ -33,7 +33,7 @@
 
     </table>
     <p>
-        <%= Html.ActionLink("Crear Nueva", "Create")%>
+        <%= Html.ActionLink("Crear Nuevo", "Create")%>
     </p>
 
 </asp:Content>

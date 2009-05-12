@@ -119,6 +119,9 @@
     <Content Include="App_Data\Armazon_log.ldf">
       <DependentUpon>Armazon.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\detalles.gif" />
+    <Content Include="Content\eliminar.gif" />
+    <Content Include="Content\modificar.gif" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <None Include="Service References\AWS\configuration91.svcinfo" />
