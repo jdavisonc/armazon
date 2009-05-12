@@ -71,10 +71,34 @@ namespace MvcApplication1.Controllers
             }
         }
 
+        public ActionResult Delete(string userName)
+        {
+            if (!MembershipService.DeleteUser(userName))
+            {
+                ModelState.AddModelError("_FORM", "Error al borrar usuario.");
+            }
+            return View();
+        }
+
+        public ActionResult SetToAdministrator(string userName)
+        {
+            if (!MembershipService.SetToAdministrator(userName))
+            {
+                ViewData["Error"] = "No fue posible convertir al usuario en administrador.";
+            }
+            return View("Index", Membership.GetAllUsers());
+        }
+
         public ActionResult LogOff()
         {
             FormsAuth.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Index()
+        {
+            MembershipUserCollection col = Membership.GetAllUsers();
+            return View(col);
         }
 
         public ActionResult Register()
@@ -299,8 +323,9 @@ namespace MvcApplication1.Controllers
 
         bool ValidateUser(string userName, string password);
         MembershipCreateStatus CreateUser(string userName, string password, string email);
+        bool DeleteUser(string userName);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
-        void SetUserToAdministrator(string userName);
+        bool SetToAdministrator(string userName);
     }
 
     public class AccountMembershipService : IMembershipService
@@ -317,6 +342,20 @@ namespace MvcApplication1.Controllers
             _provider = provider ?? Membership.Provider;
         }
 
+        public bool DeleteUser(string userName)
+        {
+            bool result = _provider.DeleteUser(userName, false);
+            if (result)
+            {
+                // Ver si se elimina toda la info, o lo dejamos para tener un reporte
+                //AdministracionFachada adminFach = new AdministracionFachada();
+                //adminFach.deleteUsuario(userName);
+                //adminFach.saveUsuario();
+                //return result;
+            }
+            return result;
+        }
+
         public int MinPasswordLength
         {
             get
@@ -330,12 +369,20 @@ namespace MvcApplication1.Controllers
             return _provider.ValidateUser(userName, password);
         }
 
-        public void SetUserToAdministrator(string userName)
+        public bool SetToAdministrator(string userName)
         {
-            MembershipUser user = _provider.GetUser(userName, false);
-            if (!Roles.RoleExists("Administrador"))
-                Roles.CreateRole("Administrador");
-            Roles.AddUserToRole(user.UserName, "Administrador");
+            try
+            {
+                MembershipUser user = _provider.GetUser(userName, false);
+                if (!Roles.RoleExists("Administrador"))
+                    Roles.CreateRole("Administrador");
+                Roles.AddUserToRole(user.UserName, "Administrador");
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public MembershipCreateStatus CreateUser(string userName, string password, string email)
