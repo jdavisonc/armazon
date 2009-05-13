@@ -20,5 +20,11 @@ namespace Armazon.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles="Administrador")]
+        public ActionResult AdministratorManager()
+        {
+            return View();
+        }
     }
 }
