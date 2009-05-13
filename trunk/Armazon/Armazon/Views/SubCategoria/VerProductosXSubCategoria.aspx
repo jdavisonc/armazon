@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>VerProductosXSubCategoria</h2>
+    <h2>Productos de la SubCategoria: <font color="Red">  <%=ViewData["SubCategoriaNombre"]%> </font></h2>
 
     <table>
         <tr>
