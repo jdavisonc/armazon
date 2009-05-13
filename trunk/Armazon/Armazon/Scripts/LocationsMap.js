@@ -12,7 +12,7 @@ $(function() {
 function initialise(mapData) {
     var map = new google.maps.Map2($("#map")[0]);
     map.addControl(new google.maps.SmallMapControl());
-    map.addControl(new google.maps.MapTypeControl());
+    //map.addControl(new google.maps.MapTypeControl());
 
     var latlng = new google.maps.LatLng(mapData.LatLng.Latitude, mapData.LatLng.Longitude);
     var zoom = mapData.Zoom;
@@ -29,16 +29,9 @@ function setupLocationMarker(map, location) {
     var marker = new google.maps.Marker(latlng);
     map.addOverlay(marker);
 
-    google.maps.Event.addListener(marker, "click", function(latlng) {
+    GEvent.addListener(marker, "click", function(latlng) {
         var html = "<b>Sucursal " + location.Name + "</b><br>" + location.Address;
         map.openInfoWindow(latlng, html);
     });
 }
 
-/* Evento para cuando haces click sobre el mapa te de las coordenadas
-GEvent.addListener(map, "click", function(overlay, latlng) {
-    if (latlng) {
-        var myHtml = "The GLatLng value is: " + map.fromLatLngToDivPixel(latlng) + " at zoom level " + map.getZoom();
-        map.openInfoWindow(latlng, myHtml);
-    }
-});*/

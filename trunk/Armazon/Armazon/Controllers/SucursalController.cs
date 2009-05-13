@@ -20,7 +20,6 @@ namespace Armazon.Controllers
             AdministracionFachada adminSuc = new AdministracionFachada();
             var sucursales = adminSuc.findAllSucursales().ToList();
             return View(sucursales);
-
         }
 
         //
@@ -53,7 +52,10 @@ namespace Armazon.Controllers
             try
             {
                 // TODO: Add insert logic here
-                UpdateModel(suc);
+                suc.Direccion = Request.Form["Direccion"];
+                suc.Nombre = Request.Form["Nombre"];
+                suc.Latitud = float.Parse((Request.Form["Latitud"]).Replace('.',','));
+                suc.Longitud = float.Parse((Request.Form["Longitud"]).Replace('.',','));
                 AdministracionFachada adminSuc = new AdministracionFachada();
                 adminSuc.addSucursal(suc);
                 adminSuc.saveSucursal();
@@ -87,10 +89,8 @@ namespace Armazon.Controllers
                 Sucursal suc = adminFac.getSucursal(id);
                 suc.Direccion = Request.Form["Direccion"];
                 suc.Nombre = Request.Form["Nombre"];
-                suc.SucursalID = int.Parse(Request.Form["SucursalID"]);
-                suc.Latitud =  float.Parse(Request.Form["Latitud"]);
-                suc.Longitud = float.Parse(Request.Form["Longitud"]);
-                
+                suc.Latitud = float.Parse((Request.Form["Latitud"]).Replace('.', ','));
+                suc.Longitud = float.Parse((Request.Form["Longitud"]).Replace('.', ','));
                 adminFac.saveSucursal();
                 return RedirectToAction("Details", new { id = suc.SucursalID });
                 //return RedirectToAction("index");
