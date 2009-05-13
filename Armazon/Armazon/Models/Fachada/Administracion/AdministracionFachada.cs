@@ -307,6 +307,11 @@ namespace Armazon.Models
             mmgr.Save();
         }
         //Carrito
+        public void AddCarritoActivo(Activo activo)
+        {
+            CarritoManager cmgr = CarritoManager.getInstance();
+            cmgr.AddCarritoActivo(activo);
+        }
         public Activo getCarritoActivoByUser(int userId)
         {
             CarritoManager cmgr = CarritoManager.getInstance();
@@ -317,6 +322,10 @@ namespace Armazon.Models
             CarritoManager cmgr = CarritoManager.getInstance();
             return cmgr.getCarritoActivoById(idCarrito);
         }
-        
+        public void SaveCarritoActivo()
+        { 
+            CarritoManager cmgr = CarritoManager.getInstance();
+            cmgr.Save();
+        }
     }
 }
