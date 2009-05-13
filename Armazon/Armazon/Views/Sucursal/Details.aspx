@@ -24,11 +24,11 @@
         </p>
         <p>
             Latitud:
-            <%= Html.Encode(String.Format("{0:F}", Model.Latitud)) %>
+            <%= Html.Encode(Model.Latitud.ToString()) %>
         </p>
         <p>
             Longitud:
-            <%= Html.Encode(String.Format("{0:F}", Model.Longitud)) %>
+            <%= Html.Encode(Model.Longitud.ToString()) %>
         </p>
     </fieldset>
     <p>
