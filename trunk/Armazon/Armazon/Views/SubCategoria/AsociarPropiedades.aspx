@@ -56,4 +56,5 @@
             </tr>
         </table>
     </form>
+    <%=Html.ActionLink("Confirmar", "ListarSubCategoria", new { id = Model.getSubCategoria().CategoriaID })%>
 </asp:Content>
