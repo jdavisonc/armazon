@@ -259,5 +259,39 @@ namespace Armazon.Models
             ValorManager valorMgr = ValorManager.getInstance();
             valorMgr.Save();
         }
+        public IQueryable<MetodoDePago> findAllMetododePago()
+        {
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            return mmgr.findAllMetododePago();
+        }
+
+
+        public IQueryable<MetodoDePago> getMetododePago(int id)
+        {
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            return mmgr.getMetododePago(id);
+        }
+        public PayPal getMetododePagoPayPal(int id)
+        {
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            return mmgr.getMetododePagoPayPal(id);
+        }
+        public Tarjeta getMetododePagoTarjeta(int id)
+        {
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            return mmgr.getMetododePagoTarjeta(id);
+        }
+        public void AddPayPal(PayPal pago)
+        {
+
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            mmgr.AddPayPal(pago);
+        }
+        public void AddTarjeta(Tarjeta tarjeta)
+        {
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            mmgr.AddTarjeta(tarjeta);
+        }
+
     }
 }
