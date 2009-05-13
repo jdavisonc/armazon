@@ -14,6 +14,6 @@
         <p><a href="/Propiedad">Administación de Propiedades</a></p>
         <p><a href="/Sucursal">Administación de Sucursales</a></p>
         <p><a href="/Account">Administación de Usuarios</a></p>
-
-
+        <p><a href="/PayPal">Administación de Metodos de Pago PayPal</a></p>   
+        <p><a href="/Tarjeta">Administación de Metodos de Pago Tarjeta</a></p>
 </asp:Content>
