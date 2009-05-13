@@ -12,7 +12,6 @@ using System.Xml.Linq;
 using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
 
-
 namespace Armazon.Models
 {
     public class AdministracionFachada
