@@ -12,10 +12,10 @@
         <tr>
             <th></th>
             <th>
-                ProductoID
+                Nombre
             </th>
             <th>
-                Nombre
+                SubCategoria
             </th>
         </tr>
 
@@ -28,10 +28,10 @@
                 <%=Html.ActionLink("Detalles", "Details", new { id = item.ProductoID }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detalles.gif\" TITLE=\"Detalles\" />")%>
             </td>
             <td>
-                <%= Html.Encode(item.ProductoID) %>
+                <%= Html.Encode(item.Nombre) %>
             </td>
             <td>
-                <%= Html.Encode(item.Nombre) %>
+                <%= Html.Encode(item.SubCategoria.Nombre) %>
             </td>
         </tr>
     

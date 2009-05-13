@@ -11,10 +11,6 @@
     <fieldset>
         <legend>Campos</legend>
         <p>
-            ProductoID:
-            <%= Html.Encode(Model.getProducto().ProductoID)%>
-        </p>
-        <p>
             Nombre:
             <%= Html.Encode(Model.getProducto().Nombre)%>
         </p>
@@ -24,6 +20,10 @@
                 <%= Model.getValores().ElementAt(i).Valor1%>
             </p>
         <%} %>
+        <p>
+            SubCategoria:
+            <%= Html.Encode(Model.getProducto().SubCategoria.Nombre)%>
+        </p>
     </fieldset>
     <p>
 

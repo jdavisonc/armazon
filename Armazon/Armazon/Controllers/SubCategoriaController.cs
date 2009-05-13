@@ -334,20 +334,19 @@ namespace Armazon.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult CrearProducto()
+        public ActionResult CrearProducto(int idSubCategoria, int idCategoria)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
 
             String strNombre = Request.Form["txtNombre"];
             Producto nuevoProducto = new Producto();
+            nuevoProducto.SubCategoriaID = idSubCategoria;
             nuevoProducto.Nombre = strNombre;
             administracionFachada.addProducto(nuevoProducto);
             administracionFachada.saveProducto();
 
             Producto producto = administracionFachada.getProducto(strNombre);
             int idProducto = producto.ProductoID;
-
-            String strIdCategoria = "";
 
             NameValueCollection parametros = Request.Params;
             for(int i=0; i < parametros.Count; i++)
@@ -363,17 +362,12 @@ namespace Armazon.Controllers
                     nuevo.Valor1 = strValor;
                     administracionFachada.addValor(nuevo);
                     administracionFachada.saveValor();
-                }else if (strParametro.Equals("idCategoria"))
-                {
-                    strIdCategoria = strValor;
                 }
-
-
             }
 
-            var subCategorias = administracionFachada.findAllSubCategorias(int.Parse(strIdCategoria)).ToList();
+            var subCategorias = administracionFachada.findAllSubCategorias(idCategoria).ToList();
 
-            ViewData["CategoriaID"] = int.Parse(strIdCategoria);
+            ViewData["CategoriaID"] = idCategoria;
             return View("ListarSubCategoria",subCategorias);
         }
     }
