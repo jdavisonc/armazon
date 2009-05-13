@@ -32,7 +32,6 @@ namespace Armazon.Models.DataAccess.Administracion
             return instancia;
         }
 
-
         public IQueryable<Propiedad> findAllPropiedades()
         {
             return db.Propiedads;

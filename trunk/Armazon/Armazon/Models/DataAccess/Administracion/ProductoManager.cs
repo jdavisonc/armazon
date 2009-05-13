@@ -30,6 +30,11 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.Productos;
         }
 
+        public IQueryable<Producto> findAllProductosXSubCategoria(int idSubCategoria)
+        {            
+            return db.Productos;
+        }
+        
         public Producto getProducto(int id)
         {
             return db.Productos.SingleOrDefault(c => c.ProductoID == id);
