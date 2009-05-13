@@ -153,6 +153,11 @@ namespace Armazon.Controllers
             {
                 return View("NotFound");
             }
+            foreach (Valor v in producto.Valors)
+            {
+                administracionFachada.deleteValor(v.ProductoID,v.PropiedadID);
+                administracionFachada.saveValor();
+            }
             administracionFachada.deleteProducto(id);
             administracionFachada.saveProducto();
             return View("Deleted");

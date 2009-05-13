@@ -10,8 +10,8 @@
     <fieldset>
         <legend>Campos</legend>
         <p>
-            Id:
-            <%= Html.Encode(Model.ProductoID) %>
+            Nombre:
+            <%= Html.Encode(Model.Nombre) %>
         </p>
         
     <% using (Html.BeginForm()) { %>
