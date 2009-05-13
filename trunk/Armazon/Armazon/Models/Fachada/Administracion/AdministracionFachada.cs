@@ -270,7 +270,7 @@ namespace Armazon.Models
         }
 
 
-        public IQueryable<MetodoDePago> getMetododePago(int id)
+        public MetodoDePago getMetododePago(int id)
         {
             MetododePagoManager mmgr = MetododePagoManager.getInstance();
             return mmgr.getMetododePago(id);
@@ -296,6 +296,15 @@ namespace Armazon.Models
             MetododePagoManager mmgr = MetododePagoManager.getInstance();
             mmgr.AddTarjeta(tarjeta);
         }
-
-    }
+        public void deleteMetodoDePago(MetodoDePago metodo)
+        {
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            mmgr.Delete(metodo);
+        }
+        public void saveMetodoDePago()
+        {
+            MetododePagoManager mmgr = MetododePagoManager.getInstance();
+            mmgr.Save();
+        }
+     }
 }

@@ -11,10 +11,6 @@
     <fieldset>
         <legend>Fields</legend>
         <p>
-            Numero:
-            <%= Html.Encode(Model.Numero) %>
-        </p>
-        <p>
             MetodoDePagoID:
             <%= Html.Encode(Model.MetodoDePagoID) %>
         </p>
@@ -22,7 +18,10 @@
             MetodoDePagoType:
             <%= Html.Encode(Model.MetodoDePagoType) %>
         </p>
-        
+        <p>
+            Numero:
+            <%= Html.Encode(Model.Numero) %>
+        </p>
     </fieldset>
     <p>
 

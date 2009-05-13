@@ -34,6 +34,7 @@
             <td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.MetodoDePagoID }) %> |
                 <%= Html.ActionLink("Details", "Details", new { id=item.MetodoDePagoID })%>
+                <%= Html.ActionLink("Delete", "Delete", new { id=item.MetodoDePagoID })%>
             </td>
             <td>
                 <%= Html.Encode(item.MetodoDePagoID) %>

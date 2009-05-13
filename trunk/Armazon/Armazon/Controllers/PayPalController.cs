@@ -26,11 +26,18 @@ namespace Armazon.Controllers
         public ActionResult Details(int id)
         {
             AdministracionFachada adminFac = new AdministracionFachada();
-            var ppal = adminFac.getMetododePagoPayPal(id);
-            if (ppal == null)
-                return View("NotFoundPpal");
+            var pago = adminFac.getMetododePago(id);
+            if (pago == null)
+                return View("NotFoundTarjeta");
             else
-                return View(ppal);
+            {
+                if (pago.GetType() == Type.GetType("Armazon.Tarjeta"))
+                    return View("DetailsTarjeta", pago);
+                else
+                    if (pago.GetType() == Type.GetType("Armazon.PayPal"))
+                        return View(pago);
+            }
+            return null;
         }
 
         //
@@ -69,7 +76,19 @@ namespace Armazon.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            AdministracionFachada adminFac = new AdministracionFachada();
+            var pago = adminFac.getMetododePago(id);
+            if (pago == null)
+                return View("NotFoundTarjeta");
+            else
+            {
+                if (pago.GetType() == Type.GetType("Armazon.Tarjeta"))
+                    return View("EditTarjeta",pago);
+                else
+                    if (pago.GetType() == Type.GetType("Armazon.PayPal"))
+                        return View(pago);
+            }
+            return null;
         }
 
         //
@@ -81,13 +100,77 @@ namespace Armazon.Controllers
             try
             {
                 // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                AdministracionFachada adminFac = new AdministracionFachada();
+                var pago = adminFac.getMetododePago(id);
+                if (pago == null)
+                    return View("NotFoundTarjeta");
+                else
+                {
+                    if (pago.GetType() == Type.GetType("Armazon.Tarjeta"))
+                    {
+                        Tarjeta trj = (Tarjeta)adminFac.getMetododePago(id);
+                        trj.MetodoDePagoID = pago.MetodoDePagoID;
+                        trj.MetodoDePagoType = pago.MetodoDePagoType;
+                        trj.Numero = Request.Form["Numero"];
+                        adminFac.saveMetodoDePago();
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                        if (pago.GetType() == Type.GetType("Armazon.PayPal"))
+                        {    
+                            PayPal ppal = (PayPal)adminFac.getMetododePago(id);
+                            ppal.MetodoDePagoID = pago.MetodoDePagoID;
+                            ppal.MetodoDePagoType = pago.MetodoDePagoType;
+                            ppal.Usuario = Request.Form["Usuario"];
+                            ppal.Password = Request.Form["Password"];
+                            adminFac.saveMetodoDePago();
+                            return RedirectToAction("Index");           
+                        }   
+                           
+                }
+                return null;
+    
             }
             catch
             {
                 return View();
             }
         }
+
+        public ActionResult Delete(int id)
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            var metodo = adminFac.getMetododePago(id);
+            if (metodo == null)
+                return View("NotFoundPayPal");
+            else
+            {
+                if (metodo.GetType() == Type.GetType("Armazon.Tarjeta"))
+                    return View("DeleteTarjeta", metodo);
+                else
+                    if (metodo.GetType() == Type.GetType("Armazon.PayPal"))
+                        return View(metodo);
+            }
+            return null;
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete(int id, string confirmButton)
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            var metodo = adminFac.getMetododePago(id);
+            if (metodo == null)
+                return View("NotFoundPayPal");
+            adminFac.deleteMetodoDePago(metodo);
+            adminFac.saveMetodoDePago();
+            return RedirectToAction("Index");
+        }    
+
+    
+    
+    
+    
+    
     }
 }
