@@ -38,9 +38,5 @@
     <% } %>
 
     </table>
-    <p>
-        <%= Html.ActionLink("Crear Nuevo", "Create")%>
-    </p>
-
 </asp:Content>
 
