@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Controllers.ViewModels.AsociarPropiedadesFormVM>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	AsociarPropiedades
+	Asociar Propiedades
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -22,7 +22,7 @@
         <input type="hidden" id="hdnIdSubCategoria" name="hdnIdSubCategoria" value='<%=Model.getSubCategoria().SubCategoriaID %>' />
         <input type="hidden" id="hdn" name="hdn" value='<%=Model.getAsociadas() %>' />
         <p>
-            <h4>Categoría: <%=Model.getSubCategoria().Nombre %></h4>
+            <h4>SubCategoría: <%=Model.getSubCategoria().Nombre %></h4>
         </p>
         <table align="center" border="0">
             <tr>
