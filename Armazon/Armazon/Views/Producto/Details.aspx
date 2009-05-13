@@ -27,7 +27,7 @@
     </fieldset>
     <p>
 
-        <%=Html.ActionLink("Modificar", "Edit", new { id = Model.getProducto().ProductoID })%> |
+        <%=Html.ActionLink("Modificar", "Edit", new { id = Model.getProducto().ProductoID, idSubCategoria = Model.getProducto().SubCategoriaID })%> |
         <%= Html.ActionLink("Eliminar", "Delete", new { id = Model.getProducto().ProductoID })%> |
         <%=Html.ActionLink("Ver Productos", "Index")%>
     </p>

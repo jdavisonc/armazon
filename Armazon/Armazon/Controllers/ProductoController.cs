@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using Armazon.Models;
 using DatabaseAccess;
 using Armazon.Controllers.ViewModels;
+using System.Collections.Specialized;
 
 namespace Armazon.Controllers
 {
@@ -82,11 +83,20 @@ namespace Armazon.Controllers
         //
         // GET: /Producto/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, int idSubCategoria)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
-            var producto = administracionFachada.getProducto(id);
-            return View(producto);
+
+            IQueryable<Propiedad> propiedades = administracionFachada.propiedadesSubCategoria(idSubCategoria);
+            Producto producto = administracionFachada.getProducto(id);
+            
+            List<Valor> lstValor = new List<Valor>();
+            foreach (Propiedad p in propiedades)
+            {
+                lstValor.Add(administracionFachada.getValor(id,p.PropiedadID));
+            }
+            ViewData["nmProducto"] = producto.Nombre;
+            return View(lstValor);
         }
 
         //
@@ -99,8 +109,23 @@ namespace Armazon.Controllers
             {
                 AdministracionFachada administracionFachada = new AdministracionFachada();
                 Producto producto = administracionFachada.getProducto(id);
-                //producto.ProductoID = Request.Form["ProductoID"];
+                producto.Nombre = Request.Form["txtNombre"];
                 administracionFachada.saveProducto();
+
+                NameValueCollection parametros = Request.Params;
+                for (int i = 0; i < parametros.Count; i++)
+                {
+                    String strParametro = parametros.GetKey(i);
+                    String strValor = parametros.Get(i);
+                    int parametro;
+                    if (int.TryParse(strParametro, out parametro))
+                    {
+                        Valor valor = administracionFachada.getValor(id,parametro);
+                        valor.Valor1 = strValor;
+                        administracionFachada.saveValor();
+                    }
+                }
+
                 return RedirectToAction("Details", new { id = producto.ProductoID });
             }
             catch
