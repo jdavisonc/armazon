@@ -22,7 +22,7 @@
             </p>
             <p>
                 <label for="Password">Password:</label>
-                <%= Html.TextBox("Password") %>
+                <%= Html.Password("Password") %>
                 <%= Html.ValidationMessage("Password", "*") %>
             </p>
             <p>
