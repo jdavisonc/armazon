@@ -21,6 +21,9 @@
             <th>
                 Administrador
             </th>            
+            <th>
+                Ultimo Logeo
+            </th>       
         </tr>
 
     <% foreach (MembershipUser item in Model) { %>
@@ -37,12 +40,11 @@
                 <%= Html.Encode(item.Email) %>
             </td>
             <td>
-                <% if (Roles.IsUserInRole(item.UserName,"Administrador")){ %>
-                    <input type=checkbox name="mushrooms" checked=checked />
-                <% }else{ %>
-                    <input type=checkbox name="administrador" />
-                <% } %>
+                <% if (Roles.IsUserInRole(item.UserName, "Administrador")) { Response.Write("Si"); } else { Response.Write("No"); } %>
             </td>            
+            <td>
+                <%= Html.Encode(item.LastLoginDate) %>
+            </td>
         </tr>
     
     <% } %>
