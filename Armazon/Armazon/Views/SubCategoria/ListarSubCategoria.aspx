@@ -26,7 +26,7 @@
                 <%= Html.ActionLink("Modificar", "Edit", new { id=item.SubCategoriaID }) %> |
                 <%= Html.ActionLink("Eliminar", "Delete", new { id = item.SubCategoriaID, categoriaID = item.CategoriaID })%> |
                 <%= Html.ActionLink("Asociar Propiedades", "AsociarPropiedades", new { id = item.SubCategoriaID })%> |
-                <%= Html.ActionLink("Crear Producto", "CrearProducto", new { idSubCategoria = item.SubCategoriaID })%> |
+                <%= Html.ActionLink("Crear Producto", "CrearProducto", new { idSubCategoria = item.SubCategoriaID, idCategoria = ViewData["CategoriaID"] })%> |
                 <%= Html.ActionLink("Detalles", "Details", new { id=item.SubCategoriaID })%>
             </td>
             <td>

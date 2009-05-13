@@ -28,13 +28,25 @@ namespace Armazon.Controllers
         public ActionResult Details(int id)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
-            
+
             Producto producto = administracionFachada.getProducto(id);
-            
+
+            DetalleProductoFromVM form = new DetalleProductoFromVM();
+
+            List<Valor> lstValores = new List<Valor>();
+
+            foreach (Valor v in administracionFachada.valoresProductos(id))
+            {
+                lstValores.Add(v);
+            }
+
+            form.setValores(lstValores);
+            form.setProducto(producto);
+
             if (producto == null)
                 return View("NotFound");
             else
-                return View(producto);
+                return View(form);
         }
 
         //

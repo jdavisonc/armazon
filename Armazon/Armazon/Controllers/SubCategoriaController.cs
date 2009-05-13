@@ -344,7 +344,10 @@ namespace Armazon.Controllers
             administracionFachada.addProducto(nuevoProducto);
             administracionFachada.saveProducto();
 
-            int idProducto = administracionFachada.getProducto(strNombre).ProductoID;
+            Producto producto = administracionFachada.getProducto(strNombre);
+            int idProducto = producto.ProductoID;
+
+            String strIdCategoria = "";
 
             NameValueCollection parametros = Request.Params;
             for(int i=0; i < parametros.Count; i++)
@@ -360,12 +363,18 @@ namespace Armazon.Controllers
                     nuevo.Valor1 = strValor;
                     administracionFachada.addValor(nuevo);
                     administracionFachada.saveValor();
+                }else if (strParametro.Equals("idCategoria"))
+                {
+                    strIdCategoria = strValor;
                 }
 
-            }
-            
 
-            return View();
+            }
+
+            var subCategorias = administracionFachada.findAllSubCategorias(int.Parse(strIdCategoria)).ToList();
+
+            ViewData["CategoriaID"] = int.Parse(strIdCategoria);
+            return View("ListarSubCategoria",subCategorias);
         }
     }
 }

@@ -238,6 +238,11 @@ namespace Armazon.Models
             ValorManager valorMgr = ValorManager.getInstance();
             return valorMgr.findAllValores();
         }
+        public IQueryable<Valor> valoresProductos(int id)
+        {
+            ValorManager valorMgr = ValorManager.getInstance();
+            return valorMgr.valoresProductos(id);
+        }
         public Valor getValor(int idProducto, int idPropiedad)
         {
             ValorManager valorMgr = ValorManager.getInstance();

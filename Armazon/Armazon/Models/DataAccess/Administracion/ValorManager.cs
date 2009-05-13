@@ -30,6 +30,15 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.Valors;
         }
 
+        public IQueryable<Valor> valoresProductos(int id)
+        {
+            var valores = (from Valor v in db.Valors
+                           where v.ProductoID == id
+                           select v);
+
+            return valores;
+        }
+
         public Valor getValor(int ProductoID, int PropiedadID)
         {
             return db.Valors.SingleOrDefault(c => c.ProductoID==ProductoID && c.PropiedadID==PropiedadID);

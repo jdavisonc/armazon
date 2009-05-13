@@ -81,6 +81,7 @@
     <Compile Include="Controllers\SubCategoriaController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\ViewModels\CrearProductoFormVM.cs" />
+    <Compile Include="Controllers\ViewModels\DetalleProductoFromVM.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
