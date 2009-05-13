@@ -158,7 +158,12 @@
     <Content Include="Views\Categoria\Index.aspx" />
     <Content Include="Views\Categoria\NotFound.aspx" />
     <Content Include="Views\PayPal\Create.aspx" />
+    <Content Include="Views\PayPal\Delete.aspx" />
+    <Content Include="Views\PayPal\DeleteTarjeta.aspx" />
     <Content Include="Views\PayPal\Details.aspx" />
+    <Content Include="Views\PayPal\DetailsTarjeta.aspx" />
+    <Content Include="Views\PayPal\Edit.aspx" />
+    <Content Include="Views\PayPal\EditTarjeta.aspx" />
     <Content Include="Views\PayPal\Index.aspx" />
     <Content Include="Views\PayPal\NotFoundPayPal.aspx" />
     <Content Include="Views\Producto\Create.aspx" />
@@ -194,7 +199,12 @@
     <Content Include="Views\Sucursal\Index.aspx" />
     <Content Include="Views\Sucursal\NotFound.aspx" />
     <Content Include="Views\Tarjeta\Create.aspx" />
+    <Content Include="Views\Tarjeta\Delete.aspx" />
+    <Content Include="Views\Tarjeta\DeletePayPal.aspx" />
     <Content Include="Views\Tarjeta\Details.aspx" />
+    <Content Include="Views\Tarjeta\DetailsPayPal.aspx" />
+    <Content Include="Views\Tarjeta\Edit.aspx" />
+    <Content Include="Views\Tarjeta\EditPayPal.aspx" />
     <Content Include="Views\Tarjeta\Index.aspx" />
     <Content Include="Views\Tarjeta\NotFoundTarjeta.aspx" />
     <Content Include="Web.config" />

@@ -19,10 +19,6 @@
             <%= Html.Encode(Model.MetodoDePagoType) %>
         </p>
         <p>
-            Numero:
-            <%= Html.Encode(Model.Numero) %>
-        </p>
-        <p>
             Usuario:
             <%= Html.Encode(Model.Usuario) %>
         </p>

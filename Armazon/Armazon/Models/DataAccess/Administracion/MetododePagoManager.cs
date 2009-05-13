@@ -31,10 +31,11 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.MetodoDePagos;
         }
 
-        public IQueryable<MetodoDePago> getMetododePago(int id)
+        public MetodoDePago getMetododePago(int id)
         {
-            /*var metodoPago = db.MetodoDePagos.SingleOrDefault(c => c.MetodoDePagoID == id);
-            if (metodoPago != null)
+            var metodoPago = db.MetodoDePagos.SingleOrDefault(c => c.MetodoDePagoID == id);
+            return metodoPago;
+            /*if (metodoPago != null)
             {
                 var paypal = from ppal in db.MetodoDePagos
                              where ppal is PayPal && ppal.MetodoDePagoID == metodoPago.MetodoDePagoID
@@ -53,8 +54,8 @@ namespace Armazon.Models.DataAccess.Administracion
                 }
                 return paypal;
             }
-            else*/
-                return null;
+            else
+                return null;*/
         }
 
         public PayPal getMetododePagoPayPal(int id)
@@ -109,10 +110,10 @@ namespace Armazon.Models.DataAccess.Administracion
             db.SubmitChanges();
         }
 
-        public void Delete(Sucursal sucursal)
+        public void Delete(MetodoDePago metodo)
         {
            
-            //db.Sucursals.DeleteOnSubmit(sucursal);
+            db.MetodoDePagos.DeleteOnSubmit(metodo);
         }
 
         public void Save()
