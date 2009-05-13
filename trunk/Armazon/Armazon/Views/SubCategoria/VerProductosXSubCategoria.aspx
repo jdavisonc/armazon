@@ -10,7 +10,7 @@
 
     <table>
         <tr>
-            <th></th>
+
             <th>
                 ProductoID
             </th>
@@ -22,10 +22,7 @@
     <% foreach (var item in Model) { %>
     
         <tr>
-            <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.ProductoID }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.ProductoID })%>
-            </td>
+
             <td>
                 <%= Html.Encode(item.ProductoID) %>
             </td>
