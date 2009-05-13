@@ -72,6 +72,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\TarjetaController.cs" />
+    <Compile Include="Controllers\ViewModels\ActivoController.cs" />
     <Compile Include="Controllers\ViewModels\AsociarPropiedadesFormVM.cs" />
     <Compile Include="Controllers\PropiedadController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataAccess\Administracion\CarritoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\CategoriaManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\MetododePagoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\ProductoManager.cs" />
@@ -155,6 +157,7 @@
     <Content Include="Views\Account\Profile.aspx" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\SetToAdministrator.aspx" />
+    <Content Include="Views\Activo\Details.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />

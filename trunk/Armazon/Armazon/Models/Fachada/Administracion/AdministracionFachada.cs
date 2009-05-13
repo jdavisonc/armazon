@@ -306,5 +306,17 @@ namespace Armazon.Models
             MetododePagoManager mmgr = MetododePagoManager.getInstance();
             mmgr.Save();
         }
-     }
+        //Carrito
+        public Activo getCarritoActivoByUser(int userId)
+        {
+            CarritoManager cmgr = CarritoManager.getInstance();
+            return cmgr.getCarritoActivoByUser(userId);
+        }
+        public Activo getCarritoActivoById(int idCarrito)
+        {
+            CarritoManager cmgr = CarritoManager.getInstance();
+            return cmgr.getCarritoActivoById(idCarrito);
+        }
+    
+    }
 }
