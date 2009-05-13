@@ -370,5 +370,19 @@ namespace Armazon.Controllers
             ViewData["CategoriaID"] = idCategoria;
             return View("ListarSubCategoria",subCategorias);
         }
+
+        public ActionResult VerProductosXSubCategoria(int idSubCategoria)
+        {
+            ConsultaFachada consultaFachada = new ConsultaFachada();
+            IQueryable<Producto> productosXSubCategoria = consultaFachada.findAllProductosXSubCategoria(idSubCategoria);
+
+            List<Producto> lstProductos = new List<Producto>();
+
+            foreach (Producto p in productosXSubCategoria)
+            {
+                lstProductos.Add(p);
+            }
+            return View(lstProductos);
+        }
     }
 }
