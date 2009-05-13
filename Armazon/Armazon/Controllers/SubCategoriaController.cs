@@ -382,6 +382,9 @@ namespace Armazon.Controllers
             {
                 lstProductos.Add(p);
             }
+            AdministracionFachada adminFachada = new AdministracionFachada();
+            ViewData["CategoriaID"] = adminFachada.getSubCategoria(idSubCategoria).CategoriaID;
+            ViewData["SubCategoriaID"] = idSubCategoria;
             return View(lstProductos);
         }
     }
