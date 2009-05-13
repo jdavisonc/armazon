@@ -6,6 +6,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>NotFound</h2>
+    <h2>No se ha encontrado la sucursal</h2>
 
 </asp:Content>

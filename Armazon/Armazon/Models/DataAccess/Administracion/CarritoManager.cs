@@ -77,11 +77,11 @@ namespace Armazon.Models.DataAccess.Administracion
         {
             db.Usuarios.DeleteOnSubmit(usuario);
         }
-
+        */
         public void Save()
         {
             db.SubmitChanges();
-        }*/
+        }
 
     }
 }

@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.MetodoDePago>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	Metodos de Pago
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2>Metodos de Pago</h2>
 
     <table>
         <tr>
@@ -32,9 +32,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.MetodoDePagoID }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.MetodoDePagoID })%>
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.MetodoDePagoID })%>
+                <%= Html.ActionLink("Editar", "Edit", new { id=item.MetodoDePagoID }) %> |
+                <%= Html.ActionLink("Detalles", "Details", new { id=item.MetodoDePagoID })%>
+                <%= Html.ActionLink("Borrar", "Delete", new { id=item.MetodoDePagoID })%>
             </td>
             <td>
                 <%= Html.Encode(item.MetodoDePagoID) %>
@@ -58,7 +58,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%= Html.ActionLink("Crear Nuevo", "Create") %>
     </p>
 
 </asp:Content>

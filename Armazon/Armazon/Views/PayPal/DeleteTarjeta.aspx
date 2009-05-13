@@ -1,15 +1,15 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Tarjeta>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	DeleteTarjeta
+	Borrar Tarjeta
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>DeleteTarjeta</h2>
+    <h2>Borrar Tarjeta</h2>
 
     <fieldset>
-        <legend>Fields</legend>
+        <legend>Campos</legend>
         <p>
             MetodoDePagoID:
             <%= Html.Encode(Model.MetodoDePagoID) %>
@@ -28,8 +28,8 @@
     </fieldset>
     <p>
 
-        <%=Html.ActionLink("Edit", "Edit", new { id=Model.MetodoDePagoID }) %> |
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Editar", "Edit", new { id=Model.MetodoDePagoID }) %> |
+        <%=Html.ActionLink("Volver", "Index") %>
     </p>
 
 </asp:Content>

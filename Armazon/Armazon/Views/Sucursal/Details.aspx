@@ -1,15 +1,15 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Sucursal>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Details
+	Detalles
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Details</h2>
+    <h2>Detalles</h2>
 
     <fieldset>
-        <legend>Fields</legend>
+        <legend>Campos</legend>
         <p>
             SucursalID:
             <%= Html.Encode(Model.SucursalID) %>
@@ -33,8 +33,8 @@
     </fieldset>
     <p>
 
-        <%=Html.ActionLink("Edit", "Edit", new { id=Model.SucursalID }) %> |
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Editar", "Edit", new { id=Model.SucursalID }) %> |
+        <%=Html.ActionLink("Ver Sucursales", "Index") %>
     </p>
 
 </asp:Content>

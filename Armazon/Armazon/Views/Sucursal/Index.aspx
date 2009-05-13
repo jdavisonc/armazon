@@ -58,7 +58,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %> | <%= Html.ActionLink("Ver Mapa de Sucursales", "ViewMap") %>
+        <%= Html.ActionLink("Crear Sucursal", "Create") %> | <%= Html.ActionLink("Ver Mapa de Sucursales", "ViewMap") %>
     </p>
 
 </asp:Content>

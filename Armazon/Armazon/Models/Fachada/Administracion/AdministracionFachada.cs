@@ -317,6 +317,6 @@ namespace Armazon.Models
             CarritoManager cmgr = CarritoManager.getInstance();
             return cmgr.getCarritoActivoById(idCarrito);
         }
-    
+        
     }
 }
