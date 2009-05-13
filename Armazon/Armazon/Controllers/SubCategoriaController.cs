@@ -385,6 +385,7 @@ namespace Armazon.Controllers
             AdministracionFachada adminFachada = new AdministracionFachada();
             ViewData["CategoriaID"] = adminFachada.getSubCategoria(idSubCategoria).CategoriaID;
             ViewData["SubCategoriaID"] = idSubCategoria;
+            ViewData["SubCategoriaNombre"] = adminFachada.getSubCategoria(idSubCategoria).Nombre;
             return View(lstProductos);
         }
     }
