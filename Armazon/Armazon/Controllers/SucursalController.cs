@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using DatabaseAccess;
 using Armazon.Models;
+using Armazon.Models.DataTypes;
 
 namespace Armazon.Controllers
 {
@@ -119,9 +120,31 @@ namespace Armazon.Controllers
             adminFac.deleteSucursal(id);
             adminFac.saveSucursal();
             return View("Deleted");
-        }    
-    
-    
+        }
+
+        public ActionResult ViewMap()
+        {
+            return View();
+        }
+
+        public ActionResult GetMap()
+        {
+            Map map = new Map();
+            map.Name = "Sucursales Armazon";
+            map.Zoom = 12;
+            map.LatLng = new LatLng { Latitude = -34.888916, Longitude = -56.162281 };
+            map.Locations = new List<Location>();
+            AdministracionFachada adminFac = new AdministracionFachada();
+            foreach (Sucursal s in adminFac.findAllSucursales())
+            {
+                Location l = new Location();
+                l.Name = s.Nombre;
+                l.Address = s.Direccion;
+                l.LatLng = new LatLng { Latitude = s.Latitud, Longitude = s.Longitud };
+                map.Locations.Add(l);
+            }
+            return Json(map);
+        }
     }
 
         
