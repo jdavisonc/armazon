@@ -31,8 +31,11 @@ namespace Armazon.Models.DataAccess.Administracion
         }
 
         public IQueryable<Producto> findAllProductosXSubCategoria(int idSubCategoria)
-        {            
-            return db.Productos;
+        {
+            var productos = (from Producto p in db.Productos
+                             where p.SubCategoriaID == idSubCategoria
+                             select p);
+            return productos;
         }
         
         public Producto getProducto(int id)
