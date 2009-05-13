@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAC3253F-9071-4798-A46C-16F7A01F1A55}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -70,6 +70,8 @@
       <DependentUpon>Armazon.dbml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
+    <Compile Include="Controllers\TarjetaController.cs" />
     <Compile Include="Controllers\ViewModels\AsociarPropiedadesFormVM.cs" />
     <Compile Include="Controllers\PropiedadController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
@@ -153,6 +155,10 @@
     <Content Include="Views\Categoria\Edit.aspx" />
     <Content Include="Views\Categoria\Index.aspx" />
     <Content Include="Views\Categoria\NotFound.aspx" />
+    <Content Include="Views\PayPal\Create.aspx" />
+    <Content Include="Views\PayPal\Details.aspx" />
+    <Content Include="Views\PayPal\Index.aspx" />
+    <Content Include="Views\PayPal\NotFoundPayPal.aspx" />
     <Content Include="Views\Producto\Create.aspx" />
     <Content Include="Views\Producto\Delete.aspx" />
     <Content Include="Views\Producto\Deleted.aspx" />
@@ -184,6 +190,10 @@
     <Content Include="Views\Sucursal\Edit.aspx" />
     <Content Include="Views\Sucursal\Index.aspx" />
     <Content Include="Views\Sucursal\NotFound.aspx" />
+    <Content Include="Views\Tarjeta\Create.aspx" />
+    <Content Include="Views\Tarjeta\Details.aspx" />
+    <Content Include="Views\Tarjeta\Index.aspx" />
+    <Content Include="Views\Tarjeta\NotFoundTarjeta.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\About.aspx" />
@@ -307,6 +317,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
