@@ -34,12 +34,11 @@
     <% } %>
 
     </table>
-
-
     <p>
+    <% if (Page.User.IsInRole("Administrador")){ %>
         <%= Html.ActionLink("Crear Producto", "CrearProducto", new { idSubCategoria = ViewData["SubCategoriaID"], idCategoria = ViewData["CategoriaID"] })%> |
+    <% } %>
+        <%= Html.ActionLink("Ver SubCategoría", "ListarSubCategoria", new { id = ViewData["CategoriaID"] })%>
     </p>
-
-
 </asp:Content>
 

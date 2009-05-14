@@ -177,10 +177,8 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult BuscarProducto(String fullText)
         {
-//            String fullText = Request.Form["txtNombre"];
-
-            AdministracionFachada administracionFachada = new AdministracionFachada();
-            IQueryable<Producto> productos = administracionFachada.findAllProductos(fullText);
+            ConsultaFachada consultaFachada = new ConsultaFachada();
+            IQueryable<Producto> productos = consultaFachada.findAllProductos(fullText);
             
             List<Producto> lstProductos = new List<Producto>();
             if (productos != null)
@@ -190,13 +188,11 @@ namespace Armazon.Controllers
                     lstProductos.Add(p);
                 }
             }
-            /*
+            
             FabricAccessStore fas = FabricAccessStore.getInstance();
             IAccessStore service = fas.createAmazonServiceAccess();
             List<DTProduct> dtProductos = service.searchProducts(fullText);
-            */
-            List<DTProduct> dtProductos = new List<DTProduct>();
-
+            
             BuscarProductoFormVM form = new BuscarProductoFormVM();
             form.FullText = fullText;
             form.lstProductos = lstProductos;

@@ -24,9 +24,10 @@
         </p>
     </fieldset>
     <p>
-
-        <%=Html.ActionLink("Modificar", "Edit", new { id=Model.SubCategoriaID }) %> |
-        <%= Html.ActionLink("Eliminar", "Delete", new { id = Model.SubCategoriaID, categoriaID = Model.CategoriaID })%> |
+        <%if (Page.User.IsInRole("Administrador")){ %>
+            <%=Html.ActionLink("Modificar", "Edit", new { id = Model.SubCategoriaID })%> |
+            <%= Html.ActionLink("Eliminar", "Delete", new { id = Model.SubCategoriaID, categoriaID = Model.CategoriaID })%> |
+        <%} %>
         <%=Html.ActionLink("Ver SubCategorias", "ListarSubCategoria", new { id = Model.CategoriaID })%>
     </p>
 
