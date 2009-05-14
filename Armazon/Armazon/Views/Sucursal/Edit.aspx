@@ -26,12 +26,12 @@
             </p>
             <p>
                 <label for="Latitud">Latitud:</label>
-                <%= Html.TextBox("Latitud", Model.Latitud.ToString()) %>
+                <%= Html.TextBox("Latitud", Model.Latitud.ToString().Replace(',', '.'))%>
                 <%= Html.ValidationMessage("Latitud", "*") %>
             </p>
             <p>
                 <label for="Longitud">Longitud:</label>
-                <%= Html.TextBox("Longitud", Model.Longitud.ToString()) %>
+                <%= Html.TextBox("Longitud", Model.Longitud.ToString().Replace(',','.')) %>
                 <%= Html.ValidationMessage("Longitud", "*") %>
             </p>
             <div id="map" style="width : 400px; height : 400px; margin : 0px; padding : 10px; background-color:Black"></div>
