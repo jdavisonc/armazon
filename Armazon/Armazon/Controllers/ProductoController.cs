@@ -8,6 +8,8 @@ using Armazon.Models;
 using DatabaseAccess;
 using Armazon.Controllers.ViewModels;
 using System.Collections.Specialized;
+using Armazon.Models.ServiceAccess;
+using Armazon.Models.DataTypes;
 
 namespace Armazon.Controllers
 {
@@ -155,12 +157,54 @@ namespace Armazon.Controllers
             }
             foreach (Valor v in producto.Valors)
             {
-                administracionFachada.deleteValor(v.ProductoID,v.PropiedadID);
+                administracionFachada.deleteValor(v.ProductoID, v.PropiedadID);
                 administracionFachada.saveValor();
             }
             administracionFachada.deleteProducto(id);
             administracionFachada.saveProducto();
             return View("Deleted");
         }
+
+        public ActionResult BuscarProducto()
+        {
+            BuscarProductoFormVM form = new BuscarProductoFormVM();
+            form.dtProductos = new List<DTProduct>();
+            form.lstProductos = new List<Producto>();
+            form.FullText = "";
+            return View(form);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult BuscarProducto(String fullText)
+        {
+//            String fullText = Request.Form["txtNombre"];
+
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            IQueryable<Producto> productos = administracionFachada.findAllProductos(fullText);
+            
+            List<Producto> lstProductos = new List<Producto>();
+            if (productos != null)
+            {
+                foreach (Producto p in productos)
+                {
+                    lstProductos.Add(p);
+                }
+            }
+            /*
+            FabricAccessStore fas = FabricAccessStore.getInstance();
+            IAccessStore service = fas.createAmazonServiceAccess();
+            List<DTProduct> dtProductos = service.searchProducts(fullText);
+            */
+            List<DTProduct> dtProductos = new List<DTProduct>();
+
+            BuscarProductoFormVM form = new BuscarProductoFormVM();
+            form.FullText = fullText;
+            form.lstProductos = lstProductos;
+            form.dtProductos = dtProductos;
+
+            return View(form);
+        }
+
+        
     }
 }

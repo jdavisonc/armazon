@@ -81,6 +81,7 @@
     <Compile Include="Controllers\Prueba.cs" />
     <Compile Include="Controllers\SubCategoriaController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
+    <Compile Include="Controllers\ViewModels\BuscarProductoFormVM.cs" />
     <Compile Include="Controllers\ViewModels\CrearProductoFormVM.cs" />
     <Compile Include="Controllers\ViewModels\DetalleProductoFromVM.cs" />
     <Compile Include="Default.aspx.cs">
@@ -178,6 +179,7 @@
     <Content Include="Views\PayPal\EditTarjeta.aspx" />
     <Content Include="Views\PayPal\Index.aspx" />
     <Content Include="Views\PayPal\NotFoundPayPal.aspx" />
+    <Content Include="Views\Producto\BuscarProducto.aspx" />
     <Content Include="Views\Producto\Create.aspx" />
     <Content Include="Views\Producto\Delete.aspx" />
     <Content Include="Views\Producto\Deleted.aspx" />

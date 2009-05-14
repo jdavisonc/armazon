@@ -37,7 +37,15 @@ namespace Armazon.Models.DataAccess.Administracion
                              select p);
             return productos;
         }
-        
+
+        public IQueryable<Producto> findAllProductos(String fullText)
+        {
+            var productos = (from Producto p in db.Productos
+                             where p.Nombre.StartsWith(fullText)
+                             select p);
+            return productos;
+        }
+
         public Producto getProducto(int id)
         {
             return db.Productos.SingleOrDefault(c => c.ProductoID == id);
