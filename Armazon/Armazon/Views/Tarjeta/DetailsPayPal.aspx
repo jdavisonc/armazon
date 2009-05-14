@@ -29,8 +29,8 @@
     </fieldset>
     <p>
 
-        <%=Html.ActionLink("Edit", "Edit", new { id=Model.MetodoDePagoID }) %> |
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Editar", "Edit", new { id=Model.MetodoDePagoID }) %> |
+        <%=Html.ActionLink("Volver", "Index") %>
     </p>
 
 </asp:Content>
