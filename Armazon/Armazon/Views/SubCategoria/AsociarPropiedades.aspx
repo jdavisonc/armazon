@@ -17,7 +17,7 @@
             document.getElementById("frmAsociarPropiedades").submit();
         }
     </script>
-    <h2>AsociarPropiedades</h2>
+    <h2>Asociar Propiedades a SubCategorías</h2>
     <form action="" id="frmAsociarPropiedades" method="post">
         <input type="hidden" id="hdnIdSubCategoria" name="hdnIdSubCategoria" value='<%=Model.getSubCategoria().SubCategoriaID %>' />
         <input type="hidden" id="hdn" name="hdn" value='<%=Model.getAsociadas() %>' />
