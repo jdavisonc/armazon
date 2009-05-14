@@ -21,5 +21,12 @@ namespace Armazon.Models
             ProductoManager productoMgr = ProductoManager.getInstance();
             return productoMgr.findAllProductosXSubCategoria(idSubCategoria);
         }
+
+        public IQueryable<Producto> findAllProductos(String fullText)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            return productoMgr.findAllProductos(fullText);
+        }
+        
     }
 }
