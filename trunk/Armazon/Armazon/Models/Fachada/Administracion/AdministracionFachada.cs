@@ -176,6 +176,11 @@ namespace Armazon.Models
             ProductoManager productoMgr = ProductoManager.getInstance();
             return productoMgr.findAllProductos();
         }
+        public IQueryable<Producto> findAllProductos(String fullText)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            return productoMgr.findAllProductos(fullText);
+        }
         public Producto getProducto(int id)
         {
             ProductoManager productoMgr = ProductoManager.getInstance();
