@@ -6,7 +6,7 @@ $(function() {
     var map = new google.maps.Map2($("#map")[0]);
     map.addControl(new google.maps.SmallMapControl());
     //map.addControl(new google.maps.MapTypeControl());
-    if (($("#Latitud").val() = "") && ($("#Longitud").val() = "")) {
+    if (($("#Latitud").val() == "") && ($("#Longitud").val() == "")) {
         $("#Latitud").val(-34.888916);
         $("#Longitud").val(-56.162281);
     }
