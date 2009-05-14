@@ -26,27 +26,31 @@ namespace Armazon.Models.ServiceAccess
             ItemSearchRequest request = new ItemSearchRequest();
             request.SearchIndex = "All";
             request.Keywords = fullText;
-            request.ResponseGroup = new string[] { "Small" };
-            request.Sort = "salesrank";
+            //request.Power = "title: " + fullText;
+            //request.ResponseGroup = new string[] { "Small" };
+            //request.Sort = "salesrank";
 
             ItemSearchRequest[] requests = new ItemSearchRequest[] { request };
 
             ItemSearch itemSearch = new ItemSearch();
-            itemSearch.AssociateTag = _subscriptionId;
-            itemSearch.SubscriptionId = _associateTag;
+            itemSearch.AssociateTag = _associateTag;
+            itemSearch.SubscriptionId = _subscriptionId;
             itemSearch.Request = requests;
 
             try
             {
                 ItemSearchResponse response = _aws.ItemSearch(itemSearch);
                 Items info = response.Items[0];
-                Item[] items = info.Item;
-                for (int i = 0; i < items.Length; i++)
+                if (info.Item != null)
                 {
-                    Item item = items[i];
-                    DTProduct dt = new DTProduct();
-                    dt.Attrs.Add(new DTProductAttrString("Titulo", item.ItemAttributes.Title));
-                    list.Add(dt);
+                    Item[] items = info.Item;
+                    for (int i = 0; i < items.Length; i++)
+                    {
+                        Item item = items[i];
+                        DTProduct dt = new DTProduct();
+                        dt.Attrs.Add(new DTProductAttrString("Titulo", item.ItemAttributes.Title));
+                        list.Add(dt);
+                    }
                 }
                 return list;
             }
