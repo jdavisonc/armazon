@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<System.Web.Security.MembershipUserCollection>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Listar de Usuarios
+	Lista de Usuarios
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Listar de Usuarios</h2>
+    <h2>Lista de Usuarios</h2>
 
     <%= Html.Encode(ViewData["Error"])%><br>
     <table>
