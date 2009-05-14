@@ -21,7 +21,7 @@
                 <%= Html.ValidationMessage("Numero", "*") %>
             </p>
             
-                <input type="submit" value="Save" />
+                <input type="submit" value="Guardar" />
             </p>
         </fieldset>
 

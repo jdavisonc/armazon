@@ -60,8 +60,7 @@ namespace Armazon.Controllers
                 // TODO: Add insert logic here
                 UpdateModel(ppal);
                 AdministracionFachada adminSuc = new AdministracionFachada();
-                adminSuc.AddPayPal(ppal);
-                
+                adminSuc.AddPayPal(ppal);              
                 return RedirectToAction("Index");
             }
             catch

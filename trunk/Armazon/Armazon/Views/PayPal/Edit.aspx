@@ -22,11 +22,11 @@
             </p>
             <p>
                 <label for="Password">Password:</label>
-                <%= Html.TextBox("Password", Model.Password) %>
+                <%= Html.Password("Password", Model.Password) %>
                 <%= Html.ValidationMessage("Password", "*") %>
             </p>
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Guardar" />
             </p>
         </fieldset>
 
