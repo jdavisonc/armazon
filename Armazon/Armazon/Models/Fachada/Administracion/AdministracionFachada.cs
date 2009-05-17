@@ -16,9 +16,6 @@ namespace Armazon.Models
 {
     public class AdministracionFachada
     {
-
-        private string userName;
-        private string password;
         
         //Categoria
         public IQueryable<Categoria> findAllCategorias()
@@ -287,7 +284,6 @@ namespace Armazon.Models
         }
         public void AddPayPal(PayPal pago)
         {
-
             MetododePagoManager mmgr = MetododePagoManager.getInstance();
             mmgr.AddPayPal(pago);
         }
@@ -326,6 +322,58 @@ namespace Armazon.Models
         { 
             CarritoManager cmgr = CarritoManager.getInstance();
             cmgr.Save();
+        }
+
+        // Tags
+        public IQueryable<Tag> findAllTags()
+        {
+            return TagManager.getInstance().findAllTags();
+        }
+
+        public Tag getTag(string tag)
+        {
+            return TagManager.getInstance().getTag(tag);
+        }
+
+        public void AddTag(Tag tag)
+        {
+            TagManager.getInstance().Add(tag);
+        }
+
+        public void DeleteTag(Tag tag)
+        {
+            TagManager.getInstance().Delete(tag);
+        }
+
+        public void SaveTags()
+        {
+            TagManager.getInstance().Save();
+        }
+
+        // producto_Tag
+        public IQueryable<Producto_Tag> findAllProducto_Tags()
+        {
+            return Producto_TagManager.getInstance().findAllProducto_Tags();
+        }
+
+        public Producto_Tag getProducto_Tag(int productoID, int tagID)
+        {
+            return Producto_TagManager.getInstance().getProducto_Tag(productoID, tagID);
+        }
+
+        public void AddProducto_Tag(Producto_Tag producto_tag)
+        {
+            Producto_TagManager.getInstance().Add(producto_tag);
+        }
+
+        public void DeleteProducto_Tag(Producto_Tag producto_Tag)
+        {
+            Producto_TagManager.getInstance().Delete(producto_Tag);
+        }
+
+        public void SaveProducto_Tag()
+        {
+            Producto_TagManager.getInstance().Save();
         }
     }
 }

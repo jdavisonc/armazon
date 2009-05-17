@@ -48,7 +48,7 @@ namespace Armazon.Models.ServiceAccess
                     {
                         Item item = items[i];
                         DTProduct dt = new DTProduct();
-                        dt.Attrs.Add(new DTProductAttrString("Titulo", item.ItemAttributes.Title));
+                        dt.Attrs.Add(new DTProductAttrString("Nombre", item.ItemAttributes.Title));
                         list.Add(dt);
                     }
                 }

@@ -167,38 +167,58 @@ namespace Armazon.Controllers
 
         public ActionResult BuscarProducto()
         {
-            BuscarProductoFormVM form = new BuscarProductoFormVM();
-            form.dtProductos = new List<DTProduct>();
-            form.lstProductos = new List<Producto>();
-            form.FullText = "";
-            return View(form);
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult BuscarProducto(String fullText)
         {
             ConsultaFachada consultaFachada = new ConsultaFachada();
-            IQueryable<Producto> productos = consultaFachada.findAllProductos(fullText);
-            
-            List<Producto> lstProductos = new List<Producto>();
-            if (productos != null)
+            IEnumerable<Producto> productos = consultaFachada.findAllProductos(fullText);
+            return View(productos);
+        }
+
+        /// <summary>
+        /// Recibo una coleccion de tags separadas por coma (",") en un string y las ingreso al 
+        /// sistema
+        /// </summary>
+        /// <param name="productID">Identificador del producto a ingresar las tags</param>
+        /// <param name="tagCollection">Coleccion de tags</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddTag(int productID, string tagCollection)
+        {
+            AdministracionFachada adminFach = new AdministracionFachada();
+            if (adminFach.getProducto(productID) != null)
             {
-                foreach (Producto p in productos)
+                string[] tags = tagCollection.Split(',');
+                foreach (string tag in tags)
                 {
-                    lstProductos.Add(p);
+                    Tag t = adminFach.getTag(tag);
+                    if (t == null)
+                    {
+                        t = new Tag();
+                        t.CantAp = 0;
+                        adminFach.AddTag(t);
+                        adminFach.SaveTags();
+                    }
+                    if (adminFach.getProducto_Tag(productID, t.TagID) == null)
+                    {
+                        Producto_Tag pt = new Producto_Tag();
+                        pt.ProductoID = productID;
+                        pt.TagID = t.TagID;
+                        adminFach.AddProducto_Tag(pt);
+                        adminFach.SaveProducto_Tag();
+                        // Solo sumo si el tag no esta asociado al producto
+                        t.CantAp++;
+                    }
                 }
             }
-            
-            FabricAccessStore fas = FabricAccessStore.getInstance();
-            IAccessStore service = fas.createAmazonServiceAccess();
-            List<DTProduct> dtProductos = service.searchProducts(fullText);
-            
-            BuscarProductoFormVM form = new BuscarProductoFormVM();
-            form.FullText = fullText;
-            form.lstProductos = lstProductos;
-            form.dtProductos = dtProductos;
-
-            return View(form);
+            else
+            {
+                // Error no existe el producto
+            }
+            return Details(productID);
         }
 
         
