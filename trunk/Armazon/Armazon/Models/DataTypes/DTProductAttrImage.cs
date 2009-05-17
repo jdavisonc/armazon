@@ -19,5 +19,10 @@ namespace Armazon.Models.DataTypes
         {
             _imagen = imagen;
         }
+
+        public override Types GetCustomType()
+        {
+            return Types.Image;
+        }
     }
 }

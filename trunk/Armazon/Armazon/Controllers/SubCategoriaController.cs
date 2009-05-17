@@ -374,19 +374,12 @@ namespace Armazon.Controllers
         public ActionResult VerProductosXSubCategoria(int idSubCategoria)
         {
             ConsultaFachada consultaFachada = new ConsultaFachada();
-            IQueryable<Producto> productosXSubCategoria = consultaFachada.findAllProductosXSubCategoria(idSubCategoria);
-
-            List<Producto> lstProductos = new List<Producto>();
-
-            foreach (Producto p in productosXSubCategoria)
-            {
-                lstProductos.Add(p);
-            }
+            IEnumerable<Producto> productosXSubCategoria = consultaFachada.findAllProductosXSubCategoria(idSubCategoria);
             AdministracionFachada adminFachada = new AdministracionFachada();
             ViewData["CategoriaID"] = adminFachada.getSubCategoria(idSubCategoria).CategoriaID;
             ViewData["SubCategoriaID"] = idSubCategoria;
             ViewData["SubCategoriaNombre"] = adminFachada.getSubCategoria(idSubCategoria).Nombre;
-            return View(lstProductos);
+            return View(productosXSubCategoria);
         }
     }
 }

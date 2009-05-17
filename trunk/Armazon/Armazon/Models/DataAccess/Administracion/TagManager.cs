@@ -34,8 +34,14 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.Tags.SingleOrDefault(c => c.TagID == id);                
         }
 
+        public Tag getTag(string tag)
+        {
+            return db.Tags.SingleOrDefault(c => c.Nombre == tag);
+        }
+
         public void Add(Tag tag)
         {
+
             db.Tags.InsertOnSubmit(tag);
         }
 

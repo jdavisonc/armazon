@@ -19,5 +19,10 @@ namespace Armazon.Models.DataTypes
         {
             _valor = valor;
         }
+
+        public override Types GetCustomType()
+        {
+            return Types.Int;
+        }
     }
 }
