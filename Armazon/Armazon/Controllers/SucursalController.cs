@@ -17,9 +17,13 @@ namespace Armazon.Controllers
 
         public ActionResult Index()
         {
+            List<DTSucursal> dtCollection = new List<DTSucursal>();
             AdministracionFachada adminSuc = new AdministracionFachada();
-            var sucursales = adminSuc.findAllSucursales().ToList();
-            return View(sucursales);
+            foreach (Sucursal item in adminSuc.findAllSucursales().ToList())
+            {
+                dtCollection.Add(item.getDataType());
+            }
+            return View(dtCollection);
         }
 
         //
@@ -29,7 +33,9 @@ namespace Armazon.Controllers
         {
             AdministracionFachada adminSuc = new AdministracionFachada();
             var sucursal = adminSuc.getSucursal(id);
-            return View(sucursal);
+            if (sucursal == null)
+                return View("NotFound");
+            return View(sucursal.getDataType());
         }
 
         //
@@ -37,8 +43,6 @@ namespace Armazon.Controllers
 
         public ActionResult Create()
         {
-            AdministracionFachada adminSuc = new AdministracionFachada();
-            Sucursal suc = new Sucursal();
             return View();
         } 
 
@@ -73,8 +77,10 @@ namespace Armazon.Controllers
         public ActionResult Edit(int id)
         {
             AdministracionFachada adminSuc = new AdministracionFachada();
-            var sucursal = adminSuc.getSucursal(id); 
-            return View(sucursal);
+            var sucursal = adminSuc.getSucursal(id);
+            if (sucursal == null)
+                return View("NotFound");
+            return View(sucursal.getDataType());
         }
 
         //
@@ -107,7 +113,7 @@ namespace Armazon.Controllers
             if (suc == null)
                 return View("NotFound");
             else
-                return View(suc);
+                return View(suc.getDataType());
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

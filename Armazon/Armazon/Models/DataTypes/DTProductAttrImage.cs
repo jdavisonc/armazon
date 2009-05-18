@@ -15,7 +15,7 @@ namespace Armazon.Models.DataTypes
             set { _imagen = value; }
         }
 
-        public DTProductAttrImage(string nombre, byte[] imagen) : base(nombre)
+        public DTProductAttrImage(int id, string nombre, byte[] imagen) : base(nombre,id)
         {
             _imagen = imagen;
         }

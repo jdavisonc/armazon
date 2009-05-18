@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Producto>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Models.DataTypes.DTProduct>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	BuscarProducto
@@ -20,7 +20,7 @@
             <tr>
                 <th>Nombre</th>
             </tr>
-            <%foreach (Armazon.Producto item in Model)
+            <%foreach (Armazon.Models.DataTypes.DTProduct item in Model)
               { %>
                 <tr>
                     <td><%=item.Nombre%></td>

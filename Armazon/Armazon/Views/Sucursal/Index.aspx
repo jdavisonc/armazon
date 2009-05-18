@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Sucursal>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Models.DataTypes.DTSucursal>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Sucursales
@@ -28,16 +28,16 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% foreach (Armazon.Models.DataTypes.DTSucursal item in Model) { %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Modificar", "Edit", new { id = item.SucursalID }).Replace("Modificar", "<img style=\"border:none\" src= \"/Content/modificar.gif\" TITLE=\"Modificar\" />")%> |
-                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.SucursalID }).Replace("Eliminar", "<img style=\"border:none\" src= \"/Content/eliminar.gif\" TITLE=\"Eliminar\" />")%> |
-                <%= Html.ActionLink("Detalles", "Details", new { id = item.SucursalID }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detalles.gif\" TITLE=\"Detalles\" />")%>
+                <%= Html.ActionLink("Modificar", "Edit", new { id = item.Id }).Replace("Modificar", "<img style=\"border:none\" src= \"/Content/modificar.gif\" TITLE=\"Modificar\" />")%> |
+                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.Id }).Replace("Eliminar", "<img style=\"border:none\" src= \"/Content/eliminar.gif\" TITLE=\"Eliminar\" />")%> |
+                <%= Html.ActionLink("Detalles", "Details", new { id = item.Id }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detalles.gif\" TITLE=\"Detalles\" />")%>
             </td>
             <td>
-                <%= Html.Encode(item.SucursalID) %>
+                <%= Html.Encode(item.Id) %>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>

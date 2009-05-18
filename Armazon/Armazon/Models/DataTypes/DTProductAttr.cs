@@ -16,6 +16,13 @@ namespace Armazon.Models.DataTypes
         }
 
         private string _nombre;
+        private int _ID;
+
+        public int ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
+        }
 
         public string Nombre
         {
@@ -23,9 +30,10 @@ namespace Armazon.Models.DataTypes
             set { _nombre = value; }
         }
 
-        public DTProductAttr(string nombre)
+        public DTProductAttr(string nombre, int id)
         {
             _nombre = nombre;
+            _ID = id;
         }
 
         public virtual Types GetCustomType()

@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Sucursal>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Models.DataTypes.DTSucursal>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Borrar Sucursal
@@ -12,7 +12,7 @@
         <legend>Campos</legend>
         <p>
             SucursalID:
-            <%= Html.Encode(Model.SucursalID) %>
+            <%= Html.Encode(Model.Id) %>
         </p>
         <p>
             Nombre:
@@ -33,7 +33,7 @@
     </fieldset>
     <p>
 
-        <%=Html.ActionLink("Editar", "Edit", new { id=Model.SucursalID }) %> |
+        <%=Html.ActionLink("Editar", "Edit", new { id=Model.Id }) %> |
         <%=Html.ActionLink("Ver Sucursales", "Index") %>
     </p>
     <% using (Html.BeginForm()) { %>
