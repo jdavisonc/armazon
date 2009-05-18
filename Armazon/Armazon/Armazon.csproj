@@ -110,6 +110,7 @@
     <Compile Include="Models\DataTypes\Location.cs" />
     <Compile Include="Models\DataTypes\Map.cs" />
     <Compile Include="Models\Entities\Producto.cs" />
+    <Compile Include="Models\Entities\Sucursal.cs" />
     <Compile Include="Models\Fachada\Administracion\AdministracionFachada.cs" />
     <Compile Include="Models\Fachada\Consulta\ConsultaFachada.cs" />
     <Compile Include="Models\Fachada\Operativa\OperativaFachada.cs" />
