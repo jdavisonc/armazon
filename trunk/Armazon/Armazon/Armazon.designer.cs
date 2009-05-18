@@ -2113,19 +2113,6 @@ namespace Armazon
 			}
         }
 
-        #region DataType
-        public DTSucursal getDataType()
-        {
-            DTSucursal dt = new DTSucursal();
-            dt.Direccion = this._Direccion;
-            dt.Id = this._SucursalID;
-            dt.Latitud = this._Latitud;
-            dt.Longitud = this._Longitud;
-            dt.Nombre = this._Nombre;
-            return dt;
-        }
-        #endregion
-
         public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
