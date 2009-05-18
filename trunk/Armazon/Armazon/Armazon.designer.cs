@@ -20,7 +20,6 @@ namespace Armazon
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using Armazon.Models.DataTypes;
 	
 	
 	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Armazon")]
@@ -31,12 +30,27 @@ namespace Armazon
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertActivo(Activo instance);
+    partial void UpdateActivo(Activo instance);
+    partial void DeleteActivo(Activo instance);
+    partial void InsertVendido(Vendido instance);
+    partial void UpdateVendido(Vendido instance);
+    partial void DeleteVendido(Vendido instance);
+    partial void InsertCarrito(Carrito instance);
+    partial void UpdateCarrito(Carrito instance);
+    partial void DeleteCarrito(Carrito instance);
     partial void InsertCategoria(Categoria instance);
     partial void UpdateCategoria(Categoria instance);
     partial void DeleteCategoria(Categoria instance);
+    partial void InsertImagen(Imagen instance);
+    partial void UpdateImagen(Imagen instance);
+    partial void DeleteImagen(Imagen instance);
     partial void InsertMetodoDePago(MetodoDePago instance);
     partial void UpdateMetodoDePago(MetodoDePago instance);
     partial void DeleteMetodoDePago(MetodoDePago instance);
+    partial void InsertPayPal(PayPal instance);
+    partial void UpdatePayPal(PayPal instance);
+    partial void DeletePayPal(PayPal instance);
     partial void InsertProducto(Producto instance);
     partial void UpdateProducto(Producto instance);
     partial void DeleteProducto(Producto instance);
@@ -64,6 +78,12 @@ namespace Armazon
     partial void InsertTag(Tag instance);
     partial void UpdateTag(Tag instance);
     partial void DeleteTag(Tag instance);
+    partial void InsertTarjeta(Tarjeta instance);
+    partial void UpdateTarjeta(Tarjeta instance);
+    partial void DeleteTarjeta(Tarjeta instance);
+    partial void InsertTienda(Tienda instance);
+    partial void UpdateTienda(Tienda instance);
+    partial void DeleteTienda(Tienda instance);
     partial void InsertUsuario(Usuario instance);
     partial void UpdateUsuario(Usuario instance);
     partial void DeleteUsuario(Usuario instance);
@@ -73,9 +93,6 @@ namespace Armazon
     partial void InsertValor(Valor instance);
     partial void UpdateValor(Valor instance);
     partial void DeleteValor(Valor instance);
-    partial void InsertCarrito(Carrito instance);
-    partial void UpdateCarrito(Carrito instance);
-    partial void DeleteCarrito(Carrito instance);
     #endregion
 		
 		public ArmazonDataContext() : 
@@ -108,6 +125,30 @@ namespace Armazon
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Activo> Activos
+		{
+			get
+			{
+				return this.GetTable<Activo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Vendido> Vendidos
+		{
+			get
+			{
+				return this.GetTable<Vendido>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Carrito> Carritos
+		{
+			get
+			{
+				return this.GetTable<Carrito>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Categoria> Categorias
 		{
 			get
@@ -116,11 +157,27 @@ namespace Armazon
 			}
 		}
 		
+		public System.Data.Linq.Table<Imagen> Imagens
+		{
+			get
+			{
+				return this.GetTable<Imagen>();
+			}
+		}
+		
 		public System.Data.Linq.Table<MetodoDePago> MetodoDePagos
 		{
 			get
 			{
 				return this.GetTable<MetodoDePago>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PayPal> PayPals
+		{
+			get
+			{
+				return this.GetTable<PayPal>();
 			}
 		}
 		
@@ -164,14 +221,6 @@ namespace Armazon
 			}
 		}
 		
-		public System.Data.Linq.Table<Prueba> Pruebas
-		{
-			get
-			{
-				return this.GetTable<Prueba>();
-			}
-		}
-		
 		public System.Data.Linq.Table<SubCategoria> SubCategorias
 		{
 			get
@@ -204,6 +253,22 @@ namespace Armazon
 			}
 		}
 		
+		public System.Data.Linq.Table<Tarjeta> Tarjetas
+		{
+			get
+			{
+				return this.GetTable<Tarjeta>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tienda> Tiendas
+		{
+			get
+			{
+				return this.GetTable<Tienda>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Usuario> Usuarios
 		{
 			get
@@ -227,13 +292,541 @@ namespace Armazon
 				return this.GetTable<Valor>();
 			}
 		}
+	}
+	
+	[Table(Name="dbo.Activo")]
+	public partial class Activo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<Carrito> Carritos
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CarritoID;
+		
+		private int _UsuarioID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCarritoIDChanging(int value);
+    partial void OnCarritoIDChanged();
+    partial void OnUsuarioIDChanging(int value);
+    partial void OnUsuarioIDChanged();
+    #endregion
+		
+		public Activo()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_CarritoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int CarritoID
 		{
 			get
 			{
-				return this.GetTable<Carrito>();
+				return this._CarritoID;
 			}
+			set
+			{
+				if ((this._CarritoID != value))
+				{
+					this.OnCarritoIDChanging(value);
+					this.SendPropertyChanging();
+					this._CarritoID = value;
+					this.SendPropertyChanged("CarritoID");
+					this.OnCarritoIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UsuarioID", DbType="Int NOT NULL")]
+		public int UsuarioID
+		{
+			get
+			{
+				return this._UsuarioID;
+			}
+			set
+			{
+				if ((this._UsuarioID != value))
+				{
+					this.OnUsuarioIDChanging(value);
+					this.SendPropertyChanging();
+					this._UsuarioID = value;
+					this.SendPropertyChanged("UsuarioID");
+					this.OnUsuarioIDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Vendido")]
+	public partial class Vendido : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CarritoID;
+		
+		private System.DateTime _Fecha;
+		
+		private double _Total;
+		
+		private int _UsuarioID;
+		
+		private int _MetodoDePagoID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCarritoIDChanging(int value);
+    partial void OnCarritoIDChanged();
+    partial void OnFechaChanging(System.DateTime value);
+    partial void OnFechaChanged();
+    partial void OnTotalChanging(double value);
+    partial void OnTotalChanged();
+    partial void OnUsuarioIDChanging(int value);
+    partial void OnUsuarioIDChanged();
+    partial void OnMetodoDePagoIDChanging(int value);
+    partial void OnMetodoDePagoIDChanged();
+    #endregion
+		
+		public Vendido()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_CarritoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int CarritoID
+		{
+			get
+			{
+				return this._CarritoID;
+			}
+			set
+			{
+				if ((this._CarritoID != value))
+				{
+					this.OnCarritoIDChanging(value);
+					this.SendPropertyChanging();
+					this._CarritoID = value;
+					this.SendPropertyChanged("CarritoID");
+					this.OnCarritoIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fecha", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this.OnFechaChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha = value;
+					this.SendPropertyChanged("Fecha");
+					this.OnFechaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UsuarioID", DbType="Int NOT NULL")]
+		public int UsuarioID
+		{
+			get
+			{
+				return this._UsuarioID;
+			}
+			set
+			{
+				if ((this._UsuarioID != value))
+				{
+					this.OnUsuarioIDChanging(value);
+					this.SendPropertyChanging();
+					this._UsuarioID = value;
+					this.SendPropertyChanged("UsuarioID");
+					this.OnUsuarioIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MetodoDePagoID", DbType="Int NOT NULL")]
+		public int MetodoDePagoID
+		{
+			get
+			{
+				return this._MetodoDePagoID;
+			}
+			set
+			{
+				if ((this._MetodoDePagoID != value))
+				{
+					this.OnMetodoDePagoIDChanging(value);
+					this.SendPropertyChanging();
+					this._MetodoDePagoID = value;
+					this.SendPropertyChanged("MetodoDePagoID");
+					this.OnMetodoDePagoIDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Carrito")]
+	public partial class Carrito : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CarritoID;
+		
+		private System.Nullable<int> _UsuarioID;
+		
+		private System.Nullable<System.DateTime> _Fecha;
+		
+		private System.Nullable<double> _Total;
+		
+		private System.Nullable<int> _MetodoDePagoID;
+		
+		private string _CarritoType;
+		
+		private EntitySet<Producto_Carrito> _Producto_Carritos;
+		
+		private EntityRef<MetodoDePago> _MetodoDePago;
+		
+		private EntityRef<Usuario> _Usuario;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCarritoIDChanging(int value);
+    partial void OnCarritoIDChanged();
+    partial void OnUsuarioIDChanging(System.Nullable<int> value);
+    partial void OnUsuarioIDChanged();
+    partial void OnFechaChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaChanged();
+    partial void OnTotalChanging(System.Nullable<double> value);
+    partial void OnTotalChanged();
+    partial void OnMetodoDePagoIDChanging(System.Nullable<int> value);
+    partial void OnMetodoDePagoIDChanged();
+    partial void OnCarritoTypeChanging(string value);
+    partial void OnCarritoTypeChanged();
+    #endregion
+		
+		public Carrito()
+		{
+			this._Producto_Carritos = new EntitySet<Producto_Carrito>(new Action<Producto_Carrito>(this.attach_Producto_Carritos), new Action<Producto_Carrito>(this.detach_Producto_Carritos));
+			this._MetodoDePago = default(EntityRef<MetodoDePago>);
+			this._Usuario = default(EntityRef<Usuario>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_CarritoID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int CarritoID
+		{
+			get
+			{
+				return this._CarritoID;
+			}
+			set
+			{
+				if ((this._CarritoID != value))
+				{
+					this.OnCarritoIDChanging(value);
+					this.SendPropertyChanging();
+					this._CarritoID = value;
+					this.SendPropertyChanged("CarritoID");
+					this.OnCarritoIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UsuarioID", DbType="Int")]
+		public System.Nullable<int> UsuarioID
+		{
+			get
+			{
+				return this._UsuarioID;
+			}
+			set
+			{
+				if ((this._UsuarioID != value))
+				{
+					if (this._Usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUsuarioIDChanging(value);
+					this.SendPropertyChanging();
+					this._UsuarioID = value;
+					this.SendPropertyChanged("UsuarioID");
+					this.OnUsuarioIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fecha", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this.OnFechaChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha = value;
+					this.SendPropertyChanged("Fecha");
+					this.OnFechaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Total", DbType="Float")]
+		public System.Nullable<double> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MetodoDePagoID", DbType="Int")]
+		public System.Nullable<int> MetodoDePagoID
+		{
+			get
+			{
+				return this._MetodoDePagoID;
+			}
+			set
+			{
+				if ((this._MetodoDePagoID != value))
+				{
+					if (this._MetodoDePago.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMetodoDePagoIDChanging(value);
+					this.SendPropertyChanging();
+					this._MetodoDePagoID = value;
+					this.SendPropertyChanged("MetodoDePagoID");
+					this.OnMetodoDePagoIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CarritoType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CarritoType
+		{
+			get
+			{
+				return this._CarritoType;
+			}
+			set
+			{
+				if ((this._CarritoType != value))
+				{
+					this.OnCarritoTypeChanging(value);
+					this.SendPropertyChanging();
+					this._CarritoType = value;
+					this.SendPropertyChanged("CarritoType");
+					this.OnCarritoTypeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Carrito_Producto_Carrito", Storage="_Producto_Carritos", ThisKey="CarritoID", OtherKey="CarritoID")]
+		public EntitySet<Producto_Carrito> Producto_Carritos
+		{
+			get
+			{
+				return this._Producto_Carritos;
+			}
+			set
+			{
+				this._Producto_Carritos.Assign(value);
+			}
+		}
+		
+		[Association(Name="MetodoDePago_Carrito", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsForeignKey=true)]
+		public MetodoDePago MetodoDePago
+		{
+			get
+			{
+				return this._MetodoDePago.Entity;
+			}
+			set
+			{
+				MetodoDePago previousValue = this._MetodoDePago.Entity;
+				if (((previousValue != value) 
+							|| (this._MetodoDePago.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MetodoDePago.Entity = null;
+						previousValue.Carritos.Remove(this);
+					}
+					this._MetodoDePago.Entity = value;
+					if ((value != null))
+					{
+						value.Carritos.Add(this);
+						this._MetodoDePagoID = value.MetodoDePagoID;
+					}
+					else
+					{
+						this._MetodoDePagoID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MetodoDePago");
+				}
+			}
+		}
+		
+		[Association(Name="Usuario_Carrito", Storage="_Usuario", ThisKey="UsuarioID", OtherKey="UsuarioID", IsForeignKey=true)]
+		public Usuario Usuario
+		{
+			get
+			{
+				return this._Usuario.Entity;
+			}
+			set
+			{
+				Usuario previousValue = this._Usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario.Entity = null;
+						previousValue.Carritos.Remove(this);
+					}
+					this._Usuario.Entity = value;
+					if ((value != null))
+					{
+						value.Carritos.Add(this);
+						this._UsuarioID = value.UsuarioID;
+					}
+					else
+					{
+						this._UsuarioID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Producto_Carritos(Producto_Carrito entity)
+		{
+			this.SendPropertyChanging();
+			entity.Carrito = this;
+		}
+		
+		private void detach_Producto_Carritos(Producto_Carrito entity)
+		{
+			this.SendPropertyChanging();
+			entity.Carrito = null;
 		}
 	}
 	
@@ -351,9 +944,206 @@ namespace Armazon
 		}
 	}
 	
+	[Table(Name="dbo.Imagen")]
+	public partial class Imagen : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ImagenID;
+		
+		private int _ProductoID;
+		
+		private System.Data.Linq.Binary _Imagen1;
+		
+		private System.Data.Linq.Binary _Thumbnail;
+		
+		private string _MIMEType;
+		
+		private EntityRef<Producto> _Producto;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnImagenIDChanging(int value);
+    partial void OnImagenIDChanged();
+    partial void OnProductoIDChanging(int value);
+    partial void OnProductoIDChanged();
+    partial void OnImagen1Changing(System.Data.Linq.Binary value);
+    partial void OnImagen1Changed();
+    partial void OnThumbnailChanging(System.Data.Linq.Binary value);
+    partial void OnThumbnailChanged();
+    partial void OnMIMETypeChanging(string value);
+    partial void OnMIMETypeChanged();
+    #endregion
+		
+		public Imagen()
+		{
+			this._Producto = default(EntityRef<Producto>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ImagenID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ImagenID
+		{
+			get
+			{
+				return this._ImagenID;
+			}
+			set
+			{
+				if ((this._ImagenID != value))
+				{
+					this.OnImagenIDChanging(value);
+					this.SendPropertyChanging();
+					this._ImagenID = value;
+					this.SendPropertyChanged("ImagenID");
+					this.OnImagenIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductoID", DbType="Int NOT NULL")]
+		public int ProductoID
+		{
+			get
+			{
+				return this._ProductoID;
+			}
+			set
+			{
+				if ((this._ProductoID != value))
+				{
+					if (this._Producto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductoIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductoID = value;
+					this.SendPropertyChanged("ProductoID");
+					this.OnProductoIDChanged();
+				}
+			}
+		}
+		
+		[Column(Name="Imagen", Storage="_Imagen1", DbType="Image NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Imagen1
+		{
+			get
+			{
+				return this._Imagen1;
+			}
+			set
+			{
+				if ((this._Imagen1 != value))
+				{
+					this.OnImagen1Changing(value);
+					this.SendPropertyChanging();
+					this._Imagen1 = value;
+					this.SendPropertyChanged("Imagen1");
+					this.OnImagen1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_Thumbnail", DbType="Image NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Thumbnail
+		{
+			get
+			{
+				return this._Thumbnail;
+			}
+			set
+			{
+				if ((this._Thumbnail != value))
+				{
+					this.OnThumbnailChanging(value);
+					this.SendPropertyChanging();
+					this._Thumbnail = value;
+					this.SendPropertyChanged("Thumbnail");
+					this.OnThumbnailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MIMEType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string MIMEType
+		{
+			get
+			{
+				return this._MIMEType;
+			}
+			set
+			{
+				if ((this._MIMEType != value))
+				{
+					this.OnMIMETypeChanging(value);
+					this.SendPropertyChanging();
+					this._MIMEType = value;
+					this.SendPropertyChanged("MIMEType");
+					this.OnMIMETypeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Producto_Imagen", Storage="_Producto", ThisKey="ProductoID", OtherKey="ProductoID", IsForeignKey=true)]
+		public Producto Producto
+		{
+			get
+			{
+				return this._Producto.Entity;
+			}
+			set
+			{
+				Producto previousValue = this._Producto.Entity;
+				if (((previousValue != value) 
+							|| (this._Producto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Producto.Entity = null;
+						previousValue.Imagens.Remove(this);
+					}
+					this._Producto.Entity = value;
+					if ((value != null))
+					{
+						value.Imagens.Add(this);
+						this._ProductoID = value.ProductoID;
+					}
+					else
+					{
+						this._ProductoID = default(int);
+					}
+					this.SendPropertyChanged("Producto");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="dbo.MetodoDePago")]
-	[InheritanceMapping(Code="Tarjeta", Type=typeof(Tarjeta), IsDefault=true)]
-	[InheritanceMapping(Code="PayPal", Type=typeof(PayPal))]
 	public partial class MetodoDePago : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -370,6 +1160,10 @@ namespace Armazon
 		private string _Password;
 		
 		private EntitySet<Carrito> _Carritos;
+		
+		private EntityRef<PayPal> _PayPal;
+		
+		private EntityRef<Tarjeta> _Tarjeta;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -390,6 +1184,8 @@ namespace Armazon
 		public MetodoDePago()
 		{
 			this._Carritos = new EntitySet<Carrito>(new Action<Carrito>(this.attach_Carritos), new Action<Carrito>(this.detach_Carritos));
+			this._PayPal = default(EntityRef<PayPal>);
+			this._Tarjeta = default(EntityRef<Tarjeta>);
 			OnCreated();
 		}
 		
@@ -413,7 +1209,7 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_MetodoDePagoType", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsDiscriminator=true)]
+		[Column(Storage="_MetodoDePagoType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string MetodoDePagoType
 		{
 			get
@@ -506,6 +1302,64 @@ namespace Armazon
 			}
 		}
 		
+		[Association(Name="MetodoDePago_PayPal", Storage="_PayPal", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsUnique=true, IsForeignKey=false)]
+		public PayPal PayPal
+		{
+			get
+			{
+				return this._PayPal.Entity;
+			}
+			set
+			{
+				PayPal previousValue = this._PayPal.Entity;
+				if (((previousValue != value) 
+							|| (this._PayPal.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PayPal.Entity = null;
+						previousValue.MetodoDePago = null;
+					}
+					this._PayPal.Entity = value;
+					if ((value != null))
+					{
+						value.MetodoDePago = this;
+					}
+					this.SendPropertyChanged("PayPal");
+				}
+			}
+		}
+		
+		[Association(Name="MetodoDePago_Tarjeta", Storage="_Tarjeta", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsUnique=true, IsForeignKey=false)]
+		public Tarjeta Tarjeta
+		{
+			get
+			{
+				return this._Tarjeta.Entity;
+			}
+			set
+			{
+				Tarjeta previousValue = this._Tarjeta.Entity;
+				if (((previousValue != value) 
+							|| (this._Tarjeta.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tarjeta.Entity = null;
+						previousValue.MetodoDePago = null;
+					}
+					this._Tarjeta.Entity = value;
+					if ((value != null))
+					{
+						value.MetodoDePago = this;
+					}
+					this.SendPropertyChanged("Tarjeta");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -539,33 +1393,106 @@ namespace Armazon
 		}
 	}
 	
-	public partial class Tarjeta : MetodoDePago
+	[Table(Name="dbo.PayPal")]
+	public partial class PayPal : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MetodoDePagoID;
+		
+		private EntityRef<MetodoDePago> _MetodoDePago;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    #endregion
-		
-		public Tarjeta()
-		{
-			OnCreated();
-		}
-	}
-	
-	public partial class PayPal : MetodoDePago
-	{
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
+    partial void OnMetodoDePagoIDChanging(int value);
+    partial void OnMetodoDePagoIDChanged();
     #endregion
 		
 		public PayPal()
 		{
+			this._MetodoDePago = default(EntityRef<MetodoDePago>);
 			OnCreated();
+		}
+		
+		[Column(Storage="_MetodoDePagoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MetodoDePagoID
+		{
+			get
+			{
+				return this._MetodoDePagoID;
+			}
+			set
+			{
+				if ((this._MetodoDePagoID != value))
+				{
+					if (this._MetodoDePago.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMetodoDePagoIDChanging(value);
+					this.SendPropertyChanging();
+					this._MetodoDePagoID = value;
+					this.SendPropertyChanged("MetodoDePagoID");
+					this.OnMetodoDePagoIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="MetodoDePago_PayPal", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsForeignKey=true)]
+		public MetodoDePago MetodoDePago
+		{
+			get
+			{
+				return this._MetodoDePago.Entity;
+			}
+			set
+			{
+				MetodoDePago previousValue = this._MetodoDePago.Entity;
+				if (((previousValue != value) 
+							|| (this._MetodoDePago.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MetodoDePago.Entity = null;
+						previousValue.PayPal = null;
+					}
+					this._MetodoDePago.Entity = value;
+					if ((value != null))
+					{
+						value.PayPal = this;
+						this._MetodoDePagoID = value.MetodoDePagoID;
+					}
+					else
+					{
+						this._MetodoDePagoID = default(int);
+					}
+					this.SendPropertyChanged("MetodoDePago");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -581,6 +1508,14 @@ namespace Armazon
 		
 		private int _SubCategoriaID;
 		
+		private System.Nullable<int> _ExternalID;
+		
+		private System.Nullable<int> _TiendaID;
+		
+		private double _Precio;
+		
+		private EntitySet<Imagen> _Imagens;
+		
 		private EntitySet<Producto_Carrito> _Producto_Carritos;
 		
 		private EntitySet<Producto_Tag> _Producto_Tags;
@@ -590,6 +1525,8 @@ namespace Armazon
 		private EntitySet<Valor> _Valors;
 		
 		private EntityRef<SubCategoria> _SubCategoria;
+		
+		private EntityRef<Tienda> _Tienda;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -601,15 +1538,23 @@ namespace Armazon
     partial void OnNombreChanged();
     partial void OnSubCategoriaIDChanging(int value);
     partial void OnSubCategoriaIDChanged();
+    partial void OnExternalIDChanging(System.Nullable<int> value);
+    partial void OnExternalIDChanged();
+    partial void OnTiendaIDChanging(System.Nullable<int> value);
+    partial void OnTiendaIDChanged();
+    partial void OnPrecioChanging(double value);
+    partial void OnPrecioChanged();
     #endregion
 		
 		public Producto()
 		{
+			this._Imagens = new EntitySet<Imagen>(new Action<Imagen>(this.attach_Imagens), new Action<Imagen>(this.detach_Imagens));
 			this._Producto_Carritos = new EntitySet<Producto_Carrito>(new Action<Producto_Carrito>(this.attach_Producto_Carritos), new Action<Producto_Carrito>(this.detach_Producto_Carritos));
 			this._Producto_Tags = new EntitySet<Producto_Tag>(new Action<Producto_Tag>(this.attach_Producto_Tags), new Action<Producto_Tag>(this.detach_Producto_Tags));
 			this._Producto_Usuarios = new EntitySet<Producto_Usuario>(new Action<Producto_Usuario>(this.attach_Producto_Usuarios), new Action<Producto_Usuario>(this.detach_Producto_Usuarios));
 			this._Valors = new EntitySet<Valor>(new Action<Valor>(this.attach_Valors), new Action<Valor>(this.detach_Valors));
 			this._SubCategoria = default(EntityRef<SubCategoria>);
+			this._Tienda = default(EntityRef<Tienda>);
 			OnCreated();
 		}
 		
@@ -674,6 +1619,83 @@ namespace Armazon
 					this.SendPropertyChanged("SubCategoriaID");
 					this.OnSubCategoriaIDChanged();
 				}
+			}
+		}
+		
+		[Column(Storage="_ExternalID", DbType="Int")]
+		public System.Nullable<int> ExternalID
+		{
+			get
+			{
+				return this._ExternalID;
+			}
+			set
+			{
+				if ((this._ExternalID != value))
+				{
+					this.OnExternalIDChanging(value);
+					this.SendPropertyChanging();
+					this._ExternalID = value;
+					this.SendPropertyChanged("ExternalID");
+					this.OnExternalIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TiendaID", DbType="Int")]
+		public System.Nullable<int> TiendaID
+		{
+			get
+			{
+				return this._TiendaID;
+			}
+			set
+			{
+				if ((this._TiendaID != value))
+				{
+					if (this._Tienda.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTiendaIDChanging(value);
+					this.SendPropertyChanging();
+					this._TiendaID = value;
+					this.SendPropertyChanged("TiendaID");
+					this.OnTiendaIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Precio", DbType="Float NOT NULL")]
+		public double Precio
+		{
+			get
+			{
+				return this._Precio;
+			}
+			set
+			{
+				if ((this._Precio != value))
+				{
+					this.OnPrecioChanging(value);
+					this.SendPropertyChanging();
+					this._Precio = value;
+					this.SendPropertyChanged("Precio");
+					this.OnPrecioChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Producto_Imagen", Storage="_Imagens", ThisKey="ProductoID", OtherKey="ProductoID")]
+		public EntitySet<Imagen> Imagens
+		{
+			get
+			{
+				return this._Imagens;
+			}
+			set
+			{
+				this._Imagens.Assign(value);
 			}
 		}
 		
@@ -763,6 +1785,40 @@ namespace Armazon
 			}
 		}
 		
+		[Association(Name="Tienda_Producto", Storage="_Tienda", ThisKey="TiendaID", OtherKey="TiendaID", IsForeignKey=true)]
+		public Tienda Tienda
+		{
+			get
+			{
+				return this._Tienda.Entity;
+			}
+			set
+			{
+				Tienda previousValue = this._Tienda.Entity;
+				if (((previousValue != value) 
+							|| (this._Tienda.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tienda.Entity = null;
+						previousValue.Productos.Remove(this);
+					}
+					this._Tienda.Entity = value;
+					if ((value != null))
+					{
+						value.Productos.Add(this);
+						this._TiendaID = value.TiendaID;
+					}
+					else
+					{
+						this._TiendaID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Tienda");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -781,6 +1837,18 @@ namespace Armazon
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Imagens(Imagen entity)
+		{
+			this.SendPropertyChanging();
+			entity.Producto = this;
+		}
+		
+		private void detach_Imagens(Imagen entity)
+		{
+			this.SendPropertyChanging();
+			entity.Producto = null;
 		}
 		
 		private void attach_Producto_Carritos(Producto_Carrito entity)
@@ -844,9 +1912,9 @@ namespace Armazon
 		
 		private char _EstaEnCarrito;
 		
-		private EntityRef<Producto> _Producto;
-		
 		private EntityRef<Carrito> _Carrito;
+		
+		private EntityRef<Producto> _Producto;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -862,8 +1930,8 @@ namespace Armazon
 		
 		public Producto_Carrito()
 		{
-			this._Producto = default(EntityRef<Producto>);
 			this._Carrito = default(EntityRef<Carrito>);
+			this._Producto = default(EntityRef<Producto>);
 			OnCreated();
 		}
 		
@@ -935,40 +2003,6 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Producto_Producto_Carrito", Storage="_Producto", ThisKey="ProductoID", OtherKey="ProductoID", IsForeignKey=true)]
-		public Producto Producto
-		{
-			get
-			{
-				return this._Producto.Entity;
-			}
-			set
-			{
-				Producto previousValue = this._Producto.Entity;
-				if (((previousValue != value) 
-							|| (this._Producto.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Producto.Entity = null;
-						previousValue.Producto_Carritos.Remove(this);
-					}
-					this._Producto.Entity = value;
-					if ((value != null))
-					{
-						value.Producto_Carritos.Add(this);
-						this._ProductoID = value.ProductoID;
-					}
-					else
-					{
-						this._ProductoID = default(int);
-					}
-					this.SendPropertyChanged("Producto");
-				}
-			}
-		}
-		
 		[Association(Name="Carrito_Producto_Carrito", Storage="_Carrito", ThisKey="CarritoID", OtherKey="CarritoID", IsForeignKey=true)]
 		public Carrito Carrito
 		{
@@ -999,6 +2033,40 @@ namespace Armazon
 						this._CarritoID = default(int);
 					}
 					this.SendPropertyChanged("Carrito");
+				}
+			}
+		}
+		
+		[Association(Name="Producto_Producto_Carrito", Storage="_Producto", ThisKey="ProductoID", OtherKey="ProductoID", IsForeignKey=true)]
+		public Producto Producto
+		{
+			get
+			{
+				return this._Producto.Entity;
+			}
+			set
+			{
+				Producto previousValue = this._Producto.Entity;
+				if (((previousValue != value) 
+							|| (this._Producto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Producto.Entity = null;
+						previousValue.Producto_Carritos.Remove(this);
+					}
+					this._Producto.Entity = value;
+					if ((value != null))
+					{
+						value.Producto_Carritos.Add(this);
+						this._ProductoID = value.ProductoID;
+					}
+					else
+					{
+						this._ProductoID = default(int);
+					}
+					this.SendPropertyChanged("Producto");
 				}
 			}
 		}
@@ -1550,33 +2618,6 @@ namespace Armazon
 		}
 	}
 	
-	[Table(Name="dbo.Prueba")]
-	public partial class Prueba
-	{
-		
-		private System.Nullable<int> _id;
-		
-		public Prueba()
-		{
-		}
-		
-		[Column(Storage="_id", DbType="Int")]
-		public System.Nullable<int> id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-	}
-	
 	[Table(Name="dbo.SubCategoria")]
 	public partial class SubCategoria : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2111,9 +3152,9 @@ namespace Armazon
 					this.OnLongitudChanged();
 				}
 			}
-        }
-
-        public event PropertyChangingEventHandler PropertyChanging;
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
 		
@@ -2300,6 +3341,271 @@ namespace Armazon
 		}
 	}
 	
+	[Table(Name="dbo.Tarjeta")]
+	public partial class Tarjeta : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MetodoDePagoID;
+		
+		private EntityRef<MetodoDePago> _MetodoDePago;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMetodoDePagoIDChanging(int value);
+    partial void OnMetodoDePagoIDChanged();
+    #endregion
+		
+		public Tarjeta()
+		{
+			this._MetodoDePago = default(EntityRef<MetodoDePago>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_MetodoDePagoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MetodoDePagoID
+		{
+			get
+			{
+				return this._MetodoDePagoID;
+			}
+			set
+			{
+				if ((this._MetodoDePagoID != value))
+				{
+					if (this._MetodoDePago.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMetodoDePagoIDChanging(value);
+					this.SendPropertyChanging();
+					this._MetodoDePagoID = value;
+					this.SendPropertyChanged("MetodoDePagoID");
+					this.OnMetodoDePagoIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="MetodoDePago_Tarjeta", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsForeignKey=true)]
+		public MetodoDePago MetodoDePago
+		{
+			get
+			{
+				return this._MetodoDePago.Entity;
+			}
+			set
+			{
+				MetodoDePago previousValue = this._MetodoDePago.Entity;
+				if (((previousValue != value) 
+							|| (this._MetodoDePago.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MetodoDePago.Entity = null;
+						previousValue.Tarjeta = null;
+					}
+					this._MetodoDePago.Entity = value;
+					if ((value != null))
+					{
+						value.Tarjeta = this;
+						this._MetodoDePagoID = value.MetodoDePagoID;
+					}
+					else
+					{
+						this._MetodoDePagoID = default(int);
+					}
+					this.SendPropertyChanged("MetodoDePago");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Tienda")]
+	public partial class Tienda : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TiendaID;
+		
+		private string _Nombre;
+		
+		private string _Url;
+		
+		private string _TipoAPI;
+		
+		private EntitySet<Producto> _Productos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTiendaIDChanging(int value);
+    partial void OnTiendaIDChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnUrlChanging(string value);
+    partial void OnUrlChanged();
+    partial void OnTipoAPIChanging(string value);
+    partial void OnTipoAPIChanged();
+    #endregion
+		
+		public Tienda()
+		{
+			this._Productos = new EntitySet<Producto>(new Action<Producto>(this.attach_Productos), new Action<Producto>(this.detach_Productos));
+			OnCreated();
+		}
+		
+		[Column(Storage="_TiendaID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TiendaID
+		{
+			get
+			{
+				return this._TiendaID;
+			}
+			set
+			{
+				if ((this._TiendaID != value))
+				{
+					this.OnTiendaIDChanging(value);
+					this.SendPropertyChanging();
+					this._TiendaID = value;
+					this.SendPropertyChanged("TiendaID");
+					this.OnTiendaIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Url", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Url
+		{
+			get
+			{
+				return this._Url;
+			}
+			set
+			{
+				if ((this._Url != value))
+				{
+					this.OnUrlChanging(value);
+					this.SendPropertyChanging();
+					this._Url = value;
+					this.SendPropertyChanged("Url");
+					this.OnUrlChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TipoAPI", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string TipoAPI
+		{
+			get
+			{
+				return this._TipoAPI;
+			}
+			set
+			{
+				if ((this._TipoAPI != value))
+				{
+					this.OnTipoAPIChanging(value);
+					this.SendPropertyChanging();
+					this._TipoAPI = value;
+					this.SendPropertyChanged("TipoAPI");
+					this.OnTipoAPIChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tienda_Producto", Storage="_Productos", ThisKey="TiendaID", OtherKey="TiendaID")]
+		public EntitySet<Producto> Productos
+		{
+			get
+			{
+				return this._Productos;
+			}
+			set
+			{
+				this._Productos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Productos(Producto entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tienda = this;
+		}
+		
+		private void detach_Productos(Producto entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tienda = null;
+		}
+	}
+	
 	[Table(Name="dbo.Usuario")]
 	public partial class Usuario : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2310,11 +3616,11 @@ namespace Armazon
 		
 		private string _Nombre;
 		
+		private EntitySet<Carrito> _Carritos;
+		
 		private EntitySet<Producto_Usuario> _Producto_Usuarios;
 		
 		private EntitySet<Usuario_Tag> _Usuario_Tags;
-		
-		private EntitySet<Carrito> _Carritos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2328,9 +3634,9 @@ namespace Armazon
 		
 		public Usuario()
 		{
+			this._Carritos = new EntitySet<Carrito>(new Action<Carrito>(this.attach_Carritos), new Action<Carrito>(this.detach_Carritos));
 			this._Producto_Usuarios = new EntitySet<Producto_Usuario>(new Action<Producto_Usuario>(this.attach_Producto_Usuarios), new Action<Producto_Usuario>(this.detach_Producto_Usuarios));
 			this._Usuario_Tags = new EntitySet<Usuario_Tag>(new Action<Usuario_Tag>(this.attach_Usuario_Tags), new Action<Usuario_Tag>(this.detach_Usuario_Tags));
-			this._Carritos = new EntitySet<Carrito>(new Action<Carrito>(this.attach_Carritos), new Action<Carrito>(this.detach_Carritos));
 			OnCreated();
 		}
 		
@@ -2374,6 +3680,19 @@ namespace Armazon
 			}
 		}
 		
+		[Association(Name="Usuario_Carrito", Storage="_Carritos", ThisKey="UsuarioID", OtherKey="UsuarioID")]
+		public EntitySet<Carrito> Carritos
+		{
+			get
+			{
+				return this._Carritos;
+			}
+			set
+			{
+				this._Carritos.Assign(value);
+			}
+		}
+		
 		[Association(Name="Usuario_Producto_Usuario", Storage="_Producto_Usuarios", ThisKey="UsuarioID", OtherKey="UsuarioID")]
 		public EntitySet<Producto_Usuario> Producto_Usuarios
 		{
@@ -2400,19 +3719,6 @@ namespace Armazon
 			}
 		}
 		
-		[Association(Name="Usuario_Carrito", Storage="_Carritos", ThisKey="UsuarioID", OtherKey="UsuarioID")]
-		public EntitySet<Carrito> Carritos
-		{
-			get
-			{
-				return this._Carritos;
-			}
-			set
-			{
-				this._Carritos.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2431,6 +3737,18 @@ namespace Armazon
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Carritos(Carrito entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = this;
+		}
+		
+		private void detach_Carritos(Carrito entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = null;
 		}
 		
 		private void attach_Producto_Usuarios(Producto_Usuario entity)
@@ -2452,18 +3770,6 @@ namespace Armazon
 		}
 		
 		private void detach_Usuario_Tags(Usuario_Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = null;
-		}
-		
-		private void attach_Carritos(Carrito entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = this;
-		}
-		
-		private void detach_Carritos(Carrito entity)
 		{
 			this.SendPropertyChanging();
 			entity.Usuario = null;
@@ -2827,330 +4133,6 @@ namespace Armazon
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[Table(Name="dbo.Carrito")]
-	[InheritanceMapping(Code="Activo", Type=typeof(Activo), IsDefault=true)]
-	[InheritanceMapping(Code="Vendido", Type=typeof(Vendido))]
-	public abstract partial class Carrito : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CarritoID;
-		
-		private System.Nullable<int> _UsuarioID;
-		
-		private System.Nullable<System.DateTime> _Fecha;
-		
-		private System.Nullable<double> _Total;
-		
-		private System.Nullable<int> _MetodoDePagoID;
-		
-		private string _CarritoType;
-		
-		private EntitySet<Producto_Carrito> _Producto_Carritos;
-		
-		private EntityRef<MetodoDePago> _MetodoDePago;
-		
-		private EntityRef<Usuario> _Usuario;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCarritoIDChanging(int value);
-    partial void OnCarritoIDChanged();
-    partial void OnUsuarioIDChanging(System.Nullable<int> value);
-    partial void OnUsuarioIDChanged();
-    partial void OnFechaChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaChanged();
-    partial void OnTotalChanging(System.Nullable<double> value);
-    partial void OnTotalChanged();
-    partial void OnMetodoDePagoIDChanging(System.Nullable<int> value);
-    partial void OnMetodoDePagoIDChanged();
-    partial void OnCarritoTypeChanging(string value);
-    partial void OnCarritoTypeChanged();
-    #endregion
-		
-		public Carrito()
-		{
-			this._Producto_Carritos = new EntitySet<Producto_Carrito>(new Action<Producto_Carrito>(this.attach_Producto_Carritos), new Action<Producto_Carrito>(this.detach_Producto_Carritos));
-			this._MetodoDePago = default(EntityRef<MetodoDePago>);
-			this._Usuario = default(EntityRef<Usuario>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_CarritoID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int CarritoID
-		{
-			get
-			{
-				return this._CarritoID;
-			}
-			set
-			{
-				if ((this._CarritoID != value))
-				{
-					this.OnCarritoIDChanging(value);
-					this.SendPropertyChanging();
-					this._CarritoID = value;
-					this.SendPropertyChanged("CarritoID");
-					this.OnCarritoIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UsuarioID", DbType="Int")]
-		public System.Nullable<int> UsuarioID
-		{
-			get
-			{
-				return this._UsuarioID;
-			}
-			set
-			{
-				if ((this._UsuarioID != value))
-				{
-					if (this._Usuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUsuarioIDChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioID = value;
-					this.SendPropertyChanged("UsuarioID");
-					this.OnUsuarioIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Fecha", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha
-		{
-			get
-			{
-				return this._Fecha;
-			}
-			set
-			{
-				if ((this._Fecha != value))
-				{
-					this.OnFechaChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha = value;
-					this.SendPropertyChanged("Fecha");
-					this.OnFechaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Total", DbType="Float")]
-		public System.Nullable<double> Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this.OnTotalChanging(value);
-					this.SendPropertyChanging();
-					this._Total = value;
-					this.SendPropertyChanged("Total");
-					this.OnTotalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_MetodoDePagoID", DbType="Int")]
-		public System.Nullable<int> MetodoDePagoID
-		{
-			get
-			{
-				return this._MetodoDePagoID;
-			}
-			set
-			{
-				if ((this._MetodoDePagoID != value))
-				{
-					if (this._MetodoDePago.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMetodoDePagoIDChanging(value);
-					this.SendPropertyChanging();
-					this._MetodoDePagoID = value;
-					this.SendPropertyChanged("MetodoDePagoID");
-					this.OnMetodoDePagoIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CarritoType", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsDiscriminator=true)]
-		public string CarritoType
-		{
-			get
-			{
-				return this._CarritoType;
-			}
-			set
-			{
-				if ((this._CarritoType != value))
-				{
-					this.OnCarritoTypeChanging(value);
-					this.SendPropertyChanging();
-					this._CarritoType = value;
-					this.SendPropertyChanged("CarritoType");
-					this.OnCarritoTypeChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Carrito_Producto_Carrito", Storage="_Producto_Carritos", ThisKey="CarritoID", OtherKey="CarritoID")]
-		public EntitySet<Producto_Carrito> Producto_Carritos
-		{
-			get
-			{
-				return this._Producto_Carritos;
-			}
-			set
-			{
-				this._Producto_Carritos.Assign(value);
-			}
-		}
-		
-		[Association(Name="MetodoDePago_Carrito", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsForeignKey=true)]
-		public MetodoDePago MetodoDePago
-		{
-			get
-			{
-				return this._MetodoDePago.Entity;
-			}
-			set
-			{
-				MetodoDePago previousValue = this._MetodoDePago.Entity;
-				if (((previousValue != value) 
-							|| (this._MetodoDePago.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MetodoDePago.Entity = null;
-						previousValue.Carritos.Remove(this);
-					}
-					this._MetodoDePago.Entity = value;
-					if ((value != null))
-					{
-						value.Carritos.Add(this);
-						this._MetodoDePagoID = value.MetodoDePagoID;
-					}
-					else
-					{
-						this._MetodoDePagoID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MetodoDePago");
-				}
-			}
-		}
-		
-		[Association(Name="Usuario_Carrito", Storage="_Usuario", ThisKey="UsuarioID", OtherKey="UsuarioID", IsForeignKey=true)]
-		public Usuario Usuario
-		{
-			get
-			{
-				return this._Usuario.Entity;
-			}
-			set
-			{
-				Usuario previousValue = this._Usuario.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuario.Entity = null;
-						previousValue.Carritos.Remove(this);
-					}
-					this._Usuario.Entity = value;
-					if ((value != null))
-					{
-						value.Carritos.Add(this);
-						this._UsuarioID = value.UsuarioID;
-					}
-					else
-					{
-						this._UsuarioID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Usuario");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Producto_Carritos(Producto_Carrito entity)
-		{
-			this.SendPropertyChanging();
-			entity.Carrito = this;
-		}
-		
-		private void detach_Producto_Carritos(Producto_Carrito entity)
-		{
-			this.SendPropertyChanging();
-			entity.Carrito = null;
-		}
-	}
-	
-	public partial class Activo : Carrito
-	{
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    #endregion
-		
-		public Activo()
-		{
-			OnCreated();
-		}
-	}
-	
-	public partial class Vendido : Carrito
-	{
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    #endregion
-		
-		public Vendido()
-		{
-			OnCreated();
 		}
 	}
 }
