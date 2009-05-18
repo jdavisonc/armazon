@@ -5,6 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Armazon.Models;
+
+using System.IO;
+using System.Net;
+using System.Text;
+
+
 namespace Armazon.Controllers
 {
     public class PayPalController : Controller
@@ -54,20 +60,158 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
-            PayPal ppal = new PayPal();
+              StringBuilder requestString = InitializeRequest("SetExpressCheckout");
+              requestString.Append("&AMT=" + decimal.Parse("100000"));
+              string basePath = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, string.Empty) + Request.ApplicationPath;
+              requestString.Append("&RETURNURL="+"http://www.gmail.com");
+              requestString.Append("&CANCELURL=" + "http://www.yahoo.com");
+
+              string token;
+              string dummy;
+              if (Post(requestString.ToString(), out token, out dummy))
+                {
+                    Session["OrderTotal"] = 100000;
+                  Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout" + "&token=" + token);
+                }
+                
+
+            return RedirectToAction("Index");
+            
+        }
+
+
+
+
+
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Look for the token returned by PayPal
+            if (Request.QueryString.Get("token") != null)
+            {
+
+                // Initialize the GetExpressCheckoutDetails request string to get
+                // credentials and other common parameters
+                string token;
+                string payerID;
+                StringBuilder requestString = InitializeRequest("GetExpressCheckoutDetails");
+
+                // Append the required parameters
+                string parameter = "&TOKEN=" + HttpUtility.UrlEncode(Request.QueryString.Get("token"));
+                requestString.Append(parameter);
+
+                // Post the request to the API
+                if (Post(requestString.ToString(), out token, out payerID))
+                {
+                    // Initialize the DoExpressCheckoutPayment request string to get
+                    // credentials and other common parameters
+                    requestString = InitializeRequest("DoExpressCheckoutPayment");
+
+                    // Append the required parameters
+                    parameter = "&TOKEN=" + HttpUtility.UrlEncode(token);
+                    requestString.Append(parameter);
+                    parameter = "&AMT=" + HttpUtility.UrlEncode(decimal.Parse(Session["OrderTotal"].ToString()).ToString("f"));
+                    requestString.Append(parameter);
+                    parameter = "&PAYMENTACTION=Sale";
+                    requestString.Append(parameter);
+                    parameter = "&PAYERID=" + HttpUtility.UrlEncode(payerID);
+                    requestString.Append(parameter);
+
+                    // Post the request to the API
+                    Post(requestString.ToString(), out token, out payerID);
+                    
+
+                }
+                
+            }
+        }
+
+        // Initialize the request string to get credentials and other common parameters
+        private static StringBuilder InitializeRequest(string method)
+        {
+            string parameter;
+            StringBuilder requestString = new StringBuilder();
+
+            parameter = "METHOD=" + HttpUtility.UrlEncode(method);
+            requestString.Append(parameter);
+            parameter = "&USER=" + HttpUtility.UrlEncode("mussio_1242266962_biz_api1.hotmail.com");
+            requestString.Append(parameter);
+            parameter = "&PWD=" + HttpUtility.UrlEncode("1242266974");
+            requestString.Append(parameter);
+            parameter = "&SIGNATURE=" + HttpUtility.UrlEncode("AiPC9BjkCyDFQXbSkoZcgqH3hpacAWKtVcoSjwXfslWj7lHQAFynLiQG");
+            requestString.Append(parameter);
+            parameter = "&VERSION=" + HttpUtility.UrlEncode("2.3");
+            requestString.Append(parameter);
+
+            return requestString;
+        }
+
+        // Create a HttpWebRequest object to post a request to the API
+        public bool Post(string request, out string token, out string payerID)
+        {
+            token = string.Empty;
+            payerID = string.Empty;
+            HttpWebResponse webResponse;
             try
             {
-                // TODO: Add insert logic here
-                UpdateModel(ppal);
-                AdministracionFachada adminSuc = new AdministracionFachada();
-                adminSuc.AddPayPal(ppal);              
-                return RedirectToAction("Index");
+                // Create request object
+                HttpWebRequest webRequest = WebRequest.Create("https://api-3t.sandbox.paypal.com/nvp") as HttpWebRequest;
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/x-www-form-urlencoded";
+                webRequest.ContentLength = request.Length;
+
+                // Write the request string to the request object
+                StreamWriter writer = new StreamWriter(webRequest.GetRequestStream());
+                writer.Write(request);
+                writer.Close();
+
+                // Get the response from the request object and verify the status
+                webResponse = webRequest.GetResponse() as HttpWebResponse;
+                if (!webRequest.HaveResponse)
+                {
+                    throw new Exception();
+                }
+                if (webResponse.StatusCode != HttpStatusCode.OK &&
+                    webResponse.StatusCode != HttpStatusCode.Accepted)
+                {
+                    throw new Exception();
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                string test = ex.Message;
+                return false;
             }
-    
+
+            // Read the response string
+            StreamReader reader = new StreamReader(webResponse.GetResponseStream());
+            string responseString = reader.ReadToEnd();
+            reader.Close();
+
+            // Parse the response string
+            bool success = false;
+            char[] ampersand = { '&' };
+            string[] pairs = responseString.Split(ampersand);
+            char[] equalsign = { '=' };
+            for (int i = 0; i < pairs.Length; i++)
+            {
+                // Find the acknowledgement and other parameters required for subsequent API calls
+                string[] pair = pairs[i].Split(equalsign);
+                if (pair[0].ToLower() == "ack" && HttpUtility.UrlDecode(pair[1]).ToLower() != "failure")
+                {
+                    success = true;
+                }
+                if (pair[0].ToLower() == "token")
+                {
+                    token = HttpUtility.UrlDecode(pair[1]);
+                }
+                if (pair[0].ToLower() == "payerid")
+                {
+                    payerID = HttpUtility.UrlDecode(pair[1]);
+                }
+            }
+            return success;
         }
 
         //
