@@ -3348,6 +3348,8 @@ namespace Armazon
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _MetodoDePagoID;
+
+        private const int _Maximo = 60000;
 		
 		private EntityRef<MetodoDePago> _MetodoDePago;
 		
