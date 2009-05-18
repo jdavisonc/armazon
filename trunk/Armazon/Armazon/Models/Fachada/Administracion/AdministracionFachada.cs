@@ -375,5 +375,31 @@ namespace Armazon.Models
         {
             Producto_TagManager.getInstance().Save();
         }
+        //Tienda
+        public IQueryable<Tienda> findAllTiendas()
+        {
+            TiendaManager tiendaMgr = TiendaManager.getInstance();
+            return tiendaMgr.findAllTiendas();
+        }
+        public Tienda getTienda(int id)
+        {
+            TiendaManager tiendaMgr = TiendaManager.getInstance();
+            return tiendaMgr.getTienda(id);
+        }
+        public void addTienda(Tienda tienda)
+        {
+            TiendaManager tiendaMgr = TiendaManager.getInstance();
+            tiendaMgr.Add(tienda);
+        }
+        public void deleteTienda(int id)
+        {
+            TiendaManager tiendaMgr = TiendaManager.getInstance();
+            tiendaMgr.Delete(tiendaMgr.getTienda(id));
+        }
+        public void saveTienda()
+        {
+            TiendaManager tiendaMgr = TiendaManager.getInstance();
+            tiendaMgr.Save();
+        }
     }
 }
