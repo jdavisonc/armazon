@@ -35,16 +35,6 @@
     <div>
         <%=Html.ActionLink("Volver", "Index") %>
     </div>
-    <form method="post" action="https://api-3t.sandbox.paypal.com/nvp">
-        <input type="hidden" name="USER" value= "mussio_1242266962_biz_api1.hotmail.com"/>
-        <input type="hidden" name="PWD" value= "1242266974"/>
-        <input type="hidden" name="SIGNATURE" value= "AiPC9BjkCyDFQXbSkoZcgqH3hpacAWKtVcoSjwXfslWj7lHQAFynLiQG"/>
-        <input type="hidden" name="VERSION" value="2.3"/>
-        <input type="hidden" name="PAYMENTACTION" value="Authorization"/>
-        <input name="AMT" value="10000000"/>
-        <input type="hidden" name="RETURNURL" value="http://www.gmail.com"/>
-        <input type="hidden" name="CANCELURL" value="http://www.yahoo.com"/>
-        <input type="submit" name="METHOD" value="SetExpressCheckout"/>
-    </form>    
-</asp:Content>
+     
+    </asp:Content>
 
