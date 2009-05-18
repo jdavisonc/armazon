@@ -6,24 +6,17 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Crear PayPal</h2>
+    <h2>Compra PayPal</h2>
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-
+        <input type="hidden" id="hdnMonto" name="hdnMonto" value="<%=ViewData["txtMonto"] %>"/>
         <fieldset>
-            <legend>Campos</legend>
+            <legend>Compra</legend>
             
             <p>
-                <label for="Usuario">Usuario:</label>
-                <%= Html.TextBox("Usuario") %>
-                <%= Html.ValidationMessage("Usuario", "*") %>
-            </p>
-            <p>
-                <label for="Password">Password:</label>
-                <%= Html.Password("Password") %>
-                <%= Html.ValidationMessage("Password", "*") %>
+                <label> Monto de compra: <%=ViewData["txtMonto"] %></label>
             </p>
             <p>
                 <input type="submit" value="Create" />

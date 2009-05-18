@@ -122,8 +122,6 @@ namespace Armazon.Controllers
                             PayPal ppal = (PayPal)adminFac.getMetododePago(id);
                             ppal.MetodoDePagoID = pago.MetodoDePagoID;
                             ppal.MetodoDePagoType = pago.MetodoDePagoType;
-                            ppal.Usuario = Request.Form["Usuario"];
-                            ppal.Password = Request.Form["Password"];
                             adminFac.saveMetodoDePago();
                             return RedirectToAction("Index");           
                         }   

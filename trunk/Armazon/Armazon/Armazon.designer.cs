@@ -30,12 +30,6 @@ namespace Armazon
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertActivo(Activo instance);
-    partial void UpdateActivo(Activo instance);
-    partial void DeleteActivo(Activo instance);
-    partial void InsertVendido(Vendido instance);
-    partial void UpdateVendido(Vendido instance);
-    partial void DeleteVendido(Vendido instance);
     partial void InsertCarrito(Carrito instance);
     partial void UpdateCarrito(Carrito instance);
     partial void DeleteCarrito(Carrito instance);
@@ -48,9 +42,6 @@ namespace Armazon
     partial void InsertMetodoDePago(MetodoDePago instance);
     partial void UpdateMetodoDePago(MetodoDePago instance);
     partial void DeleteMetodoDePago(MetodoDePago instance);
-    partial void InsertPayPal(PayPal instance);
-    partial void UpdatePayPal(PayPal instance);
-    partial void DeletePayPal(PayPal instance);
     partial void InsertProducto(Producto instance);
     partial void UpdateProducto(Producto instance);
     partial void DeleteProducto(Producto instance);
@@ -78,9 +69,6 @@ namespace Armazon
     partial void InsertTag(Tag instance);
     partial void UpdateTag(Tag instance);
     partial void DeleteTag(Tag instance);
-    partial void InsertTarjeta(Tarjeta instance);
-    partial void UpdateTarjeta(Tarjeta instance);
-    partial void DeleteTarjeta(Tarjeta instance);
     partial void InsertTienda(Tienda instance);
     partial void UpdateTienda(Tienda instance);
     partial void DeleteTienda(Tienda instance);
@@ -125,22 +113,6 @@ namespace Armazon
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Activo> Activos
-		{
-			get
-			{
-				return this.GetTable<Activo>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Vendido> Vendidos
-		{
-			get
-			{
-				return this.GetTable<Vendido>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Carrito> Carritos
 		{
 			get
@@ -170,14 +142,6 @@ namespace Armazon
 			get
 			{
 				return this.GetTable<MetodoDePago>();
-			}
-		}
-		
-		public System.Data.Linq.Table<PayPal> PayPals
-		{
-			get
-			{
-				return this.GetTable<PayPal>();
 			}
 		}
 		
@@ -253,14 +217,6 @@ namespace Armazon
 			}
 		}
 		
-		public System.Data.Linq.Table<Tarjeta> Tarjetas
-		{
-			get
-			{
-				return this.GetTable<Tarjeta>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Tienda> Tiendas
 		{
 			get
@@ -294,252 +250,10 @@ namespace Armazon
 		}
 	}
 	
-	[Table(Name="dbo.Activo")]
-	public partial class Activo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CarritoID;
-		
-		private int _UsuarioID;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCarritoIDChanging(int value);
-    partial void OnCarritoIDChanged();
-    partial void OnUsuarioIDChanging(int value);
-    partial void OnUsuarioIDChanged();
-    #endregion
-		
-		public Activo()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_CarritoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int CarritoID
-		{
-			get
-			{
-				return this._CarritoID;
-			}
-			set
-			{
-				if ((this._CarritoID != value))
-				{
-					this.OnCarritoIDChanging(value);
-					this.SendPropertyChanging();
-					this._CarritoID = value;
-					this.SendPropertyChanged("CarritoID");
-					this.OnCarritoIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UsuarioID", DbType="Int NOT NULL")]
-		public int UsuarioID
-		{
-			get
-			{
-				return this._UsuarioID;
-			}
-			set
-			{
-				if ((this._UsuarioID != value))
-				{
-					this.OnUsuarioIDChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioID = value;
-					this.SendPropertyChanged("UsuarioID");
-					this.OnUsuarioIDChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.Vendido")]
-	public partial class Vendido : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CarritoID;
-		
-		private System.DateTime _Fecha;
-		
-		private double _Total;
-		
-		private int _UsuarioID;
-		
-		private int _MetodoDePagoID;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCarritoIDChanging(int value);
-    partial void OnCarritoIDChanged();
-    partial void OnFechaChanging(System.DateTime value);
-    partial void OnFechaChanged();
-    partial void OnTotalChanging(double value);
-    partial void OnTotalChanged();
-    partial void OnUsuarioIDChanging(int value);
-    partial void OnUsuarioIDChanged();
-    partial void OnMetodoDePagoIDChanging(int value);
-    partial void OnMetodoDePagoIDChanged();
-    #endregion
-		
-		public Vendido()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_CarritoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int CarritoID
-		{
-			get
-			{
-				return this._CarritoID;
-			}
-			set
-			{
-				if ((this._CarritoID != value))
-				{
-					this.OnCarritoIDChanging(value);
-					this.SendPropertyChanging();
-					this._CarritoID = value;
-					this.SendPropertyChanged("CarritoID");
-					this.OnCarritoIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Fecha", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha
-		{
-			get
-			{
-				return this._Fecha;
-			}
-			set
-			{
-				if ((this._Fecha != value))
-				{
-					this.OnFechaChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha = value;
-					this.SendPropertyChanged("Fecha");
-					this.OnFechaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Total", DbType="Float NOT NULL")]
-		public double Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this.OnTotalChanging(value);
-					this.SendPropertyChanging();
-					this._Total = value;
-					this.SendPropertyChanged("Total");
-					this.OnTotalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UsuarioID", DbType="Int NOT NULL")]
-		public int UsuarioID
-		{
-			get
-			{
-				return this._UsuarioID;
-			}
-			set
-			{
-				if ((this._UsuarioID != value))
-				{
-					this.OnUsuarioIDChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioID = value;
-					this.SendPropertyChanged("UsuarioID");
-					this.OnUsuarioIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_MetodoDePagoID", DbType="Int NOT NULL")]
-		public int MetodoDePagoID
-		{
-			get
-			{
-				return this._MetodoDePagoID;
-			}
-			set
-			{
-				if ((this._MetodoDePagoID != value))
-				{
-					this.OnMetodoDePagoIDChanging(value);
-					this.SendPropertyChanging();
-					this._MetodoDePagoID = value;
-					this.SendPropertyChanged("MetodoDePagoID");
-					this.OnMetodoDePagoIDChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.Carrito")]
-	public partial class Carrito : INotifyPropertyChanging, INotifyPropertyChanged
+	[InheritanceMapping(Code="Activo", Type=typeof(Activo), IsDefault=true)]
+	[InheritanceMapping(Code="Vendido", Type=typeof(Vendido))]
+	public abstract partial class Carrito : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -696,7 +410,7 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_CarritoType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_CarritoType", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsDiscriminator=true)]
 		public string CarritoType
 		{
 			get
@@ -827,6 +541,36 @@ namespace Armazon
 		{
 			this.SendPropertyChanging();
 			entity.Carrito = null;
+		}
+	}
+	
+	public partial class Activo : Carrito
+	{
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    #endregion
+		
+		public Activo()
+		{
+			OnCreated();
+		}
+	}
+	
+	public partial class Vendido : Carrito
+	{
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    #endregion
+		
+		public Vendido()
+		{
+			OnCreated();
 		}
 	}
 	
@@ -1144,7 +888,9 @@ namespace Armazon
 	}
 	
 	[Table(Name="dbo.MetodoDePago")]
-	public partial class MetodoDePago : INotifyPropertyChanging, INotifyPropertyChanged
+	[InheritanceMapping(Code="Tarjeta", Type=typeof(Tarjeta), IsDefault=true)]
+	[InheritanceMapping(Code="PayPal", Type=typeof(PayPal))]
+	public abstract partial class MetodoDePago : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1155,15 +901,7 @@ namespace Armazon
 		
 		private string _Numero;
 		
-		private string _Usuario;
-		
-		private string _Password;
-		
 		private EntitySet<Carrito> _Carritos;
-		
-		private EntityRef<PayPal> _PayPal;
-		
-		private EntityRef<Tarjeta> _Tarjeta;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1175,17 +913,11 @@ namespace Armazon
     partial void OnMetodoDePagoTypeChanged();
     partial void OnNumeroChanging(string value);
     partial void OnNumeroChanged();
-    partial void OnUsuarioChanging(string value);
-    partial void OnUsuarioChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
     #endregion
 		
 		public MetodoDePago()
 		{
 			this._Carritos = new EntitySet<Carrito>(new Action<Carrito>(this.attach_Carritos), new Action<Carrito>(this.detach_Carritos));
-			this._PayPal = default(EntityRef<PayPal>);
-			this._Tarjeta = default(EntityRef<Tarjeta>);
 			OnCreated();
 		}
 		
@@ -1209,7 +941,7 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_MetodoDePagoType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_MetodoDePagoType", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsDiscriminator=true)]
 		public string MetodoDePagoType
 		{
 			get
@@ -1249,46 +981,6 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_Usuario", DbType="VarChar(50)")]
-		public string Usuario
-		{
-			get
-			{
-				return this._Usuario;
-			}
-			set
-			{
-				if ((this._Usuario != value))
-				{
-					this.OnUsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._Usuario = value;
-					this.SendPropertyChanged("Usuario");
-					this.OnUsuarioChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Password", DbType="VarChar(50)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
 		[Association(Name="MetodoDePago_Carrito", Storage="_Carritos", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID")]
 		public EntitySet<Carrito> Carritos
 		{
@@ -1299,64 +991,6 @@ namespace Armazon
 			set
 			{
 				this._Carritos.Assign(value);
-			}
-		}
-		
-		[Association(Name="MetodoDePago_PayPal", Storage="_PayPal", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsUnique=true, IsForeignKey=false)]
-		public PayPal PayPal
-		{
-			get
-			{
-				return this._PayPal.Entity;
-			}
-			set
-			{
-				PayPal previousValue = this._PayPal.Entity;
-				if (((previousValue != value) 
-							|| (this._PayPal.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PayPal.Entity = null;
-						previousValue.MetodoDePago = null;
-					}
-					this._PayPal.Entity = value;
-					if ((value != null))
-					{
-						value.MetodoDePago = this;
-					}
-					this.SendPropertyChanged("PayPal");
-				}
-			}
-		}
-		
-		[Association(Name="MetodoDePago_Tarjeta", Storage="_Tarjeta", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsUnique=true, IsForeignKey=false)]
-		public Tarjeta Tarjeta
-		{
-			get
-			{
-				return this._Tarjeta.Entity;
-			}
-			set
-			{
-				Tarjeta previousValue = this._Tarjeta.Entity;
-				if (((previousValue != value) 
-							|| (this._Tarjeta.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tarjeta.Entity = null;
-						previousValue.MetodoDePago = null;
-					}
-					this._Tarjeta.Entity = value;
-					if ((value != null))
-					{
-						value.MetodoDePago = this;
-					}
-					this.SendPropertyChanged("Tarjeta");
-				}
 			}
 		}
 		
@@ -1393,106 +1027,33 @@ namespace Armazon
 		}
 	}
 	
-	[Table(Name="dbo.PayPal")]
-	public partial class PayPal : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Tarjeta : MetodoDePago
 	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MetodoDePagoID;
-		
-		private EntityRef<MetodoDePago> _MetodoDePago;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMetodoDePagoIDChanging(int value);
-    partial void OnMetodoDePagoIDChanged();
+    #endregion
+		
+		public Tarjeta()
+		{
+			OnCreated();
+		}
+	}
+	
+	public partial class PayPal : MetodoDePago
+	{
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
     #endregion
 		
 		public PayPal()
 		{
-			this._MetodoDePago = default(EntityRef<MetodoDePago>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_MetodoDePagoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MetodoDePagoID
-		{
-			get
-			{
-				return this._MetodoDePagoID;
-			}
-			set
-			{
-				if ((this._MetodoDePagoID != value))
-				{
-					if (this._MetodoDePago.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMetodoDePagoIDChanging(value);
-					this.SendPropertyChanging();
-					this._MetodoDePagoID = value;
-					this.SendPropertyChanged("MetodoDePagoID");
-					this.OnMetodoDePagoIDChanged();
-				}
-			}
-		}
-		
-		[Association(Name="MetodoDePago_PayPal", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsForeignKey=true)]
-		public MetodoDePago MetodoDePago
-		{
-			get
-			{
-				return this._MetodoDePago.Entity;
-			}
-			set
-			{
-				MetodoDePago previousValue = this._MetodoDePago.Entity;
-				if (((previousValue != value) 
-							|| (this._MetodoDePago.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MetodoDePago.Entity = null;
-						previousValue.PayPal = null;
-					}
-					this._MetodoDePago.Entity = value;
-					if ((value != null))
-					{
-						value.PayPal = this;
-						this._MetodoDePagoID = value.MetodoDePagoID;
-					}
-					else
-					{
-						this._MetodoDePagoID = default(int);
-					}
-					this.SendPropertyChanged("MetodoDePago");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -3338,111 +2899,6 @@ namespace Armazon
 		{
 			this.SendPropertyChanging();
 			entity.Tag = null;
-		}
-	}
-	
-	[Table(Name="dbo.Tarjeta")]
-	public partial class Tarjeta : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MetodoDePagoID;
-
-        private const int _Maximo = 60000;
-		
-		private EntityRef<MetodoDePago> _MetodoDePago;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMetodoDePagoIDChanging(int value);
-    partial void OnMetodoDePagoIDChanged();
-    #endregion
-		
-		public Tarjeta()
-		{
-			this._MetodoDePago = default(EntityRef<MetodoDePago>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_MetodoDePagoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MetodoDePagoID
-		{
-			get
-			{
-				return this._MetodoDePagoID;
-			}
-			set
-			{
-				if ((this._MetodoDePagoID != value))
-				{
-					if (this._MetodoDePago.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMetodoDePagoIDChanging(value);
-					this.SendPropertyChanging();
-					this._MetodoDePagoID = value;
-					this.SendPropertyChanged("MetodoDePagoID");
-					this.OnMetodoDePagoIDChanged();
-				}
-			}
-		}
-		
-		[Association(Name="MetodoDePago_Tarjeta", Storage="_MetodoDePago", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID", IsForeignKey=true)]
-		public MetodoDePago MetodoDePago
-		{
-			get
-			{
-				return this._MetodoDePago.Entity;
-			}
-			set
-			{
-				MetodoDePago previousValue = this._MetodoDePago.Entity;
-				if (((previousValue != value) 
-							|| (this._MetodoDePago.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MetodoDePago.Entity = null;
-						previousValue.Tarjeta = null;
-					}
-					this._MetodoDePago.Entity = value;
-					if ((value != null))
-					{
-						value.Tarjeta = this;
-						this._MetodoDePagoID = value.MetodoDePagoID;
-					}
-					else
-					{
-						this._MetodoDePagoID = default(int);
-					}
-					this.SendPropertyChanged("MetodoDePago");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
