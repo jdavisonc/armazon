@@ -179,6 +179,8 @@
     <Content Include="Views\PayPal\EditTarjeta.aspx" />
     <Content Include="Views\PayPal\Index.aspx" />
     <Content Include="Views\PayPal\NotFoundPayPal.aspx" />
+    <Content Include="Views\PayPal\PayPalExito.aspx" />
+    <Content Include="Views\PayPal\PayPalFalla.aspx" />
     <Content Include="Views\Producto\BuscarProducto.aspx" />
     <Content Include="Views\Producto\Create.aspx" />
     <Content Include="Views\Producto\Delete.aspx" />

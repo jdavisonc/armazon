@@ -1,32 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="Armazon" Class="ArmazonDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Armazon.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ArmazonConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Activo" Member="Activos">
-    <Type Name="Activo">
-      <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Vendido" Member="Vendidos">
-    <Type Name="Vendido">
-      <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.Carrito" Member="Carritos">
-    <Type Name="Carrito">
+    <Type Name="Carrito" Modifier="Abstract">
       <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UsuarioID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CarritoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CarritoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" IsDiscriminator="true" />
       <Association Name="Carrito_Producto_Carrito" Member="Producto_Carritos" ThisKey="CarritoID" OtherKey="CarritoID" Type="Producto_Carrito" />
       <Association Name="MetodoDePago_Carrito" Member="MetodoDePago" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
       <Association Name="Usuario_Carrito" Member="Usuario" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
+      <Type Name="Activo" InheritanceCode="Activo" IsInheritanceDefault="true" />
+      <Type Name="Vendido" InheritanceCode="Vendido" />
     </Type>
   </Table>
   <Table Name="dbo.Categoria" Member="Categorias">
@@ -47,21 +34,13 @@
     </Type>
   </Table>
   <Table Name="dbo.MetodoDePago" Member="MetodoDePagos">
-    <Type Name="MetodoDePago">
+    <Type Name="MetodoDePago" Modifier="Abstract">
       <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MetodoDePagoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MetodoDePagoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" IsDiscriminator="true" />
       <Column Name="Numero" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="MetodoDePago_Carrito" Member="Carritos" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="Carrito" />
-      <Association Name="MetodoDePago_PayPal" Member="PayPal" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="PayPal" Cardinality="One" />
-      <Association Name="MetodoDePago_Tarjeta" Member="Tarjeta" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="Tarjeta" Cardinality="One" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PayPal" Member="PayPals">
-    <Type Name="PayPal">
-      <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="MetodoDePago_PayPal" Member="MetodoDePago" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
+      <Type Name="Tarjeta" InheritanceCode="Tarjeta" IsInheritanceDefault="true" />
+      <Type Name="PayPal" InheritanceCode="PayPal" />
     </Type>
   </Table>
   <Table Name="dbo.Producto" Member="Productos">
@@ -151,12 +130,6 @@
       <Column Name="CantAp" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Tag_Producto_Tag" Member="Producto_Tags" ThisKey="TagID" OtherKey="TagID" Type="Producto_Tag" />
       <Association Name="Tag_Usuario_Tag" Member="Usuario_Tags" ThisKey="TagID" OtherKey="TagID" Type="Usuario_Tag" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Tarjeta" Member="Tarjetas">
-    <Type Name="Tarjeta">
-      <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="MetodoDePago_Tarjeta" Member="MetodoDePago" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Tienda" Member="Tiendas">

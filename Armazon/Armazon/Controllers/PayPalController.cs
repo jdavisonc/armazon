@@ -51,6 +51,8 @@ namespace Armazon.Controllers
 
         public ActionResult Create()
         {
+            decimal precio = 200000;
+            ViewData["txtMonto"] = precio;
             return View();
         } 
 
@@ -60,17 +62,20 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
+            string monto = Request.Form["hdnMonto"];
+            
               StringBuilder requestString = InitializeRequest("SetExpressCheckout");
-              requestString.Append("&AMT=" + decimal.Parse("100000"));
+              
+              requestString.Append("&AMT=" + monto);
               string basePath = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, string.Empty) + Request.ApplicationPath;
-              requestString.Append("&RETURNURL="+"http://www.gmail.com");
-              requestString.Append("&CANCELURL=" + "http://www.yahoo.com");
+              requestString.Append("&RETURNURL="+basePath+"PayPal/"+"PayPalExito");
+              requestString.Append("&CANCELURL=" + basePath + "PayPal/" + "PayPalFalla");
 
               string token;
               string dummy;
               if (Post(requestString.ToString(), out token, out dummy))
                 {
-                    Session["OrderTotal"] = 100000;
+                  Session["OrderTotal"] = monto;
                   Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout" + "&token=" + token);
                 }
                 
@@ -87,6 +92,7 @@ namespace Armazon.Controllers
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             // Look for the token returned by PayPal
             if (Request.QueryString.Get("token") != null)
             {
@@ -214,6 +220,16 @@ namespace Armazon.Controllers
             return success;
         }
 
+
+        public ActionResult PayPalExito()
+        {
+            return View("PayPalExito");
+        }
+        public ActionResult PayPalFalla()
+        {
+            return View("PayPalFalla");
+        }
+        
         //
         // GET: /PayPal/Edit/5
  
@@ -265,8 +281,6 @@ namespace Armazon.Controllers
                             PayPal ppal = (PayPal)adminFac.getMetododePago(id);
                             ppal.MetodoDePagoID = pago.MetodoDePagoID;
                             ppal.MetodoDePagoType = pago.MetodoDePagoType;
-                            ppal.Usuario = Request.Form["Usuario"];
-                            ppal.Password = Request.Form["Password"];
                             adminFac.saveMetodoDePago();
                             return RedirectToAction("Index");           
                         }   
