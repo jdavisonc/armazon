@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Armazon.Valor>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Models.DataTypes.DTProduct>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Modificar Producto
@@ -18,11 +18,11 @@
             
             <table>
                 <tr>
-                    <td>Nombre:</td><td><input type="text" id="txtNombre" name="txtNombre" value='<%=ViewData["nmProducto"] %>'/> </td>
+                    <td>Nombre:</td><td><input type="text" id="txtNombre" name="txtNombre" value='<%= Model.Nombre %>'/> </td>
                 </tr>
-                <%foreach (var item in Model) { %>
+                <% foreach (Armazon.Models.DataTypes.DTProductAttr attr in Model.Attrs) { %>
                     <tr>
-                        <td><%=item.Propiedad.Nombre%>:</td><td><input type="text" id="<%=item.PropiedadID%>" name="<%=item.PropiedadID%>" value="<%=item.Valor1 %>"/> </td>
+                        <td><%=attr.Nombre%>:</td><td><input type="text" id="<%=attr.ID%>" name="<%=attr.ID%>" value="<%= ((Armazon.Models.DataTypes.DTProductAttrString)attr).Valor %>"/> </td>
                     </tr>
                 <%} %>
             </table>

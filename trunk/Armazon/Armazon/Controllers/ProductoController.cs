@@ -20,9 +20,14 @@ namespace Armazon.Controllers
 
         public ActionResult Index()
         {
+            /*List<DTProduct> dtCollection = new List<DTProduct>();
             AdministracionFachada administracionFachada = new AdministracionFachada();
-            var productos = administracionFachada.findAllProductos().ToList();
-            return View(productos);
+            foreach (Producto prod in administracionFachada.findAllProductos())
+            {
+                dtCollection.Add(prod.getDataType());
+            }  
+            return View(dtCollection);*/
+            return View("NotFound");
         }
 
         //
@@ -31,25 +36,11 @@ namespace Armazon.Controllers
         public ActionResult Details(int id)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
-
             Producto producto = administracionFachada.getProducto(id);
-
-            DetalleProductoFromVM form = new DetalleProductoFromVM();
-
-            List<Valor> lstValores = new List<Valor>();
-
-            foreach (Valor v in administracionFachada.valoresProductos(id))
-            {
-                lstValores.Add(v);
-            }
-
-            form.setValores(lstValores);
-            form.setProducto(producto);
-
             if (producto == null)
                 return View("NotFound");
             else
-                return View(form);
+                return View(producto.getDataType());
         }
 
         //
@@ -88,17 +79,8 @@ namespace Armazon.Controllers
         public ActionResult Edit(int id, int idSubCategoria)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
-
-            IQueryable<Propiedad> propiedades = administracionFachada.propiedadesSubCategoria(idSubCategoria);
             Producto producto = administracionFachada.getProducto(id);
-            
-            List<Valor> lstValor = new List<Valor>();
-            foreach (Propiedad p in propiedades)
-            {
-                lstValor.Add(administracionFachada.getValor(id,p.PropiedadID));
-            }
-            ViewData["nmProducto"] = producto.Nombre;
-            return View(lstValor);
+            return View(producto.getDataType());
         }
 
         //
@@ -143,7 +125,7 @@ namespace Armazon.Controllers
             if (producto == null)
                 return View("NotFound");
             else
-                return View(producto);
+                return View(producto.getDataType());
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -173,9 +155,13 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult BuscarProducto(String fullText)
         {
+            List<DTProduct> dtCollection = new List<DTProduct>();
             ConsultaFachada consultaFachada = new ConsultaFachada();
-            IEnumerable<Producto> productos = consultaFachada.findAllProductos(fullText);
-            return View(productos);
+            foreach (Producto prod in consultaFachada.findAllProductos(fullText))
+            {
+                dtCollection.Add(prod.getDataType());
+            }
+            return View(dtCollection);
         }
 
         /// <summary>
