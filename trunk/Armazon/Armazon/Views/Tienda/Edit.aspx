@@ -39,9 +39,5 @@
     <div>
         <%=Html.ActionLink("Ver Tiendas", "Index") %>
     </div>
-
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
 </asp:Content>
 
