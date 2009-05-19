@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Tienda>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Crear Categoría
+	Crear Tienda
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Crear Categoría</h2>
+    <h2>Crear Tienda</h2>
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 

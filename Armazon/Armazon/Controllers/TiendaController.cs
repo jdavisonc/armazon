@@ -77,9 +77,9 @@ namespace Armazon.Controllers
                 // TODO: Add update logic here
                 AdministracionFachada administracionFachada = new AdministracionFachada();
                 Tienda tienda = administracionFachada.getTienda(id);
-                tienda.Nombre = Request.Form["Tienda"];
-                tienda.Url = Request.Form["Tienda"];
-                tienda.TipoAPI = Request.Form["Tienda"];
+                tienda.Nombre = Request.Form["Nombre"];
+                tienda.Url = Request.Form["Url"];
+                tienda.TipoAPI = Request.Form["TipoAPI"];
                 return RedirectToAction("Details",new{id=tienda.TiendaID});
             }
             catch
