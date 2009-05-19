@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace Armazon.Models.DataAccess.Administracion
 {
@@ -60,6 +61,15 @@ namespace Armazon.Models.DataAccess.Administracion
                 return activoAux;
             }
         }
+
+        public IQueryable<Producto> getProductosCarritoLogueado()
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+
+            return null;
+        }
         public Activo getCarritoActivoById(int idCarrito)
         {
             var activo = from act in db.Carritos
@@ -73,6 +83,8 @@ namespace Armazon.Models.DataAccess.Administracion
                 return activoAux;
             }
         }
+        
+
         /*public void Delete(Usuario usuario)
         {
             db.Usuarios.DeleteOnSubmit(usuario);

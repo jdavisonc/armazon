@@ -49,6 +49,18 @@ namespace Armazon.Models.DataAccess.Administracion
             db.Usuarios.DeleteOnSubmit(usuario);
         }
 
+        public Carrito getCarritoOfUser(string userName)
+        {
+            var usuario = from usr in db.Usuarios
+                          where usr.Nombre == userName
+                          select usr;
+            Usuario user = usuario.ToList().First();
+            var carrito = from cAct in db.Carritos
+                          where cAct is Activo && cAct.UsuarioID == user.UsuarioID
+                          select cAct;
+            return carrito.ToList().First();
+        }
+        
         public void Save()
         {
             db.SubmitChanges();

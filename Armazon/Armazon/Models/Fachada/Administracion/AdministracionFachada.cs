@@ -166,7 +166,11 @@ namespace Armazon.Models
             UsuarioManager usuarioMgr = UsuarioManager.getInstance();
             usuarioMgr.Save();
         }
-
+        public Carrito getCarritoOfUser(string userName)
+        {
+            UsuarioManager usuarioMgr = UsuarioManager.getInstance();
+            return usuarioMgr.getCarritoOfUser(userName);
+        }
         //Producto
         public IQueryable<Producto> findAllProductos()
         {
