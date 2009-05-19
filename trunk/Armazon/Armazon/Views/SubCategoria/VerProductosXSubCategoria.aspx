@@ -27,7 +27,7 @@
                 <%= Html.Encode(item.ProductoID) %>
             </td>
             <td>
-                <%= Html.Encode(item.Nombre) %>
+                <%= Html.ActionLink(Html.Encode(item.Nombre), "Details", "Producto", new { id = item.ProductoID }, null)%>
             </td>
         </tr>
     

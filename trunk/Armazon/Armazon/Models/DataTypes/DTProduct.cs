@@ -14,6 +14,27 @@ namespace Armazon.Models.DataTypes
         private int _caterogiaID;
         private string _categoria;
         private string _nombre;
+        private double _precio;
+        private string _tienda;
+        private List<string> _tags;
+
+        public List<string> Tags
+        {
+            get { return _tags; }
+            set { _tags = value; }
+        }
+
+        public string Tienda
+        {
+            get { return _tienda; }
+            set { _tienda = value; }
+        }
+
+        public double Precio
+        {
+            get { return _precio; }
+            set { _precio = value; }
+        }
 
         public int CaterogiaID
         {

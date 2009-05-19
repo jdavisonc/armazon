@@ -20,13 +20,19 @@
                 <tr>
                     <td>Nombre:</td><td><input type="text" id="txtNombre" name="txtNombre" value='<%= Model.Nombre %>'/> </td>
                 </tr>
+                <tr>
+                    <td>Precio:</td><td><input type="text" id="Text1" name="txtPrecio" value='<%= Model.Precio %>'/> </td>
+                </tr>
                 <% foreach (Armazon.Models.DataTypes.DTProductAttr attr in Model.Attrs) { %>
                     <tr>
                         <td><%=attr.Nombre%>:</td><td><input type="text" id="<%=attr.ID%>" name="<%=attr.ID%>" value="<%= ((Armazon.Models.DataTypes.DTProductAttrString)attr).Valor %>"/> </td>
                     </tr>
                 <%} %>
             </table>
-        
+            <input type="file" name="attachment" id="attachment" onchange="document.getElementById('moreUploadsLink').style.display = 'block';" />
+            <div id="moreUploads"></div>
+            <div id="moreUploadsLink" style="display:none;"><a href="javascript:addFileInput();">Agregar Otra Imagen</a></div>
+
             <p>
                 <input type="submit" value="Grabar" />
             </p>
@@ -34,9 +40,20 @@
 
     <% } %>
 
-    <div>
-        <%=Html.ActionLink("Ver Productos", "Index")%>
-    </div>
+</asp:Content>
 
+<asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
+    <script type="text/javascript">
+        var upload_number = 2;
+        function addFileInput() {
+            var d = document.createElement("div");
+            var file = document.createElement("input");
+            file.setAttribute("type", "file");
+            file.setAttribute("name", "attachment"+upload_number);
+            d.appendChild(file);
+            document.getElementById("moreUploads").appendChild(d);
+            upload_number++;
+        }
+    </script>
 </asp:Content>
 
