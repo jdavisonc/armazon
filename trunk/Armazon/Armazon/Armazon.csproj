@@ -70,6 +70,7 @@
       <DependentUpon>Armazon.dbml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\TarjetaController.cs" />
@@ -92,6 +93,7 @@
     </Compile>
     <Compile Include="Models\DataAccess\Administracion\CarritoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\CategoriaManager.cs" />
+    <Compile Include="Models\DataAccess\Administracion\ImagenManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\MetododePagoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\ProductoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\Producto_TagManager.cs" />
@@ -172,6 +174,8 @@
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\SetToAdministrator.aspx" />
     <Content Include="Views\Activo\Details.aspx" />
+    <Content Include="Views\Carrito\Create.aspx" />
+    <Content Include="Views\Carrito\Index.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />
@@ -236,6 +240,13 @@
     <Content Include="Views\Tarjeta\EditPayPal.aspx" />
     <Content Include="Views\Tarjeta\Index.aspx" />
     <Content Include="Views\Tarjeta\NotFoundTarjeta.aspx" />
+    <Content Include="Views\Tienda\Create.aspx" />
+    <Content Include="Views\Tienda\Delete.aspx" />
+    <Content Include="Views\Tienda\Deleted.aspx" />
+    <Content Include="Views\Tienda\Details.aspx" />
+    <Content Include="Views\Tienda\Edit.aspx" />
+    <Content Include="Views\Tienda\Index.aspx" />
+    <Content Include="Views\Tienda\NotFound.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\About.aspx" />
