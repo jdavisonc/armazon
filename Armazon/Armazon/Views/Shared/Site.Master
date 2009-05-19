@@ -8,20 +8,6 @@
     <link href="../../Content/MenuCategoria.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../Scripts/jquery.js"></script>
     <script type="text/javascript" src="../../Scripts/accordion.js"></script>
-    <script type="text/javascript">
-    jQuery().ready(function(){	
-	    // applying the settings
-	    jQuery('#theMenu').Accordion({
-		    active: 'h3.selected',
-		    header: 'h3.head',
-		    alwaysOpen: false,
-		    animated: true,
-		    showSpeed: 400,
-		    hideSpeed: 800
-	    });
-    });	
-    </script>
-
     <asp:ContentPlaceHolder ID="JavaScriptsContent" runat="server" />
 </head>
 
