@@ -28,8 +28,7 @@
     <p>
 
         <%=Html.ActionLink("Modificar", "Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID })%> |
-        <%= Html.ActionLink("Eliminar", "Delete", new { id = Model.Id })%> |
-        <%=Html.ActionLink("Ver Productos", "Index")%>
+        <%= Html.ActionLink("Eliminar", "Delete", new { id = Model.Id })%>
     </p>
 
 </asp:Content>

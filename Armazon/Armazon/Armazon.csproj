@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Models\DataAccess\Administracion\CarritoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\CategoriaManager.cs" />
+    <Compile Include="Models\DataAccess\Administracion\ImagenManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\MetododePagoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\ProductoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\Producto_TagManager.cs" />
@@ -189,7 +190,7 @@
     <Content Include="Views\Producto\Deleted.aspx" />
     <Content Include="Views\Producto\Details.aspx" />
     <Content Include="Views\Producto\Edit.aspx" />
-    <Content Include="Views\Producto\Index.aspx" />
+    <Content Include="Views\Producto\List.aspx" />
     <Content Include="Views\Producto\NotFound.aspx" />
     <Content Include="Views\Propiedad\Create.aspx" />
     <Content Include="Views\Propiedad\Delete.aspx" />

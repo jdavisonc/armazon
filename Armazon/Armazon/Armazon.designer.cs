@@ -704,6 +704,8 @@ namespace Armazon
 		
 		private string _MIMEType;
 		
+		private string _Nombre;
+		
 		private EntityRef<Producto> _Producto;
 		
     #region Extensibility Method Definitions
@@ -720,6 +722,8 @@ namespace Armazon
     partial void OnThumbnailChanged();
     partial void OnMIMETypeChanging(string value);
     partial void OnMIMETypeChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
     #endregion
 		
 		public Imagen()
@@ -828,6 +832,26 @@ namespace Armazon
 					this._MIMEType = value;
 					this.SendPropertyChanged("MIMEType");
 					this.OnMIMETypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
 				}
 			}
 		}

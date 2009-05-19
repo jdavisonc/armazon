@@ -15,6 +15,11 @@ namespace Armazon
 
             dt.Id = this._ProductoID;
             dt.Nombre = this.Nombre;
+            dt.Precio = this.Precio;
+            if (this.Tienda != null)
+            {
+                dt.Tienda = this.Tienda.Nombre;    
+            }
             if (this.SubCategoria != null)
             {
                 dt.Subcategoria = this.SubCategoria.Nombre;
@@ -29,6 +34,12 @@ namespace Armazon
                 attrs.Add(dtAttr);
             }
             dt.Attrs = attrs;
+            List<string> tags = new List<string>();
+            foreach (Producto_Tag prod_tag in this.Producto_Tags)
+            {
+                tags.Add(prod_tag.Tag.Nombre);
+            }
+            dt.Tags = tags;
             return dt;
         }
         #endregion

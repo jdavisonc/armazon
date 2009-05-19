@@ -10,6 +10,7 @@ using Armazon.Controllers.ViewModels;
 using System.Collections.Specialized;
 using Armazon.Models.ServiceAccess;
 using Armazon.Models.DataTypes;
+using System.IO;
 
 namespace Armazon.Controllers
 {
@@ -94,6 +95,7 @@ namespace Armazon.Controllers
                 AdministracionFachada administracionFachada = new AdministracionFachada();
                 Producto producto = administracionFachada.getProducto(id);
                 producto.Nombre = Request.Form["txtNombre"];
+                producto.Precio = Double.Parse(Request.Form["txtPrecio"]);
                 administracionFachada.saveProducto();
 
                 NameValueCollection parametros = Request.Params;
@@ -108,6 +110,13 @@ namespace Armazon.Controllers
                         valor.Valor1 = strValor;
                         administracionFachada.saveValor();
                     }
+                }
+                foreach (HttpPostedFile file in Request.Files)
+                {
+                    string fileName = Path.GetFileName(file.FileName);
+                    byte[] buf = new byte[file.ContentLength];
+                    file.InputStream.Read(buf, 0, file.ContentLength);
+
                 }
 
                 return RedirectToAction("Details", new { id = producto.ProductoID });
