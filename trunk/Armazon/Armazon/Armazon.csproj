@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAC3253F-9071-4798-A46C-16F7A01F1A55}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -70,6 +70,7 @@
       <DependentUpon>Armazon.dbml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\TarjetaController.cs" />
     <Compile Include="Controllers\TiendaController.cs" />
@@ -165,6 +166,8 @@
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\SetToAdministrator.aspx" />
     <Content Include="Views\Activo\Details.aspx" />
+    <Content Include="Views\Carrito\Create.aspx" />
+    <Content Include="Views\Carrito\Index.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />
@@ -357,6 +360,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
