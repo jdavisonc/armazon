@@ -1,26 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="Armazon" Class="ArmazonDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Armazon.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ArmazonConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Activo" Member="Activos">
+    <Type Name="Activo">
+      <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vendido" Member="Vendidos">
+    <Type Name="Vendido">
+      <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.Carrito" Member="Carritos">
-    <Type Name="Carrito" Modifier="Abstract">
+    <Type Name="Carrito">
       <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UsuarioID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CarritoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" IsDiscriminator="true" />
-      <Association Name="Carrito_Producto_Carrito" Member="Producto_Carritos" ThisKey="CarritoID" OtherKey="CarritoID" Type="Producto_Carrito" />
-      <Association Name="MetodoDePago_Carrito" Member="MetodoDePago" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
-      <Association Name="Usuario_Carrito" Member="Usuario" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
-      <Type Name="Activo" InheritanceCode="Activo" IsInheritanceDefault="true" />
-      <Type Name="Vendido" InheritanceCode="Vendido" />
+      <Column Name="CarritoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Carrito_Producto_Carrito" Member="Producto_Carritos" OtherKey="CarritoID" Type="Producto_Carrito" />
+      <Association Name="MetodoDePago_Carrito" Member="MetodoDePago" ThisKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
+      <Association Name="Usuario_Carrito" Member="Usuario" ThisKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Categoria" Member="Categorias">
     <Type Name="Categoria">
       <Column Name="CategoriaID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Categoria_SubCategoria" Member="SubCategorias" ThisKey="CategoriaID" OtherKey="CategoriaID" Type="SubCategoria" />
+      <Association Name="Categoria_SubCategoria" Member="SubCategorias" OtherKey="CategoriaID" Type="SubCategoria" />
     </Type>
   </Table>
   <Table Name="dbo.Imagen" Member="Imagens">
@@ -30,18 +43,24 @@
       <Column Name="Imagen" Member="Imagen1" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Thumbnail" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="MIMEType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Member="Nombre" Type="System.String" CanBeNull="false" />
-      <Association Name="Producto_Imagen" Member="Producto" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto" IsForeignKey="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="Producto_Imagen" Member="Producto" ThisKey="ProductoID" Type="Producto" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MetodoDePago" Member="MetodoDePagos">
-    <Type Name="MetodoDePago" Modifier="Abstract">
+    <Type Name="MetodoDePago">
       <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MetodoDePagoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" IsDiscriminator="true" />
+      <Column Name="MetodoDePagoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Numero" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="MetodoDePago_Carrito" Member="Carritos" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="Carrito" />
-      <Type Name="Tarjeta" InheritanceCode="Tarjeta" IsInheritanceDefault="true" />
-      <Type Name="PayPal" InheritanceCode="PayPal" />
+      <Association Name="MetodoDePago_Carrito" Member="Carritos" OtherKey="MetodoDePagoID" Type="Carrito" />
+      <Association Name="MetodoDePago_PayPal" Member="PayPal" OtherKey="MetodoDePagoID" Type="PayPal" Cardinality="One" />
+      <Association Name="MetodoDePago_Tarjeta" Member="Tarjeta" OtherKey="MetodoDePagoID" Type="Tarjeta" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PayPal" Member="PayPals">
+    <Type Name="PayPal">
+      <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="MetodoDePago_PayPal" Member="MetodoDePago" ThisKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Producto" Member="Productos">
@@ -52,13 +71,13 @@
       <Column Name="ExternalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TiendaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Precio" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Producto_Imagen" Member="Imagens" ThisKey="ProductoID" OtherKey="ProductoID" Type="Imagen" />
-      <Association Name="Producto_Producto_Carrito" Member="Producto_Carritos" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto_Carrito" />
-      <Association Name="Producto_Producto_Tag" Member="Producto_Tags" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto_Tag" />
-      <Association Name="Producto_Producto_Usuario" Member="Producto_Usuarios" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto_Usuario" />
-      <Association Name="Producto_Valor" Member="Valors" ThisKey="ProductoID" OtherKey="ProductoID" Type="Valor" />
-      <Association Name="SubCategoria_Producto" Member="SubCategoria" ThisKey="SubCategoriaID" OtherKey="SubCategoriaID" Type="SubCategoria" IsForeignKey="true" />
-      <Association Name="Tienda_Producto" Member="Tienda" ThisKey="TiendaID" OtherKey="TiendaID" Type="Tienda" IsForeignKey="true" />
+      <Association Name="Producto_Imagen" Member="Imagens" OtherKey="ProductoID" Type="Imagen" />
+      <Association Name="Producto_Producto_Carrito" Member="Producto_Carritos" OtherKey="ProductoID" Type="Producto_Carrito" />
+      <Association Name="Producto_Producto_Tag" Member="Producto_Tags" OtherKey="ProductoID" Type="Producto_Tag" />
+      <Association Name="Producto_Producto_Usuario" Member="Producto_Usuarios" OtherKey="ProductoID" Type="Producto_Usuario" />
+      <Association Name="Producto_Valor" Member="Valors" OtherKey="ProductoID" Type="Valor" />
+      <Association Name="SubCategoria_Producto" Member="SubCategoria" ThisKey="SubCategoriaID" Type="SubCategoria" IsForeignKey="true" />
+      <Association Name="Tienda_Producto" Member="Tienda" ThisKey="TiendaID" Type="Tienda" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Producto_Carrito" Member="Producto_Carritos">
@@ -66,16 +85,18 @@
       <Column Name="ProductoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="EstaEnCarrito" Type="System.Char" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Association Name="Carrito_Producto_Carrito" Member="Carrito" ThisKey="CarritoID" OtherKey="CarritoID" Type="Carrito" IsForeignKey="true" />
-      <Association Name="Producto_Producto_Carrito" Member="Producto" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto" IsForeignKey="true" />
+      <Association Name="Carrito_Producto_Carrito" Member="Carrito" ThisKey="CarritoID" Type="Carrito" IsForeignKey="true" />
+      <Association Name="Producto_Producto_Carrito" Member="Producto" ThisKey="ProductoID" Type="Producto" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Producto_Tag" Member="Producto_Tags">
     <Type Name="Producto_Tag">
       <Column Name="ProductoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TagID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Producto_Producto_Tag" Member="Producto" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto" IsForeignKey="true" />
-      <Association Name="Tag_Producto_Tag" Member="Tag" ThisKey="TagID" OtherKey="TagID" Type="Tag" IsForeignKey="true" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Producto_Producto_Tag" Member="Producto" ThisKey="ProductoID" Type="Producto" IsForeignKey="true" />
+      <Association Name="Tag_Producto_Tag" Member="Tag" ThisKey="TagID" Type="Tag" IsForeignKey="true" />
+      <Association Name="Usuario_Producto_Tag" Member="Usuario" ThisKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Producto_Usuario" Member="Producto_Usuarios">
@@ -84,16 +105,16 @@
       <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Puntaje" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Comentario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Association Name="Producto_Producto_Usuario" Member="Producto" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto" IsForeignKey="true" />
-      <Association Name="Usuario_Producto_Usuario" Member="Usuario" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
+      <Association Name="Producto_Producto_Usuario" Member="Producto" ThisKey="ProductoID" Type="Producto" IsForeignKey="true" />
+      <Association Name="Usuario_Producto_Usuario" Member="Usuario" ThisKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Propiedad" Member="Propiedads">
     <Type Name="Propiedad">
       <Column Name="PropiedadID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="Propiedad_SubCategoria_Propiedad" Member="SubCategoria_Propiedads" ThisKey="PropiedadID" OtherKey="PropiedadID" Type="SubCategoria_Propiedad" />
-      <Association Name="Propiedad_Valor" Member="Valors" ThisKey="PropiedadID" OtherKey="PropiedadID" Type="Valor" />
+      <Association Name="Propiedad_SubCategoria_Propiedad" Member="SubCategoria_Propiedads" OtherKey="PropiedadID" Type="SubCategoria_Propiedad" />
+      <Association Name="Propiedad_Valor" Member="Valors" OtherKey="PropiedadID" Type="Valor" />
     </Type>
   </Table>
   <Table Name="dbo.SubCategoria" Member="SubCategorias">
@@ -101,9 +122,9 @@
       <Column Name="SubCategoriaID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CategoriaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="SubCategoria_Producto" Member="Productos" ThisKey="SubCategoriaID" OtherKey="SubCategoriaID" Type="Producto" />
-      <Association Name="SubCategoria_SubCategoria_Propiedad" Member="SubCategoria_Propiedads" ThisKey="SubCategoriaID" OtherKey="SubCategoriaID" Type="SubCategoria_Propiedad" />
-      <Association Name="Categoria_SubCategoria" Member="Categoria" ThisKey="CategoriaID" OtherKey="CategoriaID" Type="Categoria" IsForeignKey="true" />
+      <Association Name="SubCategoria_Producto" Member="Productos" OtherKey="SubCategoriaID" Type="Producto" />
+      <Association Name="SubCategoria_SubCategoria_Propiedad" Member="SubCategoria_Propiedads" OtherKey="SubCategoriaID" Type="SubCategoria_Propiedad" />
+      <Association Name="Categoria_SubCategoria" Member="Categoria" ThisKey="CategoriaID" Type="Categoria" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SubCategoria_Propiedad" Member="SubCategoria_Propiedads">
@@ -111,8 +132,8 @@
       <Column Name="SubCategoriaID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PropiedadID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="IsIdentificador" Type="System.Char" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Association Name="Propiedad_SubCategoria_Propiedad" Member="Propiedad" ThisKey="PropiedadID" OtherKey="PropiedadID" Type="Propiedad" IsForeignKey="true" />
-      <Association Name="SubCategoria_SubCategoria_Propiedad" Member="SubCategoria" ThisKey="SubCategoriaID" OtherKey="SubCategoriaID" Type="SubCategoria" IsForeignKey="true" />
+      <Association Name="Propiedad_SubCategoria_Propiedad" Member="Propiedad" ThisKey="PropiedadID" Type="Propiedad" IsForeignKey="true" />
+      <Association Name="SubCategoria_SubCategoria_Propiedad" Member="SubCategoria" ThisKey="SubCategoriaID" Type="SubCategoria" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Sucursal" Member="Sucursals">
@@ -129,8 +150,13 @@
       <Column Name="TagID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CantAp" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Tag_Producto_Tag" Member="Producto_Tags" ThisKey="TagID" OtherKey="TagID" Type="Producto_Tag" />
-      <Association Name="Tag_Usuario_Tag" Member="Usuario_Tags" ThisKey="TagID" OtherKey="TagID" Type="Usuario_Tag" />
+      <Association Name="Tag_Producto_Tag" Member="Producto_Tags" OtherKey="TagID" Type="Producto_Tag" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tarjeta" Member="Tarjetas">
+    <Type Name="Tarjeta">
+      <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="MetodoDePago_Tarjeta" Member="MetodoDePago" ThisKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Tienda" Member="Tiendas">
@@ -139,24 +165,16 @@
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Url" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="TipoAPI" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Tienda_Producto" Member="Productos" ThisKey="TiendaID" OtherKey="TiendaID" Type="Producto" />
+      <Association Name="Tienda_Producto" Member="Productos" OtherKey="TiendaID" Type="Producto" />
     </Type>
   </Table>
   <Table Name="dbo.Usuario" Member="Usuarios">
     <Type Name="Usuario">
       <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Usuario_Carrito" Member="Carritos" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Carrito" />
-      <Association Name="Usuario_Producto_Usuario" Member="Producto_Usuarios" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Producto_Usuario" />
-      <Association Name="Usuario_Usuario_Tag" Member="Usuario_Tags" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Usuario_Tag" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Usuario_Tag" Member="Usuario_Tags">
-    <Type Name="Usuario_Tag">
-      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TagID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Tag_Usuario_Tag" Member="Tag" ThisKey="TagID" OtherKey="TagID" Type="Tag" IsForeignKey="true" />
-      <Association Name="Usuario_Usuario_Tag" Member="Usuario" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
+      <Association Name="Usuario_Carrito" Member="Carritos" OtherKey="UsuarioID" Type="Carrito" />
+      <Association Name="Usuario_Producto_Tag" Member="Producto_Tags" OtherKey="UsuarioID" Type="Producto_Tag" />
+      <Association Name="Usuario_Producto_Usuario" Member="Producto_Usuarios" OtherKey="UsuarioID" Type="Producto_Usuario" />
     </Type>
   </Table>
   <Table Name="dbo.Valor" Member="Valors">
@@ -164,8 +182,8 @@
       <Column Name="ProductoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PropiedadID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Valor" Member="Valor1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Association Name="Propiedad_Valor" Member="Propiedad" ThisKey="PropiedadID" OtherKey="PropiedadID" Type="Propiedad" IsForeignKey="true" />
-      <Association Name="Producto_Valor" Member="Producto" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto" IsForeignKey="true" />
+      <Association Name="Propiedad_Valor" Member="Propiedad" ThisKey="PropiedadID" Type="Propiedad" IsForeignKey="true" />
+      <Association Name="Producto_Valor" Member="Producto" ThisKey="ProductoID" Type="Producto" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
