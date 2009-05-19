@@ -5,7 +5,7 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
+    /*background-color: #5c87b2;*/
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -32,7 +32,7 @@ a:active
     color: #12eb87;
 }
 
-p, ul
+p
 {
     margin-bottom: 20px;
     line-height: 1.6em;
