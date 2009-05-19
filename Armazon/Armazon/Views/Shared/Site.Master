@@ -4,40 +4,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/MenuCategoria.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../Scripts/jquery.js"></script>
+    <script type="text/javascript" src="../../Scripts/accordion.js"></script>
+    <script type="text/javascript">
+    jQuery().ready(function(){	
+	    // applying the settings
+	    jQuery('#theMenu').Accordion({
+		    active: 'h3.selected',
+		    header: 'h3.head',
+		    alwaysOpen: false,
+		    animated: true,
+		    showSpeed: 400,
+		    hideSpeed: 800
+	    });
+    });	
+    </script>
+
     <asp:ContentPlaceHolder ID="JavaScriptsContent" runat="server" />
 </head>
 
 <body>
-    <div class="page">
+    <div>
 
-        <div id="header">
-            <div id="title">
+        <div>
+            <div style="width:150px;height:80px;border:solid red 1px;">
                 <h1>Armazon</h1>
             </div>
-              
-            <div id="logindisplay">
+            <div style="position:absolute; top:0px; left:151px;width:1100px;height:20px;text-align:right; border:solid red 1px">
                 <% Html.RenderPartial("LogOnUserControl"); %>
-            </div> 
-            
-            <div id="menucontainer">
-            
-                <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                    <% if (Page.User.IsInRole("Administrador"))
-                       { %>
-                            <li><%= Html.ActionLink("Administrar", "AdministratorManager", "Home")%></li>
-                    <% } %>
-                </ul>
-            
+            </div>  
+            <div style="position:absolute; left:151px;top:21px;width:1100px;height:59px;border:solid red 1px">
+                
             </div>
         </div>
-
-        <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            <div id="footer">
+          <div>
+            <div style="position:absolute; top:81px; width:200px; height:auto;border:solid red 1px">
+                <% Html.RenderPartial("MenuCategoria"); %>
+            </div>
+            
+            <div style="position:absolute; width:829px; left:201px; top: 81px; height: auto;padding:10px; border:solid red 1px">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <div style="position:absolute; width:200px; left:1051px; top: 81px; height: auto;border:solid red 1px">
+                <asp:ContentPlaceHolder ID="MenuCarrito" runat="server" />
             </div>
         </div>
     </div>

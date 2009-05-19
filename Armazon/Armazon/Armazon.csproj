@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAC3253F-9071-4798-A46C-16F7A01F1A55}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -70,7 +70,7 @@
       <DependentUpon>Armazon.dbml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CarritoController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\TarjetaController.cs" />
     <Compile Include="Controllers\TiendaController.cs" />
@@ -92,7 +92,6 @@
     </Compile>
     <Compile Include="Models\DataAccess\Administracion\CarritoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\CategoriaManager.cs" />
-    <Compile Include="Models\DataAccess\Administracion\ImagenManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\MetododePagoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\ProductoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\Producto_TagManager.cs" />
@@ -104,16 +103,20 @@
     <Compile Include="Models\DataAccess\Administracion\TiendaManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\UsuarioManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\ValorManager.cs" />
+    <Compile Include="Models\DataTypes\DTCategoria.cs" />
     <Compile Include="Models\DataTypes\DTProductAttr.cs" />
     <Compile Include="Models\DataTypes\DTProduct.cs" />
     <Compile Include="Models\DataTypes\DTProductAttrImage.cs" />
     <Compile Include="Models\DataTypes\DTProductAttrInt.cs" />
     <Compile Include="Models\DataTypes\DTProductAttrString.cs" />
+    <Compile Include="Models\DataTypes\DTSubCategoria.cs" />
     <Compile Include="Models\DataTypes\DTSucursal.cs" />
     <Compile Include="Models\DataTypes\LatLng.cs" />
     <Compile Include="Models\DataTypes\Location.cs" />
     <Compile Include="Models\DataTypes\Map.cs" />
+    <Compile Include="Models\Entities\Categoria.cs" />
     <Compile Include="Models\Entities\Producto.cs" />
+    <Compile Include="Models\Entities\SubCategoria.cs" />
     <Compile Include="Models\Entities\Sucursal.cs" />
     <Compile Include="Models\Fachada\Administracion\AdministracionFachada.cs" />
     <Compile Include="Models\Fachada\Consulta\ConsultaFachada.cs" />
@@ -137,6 +140,7 @@
     </Content>
     <Content Include="Content\detalles.gif" />
     <Content Include="Content\eliminar.gif" />
+    <Content Include="Content\MenuCategoria.css" />
     <Content Include="Content\modificar.gif" />
     <Content Include="Content\nerdinner.gif" />
     <Content Include="Default.aspx" />
@@ -147,10 +151,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\accordion.js" />
     <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min-vsdoc.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\LocationMapAdd.js" />
     <Content Include="Scripts\LocationsMap.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
@@ -166,8 +172,6 @@
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\SetToAdministrator.aspx" />
     <Content Include="Views\Activo\Details.aspx" />
-    <Content Include="Views\Carrito\Create.aspx" />
-    <Content Include="Views\Carrito\Index.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />
@@ -193,7 +197,7 @@
     <Content Include="Views\Producto\Deleted.aspx" />
     <Content Include="Views\Producto\Details.aspx" />
     <Content Include="Views\Producto\Edit.aspx" />
-    <Content Include="Views\Producto\List.aspx" />
+    <Content Include="Views\Producto\Index.aspx" />
     <Content Include="Views\Producto\NotFound.aspx" />
     <Content Include="Views\Propiedad\Create.aspx" />
     <Content Include="Views\Propiedad\Delete.aspx" />
@@ -202,6 +206,8 @@
     <Content Include="Views\Propiedad\Edit.aspx" />
     <Content Include="Views\Propiedad\Index.aspx" />
     <Content Include="Views\Propiedad\NotFound.aspx" />
+    <Content Include="Views\Shared\MenuCategoria.ascx" />
+    <Content Include="Views\Shared\Prueba.aspx" />
     <Content Include="Views\SubCategoria\AsociarPropiedades.aspx" />
     <Content Include="Views\SubCategoria\CrearProducto.aspx" />
     <Content Include="Views\SubCategoria\Create.aspx" />
@@ -230,13 +236,6 @@
     <Content Include="Views\Tarjeta\EditPayPal.aspx" />
     <Content Include="Views\Tarjeta\Index.aspx" />
     <Content Include="Views\Tarjeta\NotFoundTarjeta.aspx" />
-    <Content Include="Views\Tienda\Create.aspx" />
-    <Content Include="Views\Tienda\Delete.aspx" />
-    <Content Include="Views\Tienda\Deleted.aspx" />
-    <Content Include="Views\Tienda\Details.aspx" />
-    <Content Include="Views\Tienda\Edit.aspx" />
-    <Content Include="Views\Tienda\Index.aspx" />
-    <Content Include="Views\Tienda\NotFound.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\About.aspx" />
@@ -360,9 +359,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
