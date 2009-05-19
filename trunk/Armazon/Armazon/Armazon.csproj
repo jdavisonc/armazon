@@ -226,6 +226,13 @@
     <Content Include="Views\Tarjeta\EditPayPal.aspx" />
     <Content Include="Views\Tarjeta\Index.aspx" />
     <Content Include="Views\Tarjeta\NotFoundTarjeta.aspx" />
+    <Content Include="Views\Tienda\Create.aspx" />
+    <Content Include="Views\Tienda\Delete.aspx" />
+    <Content Include="Views\Tienda\Deleted.aspx" />
+    <Content Include="Views\Tienda\Details.aspx" />
+    <Content Include="Views\Tienda\Edit.aspx" />
+    <Content Include="Views\Tienda\Index.aspx" />
+    <Content Include="Views\Tienda\NotFound.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\About.aspx" />
