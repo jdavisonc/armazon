@@ -29,7 +29,7 @@
                     <%= Html.ActionLink("Asociar Propiedades", "AsociarPropiedades", new { id = item.SubCategoriaID })%> |
                     <%= Html.ActionLink("Crear Producto", "CrearProducto", new { idSubCategoria = item.SubCategoriaID, idCategoria = ViewData["CategoriaID"] })%> |
                 <%} %>
-                <%= Html.ActionLink("Ver Productos", "Listado", "Producto", null, new { idSubCategoria = item.SubCategoriaID })%> |
+                <%= Html.ActionLink("Ver Productos", "Listado", "Producto", new { idSubCategoria = item.SubCategoriaID },null)%> |
                 <%= Html.ActionLink("Detalles", "Details", new { id=item.SubCategoriaID })%>
             </td>
             <td>

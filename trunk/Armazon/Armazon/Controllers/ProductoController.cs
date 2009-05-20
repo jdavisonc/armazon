@@ -44,7 +44,7 @@ namespace Armazon.Controllers
             if (producto == null)
                 return View("NotFound");
             else
-                return View(producto.getDataType());
+                return View("Details",producto.getDataType());
         }
 
         //
