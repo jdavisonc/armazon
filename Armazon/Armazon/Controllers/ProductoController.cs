@@ -11,6 +11,8 @@ using System.Collections.Specialized;
 using Armazon.Models.ServiceAccess;
 using Armazon.Models.DataTypes;
 using System.IO;
+using System.Drawing;
+using System.Web.UI;
 
 namespace Armazon.Controllers
 {
@@ -111,14 +113,29 @@ namespace Armazon.Controllers
                         administracionFachada.saveValor();
                     }
                 }
-                foreach (HttpPostedFile file in Request.Files)
+                foreach (string inputTagName in Request.Files)
                 {
-                    string fileName = Path.GetFileName(file.FileName);
-                    byte[] buf = new byte[file.ContentLength];
-                    file.InputStream.Read(buf, 0, file.ContentLength);
-
+                    HttpPostedFileBase file = Request.Files[inputTagName];
+                    if (file.ContentLength > 0)
+                    {
+                        byte[] buf = new byte[file.ContentLength];
+                        file.InputStream.Read(buf, 0, file.ContentLength);
+                        Imagen img = new Imagen();
+                        img.Nombre = Path.GetFileName(file.FileName);
+                        img.ProductoID = producto.ProductoID;
+                        img.MIMEType = file.ContentType;
+                        img.Imagen1 = buf;
+                        Image thumbnail = Image.FromStream(file.InputStream).
+                            GetThumbnailImage(150, 150, null, new System.IntPtr());
+                        using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                        {
+                            thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            img.Thumbnail = ms.ToArray();
+                        }
+                        administracionFachada.addImagen(img);
+                    }
                 }
-
+                administracionFachada.saveImagen();
                 return RedirectToAction("Details", new { id = producto.ProductoID });
             }
             catch
@@ -154,6 +171,19 @@ namespace Armazon.Controllers
             administracionFachada.deleteProducto(id);
             administracionFachada.saveProducto();
             return View("Deleted");
+        }
+
+        public ActionResult Listado(int idSubCategoria)
+        {
+            ConsultaFachada consultaFachada = new ConsultaFachada();
+            IEnumerable<Producto> productosXSubCategoria = consultaFachada.findAllProductosXSubCategoria(idSubCategoria);
+            List<DTProduct> dtCol = new List<DTProduct>();
+            foreach (Producto p in productosXSubCategoria)
+            {
+                dtCol.Add(p.getDataType());
+            }
+            ViewData["Title"] = "Listado por Subcategoria";
+            return View("List",dtCol);
         }
 
         public ActionResult BuscarProducto()

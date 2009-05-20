@@ -315,3 +315,14 @@ div#title
     font-weight: bold;
     color: #ff0000;
 }
+
+/* Widgets
+--------------------------------------------------------------- */
+
+.prodItem {text-align:center; width:33%;}
+
+
+/* Extensions
+--------------------------------------------------------------- */
+
+.fltleft {float: left;} /*Use this class to float anything to the left*/
