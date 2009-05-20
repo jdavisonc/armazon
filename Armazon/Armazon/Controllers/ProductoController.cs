@@ -227,7 +227,6 @@ namespace Armazon.Controllers
                         t.Nombre = tag;
                         t.CantAp = 0;
                         adminFach.AddTag(t);
-                        adminFach.SaveTags();
                     }
                     if (adminFach.getProducto_Tag(productID, t.TagID) == null)
                     {
@@ -241,6 +240,7 @@ namespace Armazon.Controllers
                         adminFach.SaveProducto_Tag();
                         // Solo sumo si el tag no esta asociado al producto
                         t.CantAp++;
+                        adminFach.SaveTags();
                     }
                 }
             }
