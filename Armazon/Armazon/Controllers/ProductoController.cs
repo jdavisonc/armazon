@@ -13,6 +13,7 @@ using Armazon.Models.DataTypes;
 using System.IO;
 using System.Drawing;
 using System.Web.UI;
+using System.Web.Security;
 
 namespace Armazon.Controllers
 {
@@ -223,15 +224,19 @@ namespace Armazon.Controllers
                     if (t == null)
                     {
                         t = new Tag();
+                        t.Nombre = tag;
                         t.CantAp = 0;
                         adminFach.AddTag(t);
                         adminFach.SaveTags();
                     }
                     if (adminFach.getProducto_Tag(productID, t.TagID) == null)
                     {
+                        MembershipUser myObject = Membership.GetUser();
+                        string userName = myObject.UserName.ToString();                   
                         Producto_Tag pt = new Producto_Tag();
                         pt.ProductoID = productID;
                         pt.TagID = t.TagID;
+                        pt.UsuarioID = adminFach.getUsuario(userName).UsuarioID;
                         adminFach.AddProducto_Tag(pt);
                         adminFach.SaveProducto_Tag();
                         // Solo sumo si el tag no esta asociado al producto
