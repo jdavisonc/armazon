@@ -40,6 +40,14 @@ namespace Armazon
                 tags.Add(prod_tag.Tag.Nombre);
             }
             dt.Tags = tags;
+            List<DTImagen> images = new List<DTImagen>();
+            foreach (Imagen img in this.Imagens)
+            {
+                DTImagen dtimg = new DTImagen();
+                dtimg.Id = img.ImagenID;
+                images.Add(dtimg);
+            }
+            dt.Images = images;
             return dt;
         }
         #endregion

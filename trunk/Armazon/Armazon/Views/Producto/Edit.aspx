@@ -10,12 +10,10 @@
 
     <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
 
-    <% using (Html.BeginForm()) {%>
+    <% using (Html.BeginForm("Edit", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" })) {%>
 
         <fieldset>
             <legend>Campos</legend>
-            
-            
             <table>
                 <tr>
                     <td>Nombre:</td><td><input type="text" id="txtNombre" name="txtNombre" value='<%= Model.Nombre %>'/> </td>
@@ -29,7 +27,11 @@
                     </tr>
                 <%} %>
             </table>
-            <input type="file" name="attachment" id="attachment" onchange="document.getElementById('moreUploadsLink').style.display = 'block';" />
+            
+            <img src="<%= Url.Action( "ShowThumbnail", "Imagen", new { id = Model.Images[0].Id } ) %>" />
+            <br>
+            
+            <input type="file" name="files" id="files" onchange="document.getElementById('moreUploadsLink').style.display = 'block';" />
             <div id="moreUploads"></div>
             <div id="moreUploadsLink" style="display:none;"><a href="javascript:addFileInput();">Agregar Otra Imagen</a></div>
 
@@ -49,7 +51,7 @@
             var d = document.createElement("div");
             var file = document.createElement("input");
             file.setAttribute("type", "file");
-            file.setAttribute("name", "attachment"+upload_number);
+            file.setAttribute("name", "files"+upload_number);
             d.appendChild(file);
             document.getElementById("moreUploads").appendChild(d);
             upload_number++;

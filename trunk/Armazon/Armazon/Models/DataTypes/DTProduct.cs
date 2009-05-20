@@ -17,6 +17,13 @@ namespace Armazon.Models.DataTypes
         private double _precio;
         private string _tienda;
         private List<string> _tags;
+        private List<DTImagen> _images;
+
+        public List<DTImagen> Images
+        {
+            get { return _images; }
+            set { _images = value; }
+        }
 
         public List<string> Tags
         {
