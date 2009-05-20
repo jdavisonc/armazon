@@ -25,12 +25,7 @@
             <%= Html.Encode(Model.Subcategoria)%>
         </p>        
         <p>
-            Etiquetas:
-            <% foreach (String tag in Model.Tags){ %>
-                <p>
-                    <%= tag %>
-                </p>
-            <%} %>
+            Etiquetas:  <%foreach (String tag in Model.Tags){%> <%=tag%> | <%}%>
         </p>
         <p>
             <% using (Html.BeginForm("AddTag","Producto",FormMethod.Post)) {%>
