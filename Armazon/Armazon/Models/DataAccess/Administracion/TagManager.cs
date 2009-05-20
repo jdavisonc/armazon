@@ -41,7 +41,6 @@ namespace Armazon.Models.DataAccess.Administracion
 
         public void Add(Tag tag)
         {
-
             db.Tags.InsertOnSubmit(tag);
         }
 
