@@ -23,13 +23,26 @@
         <p>
             SubCategoria:
             <%= Html.Encode(Model.Subcategoria)%>
+        </p>        
+        <p>
+            Etiquetas:
+            <% foreach (String tag in Model.Tags){ %>
+                <p>
+                    <%= tag %>
+                </p>
+            <%} %>
+        </p>
+        <p>
+            <% using (Html.BeginForm("AddTag","Producto",FormMethod.Post)) {%>
+                <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
+                <input type="text" id="tagCollection" name="tagCollection"/>
+                <input type="submit" value="Etiquetar"/>            
+            <%}%>            
         </p>
     </fieldset>
     <p>
-
         <%=Html.ActionLink("Modificar", "Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID })%> |
-        <%= Html.ActionLink("Eliminar", "Delete", new { id = Model.Id })%>
-    </p>
-
+        <%=Html.ActionLink("Eliminar", "Delete", new { id = Model.Id })%>
+    </p>    
 </asp:Content>
 
