@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
+using System.Collections.Generic;
 
 namespace Armazon.Models
 {
@@ -202,7 +203,16 @@ namespace Armazon.Models
             ProductoManager productoMgr = ProductoManager.getInstance();
             productoMgr.Save();
         }
-
+        public double getMontoProductos(List<Producto> listProd)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            return productoMgr.getMontoProductos(listProd);
+        }
+        public List<string> getNombresProductos(List<Producto> listProd)
+        {
+            ProductoManager productoMgr = ProductoManager.getInstance();
+            return productoMgr.getNombresProductos(listProd);
+        }
         //SubCategoria_Propiedad
         public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
         {
@@ -322,6 +332,19 @@ namespace Armazon.Models
             CarritoManager cmgr = CarritoManager.getInstance();
             return cmgr.getCarritoActivoById(idCarrito);
         }
+        public void AgregarProductoCarrito(int productoId, int carritoId)
+        {
+            CarritoManager cmgr = CarritoManager.getInstance();
+            cmgr.AgregarProductoCarrito(productoId, carritoId);
+        
+        }
+        public List<Producto> getProductosDeCarrito(int carrito)
+        {
+            CarritoManager cmgr = CarritoManager.getInstance();
+            return cmgr.getProductosDeCarrito(carrito);
+            
+        }
+
         public void SaveCarritoActivo()
         { 
             CarritoManager cmgr = CarritoManager.getInstance();
