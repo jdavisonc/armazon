@@ -61,15 +61,8 @@ namespace Armazon.Models.DataAccess.Administracion
                 return activoAux;
             }
         }
-
-        public IQueryable<Producto> getProductosCarritoLogueado()
-        {
-            AdministracionFachada adminFac = new AdministracionFachada();
-            MembershipUser myObject = Membership.GetUser();
-            string userName = myObject.UserName.ToString();
-
-            return null;
-        }
+        
+        
         public Activo getCarritoActivoById(int idCarrito)
         {
             var activo = from act in db.Carritos
@@ -83,8 +76,31 @@ namespace Armazon.Models.DataAccess.Administracion
                 return activoAux;
             }
         }
-        
-
+        public void AgregarProductoCarrito(int productoId, int carritoId)
+        {
+            Producto_Carrito prodCarrito = new Producto_Carrito();
+            prodCarrito.ProductoID = productoId;
+            prodCarrito.CarritoID = carritoId;
+            prodCarrito.EstaEnCarrito = '0';
+            db.Producto_Carritos.InsertOnSubmit(prodCarrito);
+            db.SubmitChanges();
+        }
+        public List<Producto> getProductosDeCarrito(int carrito)
+        {
+            Producto_Carrito prodCarrito = new Producto_Carrito();
+            var productosDelCarro = from prodCarr in db.Producto_Carritos
+                                    where carrito == prodCarr.CarritoID
+                                    select prodCarr.ProductoID;
+            List<int> listaIds = productosDelCarro.ToList();
+            ProductoManager prodMgr = ProductoManager.getInstance();
+            List<Producto> listProd = new List<Producto>();
+            foreach(int elem in listaIds)
+            {
+                Producto prod = prodMgr.getProducto(elem);
+                listProd.Add(prod);
+            }
+            return listProd;
+        }
         /*public void Delete(Usuario usuario)
         {
             db.Usuarios.DeleteOnSubmit(usuario);

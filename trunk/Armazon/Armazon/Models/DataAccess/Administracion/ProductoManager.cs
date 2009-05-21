@@ -65,7 +65,25 @@ namespace Armazon.Models.DataAccess.Administracion
         {
             db.Productos.DeleteOnSubmit(producto);
         }
-
+        public double getMontoProductos(List<Producto> listProd)
+        {
+            double MontoTotal = 0;
+            foreach (Producto prod in listProd)
+            {
+                double auxMonto = prod.Precio + MontoTotal;
+            }
+            return MontoTotal;
+        }
+        public List<string> getNombresProductos(List<Producto> listProd)
+        {
+            List<string> nombres = new List<string>();
+            foreach (Producto prod in listProd)
+            {
+                string nombreAux = prod.Nombre;
+                nombres.Add(nombreAux);
+            }
+            return nombres;
+        }
         public void Save()
         {
             db.SubmitChanges();

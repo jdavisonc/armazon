@@ -34,6 +34,10 @@
                 <input type="submit" value="Etiquetar"/>            
             <%}%>            
         </p>
+        <p>
+        <input type="button" value="boton" onclick="llamada(<%=Model.Id %>)" />
+        
+        </p>
     </fieldset>
     <p>
         <%=Html.ActionLink("Modificar", "Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID })%> |
@@ -41,3 +45,7 @@
     </p>    
 </asp:Content>
 
+<asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
+    <script src="../../Scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/CompraProducto.js" type="text/javascript" ></script>
+</asp:Content>
