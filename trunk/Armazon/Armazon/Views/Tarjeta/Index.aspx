@@ -20,12 +20,7 @@
             <th>
                 Numero
             </th>
-            <th>
-                Usuario
-            </th>
-            <th>
-                Password
-            </th>
+            
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -45,12 +40,7 @@
             <td>
                 <%= Html.Encode(item.Numero) %>
             </td>
-            <td>
-                <%= Html.Encode(item.Usuario) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Password) %>
-            </td>
+            
         </tr>
     
     <% } %>
