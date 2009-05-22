@@ -227,6 +227,7 @@ namespace Armazon.Controllers
                         t.Nombre = tag;
                         t.CantAp = 0;
                         adminFach.AddTag(t);
+                        adminFach.SaveTags();
                     }
                     if (adminFach.getProducto_Tag(productID, t.TagID) == null)
                     {
