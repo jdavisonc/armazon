@@ -299,103 +299,44 @@ namespace Armazon.Controllers
                 }
             }
             return Json(false);
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]        public ActionResult CrearProducto(int idSubCategoria, int idCategoria)        {            AdministracionFachada administracionFachada = new AdministracionFachada();            String strNombre = Request.Form["txtNombre"];            float precio = float.Parse(Request.Form["txtPrecio"]);            Producto nuevoProducto = new Producto();            nuevoProducto.SubCategoriaID = idSubCategoria;            nuevoProducto.Nombre = strNombre;            nuevoProducto.Precio = precio;            administracionFachada.addProducto(nuevoProducto);            //administracionFachada.saveProducto();            //Producto producto = administracionFachada.getProducto(strNombre);            //int idProducto = producto.ProductoID;            NameValueCollection parametros = Request.Params;            for (int i = 0; i < parametros.Count; i++)            {                String strParametro = parametros.GetKey(i);                String strValor = parametros.Get(i);                int parametro;                if (int.TryParse(strParametro, out parametro))                {                    Propiedad pp = administracionFachada.getPropiedad(parametro);                    Valor nuevo = new Valor();                    nuevo.Producto = nuevoProducto;                    //nuevo.ProductoID = idProducto;                    //nuevo.PropiedadID = parametro;                    nuevo.Propiedad = pp;                    nuevo.Valor1 = strValor;                    //administracionFachada.addValor(nuevo);                    //administracionFachada.saveValor();                }            }            var subCategorias = administracionFachada.findAllSubCategorias(idCategoria).ToList();            ViewData["CategoriaID"] = idCategoria;            /**/            administracionFachada.saveProducto();            return View("ListarSubCategoria", subCategorias);        }        <<<<<<< .mine        public ActionResult CrearProducto(int idSubCategoria, int idCategoria)
-        {
-            AdministracionFachada administracionFachada = new AdministracionFachada();
-
-            String strNombre = Request.Form["txtNombre"];
-            float precio = float.Parse(Request.Form["txtPrecio"]);
-            Producto nuevoProducto = new Producto();
-            nuevoProducto.SubCategoriaID = idSubCategoria;
-            nuevoProducto.Nombre = strNombre;
-            nuevoProducto.Precio = precio;
-            administracionFachada.addProducto(nuevoProducto);
-            //administracionFachada.saveProducto();
-
-            //Producto producto = administracionFachada.getProducto(strNombre);
-            //int idProducto = producto.ProductoID;
-
-            NameValueCollection parametros = Request.Params;
-            for (int i = 0; i < parametros.Count; i++)
-            {
-                String strParametro = parametros.GetKey(i);
-                String strValor = parametros.Get(i);
-                int parametro;
-                if (int.TryParse(strParametro, out parametro))
-                {
-                    Propiedad pp = administracionFachada.getPropiedad(parametro);
-                    Valor nuevo = new Valor();
-                    nuevo.Producto = nuevoProducto;
-                    //nuevo.ProductoID = idProducto;
-                    //nuevo.PropiedadID = parametro;
-                    nuevo.Propiedad = pp;
-                    nuevo.Valor1 = strValor;
-                    //administracionFachada.addValor(nuevo);
-                    //administracionFachada.saveValor();
-                }
-            }
-
-            var subCategorias = administracionFachada.findAllSubCategorias(idCategoria).ToList();
-
-            ViewData["CategoriaID"] = idCategoria;
-
-
-            /**/
-            administracionFachada.saveProducto();
-
-
-            return View("ListarSubCategoria", subCategorias);
-        }        
-=======        {
-            AdministracionFachada adminFach = new AdministracionFachada();
-            EntitySet<Imagen> set = adminFach.getProducto(productID).Imagens;
-            if ((set.Count > 0) && (set[0] != null))
-                return File(set[0].Thumbnail.ToArray(), "image/jpg");
-            else
-                return null;
-        }
-
-        public ActionResult ShowThumbnail(int productID, int imageID)
-        {
-            AdministracionFachada adminFach = new AdministracionFachada();
-            foreach (Imagen img in adminFach.getProducto(productID).Imagens)
-            {
-                if (img.ImagenID == imageID)
-                    return File(img.Thumbnail.ToArray(), "image/jpg");
-            }
-            return null;
-        }
-
-        public ActionResult ShowImage(int productID, int imageID)
-        {
-            AdministracionFachada adminFach = new AdministracionFachada();
-            foreach (Imagen img in adminFach.getProducto(productID).Imagens)
-            {
-                if (img.ImagenID == imageID)
-                    return File(img.Imagen1.ToArray(), img.MIMEType);
-            }
-            return null;
-        }
-
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult DeleteImage(int productID, int imageID)
-        {
-            AdministracionFachada adminFach = new AdministracionFachada();
-            Producto p = adminFach.getProducto(productID);
-            if (p != null)
-            {
-                Imagen img = adminFach.getImagen(imageID);
-                if (img != null)
-                {
-                    p.Imagens.Remove(img);
-                    adminFach.saveProducto();
-                    return Json(true);
-                }
-            }
-            return Json(false);
-        }
-
->>>>>>> .theirs    }
+        }		
+        [AcceptVerbs(HttpVerbs.Post)]        
+		public ActionResult CrearProducto(int idSubCategoria, int idCategoria)        
+		{            
+			AdministracionFachada administracionFachada = new AdministracionFachada();            
+			String strNombre = Request.Form["txtNombre"];            
+			float precio = float.Parse(Request.Form["txtPrecio"]);            
+			Producto nuevoProducto = new Producto();            
+			nuevoProducto.SubCategoriaID = idSubCategoria;            
+			nuevoProducto.Nombre = strNombre;            
+			nuevoProducto.Precio = precio;            
+			administracionFachada.addProducto(nuevoProducto);            
+			//administracionFachada.saveProducto();            
+			//Producto producto = administracionFachada.getProducto(strNombre);            
+			//int idProducto = producto.ProductoID;            
+			NameValueCollection parametros = Request.Params;            
+			for (int i = 0; i < parametros.Count; i++)            
+			{                
+				String strParametro = parametros.GetKey(i);                
+				String strValor = parametros.Get(i);                
+				int parametro;                
+				if (int.TryParse(strParametro, out parametro)){                    
+					Propiedad pp = administracionFachada.getPropiedad(parametro);                    
+					Valor nuevo = new Valor();                    
+					nuevo.Producto = nuevoProducto;                    
+					//nuevo.ProductoID = idProducto;                    
+					//nuevo.PropiedadID = parametro;                    
+					nuevo.Propiedad = pp;                    
+					nuevo.Valor1 = strValor;                    
+					//administracionFachada.addValor(nuevo);                    
+					//administracionFachada.saveValor();                
+				}
+			}            
+			var subCategorias = administracionFachada.findAllSubCategorias(idCategoria).ToList();            
+			ViewData["CategoriaID"] = idCategoria;            
+			/**/            
+			administracionFachada.saveProducto();            
+			return View("ListarSubCategoria", subCategorias);
+		}		   
+	}
 }
