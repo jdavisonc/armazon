@@ -14,24 +14,12 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class SubCategoria_PropiedadManager
     {
-        private static SubCategoria_PropiedadManager instancia = null;
         private ArmazonDataContext db;
 
-        private SubCategoria_PropiedadManager()
+        public SubCategoria_PropiedadManager()
         {
             db = new ArmazonDataContext();
-            
         }
-
-        public static SubCategoria_PropiedadManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new SubCategoria_PropiedadManager();
-            }
-            return instancia;
-        }
-
 
         public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
         {

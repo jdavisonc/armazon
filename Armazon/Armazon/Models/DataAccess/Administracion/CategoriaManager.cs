@@ -8,21 +8,11 @@ namespace DatabaseAccess
 {
     public class CategoriaManager
     {
-        private static CategoriaManager instancia = null;
         private ArmazonDataContext db;
 
-        private CategoriaManager()
+        public CategoriaManager()
         {
             db = new ArmazonDataContext();
-        }
-
-        public static CategoriaManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new CategoriaManager();
-            }
-            return instancia;
         }
 
 

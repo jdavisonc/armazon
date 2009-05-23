@@ -8,20 +8,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class TiendaManager
     {
-        private static TiendaManager instancia = null;
         private ArmazonDataContext db;
 
-        private TiendaManager()
+        public TiendaManager()
         {
             db = new ArmazonDataContext();
-        }
-        public static TiendaManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new TiendaManager();
-            }
-            return instancia;
         }
         public IQueryable<Tienda> findAllTiendas()
         {

@@ -7,22 +7,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class Producto_TagManager
     {
-        private static Producto_TagManager instancia = null;
         private ArmazonDataContext db;
 
-        private Producto_TagManager()
+        public Producto_TagManager()
         {
             db = new ArmazonDataContext();
-            
-        }
-
-        public static Producto_TagManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new Producto_TagManager();
-            }
-            return instancia;
         }
 
 

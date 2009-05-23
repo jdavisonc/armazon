@@ -8,24 +8,12 @@ namespace DatabaseAccess
 {
     public class SucursalManager
     {
-        private static SucursalManager instancia = null;
         private ArmazonDataContext db;
 
-        private SucursalManager()
+        public SucursalManager()
         {
             db = new ArmazonDataContext();
-            
         }
-
-        public static SucursalManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new SucursalManager();
-            }
-            return instancia;
-        }
-
 
         public IQueryable<Sucursal> findAllSucursales()
         {

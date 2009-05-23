@@ -17,423 +17,523 @@ namespace Armazon.Models
 {
     public class AdministracionFachada
     {
-        
-        //Categoria
+        #region Getters y Propiedades
+
+        private CarritoManager _carritoMgr = null;
+
+        public CarritoManager CarritoMgr
+        {
+            get {
+                if (_carritoMgr == null)
+                    _carritoMgr = new CarritoManager();
+                return _carritoMgr;
+            }
+        }
+        private CategoriaManager _categoriaMgr = null;
+
+        public CategoriaManager CategoriaMgr
+        {
+            get {
+                if (_categoriaMgr == null)
+                    _categoriaMgr = new CategoriaManager();
+                return _categoriaMgr; 
+            }
+        }
+        private ImagenManager _imagenMgr = null;
+
+        public ImagenManager ImagenMgr
+        {
+            get {
+                if (_imagenMgr == null)
+                    _imagenMgr = new ImagenManager();
+                return _imagenMgr; 
+            }
+        }
+        private MetododePagoManager _metodoPagoMgr = null;
+
+        public MetododePagoManager MetodoPagoMgr
+        {
+            get {
+                if (_metodoPagoMgr == null)
+                    _metodoPagoMgr = new MetododePagoManager();
+                return _metodoPagoMgr; 
+            }
+        }
+        private Producto_TagManager _productoTagMgr = null;
+
+        public Producto_TagManager ProductoTagMgr
+        {
+            get {
+                if (_productoTagMgr == null)
+                    _productoTagMgr = new Producto_TagManager();
+                return _productoTagMgr;
+            }
+        }
+        private PropiedadManager _propiedadMgr = null;
+
+        public PropiedadManager PropiedadMgr
+        {
+            get {
+                if (_propiedadMgr == null)
+                    _propiedadMgr = new PropiedadManager();
+                return _propiedadMgr; }
+        }
+        private ProductoManager _productoMgr = null;
+
+        public ProductoManager ProductoMgr
+        {
+            get {
+                if (_productoMgr == null)
+                    _productoMgr = new ProductoManager();
+                return _productoMgr; 
+            }
+        }
+        private SubCategoria_PropiedadManager _subcategoriaPropiedadMgr = null;
+
+        public SubCategoria_PropiedadManager SubcategoriaPropiedadMgr
+        {
+            get {
+                if (_subcategoriaPropiedadMgr == null)
+                    _subcategoriaPropiedadMgr = new SubCategoria_PropiedadManager();
+                return _subcategoriaPropiedadMgr; 
+            }
+        }
+        private SubCategoriaManager _subcategoriaMgr = null;
+
+        public SubCategoriaManager SubcategoriaMgr
+        {
+            get {
+                if (_subcategoriaMgr == null)
+                    _subcategoriaMgr = new SubCategoriaManager();
+                return _subcategoriaMgr; 
+            }
+        }
+        private SucursalManager _sucursalMgr = null;
+
+        public SucursalManager SucursalMgr
+        {
+            get {
+                if (_sucursalMgr == null)
+                    _sucursalMgr = new SucursalManager();
+                return _sucursalMgr; 
+            }
+        }
+        private TagManager _tagMgr = null;
+
+        public TagManager TagMgr
+        {
+            get {
+                if (_tagMgr == null)
+                    _tagMgr = new TagManager();
+                return _tagMgr; 
+            }
+        }
+        private TiendaManager _tiendaMgr = null;
+
+        public TiendaManager TiendaMgr
+        {
+            get {
+                if (_tiendaMgr == null)
+                    _tiendaMgr = new TiendaManager();
+                return _tiendaMgr; 
+            }
+        }
+        private UsuarioManager _usuarioMgr = null;
+
+        public UsuarioManager UsuarioMgr
+        {
+            get {
+                if (_usuarioMgr == null)
+                    _usuarioMgr = new UsuarioManager();
+                return _usuarioMgr; 
+            }
+        }
+        private ValorManager _valorMgr = null;
+
+        public ValorManager ValorMgr
+        {
+            get {
+                if (_valorMgr == null)
+                    _valorMgr = new ValorManager();
+                return _valorMgr; 
+            }
+        }
+
+#endregion
+
+        #region Categoria
         public IQueryable<Categoria> findAllCategorias()
         {
-            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
-            return categoriaMgr.findAllCategorias();
+            return CategoriaMgr.findAllCategorias();
         }
         public Categoria getCategoria(int num)
         {
-            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
-            return categoriaMgr.getCategoria(num);
+            return CategoriaMgr.getCategoria(num);
         }
         public void addCategoria(Categoria Categoria)
         {
-            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
-            categoriaMgr.Add(Categoria);
+            CategoriaMgr.Add(Categoria);
         }
         public void deleteCategoria(int num)
         {
-            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
-            categoriaMgr.Delete(categoriaMgr.getCategoria(num));
+            CategoriaMgr.Delete(CategoriaMgr.getCategoria(num));
         }
         public void saveCategoria()
         {
-            CategoriaManager categoriaMgr = CategoriaManager.getInstance();
-            categoriaMgr.Save();
+            CategoriaMgr.Save();
         }
+        #endregion
 
-        //Sucursal
+        #region Sucursal
         public IQueryable<Sucursal> findAllSucursales()
         {
-            SucursalManager sucursalMgr = SucursalManager.getInstance();
-            return sucursalMgr.findAllSucursales();
+            return SucursalMgr.findAllSucursales();
         }
         public Sucursal getSucursal(int num)
         {
-            SucursalManager sucursalMgr = SucursalManager.getInstance();
-            return sucursalMgr.getSucursal(num);
+            return SucursalMgr.getSucursal(num);
         }
 
         public void addSucursal(Sucursal sucursal)
         {
-            SucursalManager sucursalMgr = SucursalManager.getInstance();
-            sucursalMgr.Add(sucursal);
+            SucursalMgr.Add(sucursal);
         }
         public void deleteSucursal(int num)
         {
-            SucursalManager sucursalMgr = SucursalManager.getInstance();
-            sucursalMgr.Delete(sucursalMgr.getSucursal(num));
-        
+            SucursalMgr.Delete(SucursalMgr.getSucursal(num));
         }
         public void saveSucursal()
         {
-            SucursalManager sucursalMgr = SucursalManager.getInstance();
-            sucursalMgr.Save();
+            SucursalMgr.Save();
         }
-        
-        // SubCategoria
+        #endregion
+
+        #region SubCategoria
         public IQueryable<SubCategoria> findAllSubCategorias(int categoriaID)
         {
-            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
-            return subCategoriaMgr.findAllSubCategorias(categoriaID);
+            return SubcategoriaMgr.findAllSubCategorias(categoriaID);
         }
         public SubCategoria getSubCategoria(int num)
         {
-            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
-            return subCategoriaMgr.getSubCategoria(num);
+            return SubcategoriaMgr.getSubCategoria(num);
         }
 
         public void addSubCategoria(SubCategoria subCategoria)
         {
-            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
-            subCategoriaMgr.Add(subCategoria);
+            SubcategoriaMgr.Add(subCategoria);
         }
         public void deleteSubCategoria(int num)
         {
-            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
-            subCategoriaMgr.Delete(subCategoriaMgr.getSubCategoria(num));
+            SubcategoriaMgr.Delete(SubcategoriaMgr.getSubCategoria(num));
 
         }
         public void saveSubCategoria()
         {
-            SubCategoriaManager subCategoriaMgr = SubCategoriaManager.getInstance();
-            subCategoriaMgr.Save();
+            SubcategoriaMgr.Save();
         }
+        #endregion
 
-        //Propiedad
+        #region Propiedad
         public IQueryable<Propiedad> findAllPropiedades()
         {
-            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
-            return propiedadMgr.findAllPropiedades();
+            return PropiedadMgr.findAllPropiedades();
         }
         public IQueryable<Propiedad> propiedadesSubCategoria(int idSubCategoria)
         {
-            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
-            return propiedadMgr.propiedadesSubCategoria(idSubCategoria);
+            return PropiedadMgr.propiedadesSubCategoria(idSubCategoria);
         }
         public Propiedad getPropiedad(int num)
         {
-            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
-            return propiedadMgr.getPropiedad(num);
+            return PropiedadMgr.getPropiedad(num);
         }
         public void addPropiedad(Propiedad propiedad)
         {
-            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
-            propiedadMgr.Add(propiedad);
+            PropiedadMgr.Add(propiedad);
         }
         public void deletePropiedad(int num)
         {
-            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
-            propiedadMgr.Delete(propiedadMgr.getPropiedad(num));
-
+            PropiedadMgr.Delete(PropiedadMgr.getPropiedad(num));
         }
         public void savePropiedad()
         {
-            PropiedadManager propiedadMgr = PropiedadManager.getInstance();
-            propiedadMgr.Save();
+            PropiedadMgr.Save();
         }
+        #endregion
 
-        //Usuario
+        #region Usuario
         public IQueryable<Usuario> findAllUsuario()
         {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             return UsuarioMgr.findAllUsuarios();
         }
         public Usuario getUsuario(int num)
         {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             return UsuarioMgr.getUsuario(num);
         }
         public Usuario getUsuario(string userName)
         {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             return UsuarioMgr.getUsuario(userName);
         }
         public void addUsuario(Usuario usuario)
         {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             UsuarioMgr.Add(usuario);
         }
         public void deleteUsuario(string userName)
         {
-            UsuarioManager UsuarioMgr = UsuarioManager.getInstance();
             UsuarioMgr.Delete(UsuarioMgr.getUsuario(userName));
         }
         public void saveUsuario()
         {
-            UsuarioManager usuarioMgr = UsuarioManager.getInstance();
-            usuarioMgr.Save();
+            UsuarioMgr.Save();
         }
         public Carrito getCarritoOfUser(string userName)
         {
-            UsuarioManager usuarioMgr = UsuarioManager.getInstance();
-            return usuarioMgr.getCarritoOfUser(userName);
+            return UsuarioMgr.getCarritoOfUser(userName);
         }
-        //Producto
+        #endregion
+
+        #region Producto
         public IQueryable<Producto> findAllProductos()
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            return productoMgr.findAllProductos();
+            return ProductoMgr.findAllProductos();
         }
         public Producto getProducto(int id)
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            return productoMgr.getProducto(id);
+            return ProductoMgr.getProducto(id);
         }
         public Producto getProducto(String nombre)
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            return productoMgr.getProducto(nombre);
+            return ProductoMgr.getProducto(nombre);
         }
         public void addProducto(Producto Producto)
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            productoMgr.Add(Producto);
+            ProductoMgr.Add(Producto);
         }
         public void deleteProducto(int id)
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            productoMgr.Delete(productoMgr.getProducto(id));
+            ProductoMgr.Delete(ProductoMgr.getProducto(id));
         }
         public void saveProducto()
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            productoMgr.Save();
+            ProductoMgr.Save();
         }
         public double getMontoProductos(List<Producto> listProd)
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            return productoMgr.getMontoProductos(listProd);
+            return ProductoMgr.getMontoProductos(listProd);
         }
         public List<string> getNombresProductos(List<Producto> listProd)
         {
-            ProductoManager productoMgr = ProductoManager.getInstance();
-            return productoMgr.getNombresProductos(listProd);
+            return ProductoMgr.getNombresProductos(listProd);
         }
-        //SubCategoria_Propiedad
+        #endregion
+
+        #region SubCategoria_Propiedad
         public IQueryable<SubCategoria_Propiedad> findAllSubCategoria_Propiedades()
         {
-            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
-            return subCategoria_PropiedadMgr.findAllSubCategoria_Propiedades();
+            return SubcategoriaPropiedadMgr.findAllSubCategoria_Propiedades();
         }
         public SubCategoria_Propiedad getSubCategoria_Propiedad(int idSubCategoria, int idPropiedad)
         {
-            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
-            return subCategoria_PropiedadMgr.getSubCategoria_Propiedad(idSubCategoria, idPropiedad);
+            return SubcategoriaPropiedadMgr.getSubCategoria_Propiedad(idSubCategoria, idPropiedad);
         }
         public void addSubCategoria_Propiedad(SubCategoria_Propiedad subCategoria_Propiedad)
         {
-            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
-            subCategoria_PropiedadMgr.Add(subCategoria_Propiedad);
+            SubcategoriaPropiedadMgr.Add(subCategoria_Propiedad);
         }
         public void deleteSubCategoria_Propiedad(int idSubCategoria, int idPropiedad)
         {
-            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
-            subCategoria_PropiedadMgr.Delete(subCategoria_PropiedadMgr.getSubCategoria_Propiedad(idSubCategoria, idPropiedad));
-
+            SubcategoriaPropiedadMgr.Delete(SubcategoriaPropiedadMgr.getSubCategoria_Propiedad(idSubCategoria, idPropiedad));
         }
         public void saveSubCategoria_Propiedad()
         {
-            SubCategoria_PropiedadManager subCategoria_PropiedadMgr = SubCategoria_PropiedadManager.getInstance();
-            subCategoria_PropiedadMgr.Save();
+            SubcategoriaPropiedadMgr.Save();
         }
+        #endregion
 
-
-        //Valor
+        #region Valor
         public IQueryable<Valor> findAllValores()
         {
-            ValorManager valorMgr = ValorManager.getInstance();
-            return valorMgr.findAllValores();
+            return ValorMgr.findAllValores();
         }
         public IQueryable<Valor> valoresProductos(int id)
         {
-            ValorManager valorMgr = ValorManager.getInstance();
-            return valorMgr.valoresProductos(id);
+            return ValorMgr.valoresProductos(id);
         }
         public Valor getValor(int idProducto, int idPropiedad)
         {
-            ValorManager valorMgr = ValorManager.getInstance();
-            return valorMgr.getValor(idProducto, idPropiedad);
+            return ValorMgr.getValor(idProducto, idPropiedad);
         }
         public void addValor(Valor valor)
         {
-            ValorManager valorMgr = ValorManager.getInstance();
-            valorMgr.Add(valor);
+            ValorMgr.Add(valor);
         }
         public void deleteValor(int idProducto, int idPropiedad)
         {
-            ValorManager valorMgr = ValorManager.getInstance();
-            valorMgr.Delete(valorMgr.getValor(idProducto, idPropiedad));
-
+            ValorMgr.Delete(ValorMgr.getValor(idProducto, idPropiedad));
         }
         public void saveValor()
         {
-            ValorManager valorMgr = ValorManager.getInstance();
-            valorMgr.Save();
+            ValorMgr.Save();
         }
+        #endregion
+
+        #region Metodos de pago
         public IQueryable<MetodoDePago> findAllMetododePago()
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            return mmgr.findAllMetododePago();
+            return MetodoPagoMgr.findAllMetododePago();
         }
-
 
         public MetodoDePago getMetododePago(int id)
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            return mmgr.getMetododePago(id);
+            return MetodoPagoMgr.getMetododePago(id);
         }
         public PayPal getMetododePagoPayPal(int id)
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            return mmgr.getMetododePagoPayPal(id);
+            return MetodoPagoMgr.getMetododePagoPayPal(id);
         }
         public Tarjeta getMetododePagoTarjeta(int id)
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            return mmgr.getMetododePagoTarjeta(id);
+            return MetodoPagoMgr.getMetododePagoTarjeta(id);
         }
         public void AddPayPal(PayPal pago)
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            mmgr.AddPayPal(pago);
+            MetodoPagoMgr.AddPayPal(pago);
         }
         public void AddTarjeta(Tarjeta tarjeta)
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            mmgr.AddTarjeta(tarjeta);
+            MetodoPagoMgr.AddTarjeta(tarjeta);
         }
         public void deleteMetodoDePago(MetodoDePago metodo)
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            mmgr.Delete(metodo);
+            MetodoPagoMgr.Delete(metodo);
         }
         public void saveMetodoDePago()
         {
-            MetododePagoManager mmgr = MetododePagoManager.getInstance();
-            mmgr.Save();
+            MetodoPagoMgr.Save();
         }
-        //Carrito
+        #endregion
+        
+        #region Carrito
         public void AddCarritoActivo(Activo activo)
         {
-            CarritoManager cmgr = CarritoManager.getInstance();
-            cmgr.AddCarritoActivo(activo);
+            CarritoMgr.AddCarritoActivo(activo);
         }
         public Activo getCarritoActivoByUser(int userId)
         {
-            CarritoManager cmgr = CarritoManager.getInstance();
-            return cmgr.getCarritoActivoByUser(userId);
+            return CarritoMgr.getCarritoActivoByUser(userId);
         }
         public Activo getCarritoActivoById(int idCarrito)
         {
-            CarritoManager cmgr = CarritoManager.getInstance();
-            return cmgr.getCarritoActivoById(idCarrito);
+            return CarritoMgr.getCarritoActivoById(idCarrito);
         }
         public void AgregarProductoCarrito(int productoId, int carritoId)
         {
-            CarritoManager cmgr = CarritoManager.getInstance();
-            cmgr.AgregarProductoCarrito(productoId, carritoId);
-        
+            CarritoMgr.AgregarProductoCarrito(productoId, carritoId);
         }
         public List<Producto> getProductosDeCarrito(int carrito)
         {
-            CarritoManager cmgr = CarritoManager.getInstance();
-            return cmgr.getProductosDeCarrito(carrito);
-            
+            return CarritoMgr.getProductosDeCarrito(carrito);
         }
 
         public void SaveCarritoActivo()
-        { 
-            CarritoManager cmgr = CarritoManager.getInstance();
-            cmgr.Save();
+        {
+            CarritoMgr.Save();
         }
+        #endregion
 
-        // Tags
+        #region  Tags
         public IQueryable<Tag> findAllTags()
         {
-            return TagManager.getInstance().findAllTags();
+            return TagMgr.findAllTags();
         }
 
         public Tag getTag(string tag)
         {
-            return TagManager.getInstance().getTag(tag);
+            return TagMgr.getTag(tag);
         }
 
         public void AddTag(Tag tag)
         {
-            TagManager.getInstance().Add(tag);
+            TagMgr.Add(tag);
         }
 
         public void DeleteTag(Tag tag)
         {
-            TagManager.getInstance().Delete(tag);
+            TagMgr.Delete(tag);
         }
 
         public void SaveTags()
         {
-            TagManager.getInstance().Save();
+            TagMgr.Save();
         }
+        #endregion
 
-        // producto_Tag
+        #region  producto_Tag
         public IQueryable<Producto_Tag> findAllProducto_Tags()
         {
-            return Producto_TagManager.getInstance().findAllProducto_Tags();
+            return ProductoTagMgr.findAllProducto_Tags();
         }
 
         public Producto_Tag getProducto_Tag(int productoID, int tagID)
         {
-            return Producto_TagManager.getInstance().getProducto_Tag(productoID, tagID);
+            return ProductoTagMgr.getProducto_Tag(productoID, tagID);
         }
 
         public void AddProducto_Tag(Producto_Tag producto_tag)
         {
-            Producto_TagManager.getInstance().Add(producto_tag);
+            ProductoTagMgr.Add(producto_tag);
         }
 
         public void DeleteProducto_Tag(Producto_Tag producto_Tag)
         {
-            Producto_TagManager.getInstance().Delete(producto_Tag);
+            ProductoTagMgr.Delete(producto_Tag);
         }
 
         public void SaveProducto_Tag()
         {
-            Producto_TagManager.getInstance().Save();
+            ProductoTagMgr.Save();
         }
-        //Tienda
+        #endregion
+
+        #region Tienda
         public IQueryable<Tienda> findAllTiendas()
         {
-            TiendaManager tiendaMgr = TiendaManager.getInstance();
-            return tiendaMgr.findAllTiendas();
+            return TiendaMgr.findAllTiendas();
         }
         public Tienda getTienda(int id)
         {
-            TiendaManager tiendaMgr = TiendaManager.getInstance();
-            return tiendaMgr.getTienda(id);
+            return TiendaMgr.getTienda(id);
         }
         public void addTienda(Tienda tienda)
         {
-            TiendaManager tiendaMgr = TiendaManager.getInstance();
-            tiendaMgr.Add(tienda);
+            TiendaMgr.Add(tienda);
         }
         public void deleteTienda(int id)
         {
-            TiendaManager tiendaMgr = TiendaManager.getInstance();
-            tiendaMgr.Delete(tiendaMgr.getTienda(id));
+            TiendaMgr.Delete(TiendaMgr.getTienda(id));
         }
         public void saveTienda()
         {
-            TiendaManager tiendaMgr = TiendaManager.getInstance();
-            tiendaMgr.Save();
+            TiendaMgr.Save();
         }
-
-        // imagen
+        #endregion
+        
+        #region imagen
+        public void addImagen(Imagen img)
+        {
+            ImagenMgr.addImagen(img);
+        }
         public Imagen getImagen(int id)
         {
-            ProductoManager p = ProductoManager.getInstance();
-            return p.getImagen(id);
+            return ImagenMgr.getImagen(id);
         }
+        public void deleteImagen(int id)
+        {
+            ImagenMgr.DeleteImagen(id);
+        }
+        public void saveImagen()
+        {
+            ImagenMgr.Save();
+        }
+        #endregion
     }
 }

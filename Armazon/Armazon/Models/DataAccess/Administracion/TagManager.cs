@@ -7,21 +7,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class TagManager
     {
-        private static TagManager instancia = null;
         private ArmazonDataContext db;
 
-        private TagManager()
+        public TagManager()
         {
             db = new ArmazonDataContext();            
-        }
-
-        public static TagManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new TagManager();
-            }
-            return instancia;
         }
 
         public IQueryable<Tag> findAllTags()

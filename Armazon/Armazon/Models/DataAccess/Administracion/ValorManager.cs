@@ -8,21 +8,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class ValorManager
     {
-        private static ValorManager instancia = null;
         private ArmazonDataContext db;
 
-        private ValorManager()
+        public ValorManager()
         {
             db = new ArmazonDataContext();
-        }
-
-        public static ValorManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new ValorManager();
-            }
-            return instancia;
         }
 
         public IQueryable<Valor> findAllValores()

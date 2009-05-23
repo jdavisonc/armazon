@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Models\DataAccess\Administracion\CarritoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\CategoriaManager.cs" />
+    <Compile Include="Models\DataAccess\Administracion\ImagenManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\MetododePagoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\ProductoManager.cs" />
     <Compile Include="Models\DataAccess\Administracion\Producto_TagManager.cs" />

@@ -14,22 +14,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class PropiedadManager
     {
-        private static PropiedadManager instancia = null;
         private ArmazonDataContext db;
 
-        private PropiedadManager()
+        public PropiedadManager()
         {
             db = new ArmazonDataContext();
-            
-        }
-
-        public static PropiedadManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new PropiedadManager();
-            }
-            return instancia;
         }
 
         public IQueryable<Propiedad> findAllPropiedades()

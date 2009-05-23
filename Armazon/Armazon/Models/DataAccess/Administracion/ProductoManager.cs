@@ -8,21 +8,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class ProductoManager
     {
-        private static ProductoManager instancia = null;
         private ArmazonDataContext db;
 
-        private ProductoManager()
+        public ProductoManager()
         {
             db = new ArmazonDataContext();
-        }
-
-        public static ProductoManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new ProductoManager();
-            }
-            return instancia;
         }
 
         public IQueryable<Producto> findAllProductos()
@@ -83,10 +73,6 @@ namespace Armazon.Models.DataAccess.Administracion
                 nombres.Add(nombreAux);
             }
             return nombres;
-        }
-        public Imagen getImagen(int id)
-        { 
-            return db.Imagens.SingleOrDefault(c => c.ImagenID == id);
         }
         public void Save()
         {
