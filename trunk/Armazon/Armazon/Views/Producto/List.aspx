@@ -33,8 +33,7 @@
         </div>
         <%} %>
     </div>
-
-</asp:Content>
+    <p>        <%= Html.ActionLink("Crear Producto","CrearProducto","SubCategoria",new { idSubCategoria = item.SubCategoriaID, idCategoria = ViewData["CategoriaID"] },null)%> |                            <%= Html.ActionLink("Crear Producto","Create",new{idSubCategoria=item.SubCategoriaID,idCategoria=ViewData["CategoriaID"]})%>|    </p></asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
 </asp:Content>
