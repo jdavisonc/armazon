@@ -26,8 +26,9 @@
                 <% if (Page.User.IsInRole("Administrador")){ %>
                     <%= Html.ActionLink("Modificar", "Edit", new { id = item.SubCategoriaID })%> |
                     <%= Html.ActionLink("Eliminar", "Delete", new { id = item.SubCategoriaID, categoriaID = item.CategoriaID })%> |
-                    <%= Html.ActionLink("Asociar Propiedades", "AsociarPropiedades", new { id = item.SubCategoriaID })%> |
-                    <%= Html.ActionLink("Crear Producto", "CrearProducto", new { idSubCategoria = item.SubCategoriaID, idCategoria = ViewData["CategoriaID"] })%> |
+                    <%= Html.ActionLink("Asociar Propiedades", "AsociarPropiedades", new { id = item.SubCategoriaID })%> |                
+                    <%= Html.ActionLink("Crear Producto","CrearProducto",new { idSubCategoria = item.SubCategoriaID, idCategoria = ViewData["CategoriaID"] })%> |                    
+                    <!--<%= Html.ActionLink("Crear Producto","Create","Producto",new{idSubCategoria=item.SubCategoriaID,idCategoria=ViewData["CategoriaID"]},null)%>|-->                                        
                 <%} %>
                 <%= Html.ActionLink("Ver Productos", "Listado", "Producto", new { idSubCategoria = item.SubCategoriaID },null)%> |
                 <%= Html.ActionLink("Detalles", "Details", new { id=item.SubCategoriaID })%>

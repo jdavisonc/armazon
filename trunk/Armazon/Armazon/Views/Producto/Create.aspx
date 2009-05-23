@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Producto>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Controllers.ViewModels.CrearProductoFormVM>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Crear Producto
@@ -7,33 +7,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Crear Producto</h2>
-
-    <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
-
     <% using (Html.BeginForm()) {%>
-
-        <fieldset>
-            <legend>Campos</legend>
-            <p>
-                <label for="ProductoID">Producto:</label>
-                <%= Html.TextBox("ProductoID") %>
-                <%= Html.ValidationMessage("ProductoID", "*") %>
-            </p>
-            <p>
-                <label for="ProductoID">Nombre:</label>
-                <%= Html.TextBox("Nombre") %>
-                <%= Html.ValidationMessage("Nombre", "*")%>
-            </p>
-            <p>
-                <input type="submit" value="Crear" />
-            </p>
-        </fieldset>
-
-    <% } %>
-
-    <div>
-        <%=Html.ActionLink("Ver Productos", "Index")%>
-    </div>
-
+    
+        
+        <table>
+            <tr>
+                <td>Nombre:</td><td><input type="text" id="txtNombre" name="txtNombre" /> </td>
+            </tr>
+            <tr>
+                <td>Precio:</td><td><input type="text" id="Text1" name="txtPrecio" /> </td>
+            </tr>
+        <%foreach (var item in Model.getPropiedades()) { %>
+            <tr>
+                <td><%=item.Nombre%>:</td><td><input type="text" id="<%=item.PropiedadID%>" name="<%=item.PropiedadID%>" /> </td>
+            </tr>
+        <%} %>
+        </table>
+        <input type="submit" id="btnConfirmar" value="Confirmar" />
+    <%} %>
 </asp:Content>
-
