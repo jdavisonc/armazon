@@ -12,7 +12,7 @@
       <Association Name="Carrito_Producto_Carrito" Member="Producto_Carritos" OtherKey="CarritoID" Type="Producto_Carrito" />
       <Association Name="MetodoDePago_Carrito" Member="MetodoDePago" ThisKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
       <Association Name="Usuario_Carrito" Member="Usuario" ThisKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
-      <Type Name="Activo" InheritanceCode="PayPal" IsInheritanceDefault="true" />
+      <Type Name="Activo" InheritanceCode="Activo" IsInheritanceDefault="true" />
       <Type Name="Vendido" InheritanceCode="Vendido" />
     </Type>
   </Table>
@@ -40,8 +40,8 @@
       <Column Name="MetodoDePagoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" IsDiscriminator="true" />
       <Column Name="Numero" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="MetodoDePago_Carrito" Member="Carritos" OtherKey="MetodoDePagoID" Type="Carrito" />
-      <Type Name="PayPal" InheritanceCode="PayPal" IsInheritanceDefault="true" />
-      <Type Name="Tarjeta" InheritanceCode="Tarjeta" />
+      <Type Name="PayPal" InheritanceCode="PayPal" />
+      <Type Name="Tarjeta" InheritanceCode="Tarjeta" IsInheritanceDefault="true" />
     </Type>
   </Table>
   <Table Name="dbo.Producto" Member="Productos">
@@ -66,6 +66,7 @@
       <Column Name="ProductoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="EstaEnCarrito" Type="System.Char" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Carrito_Producto_Carrito" Member="Carrito" ThisKey="CarritoID" Type="Carrito" IsForeignKey="true" />
       <Association Name="Producto_Producto_Carrito" Member="Producto" ThisKey="ProductoID" Type="Producto" IsForeignKey="true" />
     </Type>
@@ -74,7 +75,7 @@
     <Type Name="Producto_Tag">
       <Column Name="ProductoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TagID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Producto_Producto_Tag" Member="Producto" ThisKey="ProductoID" Type="Producto" IsForeignKey="true" />
       <Association Name="Tag_Producto_Tag" Member="Tag" ThisKey="TagID" Type="Tag" IsForeignKey="true" />
       <Association Name="Usuario_Producto_Tag" Member="Usuario" ThisKey="UsuarioID" Type="Usuario" IsForeignKey="true" />

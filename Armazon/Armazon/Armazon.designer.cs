@@ -240,7 +240,7 @@ namespace Armazon
 	}
 	
 	[Table(Name="dbo.Carrito")]
-	[InheritanceMapping(Code="PayPal", Type=typeof(Activo), IsDefault=true)]
+	[InheritanceMapping(Code="Activo", Type=typeof(Activo), IsDefault=true)]
 	[InheritanceMapping(Code="Vendido", Type=typeof(Vendido))]
 	public partial class Carrito : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -901,8 +901,8 @@ namespace Armazon
 	}
 	
 	[Table(Name="dbo.MetodoDePago")]
-	[InheritanceMapping(Code="PayPal", Type=typeof(PayPal), IsDefault=true)]
-	[InheritanceMapping(Code="Tarjeta", Type=typeof(Tarjeta))]
+	[InheritanceMapping(Code="PayPal", Type=typeof(PayPal))]
+	[InheritanceMapping(Code="Tarjeta", Type=typeof(Tarjeta), IsDefault=true)]
 	public partial class MetodoDePago : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1486,6 +1486,8 @@ namespace Armazon
 		
 		private char _EstaEnCarrito;
 		
+		private int _Cantidad;
+		
 		private EntityRef<Carrito> _Carrito;
 		
 		private EntityRef<Producto> _Producto;
@@ -1500,6 +1502,8 @@ namespace Armazon
     partial void OnCarritoIDChanged();
     partial void OnEstaEnCarritoChanging(char value);
     partial void OnEstaEnCarritoChanged();
+    partial void OnCantidadChanging(int value);
+    partial void OnCantidadChanged();
     #endregion
 		
 		public Producto_Carrito()
@@ -1573,6 +1577,26 @@ namespace Armazon
 					this._EstaEnCarrito = value;
 					this.SendPropertyChanged("EstaEnCarrito");
 					this.OnEstaEnCarritoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Cantidad", DbType="Int NOT NULL")]
+		public int Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this.OnCantidadChanging(value);
+					this.SendPropertyChanging();
+					this._Cantidad = value;
+					this.SendPropertyChanged("Cantidad");
+					this.OnCantidadChanged();
 				}
 			}
 		}
@@ -1752,7 +1776,7 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_UsuarioID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_UsuarioID", DbType="Int NOT NULL")]
 		public int UsuarioID
 		{
 			get
