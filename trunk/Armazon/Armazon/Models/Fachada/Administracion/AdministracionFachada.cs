@@ -429,33 +429,11 @@ namespace Armazon.Models
             tiendaMgr.Save();
         }
 
-        // Imagen
-
-        public IQueryable<Imagen> getImagenesProducto(int productoID)
+        // imagen
+        public Imagen getImagen(int id)
         {
-            ImagenManager imgr = ImagenManager.getInstance();
-            return imgr.getImagenDeProducto(productoID);
+            ProductoManager p = ProductoManager.getInstance();
+            return p.getImagen(id);
         }
-        public Imagen getImagen(int imagenID)
-        {
-            ImagenManager imgr = ImagenManager.getInstance();
-            return imgr.getImagen(imagenID);
-        }
-        public void addImagen(Imagen img)
-        {
-            ImagenManager imgr = ImagenManager.getInstance();
-            imgr.Add(img);
-        }
-        public void deleteImagen(int id)
-        {
-            ImagenManager imgr = ImagenManager.getInstance();
-            imgr.Delete(imgr.getImagen(id));
-        }
-        public void saveImagen()
-        {
-            ImagenManager imgr = ImagenManager.getInstance();
-            imgr.Save();
-        }
-        
     }
 }

@@ -84,6 +84,10 @@ namespace Armazon.Models.DataAccess.Administracion
             }
             return nombres;
         }
+        public Imagen getImagen(int id)
+        { 
+            return db.Imagens.SingleOrDefault(c => c.ImagenID == id);
+        }
         public void Save()
         {
             db.SubmitChanges();

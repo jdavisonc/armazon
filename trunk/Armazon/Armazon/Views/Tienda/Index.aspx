@@ -29,9 +29,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Modificar", "Edit", new { id = item.TiendaID }).Replace("Modificar", "<img style=\"border:none\" src= \"/Content/modificar.gif\" TITLE=\"Modificar\" />")%> |
-                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.TiendaID }).Replace("Eliminar", "<img style=\"border:none\" src= \"/Content/eliminar.gif\" TITLE=\"Eliminar\" />")%> |
-                <%= Html.ActionLink("Detalles", "Details", new { id = item.TiendaID }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detalles.gif\" TITLE=\"Detalles\" />")%>
+                <%= Html.ActionLink("Modificar", "Edit", new { id = item.TiendaID }).Replace("Modificar", "<img style=\"border:none\" src= \"/Content/pencil.png\" TITLE=\"Modificar\" />")%> |
+                <%= Html.ActionLink("Eliminar", "Delete", new { id = item.TiendaID }).Replace("Eliminar", "<img style=\"border:none\" src= \"/Content/remove.png\" TITLE=\"Eliminar\" />")%> |
+                <%= Html.ActionLink("Detalles", "Details", new { id = item.TiendaID }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detail.png\" TITLE=\"Detalles\" />")%>
             </td>
             <td>
                 <%= Html.Encode(item.TiendaID) %>

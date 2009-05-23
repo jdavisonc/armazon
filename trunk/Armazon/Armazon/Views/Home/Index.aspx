@@ -7,6 +7,10 @@
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Armazon</h2>
     
-    <p><a href="/Producto/BuscarProducto">Buscar Productos</a></p>
-    <p><a href="/SubCategoria">Listar Productos por SubCategorías</a></p>
+    <p>
+    <% using (Html.BeginForm("BuscarProducto","Producto")){ %>
+        <input type="text" id="fullText" name="fullText" />
+        <input type="submit" value="Buscar!" />
+    <% } %>
+    </p>
 </asp:Content>
