@@ -227,7 +227,7 @@ namespace Armazon.Controllers
                         t.Nombre = tag;
                         t.CantAp = 0;
                         adminFach.AddTag(t);
-                        adminFach.SaveTags();
+                        //adminFach.SaveTags();
                     }
                     if (adminFach.getProducto_Tag(productID, t.TagID) == null)
                     {
@@ -235,13 +235,16 @@ namespace Armazon.Controllers
                         string userName = myObject.UserName.ToString();                   
                         Producto_Tag pt = new Producto_Tag();
                         pt.ProductoID = productID;
+                        pt.Producto = adminFach.getProducto(productID);
                         pt.TagID = t.TagID;
+                        pt.Tag = t;
                         pt.UsuarioID = adminFach.getUsuario(userName).UsuarioID;
-                        adminFach.AddProducto_Tag(pt);
+                        //adminFach.AddProducto_Tag(pt);
+                        adminFach.getProducto(productID).Producto_Tags.Add(pt);
                         adminFach.SaveProducto_Tag();
                         // Solo sumo si el tag no esta asociado al producto
                         t.CantAp++;
-                        adminFach.SaveTags();
+                        //adminFach.SaveTags();
                     }
                 }
             }
