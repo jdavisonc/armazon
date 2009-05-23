@@ -19,27 +19,27 @@ namespace Armazon.Models.Fachada.Operativa
         //Tag
         public IQueryable<Tag> findAllTag()
         {
-            TagManager TagMgr = TagManager.getInstance();
+            TagManager TagMgr = new TagManager();
             return TagMgr.findAllTags();
         }
         public Tag getTag(int id)
         {
-            TagManager TagMgr = TagManager.getInstance();
+            TagManager TagMgr = new TagManager();
             return TagMgr.getTag(id);
         }
         public void addTag(Tag tag)
         {
-            TagManager TagMgr = TagManager.getInstance();
+            TagManager TagMgr = new TagManager();
             TagMgr.Add(tag);
         }
         public void deleteTag(int id)
         {
-            TagManager TagMgr = TagManager.getInstance();
+            TagManager TagMgr = new TagManager();
             TagMgr.Delete(TagMgr.getTag(id));
         }
         public void saveTag()
         {
-            TagManager tagMgr = TagManager.getInstance();
+            TagManager tagMgr = new TagManager();
             tagMgr.Save();
         }
     }

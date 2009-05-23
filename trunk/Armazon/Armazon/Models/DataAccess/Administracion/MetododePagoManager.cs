@@ -7,22 +7,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class MetododePagoManager
     {
-        private static MetododePagoManager instancia = null;
         private ArmazonDataContext db;
 
-        private MetododePagoManager()
+        public MetododePagoManager()
         {
             db = new ArmazonDataContext();
-            
-        }
-
-        public static MetododePagoManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new MetododePagoManager();
-            }
-            return instancia;
         }
 
 

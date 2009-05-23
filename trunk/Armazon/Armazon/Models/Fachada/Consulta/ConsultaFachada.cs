@@ -22,7 +22,7 @@ namespace Armazon.Models
         public IEnumerable<Producto> findAllProductosXSubCategoria(int idSubCategoria)
         {
             List<Producto> resultadoBusqueda = new List<Producto>();
-            ProductoManager productoMgr = ProductoManager.getInstance();
+            ProductoManager productoMgr = new ProductoManager();
             IQueryable<Producto> productosArmazon = productoMgr.findAllProductosXSubCategoria(idSubCategoria);
             resultadoBusqueda.AddRange(productosArmazon);
             return resultadoBusqueda;
@@ -33,7 +33,7 @@ namespace Armazon.Models
             List<Producto> resultadoBusqueda = new List<Producto>();
 
             // Busco productos sobre DB de Armazon
-            ProductoManager productoMgr = ProductoManager.getInstance();
+            ProductoManager productoMgr = new ProductoManager();
             IQueryable<Producto> productosArmazon = productoMgr.findAllProductos(fullText);
             resultadoBusqueda.AddRange(productosArmazon);
 

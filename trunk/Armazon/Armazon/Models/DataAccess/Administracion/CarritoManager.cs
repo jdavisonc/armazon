@@ -8,21 +8,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class CarritoManager
     {
-        private static CarritoManager instancia = null;
         private ArmazonDataContext db;
 
-        private CarritoManager()
+        public CarritoManager()
         {
             db = new ArmazonDataContext();
-        }
-
-        public static CarritoManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new CarritoManager();
-            }
-            return instancia;
         }
 
         /*public IQueryable<Carrito> findAllCarritoVendido()
@@ -92,7 +82,7 @@ namespace Armazon.Models.DataAccess.Administracion
                                     where carrito == prodCarr.CarritoID
                                     select prodCarr.ProductoID;
             List<int> listaIds = productosDelCarro.ToList();
-            ProductoManager prodMgr = ProductoManager.getInstance();
+            ProductoManager prodMgr = new ProductoManager();
             List<Producto> listProd = new List<Producto>();
             foreach(int elem in listaIds)
             {

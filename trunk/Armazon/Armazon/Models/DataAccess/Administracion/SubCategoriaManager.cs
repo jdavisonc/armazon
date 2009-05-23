@@ -14,24 +14,12 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class SubCategoriaManager
     {
-        private static SubCategoriaManager instancia = null;
         private ArmazonDataContext db;
 
-        private SubCategoriaManager()
+        public SubCategoriaManager()
         {
             db = new ArmazonDataContext();
-            
         }
-
-        public static SubCategoriaManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new SubCategoriaManager();
-            }
-            return instancia;
-        }
-
 
         public IQueryable<SubCategoria> findAllSubCategorias(int categoriaID)
         {

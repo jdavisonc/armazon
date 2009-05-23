@@ -7,21 +7,11 @@ namespace Armazon.Models.DataAccess.Administracion
 {
     public class UsuarioManager
     {
-        private static UsuarioManager instancia = null;
         private ArmazonDataContext db;
 
-        private UsuarioManager()
+        public UsuarioManager()
         {
             db = new ArmazonDataContext();
-        }
-
-        public static UsuarioManager getInstance()
-        {
-            if (instancia == null)
-            {
-                instancia = new UsuarioManager();
-            }
-            return instancia;
         }
 
         public IQueryable<Usuario> findAllUsuarios()

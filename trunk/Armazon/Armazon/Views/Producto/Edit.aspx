@@ -30,25 +30,28 @@
             <br>
             <h3>Imagenes</h3>
             <br>
-            <p>
-                <input type="file" name="files" id="files" onchange="document.getElementById('moreUploadsLink').style.display = 'block';" />
-                <div id="moreUploads"></div>
-                <div id="moreUploadsLink" style="display:none;"><a href="javascript:addFileInput();">Agregar Otra Imagen</a></div>
-            </p>
-            <div>
+            
+            <div style="display:inline-table">
                 <% foreach (Armazon.Models.DataTypes.DTImagen img in Model.Images){ %>
                   <div id="images-<%=img.Id %>" class="images">
                     <img src="<%= Url.Action( "ShowThumbnail", "Producto", new { productID = Model.Id, imageID = img.Id } ) %>" alt="<%= img.Nombre %>"/>
                     <br><br>
                     <a onclick="deleteImage(<%=img.Id %>);" style="cursor:pointer"><img src="/Content/remove.png"/></a>
-                    <!--<a href=""><img src=""/></a>-->
                   </div>
                 <% } %>
             </div>
             <br><br>
-            <p>
-                <input type="submit" value="Guardar" />
-            </p>
+            <div>
+                <p>
+                    Subir Imagenes: 
+                    <div id="moreUploads"><input type="file" name="files" id="files" onchange="document.getElementById('moreUploadsLink').style.display = 'block';" /></div>
+                    <br>
+                    <div id="moreUploadsLink" style="display:none;"><a href="javascript:addFileInput();">Agregar Otra Imagen</a><br/><br></div>
+                </p>
+                <p>
+                    <input type="submit" value="Guardar Producto" />
+                </p>
+            </div>
         </fieldset>
 
     <% } %>

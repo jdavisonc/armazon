@@ -299,8 +299,8 @@ namespace Armazon.Controllers
                 Imagen img = adminFach.getImagen(imageID);
                 if (img != null)
                 {
-                    p.Imagens.Remove(img);
-                    adminFach.saveProducto();
+                    adminFach.deleteImagen(imageID);
+                    adminFach.saveImagen();
                     return Json(true);
                 }
             }
