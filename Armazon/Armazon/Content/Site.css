@@ -16,7 +16,7 @@ body
 a:link
 {
     color: #034af3;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 a:visited
 {
@@ -30,6 +30,12 @@ a:hover
 a:active
 {
     color: #12eb87;
+}
+
+a img
+{
+    text-decoration: none;
+    border: 0px;   
 }
 
 p
@@ -319,10 +325,19 @@ div#title
 /* Widgets
 --------------------------------------------------------------- */
 
-.prodItem {text-align:center; width:33%;}
+.prodItem {text-align:center; width:32%; height: 250px}
 
 
 /* Extensions
 --------------------------------------------------------------- */
 
 .fltleft {float: left;} /*Use this class to float anything to the left*/
+
+div.images { 
+	float: left; width: 170px; padding: 10px; margin: 1em;
+    background: #eaeaea; color:#000; text-align: center;
+}
+
+div.images:hover{ 
+	background-color: #eaeabb;
+}

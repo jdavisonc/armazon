@@ -14,6 +14,7 @@ using System.IO;
 using System.Drawing;
 using System.Web.UI;
 using System.Web.Security;
+using System.Data.Linq;
 
 namespace Armazon.Controllers
 {
@@ -99,7 +100,6 @@ namespace Armazon.Controllers
                 Producto producto = administracionFachada.getProducto(id);
                 producto.Nombre = Request.Form["txtNombre"];
                 producto.Precio = Double.Parse(Request.Form["txtPrecio"]);
-                administracionFachada.saveProducto();
 
                 NameValueCollection parametros = Request.Params;
                 for (int i = 0; i < parametros.Count; i++)
@@ -133,10 +133,10 @@ namespace Armazon.Controllers
                             thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                             img.Thumbnail = ms.ToArray();
                         }
-                        administracionFachada.addImagen(img);
+                        producto.Imagens.Add(img);
                     }
                 }
-                administracionFachada.saveImagen();
+                administracionFachada.saveProducto();
                 return RedirectToAction("Details", new { id = producto.ProductoID });
             }
             catch
@@ -187,11 +187,6 @@ namespace Armazon.Controllers
             return View("List",dtCol);
         }
 
-        public ActionResult BuscarProducto()
-        {
-            return View();
-        }
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult BuscarProducto(String fullText)
         {
@@ -201,7 +196,8 @@ namespace Armazon.Controllers
             {
                 dtCollection.Add(prod.getDataType());
             }
-            return View(dtCollection);
+            ViewData["Title"] = "Resultado de Busqueda";
+            return View("List",dtCollection);
         }
 
         /// <summary>
@@ -255,6 +251,55 @@ namespace Armazon.Controllers
             return Details(productID);
         }
 
-        
+        public ActionResult ShowFirstThumbnail(int productID)
+        {
+            AdministracionFachada adminFach = new AdministracionFachada();
+            EntitySet<Imagen> set = adminFach.getProducto(productID).Imagens;
+            if ((set.Count > 0) && (set[0] != null))
+                return File(set[0].Thumbnail.ToArray(), "image/jpg");
+            else
+                return null;
+        }
+
+        public ActionResult ShowThumbnail(int productID, int imageID)
+        {
+            AdministracionFachada adminFach = new AdministracionFachada();
+            foreach (Imagen img in adminFach.getProducto(productID).Imagens)
+            {
+                if (img.ImagenID == imageID)
+                    return File(img.Thumbnail.ToArray(), "image/jpg");
+            }
+            return null;
+        }
+
+        public ActionResult ShowImage(int productID, int imageID)
+        {
+            AdministracionFachada adminFach = new AdministracionFachada();
+            foreach (Imagen img in adminFach.getProducto(productID).Imagens)
+            {
+                if (img.ImagenID == imageID)
+                    return File(img.Imagen1.ToArray(), img.MIMEType);
+            }
+            return null;
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult DeleteImage(int productID, int imageID)
+        {
+            AdministracionFachada adminFach = new AdministracionFachada();
+            Producto p = adminFach.getProducto(productID);
+            if (p != null)
+            {
+                Imagen img = adminFach.getImagen(imageID);
+                if (img != null)
+                {
+                    p.Imagens.Remove(img);
+                    adminFach.saveProducto();
+                    return Json(true);
+                }
+            }
+            return Json(false);
+        }
+
     }
 }

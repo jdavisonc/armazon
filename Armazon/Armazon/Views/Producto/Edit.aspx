@@ -27,16 +27,27 @@
                     </tr>
                 <%} %>
             </table>
-            
-            <img src="<%= Url.Action( "ShowThumbnail", "Imagen", new { id = Model.Images[0].Id } ) %>" />
             <br>
-            
-            <input type="file" name="files" id="files" onchange="document.getElementById('moreUploadsLink').style.display = 'block';" />
-            <div id="moreUploads"></div>
-            <div id="moreUploadsLink" style="display:none;"><a href="javascript:addFileInput();">Agregar Otra Imagen</a></div>
-
+            <h3>Imagenes</h3>
+            <br>
             <p>
-                <input type="submit" value="Grabar" />
+                <input type="file" name="files" id="files" onchange="document.getElementById('moreUploadsLink').style.display = 'block';" />
+                <div id="moreUploads"></div>
+                <div id="moreUploadsLink" style="display:none;"><a href="javascript:addFileInput();">Agregar Otra Imagen</a></div>
+            </p>
+            <div>
+                <% foreach (Armazon.Models.DataTypes.DTImagen img in Model.Images){ %>
+                  <div id="images-<%=img.Id %>" class="images">
+                    <img src="<%= Url.Action( "ShowThumbnail", "Producto", new { productID = Model.Id, imageID = img.Id } ) %>" alt="<%= img.Nombre %>"/>
+                    <br><br>
+                    <a onclick="deleteImage(<%=img.Id %>);" style="cursor:pointer"><img src="/Content/remove.png"/></a>
+                    <!--<a href=""><img src=""/></a>-->
+                  </div>
+                <% } %>
+            </div>
+            <br><br>
+            <p>
+                <input type="submit" value="Guardar" />
             </p>
         </fieldset>
 
@@ -45,7 +56,13 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
+    <script src="<%= ResolveUrl("~/Scripts/jquery.corner.js") %>" type="text/javascript"></script>
     <script type="text/javascript">
+        $(function() {
+            $('div.images').each(function() {
+                $(this).corner();
+            });
+        });
         var upload_number = 2;
         function addFileInput() {
             var d = document.createElement("div");
@@ -55,6 +72,18 @@
             d.appendChild(file);
             document.getElementById("moreUploads").appendChild(d);
             upload_number++;
+        }
+        var divimgID;
+        function deleteImage(imgID) {
+            divimgID = imgID;
+            var url = "<%= ResolveUrl("~/Producto/DeleteImage?productID=" + Model.Id) %>&imageID=" + imgID;
+            $.getJSON(url, callback);
+        }
+        function callback(obj) {
+            if (obj == true) {
+                var nameDiv = '#images-' + divimgID;
+                $(nameDiv).hide("slow");
+            }
         }
     </script>
 </asp:Content>
