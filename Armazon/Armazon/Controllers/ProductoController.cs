@@ -183,7 +183,13 @@ namespace Armazon.Controllers
             {
                 dtCol.Add(p.getDataType());
             }
-            ViewData["Title"] = "Listado por Subcategoria";
+            AdministracionFachada aFachada = new AdministracionFachada();
+            
+            ViewData["SubCategoriaID"] = idSubCategoria;
+            ViewData["SubCategoriaNombre"] = aFachada.getSubCategoria(idSubCategoria).Nombre;
+            ViewData["CategoriaID"] = aFachada.getSubCategoria(idSubCategoria).CategoriaID;
+            ViewData["CategoriaNombre"] = aFachada.getSubCategoria(idSubCategoria).Categoria.Nombre;
+            ViewData["Title"] = "Listado de Productos";
             return View("List",dtCol);
         }
 

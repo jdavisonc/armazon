@@ -7,11 +7,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%= ViewData["Title"] %></h2>
-    <% if (Page.User.IsInRole("Administrador")) { %>
-    <p>
-        <%= Html.ActionLink("Create New", "Create","Producto",null,null)%>
-    </p>
-    <% } %>
+    
+    <font color=blue><%= ViewData["CategoriaNombre"] %></font>
+    ->
+    <font color=red><%= ViewData["SubCategoriaNombre"] %></font><br><br>
+
     <div id="listado">
         <%foreach (Armazon.Models.DataTypes.DTProduct p in Model) { %>
         <div class="fltleft prodItem">
@@ -32,8 +32,15 @@
             
         </div>
         <%} %>
-    </div>
-    <p>        <%= Html.ActionLink("Crear Producto","CrearProducto","SubCategoria",new { idSubCategoria = item.SubCategoriaID, idCategoria = ViewData["CategoriaID"] },null)%> |                            <%= Html.ActionLink("Crear Producto","Create",new{idSubCategoria=item.SubCategoriaID,idCategoria=ViewData["CategoriaID"]})%>|    </p></asp:Content>
+    </div>    
+    <% if (Page.User.IsInRole("Administrador")) { %>
+    <p>        
+        <%= Html.ActionLink("Crear Producto", "CrearProducto", "SubCategoria", new { idSubCategoria = ViewData["SubCategoriaID"], idCategoria = ViewData["CategoriaID"] }, null)%>
+<!--    <%= Html.ActionLink("Crear Producto", "Create", new { idSubCategoria = ViewData["SubCategoriaID"], idCategoria = ViewData["CategoriaID"] })%>-->
+    </p>
+    <% } %>   
+
+</asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
 </asp:Content>
