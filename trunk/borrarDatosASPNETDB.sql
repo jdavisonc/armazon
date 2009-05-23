@@ -1,0 +1,11 @@
+delete from ASPNETDB.dbo.aspnet_Membership
+delete from ASPNETDB.dbo.aspnet_UsersInRoles
+delete from ASPNETDB.dbo.aspnet_Users
+delete from ASPNETDB.dbo.aspnet_Roles
+delete from ASPNETDB.dbo.aspnet_Applications
+delete from ASPNETDB.dbo.aspnet_Paths
+delete from ASPNETDB.dbo.aspnet_PersonalizationAllUsers
+delete from ASPNETDB.dbo.aspnet_PersonalizationPerUser
+delete from ASPNETDB.dbo.aspnet_Profile
+delete from ASPNETDB.dbo.aspnet_SchemaVersions
+delete from ASPNETDB.dbo.aspnet_WebEvent_Events
