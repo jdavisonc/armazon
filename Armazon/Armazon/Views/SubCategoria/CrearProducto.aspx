@@ -14,6 +14,9 @@
             <tr>
                 <td>Nombre:</td><td><input type="text" id="txtNombre" name="txtNombre" /> </td>
             </tr>
+            <tr>
+                <td>Precio:</td><td><input type="text" id="Text1" name="txtPrecio" /> </td>
+            </tr>
         <%foreach (var item in Model.getPropiedades()) { %>
             <tr>
                 <td><%=item.Nombre%>:</td><td><input type="text" id="<%=item.PropiedadID%>" name="<%=item.PropiedadID%>" /> </td>

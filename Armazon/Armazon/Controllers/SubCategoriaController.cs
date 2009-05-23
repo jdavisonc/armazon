@@ -339,14 +339,16 @@ namespace Armazon.Controllers
             AdministracionFachada administracionFachada = new AdministracionFachada();
 
             String strNombre = Request.Form["txtNombre"];
+            float precio = float.Parse(Request.Form["txtPrecio"]);
             Producto nuevoProducto = new Producto();
             nuevoProducto.SubCategoriaID = idSubCategoria;
             nuevoProducto.Nombre = strNombre;
+            nuevoProducto.Precio = precio;
             administracionFachada.addProducto(nuevoProducto);
-            administracionFachada.saveProducto();
+            //administracionFachada.saveProducto();
 
-            Producto producto = administracionFachada.getProducto(strNombre);
-            int idProducto = producto.ProductoID;
+            //Producto producto = administracionFachada.getProducto(strNombre);
+            //int idProducto = producto.ProductoID;
 
             NameValueCollection parametros = Request.Params;
             for(int i=0; i < parametros.Count; i++)
@@ -356,18 +358,26 @@ namespace Armazon.Controllers
                 int parametro;
                 if (int.TryParse(strParametro,out parametro))
                 {
+                    Propiedad pp = administracionFachada.getPropiedad(parametro);
                     Valor nuevo = new Valor();
-                    nuevo.ProductoID = idProducto;
-                    nuevo.PropiedadID = parametro;
+                    nuevo.Producto = nuevoProducto;
+                    //nuevo.ProductoID = idProducto;
+                    //nuevo.PropiedadID = parametro;
+                    nuevo.Propiedad = pp;
                     nuevo.Valor1 = strValor;
-                    administracionFachada.addValor(nuevo);
-                    administracionFachada.saveValor();
+                    //administracionFachada.addValor(nuevo);
+                    //administracionFachada.saveValor();
                 }
             }
 
             var subCategorias = administracionFachada.findAllSubCategorias(idCategoria).ToList();
 
             ViewData["CategoriaID"] = idCategoria;
+
+
+            /**/administracionFachada.saveProducto();
+
+
             return View("ListarSubCategoria",subCategorias);
         }
     }
