@@ -6,6 +6,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <form id="form1" runat="server">
+
     <h2>Detalle Producto</h2>
 
     <fieldset>
@@ -32,17 +34,22 @@
                 <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
                 <input type="text" id="tagCollection" name="tagCollection"/>
                 <input type="submit" value="Etiquetar"/>            
+                
             <%}%>            
         </p>
         <p>
-        <input type="button" value="boton" onclick="llamada(<%=Model.Id %>)" />
         
-        </p>
+        <input type="button" value="Comprar" onclick="llamada(<%=Model.Id %>)" />
+        <input id="Text1" type="text" name="cantCompra"/>  
+       
+       &nbsp;</p>
+        
     </fieldset>
     <p>
         <%=Html.ActionLink("Modificar", "Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID })%> |
         <%=Html.ActionLink("Eliminar", "Delete", new { id = Model.Id })%>
     </p>    
+    </form>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">

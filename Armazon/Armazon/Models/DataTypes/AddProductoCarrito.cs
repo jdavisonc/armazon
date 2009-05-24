@@ -8,7 +8,7 @@ namespace Armazon.Models.DataTypes
     public class AddProductoCarrito
     {
         private double _montoActual;
-        private List<string> _productos;
+        private List<DTPedido> _productos;
         public AddProductoCarrito()
         {
             _montoActual = 0;
@@ -20,7 +20,7 @@ namespace Armazon.Models.DataTypes
             set{_montoActual = value;}
         }
 
-        public List<string> Productos
+        public List<DTPedido> Productos
         {
             get { return _productos; }
             set { _productos = value; }

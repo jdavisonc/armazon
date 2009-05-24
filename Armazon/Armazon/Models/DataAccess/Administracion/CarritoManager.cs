@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Armazon.Models.DataTypes;
 
 namespace Armazon.Models.DataAccess.Administracion
 {
@@ -66,16 +67,32 @@ namespace Armazon.Models.DataAccess.Administracion
                 return activoAux;
             }
         }
-        public void AgregarProductoCarrito(int productoId, int carritoId)
+        public void AgregarProductoCarrito(int productoId, int carritoId,int cant)
         {
-            Producto_Carrito prodCarrito = new Producto_Carrito();
-            prodCarrito.ProductoID = productoId;
-            prodCarrito.CarritoID = carritoId;
-            prodCarrito.EstaEnCarrito = '0';
-            db.Producto_Carritos.InsertOnSubmit(prodCarrito);
-            db.SubmitChanges();
-        }
-        public List<Producto> getProductosDeCarrito(int carrito)
+            var yaEstaEnCarro = from producto in db.Producto_Carritos
+                                where producto.ProductoID == productoId && producto.CarritoID == carritoId
+                                select producto;
+
+            int repeticiones = yaEstaEnCarro.ToList().Count;
+
+            if (repeticiones > 0)
+            {
+                Producto_Carrito repetido = yaEstaEnCarro.ToList().First();
+                repetido.Cantidad = repetido.Cantidad + cant;
+                db.SubmitChanges();
+            }
+            else
+            {
+                Producto_Carrito prodCarrito = new Producto_Carrito();
+                prodCarrito.ProductoID = productoId;
+                prodCarrito.CarritoID = carritoId;
+                prodCarrito.Cantidad = cant;
+                prodCarrito.EstaEnCarrito = '0';
+                db.Producto_Carritos.InsertOnSubmit(prodCarrito);
+                db.SubmitChanges();
+            }
+          }
+        public List<DTPedido> getProductosDeCarrito(int carrito)
         {
             Producto_Carrito prodCarrito = new Producto_Carrito();
             var productosDelCarro = from prodCarr in db.Producto_Carritos
@@ -83,11 +100,18 @@ namespace Armazon.Models.DataAccess.Administracion
                                     select prodCarr.ProductoID;
             List<int> listaIds = productosDelCarro.ToList();
             ProductoManager prodMgr = new ProductoManager();
-            List<Producto> listProd = new List<Producto>();
+            List<DTPedido> listProd = new List<DTPedido>();
             foreach(int elem in listaIds)
             {
                 Producto prod = prodMgr.getProducto(elem);
-                listProd.Add(prod);
+                DTPedido dtp = new DTPedido();
+                var cant = from prodCarr in db.Producto_Carritos
+                           where carrito == prodCarr.CarritoID && prod.ProductoID == prodCarr.ProductoID
+                           select prodCarr.Cantidad;
+                dtp.Cant = cant.ToList().First();
+                dtp.Nombre = prod.Nombre;
+                dtp.Id = prod.ProductoID;
+                listProd.Add(dtp);
             }
             return listProd;
         }

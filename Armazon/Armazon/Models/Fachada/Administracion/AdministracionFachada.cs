@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
 using System.Collections.Generic;
+using Armazon.Models.DataTypes;
 
 namespace Armazon.Models
 {
@@ -316,7 +317,7 @@ namespace Armazon.Models
         {
             ProductoMgr.Save();
         }
-        public double getMontoProductos(List<Producto> listProd)
+        public double getMontoProductos(List<DTPedido> listProd)
         {
             return ProductoMgr.getMontoProductos(listProd);
         }
@@ -425,11 +426,15 @@ namespace Armazon.Models
         {
             return CarritoMgr.getCarritoActivoById(idCarrito);
         }
-        public void AgregarProductoCarrito(int productoId, int carritoId)
+        public void AgregarProductoCarrito(int productoId, int carritoId,int cant)
         {
-            CarritoMgr.AgregarProductoCarrito(productoId, carritoId);
+
+
+            CarritoMgr.AgregarProductoCarrito(productoId, carritoId, cant);
+        
+
         }
-        public List<Producto> getProductosDeCarrito(int carrito)
+        public List<DTPedido> getProductosDeCarrito(int carrito)
         {
             return CarritoMgr.getProductosDeCarrito(carrito);
         }

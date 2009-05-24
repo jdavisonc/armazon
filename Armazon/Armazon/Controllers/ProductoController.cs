@@ -34,6 +34,30 @@ namespace Armazon.Controllers
             return View(dtCollection);*/
             return View("NotFound");
         }
+        
+        public ActionResult AgregarProducto(string cant,string idProducto)
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+            int usuarioId = adminFac.getUsuario(userName).UsuarioID;
+            Carrito carroActivo = adminFac.getCarritoActivoByUser(usuarioId);
+            int carritoId = carroActivo.CarritoID;
+            
+            adminFac.AgregarProductoCarrito(int.Parse(idProducto), carritoId,int.Parse(cant));
+            List<DTPedido> prods = adminFac.getProductosDeCarrito(carritoId);
+            double montoProductos = adminFac.getMontoProductos(prods);
+            AddProductoCarrito prodsCarrito = new AddProductoCarrito();
+            prods.Reverse();    
+            prodsCarrito.MontoActual = montoProductos;
+            prodsCarrito.Productos = prods;
+            return Json(prodsCarrito);
+
+
+
+
+        }
+
 
         //
         // GET: /Producto/Details/5
@@ -66,7 +90,7 @@ namespace Armazon.Controllers
             try
             {
                 // TODO: Add insert logic here
-                UpdateModel(producto);
+                UpdateModel(producto); 
                 AdministracionFachada administracionFachada = new AdministracionFachada();
                 administracionFachada.addProducto(producto);
                 administracionFachada.saveProducto();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Armazon;
+using Armazon.Models.DataTypes;
 
 namespace Armazon.Models.DataAccess.Administracion
 {
@@ -55,12 +56,13 @@ namespace Armazon.Models.DataAccess.Administracion
         {
             db.Productos.DeleteOnSubmit(producto);
         }
-        public double getMontoProductos(List<Producto> listProd)
+        public double getMontoProductos(List<DTPedido> listProd)
         {
             double MontoTotal = 0;
-            foreach (Producto prod in listProd)
+            foreach (DTPedido prod in listProd)
             {
-                double auxMonto = prod.Precio + MontoTotal;
+                Producto producto = getProducto(prod.Id);
+                MontoTotal = producto.Precio * prod.Cant + MontoTotal;
             }
             return MontoTotal;
         }

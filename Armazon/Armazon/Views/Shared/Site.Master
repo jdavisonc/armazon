@@ -43,7 +43,8 @@
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
             <div style="position:absolute; width:200px; left:1051px; top: 81px; height: auto;border:solid red 1px">
-                <asp:ContentPlaceHolder ID="MenuCarrito" runat="server" />
+                <% Html.RenderPartial("LeftCarrito"); %>
+            
             </div>
         </div>
     </div>

@@ -108,6 +108,7 @@
     <Compile Include="Models\DataTypes\AddProductoCarrito.cs" />
     <Compile Include="Models\DataTypes\DTCategoria.cs" />
     <Compile Include="Models\DataTypes\DTImagen.cs" />
+    <Compile Include="Models\DataTypes\DTPedido.cs" />
     <Compile Include="Models\DataTypes\DTProductAttr.cs" />
     <Compile Include="Models\DataTypes\DTProduct.cs" />
     <Compile Include="Models\DataTypes\DTProductAttrImage.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Views\Propiedad\Edit.aspx" />
     <Content Include="Views\Propiedad\Index.aspx" />
     <Content Include="Views\Propiedad\NotFound.aspx" />
+    <Content Include="Views\Shared\LeftCarrito.ascx" />
     <Content Include="Views\Shared\MenuCategoria.ascx" />
     <Content Include="Views\SubCategoria\AsociarPropiedades.aspx" />
     <Content Include="Views\SubCategoria\CrearProducto.aspx" />
