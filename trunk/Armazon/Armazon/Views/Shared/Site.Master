@@ -15,14 +15,23 @@
     <div>
 
         <div>
-            <div style="width:150px;height:80px;border:solid red 1px;">
-                <h1>Armazon</h1>
-            </div>
-            <div style="position:absolute; top:0px; left:151px;width:1100px;height:20px;text-align:right; border:solid red 1px">
+            <div style="width:150px;height:80px;background-image:url(../../Content/armazon.png);background-repeat:no-repeat"></div>
+            <div style="position:absolute; top:0px; left:151px;width:1100px;height:20px;text-align:right">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>  
-            <div style="position:absolute; left:151px;top:21px;width:1100px;height:59px;border:solid red 1px">
+            <div style="position:absolute; left:151px;top:21px;width:1100px;height:59px;background-image:url(../../Content/fondoBuscador.png);background-repeat:no-repeat">
                 
+                <form action="/Producto/BuscarProducto" method="post">
+                    <div>
+                        <input type="text" id="fullText" name="fullText" style="position:absolute; top:27px; left:100px;width:750px;height:20px"/>
+                    </div>
+                    <div>
+                        <input type="image" src="../../Content/lupaSombra.png" id="btnBuscar" 
+                            name="btnBuscar" 
+                            
+                            style="position:absolute; top:16px; left:860px; width:40px; height:40px;"/>
+                    </div>
+                </form>
             </div>
         </div>
           <div>
