@@ -35,14 +35,14 @@
             </div>
         </div>
           <div>
-            <div style="position:absolute; top:81px; width:200px; height:auto;border:solid red 1px">
+            <div style="position:absolute; top:81px; width:200px; height:auto;">
                 <% Html.RenderPartial("MenuCategoria"); %>
             </div>
             
-            <div style="position:absolute; width:829px; left:201px; top: 81px; height: auto;padding:10px; border:solid red 1px">
+            <div style="position:absolute; width:829px; left:201px; top: 81px; height: auto;padding:10px;">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
-            <div style="position:absolute; width:200px; left:1051px; top: 81px; height: auto;border:solid red 1px">
+            <div style="position:absolute; width:200px; left:1051px; top: 81px; height: auto;">
                 <% Html.RenderPartial("LeftCarrito"); %>
             
             </div>
