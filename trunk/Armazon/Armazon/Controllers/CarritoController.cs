@@ -25,26 +25,7 @@ namespace Armazon.Controllers
             return View(adminFac.getCarritoOfUser(userName));
         }
 
-        public ActionResult AgregarProducto(int id)
-        {
-            AdministracionFachada adminFac = new AdministracionFachada();
-            MembershipUser myObject = Membership.GetUser();
-            string userName = myObject.UserName.ToString();
-            int usuarioId = adminFac.getUsuario(userName).UsuarioID;
-            Carrito carroActivo =  adminFac.getCarritoActivoByUser(usuarioId);
-            int carritoId = carroActivo.CarritoID;
-            adminFac.AgregarProductoCarrito(id, carritoId);
-            List<Producto> prods = adminFac.getProductosDeCarrito(carritoId);
-            double montoProductos = adminFac.getMontoProductos(prods);
-            AddProductoCarrito prodsCarrito = new AddProductoCarrito();
-            prodsCarrito.MontoActual = montoProductos;
-            prodsCarrito.Productos = adminFac.getNombresProductos(prods);
-            return Json(prodsCarrito);
-
         
-        
-        
-        }
 
         
         
