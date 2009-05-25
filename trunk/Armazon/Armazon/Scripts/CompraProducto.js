@@ -1,22 +1,21 @@
 ﻿function llamada(id) {
 
-    alert(id);
     var num = document.getElementById("Text1").value;
     var url = "/Producto/AgregarProducto?cant="+num+ "&idProducto="+id;
-    alert(url);
+    
     $.getJSON(url, popup);
 };
 
 
 function popup(variable) {
     $("#carrito").hide();
-    $("#monto").html("Monto actual del Carrito= " + variable.MontoActual);
+    $("#monto").html("Monto actual del Carrito= " + variable.MontoActual+"<br />"+"<br />"+"Productos en el carrito:");
 
     $("#productos").html("");
     for (var obj in variable.Productos) {
 
 
-        $("#productos").append("<div id=" + "producto" + obj + ">" + "producto: " + variable.Productos[obj].Nombre + " cant: " + variable.Productos[obj].Cant + "</div>");
+        $("#productos").append("<div id=" + "producto" + obj + ">" + variable.Productos[obj].Nombre + " cant: " + variable.Productos[obj].Cant + " precio: " + variable.Productos[obj].Precio + "</div>");
         
 
 

@@ -111,6 +111,7 @@ namespace Armazon.Models.DataAccess.Administracion
                 dtp.Cant = cant.ToList().First();
                 dtp.Nombre = prod.Nombre;
                 dtp.Id = prod.ProductoID;
+                dtp.Precio = prod.Precio;
                 listProd.Add(dtp);
             }
             return listProd;

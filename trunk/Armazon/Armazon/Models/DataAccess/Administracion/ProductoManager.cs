@@ -61,8 +61,8 @@ namespace Armazon.Models.DataAccess.Administracion
             double MontoTotal = 0;
             foreach (DTPedido prod in listProd)
             {
-                Producto producto = getProducto(prod.Id);
-                MontoTotal = producto.Precio * prod.Cant + MontoTotal;
+                
+                MontoTotal = prod.Precio * prod.Cant + MontoTotal;
             }
             return MontoTotal;
         }

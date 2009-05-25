@@ -10,6 +10,7 @@ namespace Armazon.Models.DataTypes
         private int id;
         private string nombre;
         private int cant;
+        private double precio;
 
         public DTPedido() { }
         public DTPedido(int id)
@@ -32,5 +33,12 @@ namespace Armazon.Models.DataTypes
             get { return nombre; }
             set { nombre = value; }
         }
+        public double Precio
+        {
+            get { return precio; }
+            set { precio = value; }
+        }
+    
+    
     }
 }
