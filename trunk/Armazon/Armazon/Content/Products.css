@@ -1,0 +1,97 @@
+﻿
+/* Productos  
+----------------------------------------------------------*/
+.detailProduct
+{
+    display:table;
+    margin-top: 20px;
+}
+
+.detailProduct h2
+{
+    font-size: 18px;
+    color: #333;
+    margin: 0px;
+    padding:0px;
+    border-bottom: 1px dashed #999;
+}
+
+.sectionProduct
+{
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+.sectionProduct h3
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: #CC6600;
+    border-bottom: 1px dashed #999;
+}
+
+.sectionProduct h3
+{
+    color: #ff9900;
+    font-weight:bold;
+    font-family:verdana, sans-serif;
+}
+
+div#contenderLeft
+{
+    background-color: White;
+    float: left;
+    padding:10px;
+    text-align:center;
+}
+
+div#imageProductContender
+{
+    width: 300px;
+}
+
+#imglist li
+{
+    display: inline;
+    list-style-type: none;
+}
+
+#imglist li img
+{
+    margin:1px;
+    border: 1px solid #999;
+    padding: 3px;
+    cursor: pointer;
+}
+
+#buyBlock
+{
+    font-size: 11px;
+    margin-top: 15px;
+    margin-left: 60px;
+    width: 150px;
+    padding: 10px;
+    background-color: #A1C8D4;   
+}
+
+#addTag input[type=text]
+{
+    width: 55px;
+}
+
+.commentBlock
+{
+    margin: 5px;
+    padding: 10px;
+    background-color: #eaeaea;    
+}
+.commentBlock span.by
+{
+    font-size:10px;
+    font-weight: bold;
+}
+
+.imageMiddle
+{
+    vertical-align: middle;    
+}
