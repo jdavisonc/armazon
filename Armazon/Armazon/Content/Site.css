@@ -7,7 +7,7 @@ body
 {
     /*background-color: #5c87b2;*/
     font-size: .75em;
-    font-family: Verdana, Helvetica, Sans-Serif;
+    font-family: Verdana, Sans-Serif;
     margin: 0;
     padding: 0;
     color: #696969;
@@ -223,6 +223,7 @@ input[type="text"]
 {
     width: 200px;
     border: 1px solid #CCC;
+    font-size:9px;
 }
 
 input[type="password"] 

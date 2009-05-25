@@ -151,7 +151,7 @@ namespace Armazon.Controllers
                         img.MIMEType = file.ContentType;
                         img.Imagen1 = buf;
                         Image thumbnail = Image.FromStream(file.InputStream).
-                            GetThumbnailImage(150, 150, null, new System.IntPtr());
+                            GetThumbnailImage(280, 280, null, new System.IntPtr());
                         using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
                         {
                             thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
