@@ -16,6 +16,6 @@ delete from armazon.dbo.Sucursal
 delete from armazon.dbo.Tag
 delete from armazon.dbo.Tarjeta
 delete from armazon.dbo.Tienda
-delete from armazon.dbo.Usuario
+--delete from armazon.dbo.Usuario
 delete from armazon.dbo.Valor
 delete from armazon.dbo.Vendido
