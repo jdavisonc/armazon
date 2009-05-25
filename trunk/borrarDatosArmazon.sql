@@ -2,6 +2,7 @@ delete from armazon.dbo.Activo
 delete from armazon.dbo.Producto_Carrito
 delete from armazon.dbo.Carrito
 delete from armazon.dbo.Valor
+delete from armazon.dbo.Producto_Tag
 delete from armazon.dbo.Producto
 delete from armazon.dbo.SubCategoria_Propiedad
 delete from armazon.dbo.Propiedad
@@ -10,7 +11,6 @@ delete from armazon.dbo.Categoria
 delete from armazon.dbo.Imagen
 delete from armazon.dbo.MetodoDePago
 delete from armazon.dbo.PayPal
-delete from armazon.dbo.Producto_Tag
 delete from armazon.dbo.Producto_Usuario
 delete from armazon.dbo.Sucursal
 delete from armazon.dbo.Tag
