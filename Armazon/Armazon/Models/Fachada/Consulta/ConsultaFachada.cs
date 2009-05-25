@@ -78,6 +78,12 @@ namespace Armazon.Models
 
             return resultadoBusqueda;
         }
+
+        public IQueryable<Producto> productosMasImportantes()
+        {
+            ProductoManager productoMgr = new ProductoManager();
+            return productoMgr.findAllProductos();
+        }
         
     }
 }

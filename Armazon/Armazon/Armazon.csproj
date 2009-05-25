@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAC3253F-9071-4798-A46C-16F7A01F1A55}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -126,6 +126,10 @@
     <Compile Include="Models\Fachada\Administracion\AdministracionFachada.cs" />
     <Compile Include="Models\Fachada\Consulta\ConsultaFachada.cs" />
     <Compile Include="Models\Fachada\Operativa\OperativaFachada.cs" />
+    <Compile Include="Models\Paginado\ExtensionesPaginado.cs" />
+    <Compile Include="Models\Paginado\IPagedList.cs" />
+    <Compile Include="Models\Paginado\PagedList.cs" />
+    <Compile Include="Models\Paginado\Paginado.cs" />
     <Compile Include="Models\ServiceAccess\AmazonService.cs" />
     <Compile Include="Models\ServiceAccess\ArmazonService.cs" />
     <Compile Include="Models\ServiceAccess\FabricAccessStore.cs" />
@@ -155,6 +159,7 @@
     <Content Include="Content\MenuCategoria.css" />
     <Content Include="Content\nerdinner.gif" />
     <Content Include="Content\noImageAvailable.jpg" />
+    <Content Include="Content\Paginado.css" />
     <Content Include="Content\pencil.png" />
     <Content Include="Content\Products.css" />
     <Content Include="Content\recommend.png" />
@@ -389,9 +394,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
