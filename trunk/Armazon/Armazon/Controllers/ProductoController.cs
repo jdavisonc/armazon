@@ -217,8 +217,8 @@ namespace Armazon.Controllers
             return View("List",dtCol);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult BuscarProducto(String fullText)
+        
+        public ActionResult BuscarProducto(String fullText, int? page)
         {
             List<DTProduct> dtCollection = new List<DTProduct>();
             ConsultaFachada consultaFachada = new ConsultaFachada();
@@ -227,7 +227,9 @@ namespace Armazon.Controllers
                 dtCollection.Add(prod.getDataType());
             }
             ViewData["Title"] = "Resultado de Busqueda";
-            return View("List",dtCollection);
+            ViewData["FullText"] = fullText;
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            return View("List", dtCollection.ToPagedList(currentPageIndex, 9));
         }
 
         /// <summary>
