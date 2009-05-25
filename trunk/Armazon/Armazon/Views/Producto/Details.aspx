@@ -32,10 +32,10 @@
         <div class="sectionProduct">
             <h2><%= Html.Encode(Model.Nombre)%>
             <% if (Page.User.IsInRole("Administrador")){ %>
-                <a href="<%= Url.Action("Modificar", "Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID }) %>" title="Modificar">
+                <a href="<%= Url.Action("Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID }) %>" title="Modificar">
                     <img src="<%=ResolveUrl("~/Content/doc_edit.png")%>"/>
                 </a>
-                <a href="<%=Url.Action("Eliminar", "Delete", new { id = Model.Id })%>" title="Eliminar">
+                <a href="<%=Url.Action("Delete", new { id = Model.Id })%>" title="Eliminar">
                     <img src="<%=ResolveUrl("~/Content/doc_remove.png")%>"/>
                 </a>
             <% } %>
@@ -91,6 +91,7 @@
             <a onclick="$('#formComments').toggle('slow');" style="cursor:pointer;float:right">
                 <img src="<%= ResolveUrl("~/Content/add_comment.png") %>" class="imageMiddle"/> Agregar Comentario
             </a>
+            <br>
             <div id="formComments">
                 Formulario aqui
             </div>
