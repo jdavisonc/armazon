@@ -198,7 +198,7 @@ namespace Armazon.Controllers
             return View("Deleted");
         }
 
-        public ActionResult Listado(int idSubCategoria)
+        public ActionResult Listado(int idSubCategoria, int? page)
         {
             ConsultaFachada consultaFachada = new ConsultaFachada();
             IEnumerable<Producto> productosXSubCategoria = consultaFachada.findAllProductosXSubCategoria(idSubCategoria);
@@ -214,7 +214,8 @@ namespace Armazon.Controllers
             ViewData["CategoriaID"] = aFachada.getSubCategoria(idSubCategoria).CategoriaID;
             ViewData["CategoriaNombre"] = aFachada.getSubCategoria(idSubCategoria).Categoria.Nombre;
             ViewData["Title"] = "Listado de Productos";
-            return View("List",dtCol);
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            return View("List",dtCol.ToPagedList(currentPageIndex, 9));
         }
 
         
