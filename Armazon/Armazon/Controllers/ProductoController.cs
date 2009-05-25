@@ -248,11 +248,12 @@ namespace Armazon.Controllers
                 string[] tags = tagCollection.Split(',');
                 foreach (string tag in tags)
                 {
-                    Tag t = adminFach.getTag(tag);
+                    string etiqueta = tag.Trim();
+                    Tag t = adminFach.getTag(etiqueta);
                     if (t == null)
                     {
                         t = new Tag();
-                        t.Nombre = tag;
+                        t.Nombre = etiqueta;
                         t.CantAp = 0;
                         adminFach.AddTag(t);
                         adminFach.SaveTags();
