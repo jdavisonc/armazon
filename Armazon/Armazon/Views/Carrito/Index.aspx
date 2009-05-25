@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Carrito>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Models.DataTypes.DTPedido>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -8,37 +8,49 @@
 
     <h2>Index</h2>
 
-    <fieldset>
-        <legend>Fields</legend>
-        <p>
-            CarritoID:
-            <%= Html.Encode(Model.CarritoID) %>
-        </p>
-        <p>
-            UsuarioID:
-            <%= Html.Encode(Model.UsuarioID) %>
-        </p>
-        <p>
-            Fecha:
-            <%= Html.Encode(String.Format("{0:g}", Model.Fecha)) %>
-        </p>
-        <p>
-            Total:
-            <%= Html.Encode(String.Format("{0:F}", Model.Total)) %>
-        </p>
-        <p>
-            MetodoDePagoID:
-            <%= Html.Encode(Model.MetodoDePagoID) %>
-        </p>
-        <p>
-            CarritoType:
-            <%= Html.Encode(Model.CarritoType) %>
-        </p>
-    </fieldset>
-    <p>
+    <table>
+        <tr>
+            <th></th>
+            
+            <th>
+                Nombre
+            </th>
+            <th>
+                Cant
+            </th>
+            
+            <th>
+                Precio
+            </th>
+        </tr>
 
-        <%=Html.ActionLink("Edit", "Edit", new { id=Model.CarritoID }) %> |
-        <%=Html.ActionLink("Back to List", "Index") %>
+    <%  int i = 0;
+        foreach (var item in Model) { %>
+    
+        <tr>
+            <td>
+                <%= Html.ActionLink("Edit", "Edit", new {  id=i }) %> |
+                <%= Html.ActionLink("Details", "Details", new { id=i })%>
+                <%i++; %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Nombre) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Cant) %>
+            </td>
+            
+            <td>
+                <%= Html.Encode(String.Format("{0:F}", item.Precio)) %>
+            </td>
+        </tr>
+        
+    <% } %>
+
+    </table>
+
+    <p>
+        <%= Html.ActionLink("Create New", "Create") %>
     </p>
 
 </asp:Content>

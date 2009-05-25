@@ -21,8 +21,9 @@ namespace Armazon.Controllers
             AdministracionFachada adminFac = new AdministracionFachada();
             MembershipUser myObject = Membership.GetUser();
             string userName = myObject.UserName.ToString();
-
-            return View(adminFac.getCarritoOfUser(userName));
+            Carrito carrito = adminFac.getCarritoOfUser(userName);
+            List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
+            return View(listPedido);
         }
 
         
@@ -70,7 +71,12 @@ namespace Armazon.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            AdministracionFachada adminFac = new AdministracionFachada();
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+            Carrito carrito = adminFac.getCarritoOfUser(userName);
+            List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
+            return View(listPedido[id]);
         }
 
         //

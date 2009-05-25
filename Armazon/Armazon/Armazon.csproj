@@ -193,6 +193,7 @@
     <Content Include="Views\Account\SetToAdministrator.aspx" />
     <Content Include="Views\Activo\Details.aspx" />
     <Content Include="Views\Carrito\Create.aspx" />
+    <Content Include="Views\Carrito\Edit.aspx" />
     <Content Include="Views\Carrito\Index.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
