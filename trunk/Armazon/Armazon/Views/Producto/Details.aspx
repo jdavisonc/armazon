@@ -59,14 +59,22 @@
             <%foreach (String tag in Model.Tags){%> 
                 <span style="float: left;width:100px"><img src="<%= ResolveUrl("~/Content/tag_list.png") %>" class="imageMiddle"/><%=tag%></span>
             <%}%>
-            <br><br />
-            <div style="display:inline">
-            <% using (Html.BeginForm("AddTag","Producto",FormMethod.Post)) {%>
+            <br><br/>
+            
+            
+            
+            <%if (Request.IsAuthenticated){%>
+                <div style="display:inline">
+                    <%using (Html.BeginForm("AddTag","Producto",FormMethod.Post)){%>
                 <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
                 Agregar Etiqueta: <input type="text" id="tagCollection" name="tagCollection" />
                 <input type="submit" value="Agregar!"/>                            
-            <%}%>            
-            </div>
+                <%}%>            
+                </div>
+            <%}%>
+            
+            
+            
         </div>
         <div id="reviews" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/comments.png") %>" class="imageMiddle"/> Comentarios</h3>
