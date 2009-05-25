@@ -34,7 +34,7 @@
             <div style="display:inline-table">
                 <% foreach (Armazon.Models.DataTypes.DTImagen img in Model.Images){ %>
                   <div id="images-<%=img.Id %>" class="images">
-                    <img src="<%= Url.Action( "ShowThumbnail", "Producto", new { productID = Model.Id, imageID = img.Id } ) %>" alt="<%= img.Nombre %>"/>
+                    <img src="<%= Url.Action( "ShowThumbnail", "Producto", new { productID = Model.Id, imageID = img.Id } ) %>" alt="<%= img.Nombre %>" width="150" height="150"/>
                     <br><br>
                     <a onclick="deleteImage(<%=img.Id %>);" style="cursor:pointer"><img src="/Content/remove.png"/></a>
                   </div>
