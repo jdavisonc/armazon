@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Models.DataTypes.DTProduct>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Detalle Producto
+	<%= Model.Nombre %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -49,21 +49,24 @@
             <!-- ############## -->
         </div>
         <br>
-                    Precio: <span style="color:#990000;font-size:16px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br>
+        Precio: <span style="color:#990000;font-size:16px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br>
         <% foreach (Armazon.Models.DataTypes.DTProductAttr attr in Model.Attrs){ %>
              <%= attr.Nombre %>: <%= ((Armazon.Models.DataTypes.DTProductAttrString)attr).Valor %><br>
         <%} %>
     
-        <div id="addTag" class="sectionProduct">
+        <div id="Tags" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/tag.png") %>" class="imageMiddle"/> Etiquetas</h3><br>
             <%foreach (String tag in Model.Tags){%> 
-                <img src="<%= ResolveUrl("~/Content/tag_list.png") %>" class="imageMiddle"/><%=tag%><br>
-            <%}%><br>
+                <span style="float: left;width:100px"><img src="<%= ResolveUrl("~/Content/tag_list.png") %>" class="imageMiddle"/><%=tag%></span>
+            <%}%>
+            <br><br />
+            <div style="display:inline">
             <% using (Html.BeginForm("AddTag","Producto",FormMethod.Post)) {%>
                 <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
                 Agregar Etiqueta: <input type="text" id="tagCollection" name="tagCollection" />
                 <input type="submit" value="Agregar!"/>                            
             <%}%>            
+            </div>
         </div>
         <div id="reviews" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/comments.png") %>" class="imageMiddle"/> Comentarios</h3>
@@ -85,9 +88,15 @@
                     The magazine scours the globe to find great items from clothing and accessories to cosmetics to housewares and so forth. They even listed sites for locating old-fashioned sweets and soda (great gift for a parent or grandparent)!
                 </span>
             </div>
+            <a onclick="$('#formComments').toggle('slow');" style="cursor:pointer;float:right">
+                <img src="<%= ResolveUrl("~/Content/add_comment.png") %>" class="imageMiddle"/> Agregar Comentario
+            </a>
+            <div id="formComments">
+                Formulario aqui
+            </div>
         </div>
         <div id="recommended" class="sectionProduct">
-            <h3>Te recomendamos</h3>
+            <h3><img src="<%= ResolveUrl("~/Content/recommend.png") %>" class="imageMiddle"/> Te recomendamos</h3>
             
         </div>
     </div>
@@ -102,6 +111,8 @@
     <link href="<%= ResolveUrl("~/Content/jquery.rating.css")%>" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function() {
+            $('#formComments').hide();
+            $('#formComments').corner();
             $('#buyBlock').corner();
             $('.commentBlock').corner();
             $('#imglist li img').hover(

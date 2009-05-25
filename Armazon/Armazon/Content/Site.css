@@ -219,11 +219,15 @@ legend
     padding: 2px 4px 8px 4px;
 }
 
+input
+{
+    font-size:11px;
+}
+
 input[type="text"] 
 {
     width: 200px;
     border: 1px solid #CCC;
-    font-size:9px;
 }
 
 input[type="password"] 

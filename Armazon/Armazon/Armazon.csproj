@@ -143,6 +143,7 @@
     <Content Include="App_Data\Armazon_log.ldf">
       <DependentUpon>Armazon.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\add_comment.png" />
     <Content Include="Content\agregar_carrito.png" />
     <Content Include="Content\comment.png" />
     <Content Include="Content\comments.png" />
@@ -156,6 +157,7 @@
     <Content Include="Content\noImageAvailable.jpg" />
     <Content Include="Content\pencil.png" />
     <Content Include="Content\Products.css" />
+    <Content Include="Content\recommend.png" />
     <Content Include="Content\remove.png" />
     <Content Include="Content\star.gif" />
     <Content Include="Content\tag.png" />
