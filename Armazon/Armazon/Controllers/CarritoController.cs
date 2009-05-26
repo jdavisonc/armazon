@@ -88,7 +88,14 @@ namespace Armazon.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+                DTPedido dtp = null;
+                int idProd = int.Parse(Request.Form["Id"]);
+                int cantProd = int.Parse(Request.Form["Cant"]);
+                AdministracionFachada adminFac = new AdministracionFachada();
+                MembershipUser myObject = Membership.GetUser();
+                string userName = myObject.UserName.ToString();
+                Carrito carrito = adminFac.getCarritoOfUser(userName);
+                adminFac.cambiarCantidadProducto(idProd, carrito.CarritoID, cantProd);
                 return RedirectToAction("Index");
             }
             catch
@@ -96,5 +103,37 @@ namespace Armazon.Controllers
                 return View();
             }
         }
+
+        
+
+        
+        public ActionResult Delete(int id)
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+            Carrito carrito = adminFac.getCarritoOfUser(userName);
+            List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
+            int idProd = listPedido[id].Id;
+            adminFac.deleteProducto_Carrito(idProd, carrito.CarritoID);
+            return RedirectToAction("Index");
+        }
+
+
+
+        
+        public ActionResult comprarCarrito()
+        {
+
+            AdministracionFachada adminFac = new AdministracionFachada();
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+            Carrito carrito = adminFac.getCarritoOfUser(userName);            
+            adminFac.marcarProductosDelCarro(carrito.CarritoID);
+            return RedirectToAction("Index");   
+        }
+
+
+
     }
 }

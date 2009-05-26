@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.Models.DataTypes.DTPedido>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	Administrar Carro
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2>Administrar Carro</h2>
 
     <table>
         <tr>
@@ -29,8 +29,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new {  id=i }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=i })%>
+                <%= Html.ActionLink("Editar", "Edit", new {  id=i }) %> |
+                <%= Html.ActionLink("Detalles", "Details", new { id=i })%>
+                <%= Html.ActionLink("Borrar", "Delete", new { id=i })%>
                 <%i++; %>
             </td>
             <td>
@@ -43,17 +44,22 @@
             <td>
                 <%= Html.Encode(String.Format("{0:F}", item.Precio)) %>
             </td>
+            
+                
+            
         </tr>
         
     <% } %>
 
     </table>
-
+    <br />
+    <br />
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <input type="submit" value="Comprar" onclick="window.location='/Carrito/comprarCarrito'" />
     </p>
 
 </asp:Content>
+
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
 </asp:Content>
