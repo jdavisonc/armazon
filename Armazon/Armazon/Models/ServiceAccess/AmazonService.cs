@@ -27,7 +27,7 @@ namespace Armazon.Models.ServiceAccess
             request.SearchIndex = "All";
             request.Keywords = fullText;
             //request.Power = "title: " + fullText;
-            request.ResponseGroup = new string[] { "Small", "Images", "OfferListings" };
+            request.ResponseGroup = new string[] { "Small", "Images", "Offers" };
             //request.Sort = "salesrank";
 
             ItemSearchRequest[] requests = new ItemSearchRequest[] { request };
@@ -50,14 +50,18 @@ namespace Armazon.Models.ServiceAccess
                         Producto p = new Producto();
                         p.Tienda = tienda;
                         p.Nombre = item.ItemAttributes.Title;
-                        string gg = item.Offers
-                        p.Precio = 100;
+                        p.ExternalID = item.ASIN;
+                        //string gg = item.OfferSummary.LowestNewPrice.Amount;
+                        p.Precio = float.Parse(item.OfferSummary.LowestNewPrice.Amount)/100;
                         //dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
                         
                         //dt.Images.Add(new DTImagen(-1, item.ItemAttributes.Title, item.MediumImage.URL));
-                        Imagen img = new Imagen();
-                        img.ImagenURL = item.MediumImage.URL;
-                        p.Imagens.Add(img);
+                        if (item.MediumImage != null)
+                        {
+                            Imagen img = new Imagen();
+                            img.ImagenURL = item.MediumImage.URL;
+                            p.Imagens.Add(img);
+                        }
                         list.Add(p);
                     }
                 }
