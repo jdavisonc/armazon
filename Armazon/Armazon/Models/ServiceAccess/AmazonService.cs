@@ -20,14 +20,14 @@ namespace Armazon.Models.ServiceAccess
 
         #region IAccessStore Members
 
-        public List<DTProduct> searchProducts(string fullText)
+        public List<Producto> searchProducts(string fullText, Tienda tienda)
         {
-            List<DTProduct> list = new List<DTProduct>();
+            List<Producto> list = new List<Producto>();
             ItemSearchRequest request = new ItemSearchRequest();
             request.SearchIndex = "All";
             request.Keywords = fullText;
             //request.Power = "title: " + fullText;
-            //request.ResponseGroup = new string[] { "Small" };
+            request.ResponseGroup = new string[] { "Small", "Images", "OfferListings" };
             //request.Sort = "salesrank";
 
             ItemSearchRequest[] requests = new ItemSearchRequest[] { request };
@@ -47,9 +47,18 @@ namespace Armazon.Models.ServiceAccess
                     for (int i = 0; i < items.Length; i++)
                     {
                         Item item = items[i];
-                        DTProduct dt = new DTProduct();
-                        dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
-                        list.Add(dt);
+                        Producto p = new Producto();
+                        p.Tienda = tienda;
+                        p.Nombre = item.ItemAttributes.Title;
+                        string gg = item.Offers
+                        p.Precio = 100;
+                        //dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
+                        
+                        //dt.Images.Add(new DTImagen(-1, item.ItemAttributes.Title, item.MediumImage.URL));
+                        Imagen img = new Imagen();
+                        img.ImagenURL = item.MediumImage.URL;
+                        p.Imagens.Add(img);
+                        list.Add(p);
                     }
                 }
                 return list;

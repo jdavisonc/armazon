@@ -21,9 +21,9 @@ namespace Armazon.Models.ServiceAccess
             return (IAccessStore) new AmazonService();
         }
 
-        public IAccessStore createArmazonServiceAccess(string url)
+        public IAccessStore createArmazonServiceAccess()
         {
-            return (IAccessStore) new ArmazonService(url);
+            return (IAccessStore) new ArmazonService();
         }
 
     }
