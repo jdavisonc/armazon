@@ -53,7 +53,16 @@ namespace Armazon
                 }
             }
         }
-       
-
+        public static List<DTTag> getTags()
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            IEnumerable<Tag> tags = administracionFachada.findAllTags();
+            List<DTTag> DtTags = new List<DTTag>();
+            foreach (Tag item in tags)
+            {
+                DtTags.Add(item.getDataType());
+            }
+            return DtTags;
+        }
     }
 }
