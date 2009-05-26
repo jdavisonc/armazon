@@ -91,7 +91,38 @@ namespace Armazon.Models.DataAccess.Administracion
                 db.Producto_Carritos.InsertOnSubmit(prodCarrito);
                 db.SubmitChanges();
             }
-          }
+        }
+        public void cambiarCantidadProducto(int productoId, int carritoId, int cant)
+        {
+            var productoCarro = from producto in db.Producto_Carritos
+                                where producto.ProductoID == productoId && producto.CarritoID == carritoId
+                                select producto;
+            Producto_Carrito pCarrito = productoCarro.ToList().First();
+            pCarrito.Cantidad = cant;
+            db.SubmitChanges();
+
+        }
+        public void deleteProducto_Carrito(int idProd, int idCarro)
+        {
+            var productoCarro = from producto in db.Producto_Carritos
+                                where producto.ProductoID == idProd && producto.CarritoID == idCarro
+                                select producto;
+            Producto_Carrito pCarrito = productoCarro.ToList().First();
+            db.Producto_Carritos.DeleteOnSubmit(pCarrito);
+            db.SubmitChanges();
+        }
+        public void marcarProductosDelCarro(int idCarro)
+        {
+            var productoCarro = from producto in db.Producto_Carritos
+                                where producto.CarritoID == idCarro
+                                select producto;
+
+            foreach (Producto_Carrito auxprodCarr in productoCarro.ToList())
+            {
+                auxprodCarr.EstaEnCarrito = '1';
+            }
+            db.SubmitChanges();
+        }
         public List<DTPedido> getProductosDeCarrito(int carrito)
         {
             Producto_Carrito prodCarrito = new Producto_Carrito();

@@ -319,7 +319,22 @@ namespace Armazon.Models
         }
         public double getMontoProductos(List<DTPedido> listProd)
         {
-            return ProductoMgr.getMontoProductos(listProd);
+            double monto =  ProductoMgr.getMontoProductos(listProd);
+            AdministracionFachada adminFac = new AdministracionFachada();
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+            Carrito carrito = adminFac.getCarritoOfUser(userName);
+            carrito.Total = monto;
+            return monto;
+        }
+        public void deleteProducto_Carrito(int idProd, int idCarro)
+        {
+            CarritoMgr.deleteProducto_Carrito(idProd, idCarro);
+        }
+
+        public void marcarProductosDelCarro(int idCarro) 
+        {
+            CarritoMgr.marcarProductosDelCarro(idCarro);
         }
         public List<string> getNombresProductos(List<Producto> listProd)
         {
@@ -439,6 +454,10 @@ namespace Armazon.Models
             return CarritoMgr.getProductosDeCarrito(carrito);
         }
 
+        public void cambiarCantidadProducto(int productoId, int carritoId, int cant)
+        {
+            CarritoMgr.cambiarCantidadProducto(productoId, carritoId, cant);
+        }
         public void SaveCarritoActivo()
         {
             CarritoMgr.Save();
