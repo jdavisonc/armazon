@@ -46,6 +46,8 @@ namespace Armazon
                 DTImagen dtimg = new DTImagen();
                 dtimg.Id = img.ImagenID;
                 dtimg.Nombre = img.Nombre;
+                dtimg.ThumbailURL = img.ThumbnailURL;
+                dtimg.ImagenURL = img.ImagenURL;
                 images.Add(dtimg);
             }
             dt.Images = images;

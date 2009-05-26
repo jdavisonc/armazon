@@ -31,51 +31,25 @@ namespace Armazon.Models
         public IEnumerable<Producto> findAllProductos(String fullText)
         {
             List<Producto> resultadoBusqueda = new List<Producto>();
-
+            TiendaManager tiendaMgr = new TiendaManager();
             // Busco productos sobre DB de Armazon
             ProductoManager productoMgr = new ProductoManager();
-            IQueryable<Producto> productosArmazon = productoMgr.findAllProductos(fullText);
-            resultadoBusqueda.AddRange(productosArmazon);
-
-            // Busco productos sobre DB de Otros ARMAZON
-            ///********* HACER *********/
-            ///
-            
-            // Busco productos sobre DB de AMAZON
-            IAccessStore ias = FabricAccessStore.getInstance().createAmazonServiceAccess();
-            List<DTProduct> dtProducts = ias.searchProducts(fullText);
-           
-            // Paso de DTProduct a Producto para trabajar en el sistema con ellos
-            /// ** Ver si agregar a la db una ves que se busca, o agregar a la db solo si se selecciona
-            /// ** para comprar
-
-            foreach (DTProduct item in dtProducts)
+            resultadoBusqueda.AddRange(productoMgr.findAllProductos(fullText));
+            foreach (Tienda tend in tiendaMgr.findAllTiendas())
             {
-                Producto prod = new Producto();
-                foreach (DTProductAttr attr in item.Attrs)
+                if (tend.TipoAPI.CompareTo("ARMAZON") == 0)
                 {
-                    switch (attr.GetCustomType())
-                    {
-                        case DTProductAttr.Types.Int:
-                            break;
-                        case DTProductAttr.Types.String:
-                            DTProductAttrString attrString = (DTProductAttrString)attr;
-                            if (attrString.Nombre.CompareTo("Nombre") == 0)
-                            {
-                                prod.Nombre = attrString.Valor;
-                            }
-                            break;
-                        case DTProductAttr.Types.Image:
-                            break;
-                        case DTProductAttr.Types.Default:
-                            break;
-                        default:
-                            break;
-                    }
+                    // Busco productos sobre DB de ARMAZON
+                    IAccessStore ias = FabricAccessStore.getInstance().createArmazonServiceAccess();
+                    resultadoBusqueda.AddRange(ias.searchProducts(fullText, tend));
                 }
-                resultadoBusqueda.Add(prod);
+                else if (tend.TipoAPI.CompareTo("AMAZON") == 0)
+                {
+                    // Busco productos sobre DB de AMAZON
+                    IAccessStore ias = FabricAccessStore.getInstance().createAmazonServiceAccess();
+                    resultadoBusqueda.AddRange(ias.searchProducts(fullText,tend));                
+                }
             }
-
             return resultadoBusqueda;
         }
 

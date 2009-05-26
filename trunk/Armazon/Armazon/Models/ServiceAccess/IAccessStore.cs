@@ -8,6 +8,6 @@ namespace Armazon.Models.ServiceAccess
 {
     public interface IAccessStore
     {
-        List<DTProduct> searchProducts(string fullText);
+        List<Producto> searchProducts(string fullText, Tienda tienda);
     }
 }

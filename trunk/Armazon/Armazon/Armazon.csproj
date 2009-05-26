@@ -111,7 +111,6 @@
     <Compile Include="Models\DataTypes\DTPedido.cs" />
     <Compile Include="Models\DataTypes\DTProductAttr.cs" />
     <Compile Include="Models\DataTypes\DTProduct.cs" />
-    <Compile Include="Models\DataTypes\DTProductAttrImage.cs" />
     <Compile Include="Models\DataTypes\DTProductAttrInt.cs" />
     <Compile Include="Models\DataTypes\DTProductAttrString.cs" />
     <Compile Include="Models\DataTypes\DTSubCategoria.cs" />

@@ -19,6 +19,7 @@ namespace Armazon.Models.DataTypes
         private List<string> _tags;
         private List<DTImagen> _images;
 
+
         public List<DTImagen> Images
         {
             get { return _images; }
@@ -89,6 +90,8 @@ namespace Armazon.Models.DataTypes
         public DTProduct()
         {
             _attrs = new List<DTProductAttr>();
+            _images = new List<DTImagen>();
+            _tags = new List<string>();
         }
         
     }

@@ -18,14 +18,16 @@
                     <%foreach (Armazon.Models.DataTypes.DTProduct p in Model) { %>
                     <div class="fltleft prodItem">
                         <a href="<%= Url.Action("Details", "Producto", new { id = p.Id })%>" title="Go to <%= p.Nombre %> Details Page">
-                          <% if (p.Images.Count > 0){ %>
-                            <img src="<%= Url.Action( "ShowFirstThumbnail", "Producto", new { productID = p.Id } ) %>" alt="<%=p.Nombre %>"/>
+                          <% if ((p.Images.Count > 0) && (p.Tienda == null)){ %>
+                            <img src="<%= Url.Action( "ShowFirstThumbnail", "Producto", new { productID = p.Id } ) %>" alt="<%=p.Nombre %>"  width="150" height="150"/>
+                          <% }else if ((p.Images.Count > 0) && (p.Tienda != null)){ %>
+                            <img src="<%= p.Images[0].ImagenURL %>" width="150" height="150"/>
                           <% }else{ %>
                              <img src="/Content/noImageAvailable.jpg" width="150" height="150"/>
                           <% } %>
                           <p>
                           <%=p.Nombre %><br />
-                            <%=p.Precio.ToString("C")%>
+                            $ <%=p.Precio.ToString()%>
                             <% if (Page.User.IsInRole("Administrador")) { %>
                                 <br><%= Html.ActionLink("Edit","Edit","Producto", new { id=p.Id, idSubCategoria=p.SubcaterogiaID },null) %>
                             <% } %>

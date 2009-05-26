@@ -11,7 +11,6 @@ namespace Armazon.Models.DataTypes
         {
             Int = 0,
             String = 1,
-            Image = 2,
             Default = 9
         }
 

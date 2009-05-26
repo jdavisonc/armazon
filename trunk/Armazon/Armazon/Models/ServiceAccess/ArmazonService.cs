@@ -8,16 +8,14 @@ namespace Armazon.Models.ServiceAccess
 {
     public class ArmazonService : IAccessStore
     {
-        private string _url;
 
-        public ArmazonService(string url)
+        public ArmazonService()
         {
-            _url = url;
         }
 
         #region IAccessStore Members
 
-        public List<DTProduct> searchProducts(string fullText)
+        public List<Producto> searchProducts(string fullText, Tienda tienda)
         {
             throw new NotImplementedException();
         }
