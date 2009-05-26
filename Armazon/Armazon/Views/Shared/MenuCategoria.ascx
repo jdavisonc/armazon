@@ -23,11 +23,11 @@ jQuery().ready(function(){
 	            </ul>
             <%} %>
         </li>
-    <%} %>
+    <%}%>
 </ul>
 
 <ul id="TagCloud">
-    <%foreach (var tag in Armazon.MenuController.getTags()){%>
-        <li><a href=""><%=tag.Nombre%></a></li>
+    <%foreach (var tag in Armazon.MenuController.getTags()){%>    
+        <li><font size=<%=Armazon.MenuController.getSizeTag(tag.Nombre)%>><a href=""><%=tag.Nombre%></a></font></li>
     <%}%>
 </ul>
