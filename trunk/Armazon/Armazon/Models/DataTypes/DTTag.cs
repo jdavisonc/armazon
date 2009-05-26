@@ -28,8 +28,8 @@ namespace Armazon.Models.DataTypes
             set { nombre = value; }
         }
 
-        private System.Nullable<int> cantAp;
-        public System.Nullable<int> CantAp
+        private int cantAp;
+        public int CantAp
         {
             get { return cantAp; }
             set { cantAp = value; }
