@@ -228,6 +228,7 @@
     <Content Include="Views\Producto\Details.aspx" />
     <Content Include="Views\Producto\Edit.aspx" />
     <Content Include="Views\Producto\List.aspx" />
+    <Content Include="Views\Producto\ListadoPorTag.aspx" />
     <Content Include="Views\Producto\NotFound.aspx" />
     <Content Include="Views\Propiedad\Create.aspx" />
     <Content Include="Views\Propiedad\Delete.aspx" />

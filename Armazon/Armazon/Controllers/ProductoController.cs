@@ -218,6 +218,19 @@ namespace Armazon.Controllers
             return View("List",dtCol.ToPagedList(currentPageIndex, 9));
         }
 
+        public ActionResult ListadoPorTag(String nombreTag,int? page)
+        {
+            ConsultaFachada consultaFachada = new ConsultaFachada();
+            IEnumerable<Producto> productosPorTag = consultaFachada.findProductosPorTag(nombreTag);                
+            List<DTProduct> dtCol = new List<DTProduct>();
+            foreach (Producto p in productosPorTag)
+            {
+                dtCol.Add(p.getDataType());
+            }            
+            ViewData["Title"] = "Listado de Productos por Tag";
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            return View("ListadoPorTag",dtCol.ToPagedList(currentPageIndex, 9));
+        }
         
         public ActionResult BuscarProducto(String fullText, int? page)
         {

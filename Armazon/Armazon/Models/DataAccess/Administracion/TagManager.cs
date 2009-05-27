@@ -45,7 +45,7 @@ namespace Armazon.Models.DataAccess.Administracion
         }
         public double getSize(String tag) 
         {
-            double escala = 1;
+            double escala = 0.6;
             double maxCantAp = db.Tags.Max(c => c.CantAp);
             Tag t = getTag(tag);
             if ((0 <= (t.CantAp / maxCantAp)) && ((t.CantAp / maxCantAp) <= 0.1))
