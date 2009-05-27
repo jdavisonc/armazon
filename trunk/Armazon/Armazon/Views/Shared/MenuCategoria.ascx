@@ -28,6 +28,10 @@ jQuery().ready(function(){
 
 <ul id="TagCloud">
     <%foreach (var tag in Armazon.MenuController.getTags()){%>    
-        <li><font size=<%=Armazon.MenuController.getSizeTag(tag.Nombre)%>><a href=""><%=tag.Nombre%></a></font></li>
+        <li>
+            <font size=<%=Armazon.MenuController.getSizeTag(tag.Nombre)%>>
+                <a href="/Producto/ListadoPorTag?nombreTag=<%=tag.Nombre%>"><%=tag.Nombre%></a>
+            </font>
+        </li>
     <%}%>
 </ul>

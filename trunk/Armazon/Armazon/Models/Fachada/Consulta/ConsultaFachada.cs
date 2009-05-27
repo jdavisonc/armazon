@@ -58,6 +58,17 @@ namespace Armazon.Models
             ProductoManager productoMgr = new ProductoManager();
             return productoMgr.findAllProductos();
         }
-        
+
+        public IEnumerable<Producto> findProductosPorTag(String nombreTag)
+        {            
+            List<Producto> resultadoBusqueda = new List<Producto>();
+            TagManager tagMgr = new TagManager();
+            IEnumerable<Producto_Tag> pt = tagMgr.getTag(nombreTag).Producto_Tags;
+            foreach (Producto_Tag pTag in pt)
+            {
+                resultadoBusqueda.Add(pTag.Producto);                
+            }
+            return resultadoBusqueda;            
+        }
     }
 }
