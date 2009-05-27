@@ -64,11 +64,10 @@ namespace Armazon
             }
             return DtTags;
         }
-
-        public static int getSizeTag(string TagName)
+        public static double getSizeTag(string TagName)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
-            int cantAp = administracionFachada.getTag(TagName).CantAp;
+            double cantAp = administracionFachada.getSizeTag(TagName);                
             return cantAp;            
         }
     }

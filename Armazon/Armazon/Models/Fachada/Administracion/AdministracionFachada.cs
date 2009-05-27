@@ -489,6 +489,10 @@ namespace Armazon.Models
         {
             TagMgr.Save();
         }
+        public double getSizeTag(String tag)
+        {
+            return TagMgr.getSize(tag);
+        }
         #endregion
 
         #region  producto_Tag
