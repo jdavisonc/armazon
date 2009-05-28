@@ -663,9 +663,9 @@ namespace Armazon
 		
 		private string _Nombre;
 		
-		private System.Data.Linq.Binary _ImagenURL;
+		private string _ImagenURL;
 		
-		private System.Data.Linq.Binary _ThumbnailURL;
+		private string _ThumbnailURL;
 		
 		private EntityRef<Producto> _Producto;
 		
@@ -685,9 +685,9 @@ namespace Armazon
     partial void OnMIMETypeChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
-    partial void OnImagenURLChanging(System.Data.Linq.Binary value);
+    partial void OnImagenURLChanging(string value);
     partial void OnImagenURLChanged();
-    partial void OnThumbnailURLChanging(System.Data.Linq.Binary value);
+    partial void OnThumbnailURLChanging(string value);
     partial void OnThumbnailURLChanged();
     #endregion
 		
@@ -821,8 +821,8 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_ImagenURL", DbType="VarBinary(250)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary ImagenURL
+		[Column(Storage="_ImagenURL", DbType="varchar(250) NULL")]
+		public string ImagenURL
 		{
 			get
 			{
@@ -840,9 +840,9 @@ namespace Armazon
 				}
 			}
 		}
-		
-		[Column(Storage="_ThumbnailURL", DbType="VarBinary(250)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary ThumbnailURL
+
+        [Column(Storage = "_ThumbnailURL", DbType = "varchar(250) NULL")]
+		public string ThumbnailURL
 		{
 			get
 			{
