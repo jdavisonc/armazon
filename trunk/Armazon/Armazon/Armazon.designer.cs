@@ -1098,9 +1098,9 @@ namespace Armazon
 		
 		private int _SubCategoriaID;
 		
-		private System.Nullable<int> _ExternalID;
-		
-		private System.Nullable<int> _TiendaID;
+		private string _ExternalID;
+
+        private System.Nullable<int> _TiendaID;
 		
 		private double _Precio;
 		
@@ -1128,7 +1128,7 @@ namespace Armazon
     partial void OnNombreChanged();
     partial void OnSubCategoriaIDChanging(int value);
     partial void OnSubCategoriaIDChanged();
-    partial void OnExternalIDChanging(System.Nullable<int> value);
+    partial void OnExternalIDChanging(string value);
     partial void OnExternalIDChanged();
     partial void OnTiendaIDChanging(System.Nullable<int> value);
     partial void OnTiendaIDChanged();
@@ -1211,9 +1211,9 @@ namespace Armazon
 				}
 			}
 		}
-		
-		[Column(Storage="_ExternalID", DbType="Int")]
-		public System.Nullable<int> ExternalID
+
+        [Column(Storage = "_ExternalID", DbType = "VarChar(150) NULL")]
+		public string ExternalID
 		{
 			get
 			{
