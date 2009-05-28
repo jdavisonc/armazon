@@ -1,6 +1,6 @@
 ﻿function llamada(id) {
-
-    var num = document.getElementById("Text1").value;
+    
+    var num = document.getElementById("cantCompra").value;
     var url = "/Producto/AgregarProducto?cant="+num+ "&idProducto="+id;
     
     $.getJSON(url, popup);
