@@ -71,7 +71,8 @@ div#imageProductContender
     margin-left: 60px;
     width: 150px;
     padding: 10px;
-    background-color: #A1C8D4;   
+    background-color: #AED3EE;   
+    border: 1px solid #6CAEE1;
 }
 
 #Tags input[type=text]

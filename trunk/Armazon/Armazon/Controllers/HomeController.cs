@@ -21,7 +21,8 @@ namespace Armazon.Controllers
             }
 
             int currentPageIndex = id.HasValue ? id.Value - 1 : 0;
-            return View("Index", dtCollection.ToPagedList(currentPageIndex, 9));
+            ViewData["Collection"] = dtCollection.ToPagedList(currentPageIndex, 9);
+            return View("Index");
         }
 
         public ActionResult About()

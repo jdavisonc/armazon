@@ -12,7 +12,11 @@ body
     padding: 0;
     color: #696969;
 }
-
+a
+{
+    text-decoration:none;
+}
+    
 a:link
 {
     color: #034af3;
@@ -24,8 +28,7 @@ a:visited
 }
 a:hover
 {
-    color: #1d60ff;
-    text-decoration: none;
+    color: #333;
 }
 a:active
 {
@@ -236,29 +239,6 @@ input[type="password"]
     border: 1px solid #CCC;
 }
 
-/* TABLE
-----------------------------------------------------------*/
-
-table 
-{
-  border: solid 1px #e8eef4;
-  border-collapse: collapse;
-}
-
-table td 
-{
-  padding: 5px;   
-  border: solid 1px #e8eef4;
-}
-
-table th
-{
-  padding: 6px 5px;
-  text-align: left;
-  background-color: #e8eef4; 
-  border: solid 1px #e8eef4;   
-}
-
 /* MISC  
 ----------------------------------------------------------*/
 .clear
@@ -345,4 +325,10 @@ div.images {
 
 div.images:hover{ 
 	background-color: #eaeabb;
+}
+
+table#listadoProductos
+{
+    width: 100%;
+    border: none;
 }
