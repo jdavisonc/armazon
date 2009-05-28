@@ -15,10 +15,16 @@ namespace Armazon.Models.DataTypes
         private string _categoria;
         private string _nombre;
         private double _precio;
-        private string _tienda;
+        private int _tienda = -1;
+        private string _externalID;
         private List<string> _tags;
         private List<DTImagen> _images;
 
+        public string ExternalID
+        {
+            get { return _externalID; }
+            set { _externalID = value; }
+        }
 
         public List<DTImagen> Images
         {
@@ -32,7 +38,7 @@ namespace Armazon.Models.DataTypes
             set { _tags = value; }
         }
 
-        public string Tienda
+        public int Tienda
         {
             get { return _tienda; }
             set { _tienda = value; }

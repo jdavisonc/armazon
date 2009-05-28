@@ -8,15 +8,21 @@
 
     <div id="contenderLeft">
         <div id="imageProductContender">
-            <% if (Model.Images.Count > 0){ %>
+            <% if ((Model.Images.Count > 0) && (Model.Tienda == -1)){ %>
                 <img id="PImg" src="<%= Url.Action( "ShowFirstThumbnail", "Producto", new { productID = Model.Id } ) %>"/>
+            <% }else if ((Model.Images.Count > 0) && (Model.Tienda != null)){ %>
+                <img src="<%= Model.Images[0].ImagenURL %>" width="280" height="280"/>
             <% }else{ %>
                  <img src="<%=ResolveUrl("~/Content/noImageAvailable.jpg") %>" width="280" height="280"/>
             <% } %>
             <br>
             <ul id="imglist">
             <% foreach (Armazon.Models.DataTypes.DTImagen img in Model.Images){ %>
-                 <li><img width="34px" height="34px" src="<%= Url.Action( "ShowThumbnail", "Producto", new { productID = Model.Id, imageID = img.Id } ) %>" alt="<%= img.Nombre %>"/></li>
+                <% if (Model.Tienda == -1){ %>
+                    <li><img width="34px" height="34px" src="<%= Url.Action( "ShowThumbnail", "Producto", new { productID = Model.Id, imageID = img.Id } ) %>" alt="<%= img.Nombre %>"/></li>
+                 <% }else{ %>
+                    <li><img width="34px" height="34px" src="<%= img.ImagenURL %>" alt="<%= img.Nombre %>"/></li>
+                <% } %>
             <%} %>
             </ul>
         </div>

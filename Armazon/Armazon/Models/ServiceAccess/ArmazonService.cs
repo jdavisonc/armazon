@@ -20,6 +20,11 @@ namespace Armazon.Models.ServiceAccess
             throw new NotImplementedException();
         }
 
+        public Producto getProduct(string externalID, Tienda tienda)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

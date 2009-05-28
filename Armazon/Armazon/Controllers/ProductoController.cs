@@ -25,13 +25,6 @@ namespace Armazon.Controllers
 
         public ActionResult Index()
         {
-            /*List<DTProduct> dtCollection = new List<DTProduct>();
-            AdministracionFachada administracionFachada = new AdministracionFachada();
-            foreach (Producto prod in administracionFachada.findAllProductos())
-            {
-                dtCollection.Add(prod.getDataType());
-            }  
-            return View(dtCollection);*/
             return View("NotFound");
         }
         
@@ -62,14 +55,22 @@ namespace Armazon.Controllers
         //
         // GET: /Producto/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? productID, int? tiendaID, string externalID)
         {
-            AdministracionFachada administracionFachada = new AdministracionFachada();
-            Producto producto = administracionFachada.getProducto(id);
-            if (producto == null)
-                return View("NotFound");
-            else
+            Producto producto = null;
+            if (productID.HasValue)
+            {
+                AdministracionFachada administracionFachada = new AdministracionFachada();
+                producto = administracionFachada.getProducto(productID.Value);
+            }
+            else if (tiendaID.HasValue && externalID != null)
+            {
+                ConsultaFachada consultaFachada = new ConsultaFachada();
+                producto = consultaFachada.getProductoTienda(externalID, tiendaID.Value);
+            }
+            if (producto != null)
                 return View("Details",producto.getDataType());
+            return View("NotFound");
         }
 
         //
@@ -215,10 +216,11 @@ namespace Armazon.Controllers
             ViewData["CategoriaNombre"] = aFachada.getSubCategoria(idSubCategoria).Categoria.Nombre;
             ViewData["Title"] = "Listado de Productos";
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-            return View("List",dtCol.ToPagedList(currentPageIndex, 9));
+            ViewData["Collection"] = dtCol.ToPagedList(currentPageIndex, 9);
+            return View("List");
         }
 
-        public ActionResult ListadoPorTag(String nombreTag,int? page)
+        public ActionResult ListadoPorTag(String nombreTag, int? page)
         {
             ConsultaFachada consultaFachada = new ConsultaFachada();
             IEnumerable<Producto> productosPorTag = consultaFachada.findProductosPorTag(nombreTag);                
@@ -243,7 +245,8 @@ namespace Armazon.Controllers
             ViewData["Title"] = "Resultado de Busqueda";
             ViewData["FullText"] = fullText;
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-            return View("List", dtCollection.ToPagedList(currentPageIndex, 9));
+            ViewData["Collection"] = dtCollection.ToPagedList(currentPageIndex, 9);
+            return View("List");
         }
 
         /// <summary>
@@ -295,7 +298,7 @@ namespace Armazon.Controllers
             {
                 // Error no existe el producto
             }
-            return Details(productID);
+            return Details(productID, null, null);
         }
 
         public ActionResult ShowFirstThumbnail(int productID)

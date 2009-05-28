@@ -53,6 +53,28 @@ namespace Armazon.Models
             return resultadoBusqueda;
         }
 
+        public Producto getProductoTienda(string externalID, int tiendaID)
+        {
+            TiendaManager tiendaMgr = new TiendaManager();
+            Tienda tend = tiendaMgr.getTienda(tiendaID);
+            if (tend != null)
+            {
+                if (tend.TipoAPI.CompareTo("ARMAZON") == 0)
+                {
+                    // Busco productos sobre DB de ARMAZON
+                    IAccessStore ias = FabricAccessStore.getInstance().createArmazonServiceAccess();
+                    return ias.getProduct(externalID, tend);
+                }
+                else if (tend.TipoAPI.CompareTo("AMAZON") == 0)
+                {
+                    // Busco productos sobre DB de AMAZON
+                    IAccessStore ias = FabricAccessStore.getInstance().createAmazonServiceAccess();
+                    return ias.getProduct(externalID, tend);
+                }
+            }
+            return null;
+        }
+
         public IQueryable<Producto> productosMasImportantes()
         {
             ProductoManager productoMgr = new ProductoManager();

@@ -18,7 +18,8 @@ namespace Armazon
             dt.Precio = this.Precio;
             if (this.Tienda != null)
             {
-                dt.Tienda = this.Tienda.Nombre;    
+                dt.Tienda = this.Tienda.TiendaID;
+                dt.ExternalID = this.ExternalID;
             }
             if (this.SubCategoria != null)
             {
