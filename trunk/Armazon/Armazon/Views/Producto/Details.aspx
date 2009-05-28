@@ -37,7 +37,7 @@
     <div class="detailProduct">
         <div class="sectionProduct">
             <h2><%= Html.Encode(Model.Nombre)%>
-            <% if (Page.User.IsInRole("Administrador")){ %>
+            <% if (Page.User.IsInRole("Administrador") && (Model.Tienda == -1)){ %>
                 <a href="<%= Url.Action("Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID }) %>" title="Modificar">
                     <img src="<%=ResolveUrl("~/Content/doc_edit.png")%>"/>
                 </a>
@@ -85,31 +85,47 @@
         <div id="reviews" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/comments.png") %>" class="imageMiddle"/> Comentarios</h3>
             <br>
-            <div class="commentBlock">
-                <img src="<%= ResolveUrl("~/Content/comment.png") %>" class="imageMiddle"/>
-                <span class="by">Por <a href="#">harley</a></span><br>
-                <!-- Rating !!! -->
-                <input name="starComment1" type="radio" class="star" disabled="disabled"/>
-                <input name="starComment1" type="radio" class="star" disabled="disabled"/>
-                <input name="starComment1" type="radio" class="star" disabled="disabled"/>
-                <input name="starComment1" type="radio" class="star" disabled="disabled"/>
-                <input name="starComment1" type="radio" class="star" disabled="disabled" checked="checked"/>
-                <!-- ############## -->
-                <br><br>
-                <span class="comment">
-                    Don't even think about this magazine unless you are into shopping!!! I thought I had everything I needed until I peeked into Lucky one day.
-                    <br>
-                    The magazine scours the globe to find great items from clothing and accessories to cosmetics to housewares and so forth. They even listed sites for locating old-fashioned sweets and soda (great gift for a parent or grandparent)!
-                </span>
-            </div>
-            <a onclick="$('#formComments').toggle('slow');" style="cursor:pointer;float:right">
+            <%  int j = 0;
+                foreach (Armazon.Models.DataTypes.DTComment com in Model.Comments){ %>
+                <div class="commentBlock">
+                    <img src="<%= ResolveUrl("~/Content/comment.png") %>" class="imageMiddle"/>
+                    <span class="by">Por <a href="#">harley</a></span><br>
+                    <!-- Rating !!! -->
+                    <% j++;
+                    for (int i = 0; i < 5; i++){ %>
+                        <% if (i == com.Rating){ %>
+                           <input name="starComment<%= j%>" type="radio" class="star" disabled="disabled" checked="checked"/>    
+                        <%}else{ %>
+                           <input name="starComment<%= j %>" type="radio" class="star" disabled="disabled"/>
+                        <%} %>
+                    <% } %>
+                    <!-- ############## -->
+                    <br><br>
+                    <span class="comment">
+                        <%= com.Comment %>
+                    </span>
+                </div>       
+              <% } %>
+            
+            <a onclick="$('#formComments').fadeIn('slow');" style="cursor:pointer;float:right">
                 <img src="<%= ResolveUrl("~/Content/add_comment.png") %>" class="imageMiddle"/> Agregar Comentario
             </a>
-            <br>
+            
             <div id="formComments">
-                Formulario aqui
+                <form>
+                    Tu Comentario!<br><br>
+                    <input name="commentRating" type="radio" class="star"/>
+                    <input name="commentRating" type="radio" class="star"/>
+                    <input name="commentRating" type="radio" class="star"/>
+                    <input name="commentRating" type="radio" class="star"/>
+                    <input name="commentRating" type="radio" class="star"/>
+                    <textarea id="commnet_text" name="commnet_text" style="width: 95%; margin: 5px"></textarea>
+                    <br>
+                    <input type="submit" value="Enviar!" />
+                </form>
             </div>
         </div>
+        <br>
         <div id="recommended" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/recommend.png") %>" class="imageMiddle"/> Te recomendamos</h3>
             

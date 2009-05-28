@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Armazon"%>
-<table id="listadoProductos">
+<table class="listadoProductos">
 <tr><td>
 <div>
     <%
@@ -34,7 +34,7 @@
                     <%=p.Nombre %><br />
                     $
                     <%=p.Precio.ToString()%>
-                    <% if (Page.User.IsInRole("Administrador")){ %>
+                    <% if (Page.User.IsInRole("Administrador") && (p.Tienda == -1)){ %>
                         <br><a href="<%= Url.Action("Edit", new { id = p.Id, idSubCategoria = p.SubcaterogiaID }) %>" title="Modificar">
                             <img src="<%=ResolveUrl("~/Content/doc_edit.png")%>"/>
                         </a>

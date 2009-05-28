@@ -327,8 +327,17 @@ div.images:hover{
 	background-color: #eaeabb;
 }
 
-table#listadoProductos
+table.listadoProductos
 {
     width: 100%;
     border: none;
+}
+
+.nav
+{
+    color: Gray;
+}
+.nav img
+{
+    vertical-align: middle;
 }
