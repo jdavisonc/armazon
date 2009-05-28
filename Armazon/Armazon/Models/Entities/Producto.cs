@@ -52,6 +52,12 @@ namespace Armazon
                 images.Add(dtimg);
             }
             dt.Images = images;
+            List<DTComment> comments = new List<DTComment>();
+            foreach (Producto_Usuario com in this.Producto_Usuarios)
+            {
+                comments.Add(com.getDataType());
+            }
+            dt.Comments = comments;
             return dt;
         }
         #endregion

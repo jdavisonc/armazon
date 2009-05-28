@@ -19,6 +19,13 @@ namespace Armazon.Models.DataTypes
         private string _externalID;
         private List<string> _tags;
         private List<DTImagen> _images;
+        private List<DTComment> _comments;
+
+        public List<DTComment> Comments
+        {
+            get { return _comments; }
+            set { _comments = value; }
+        }
 
         public string ExternalID
         {
@@ -98,6 +105,7 @@ namespace Armazon.Models.DataTypes
             _attrs = new List<DTProductAttr>();
             _images = new List<DTImagen>();
             _tags = new List<string>();
+            _comments = new List<DTComment>();
         }
         
     }

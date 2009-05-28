@@ -108,7 +108,18 @@ namespace Armazon.Models.ServiceAccess
                         //string gg = item.OfferSummary.LowestNewPrice.Amount;
                         p.Precio = float.Parse(item.OfferSummary.LowestNewPrice.Amount) / 100;
                         //dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
-                        string pp = item.DetailPageURL;
+
+                        // Comentarios
+                        if (item.CustomerReviews != null)
+                        {
+                            foreach (Review re in item.CustomerReviews.Review)
+                            {
+                                Producto_Usuario com = new Producto_Usuario();
+                                com.Comentario = re.Content;
+                                com.Puntaje = double.Parse(re.Rating.ToString());
+                                p.Producto_Usuarios.Add(com);
+                            }
+                        }
                         
                         // Tags
                         if (item.Tags != null)

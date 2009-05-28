@@ -8,12 +8,15 @@
 
     <h2><%= ViewData["Title"] %></h2>
     
-    <font color=blue><%= ViewData["CategoriaNombre"] %></font>
-    ->
-    <font color=red><%= ViewData["SubCategoriaNombre"] %></font><br><br>
-    
-    <% Html.RenderPartial("ListadoComun",Model); %>
-    
+    <div class="nav">
+    <img src="<%=ResolveUrl("~/Content/flecha_derecha.png") %>" />
+    <%= ViewData["CategoriaNombre"] %>
+    <img src="<%=ResolveUrl("~/Content/flecha_derecha.png") %>" />
+    <%= ViewData["SubCategoriaNombre"] %></div>
+    <br>
+    <div>
+        <% Html.RenderPartial("ListadoComun",Model); %>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
