@@ -54,10 +54,15 @@
     </table>
     <br />
     <br />
+    <% using (Html.BeginForm())
+       {%>
     <p>
-        <input type="submit" value="Comprar" onclick="window.location='/Carrito/comprarCarrito'" />
+        
+        <input type="submit" id="comprar" value="Comprar"  />
+    <%= Html.DropDownList("pagos", ViewData["pagos"] as SelectList)%>
+ 
     </p>
-
+    <% }%>
 </asp:Content>
 
 

@@ -240,8 +240,6 @@ namespace Armazon
 	}
 	
 	[Table(Name="dbo.Carrito")]
-	[InheritanceMapping(Code="Activo", Type=typeof(Activo))]
-	[InheritanceMapping(Code="Vendido", Type=typeof(Vendido), IsDefault=true)]
 	public partial class Carrito : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -399,7 +397,7 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_CarritoType", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsDiscriminator=true)]
+		[Column(Storage="_CarritoType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string CarritoType
 		{
 			get
@@ -530,36 +528,6 @@ namespace Armazon
 		{
 			this.SendPropertyChanging();
 			entity.Carrito = null;
-		}
-	}
-	
-	public partial class Activo : Carrito
-	{
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    #endregion
-		
-		public Activo()
-		{
-			OnCreated();
-		}
-	}
-	
-	public partial class Vendido : Carrito
-	{
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    #endregion
-		
-		public Vendido()
-		{
-			OnCreated();
 		}
 	}
 	
@@ -695,9 +663,9 @@ namespace Armazon
 		
 		private string _Nombre;
 		
-		private string _ImagenURL;
+		private System.Data.Linq.Binary _ImagenURL;
 		
-		private string _ThumbnailURL;
+		private System.Data.Linq.Binary _ThumbnailURL;
 		
 		private EntityRef<Producto> _Producto;
 		
@@ -717,9 +685,9 @@ namespace Armazon
     partial void OnMIMETypeChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
-    partial void OnImagenURLChanging(string value);
+    partial void OnImagenURLChanging(System.Data.Linq.Binary value);
     partial void OnImagenURLChanged();
-    partial void OnThumbnailURLChanging(string value);
+    partial void OnThumbnailURLChanging(System.Data.Linq.Binary value);
     partial void OnThumbnailURLChanged();
     #endregion
 		
@@ -853,8 +821,8 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_ImagenURL", DbType="VarChar(250)", UpdateCheck=UpdateCheck.Never)]
-		public string ImagenURL
+		[Column(Storage="_ImagenURL", DbType="VarBinary(250)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ImagenURL
 		{
 			get
 			{
@@ -873,8 +841,8 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Storage="_ThumbnailURL", DbType="VarChar(250)", UpdateCheck=UpdateCheck.Never)]
-		public string ThumbnailURL
+		[Column(Storage="_ThumbnailURL", DbType="VarBinary(250)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThumbnailURL
 		{
 			get
 			{
@@ -1130,7 +1098,7 @@ namespace Armazon
 		
 		private int _SubCategoriaID;
 		
-		private string _ExternalID;
+		private System.Nullable<int> _ExternalID;
 		
 		private System.Nullable<int> _TiendaID;
 		
@@ -1160,7 +1128,7 @@ namespace Armazon
     partial void OnNombreChanged();
     partial void OnSubCategoriaIDChanging(int value);
     partial void OnSubCategoriaIDChanged();
-    partial void OnExternalIDChanging(string value);
+    partial void OnExternalIDChanging(System.Nullable<int> value);
     partial void OnExternalIDChanged();
     partial void OnTiendaIDChanging(System.Nullable<int> value);
     partial void OnTiendaIDChanged();
@@ -1243,9 +1211,9 @@ namespace Armazon
 				}
 			}
 		}
-
-        [Column(Storage = "_ExternalID", DbType = "VarChar(150)")]
-		public string ExternalID
+		
+		[Column(Storage="_ExternalID", DbType="Int")]
+		public System.Nullable<int> ExternalID
 		{
 			get
 			{

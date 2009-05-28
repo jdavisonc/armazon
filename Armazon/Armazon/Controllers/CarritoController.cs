@@ -18,6 +18,10 @@ namespace Armazon.Controllers
 
         public ActionResult Index()
         {
+            List<string> list = new List<string>();
+            list.Add("PayPal");
+            list.Add("Tarjeta");
+            ViewData["pagos"] = new SelectList(list);            
             AdministracionFachada adminFac = new AdministracionFachada();
             MembershipUser myObject = Membership.GetUser();
             string userName = myObject.UserName.ToString();
@@ -25,9 +29,22 @@ namespace Armazon.Controllers
             List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
             return View(listPedido);
         }
-
-        
-
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Index(FormCollection collection)
+        {
+           AdministracionFachada adminFac = new AdministracionFachada();
+           MembershipUser myObject = Membership.GetUser();
+           string userName = myObject.UserName.ToString();
+           Carrito carrito = adminFac.getCarritoOfUser(userName);
+           adminFac.marcarProductosDelCarro(carrito.CarritoID);
+           string selecItem =  Request.Form["pagos"];
+           if (selecItem.Equals("PayPal"))
+               return RedirectToAction("Create", "PayPal");
+           else
+               if (selecItem.Equals("Tarjeta"))
+                   return RedirectToAction("Index","Tarjeta");
+           return null;
+        }
         
         
         
@@ -125,15 +142,18 @@ namespace Armazon.Controllers
         public ActionResult comprarCarrito()
         {
 
-            AdministracionFachada adminFac = new AdministracionFachada();
+            /*AdministracionFachada adminFac = new AdministracionFachada();
             MembershipUser myObject = Membership.GetUser();
             string userName = myObject.UserName.ToString();
             Carrito carrito = adminFac.getCarritoOfUser(userName);            
             adminFac.marcarProductosDelCarro(carrito.CarritoID);
-            return RedirectToAction("Index");   
+            return RedirectToAction("Index"); */
+            
+            
+            return null;
         }
 
-
+        
 
     }
 }

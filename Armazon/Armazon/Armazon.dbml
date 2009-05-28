@@ -8,12 +8,10 @@
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CarritoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" IsDiscriminator="true" />
+      <Column Name="CarritoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Carrito_Producto_Carrito" Member="Producto_Carritos" ThisKey="CarritoID" OtherKey="CarritoID" Type="Producto_Carrito" />
       <Association Name="MetodoDePago_Carrito" Member="MetodoDePago" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="MetodoDePago" IsForeignKey="true" />
       <Association Name="Usuario_Carrito" Member="Usuario" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
-      <Type Name="Activo" InheritanceCode="Activo" />
-      <Type Name="Vendido" InheritanceCode="Vendido" IsInheritanceDefault="true" />
     </Type>
   </Table>
   <Table Name="dbo.Categoria" Member="Categorias">

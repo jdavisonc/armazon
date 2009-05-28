@@ -51,7 +51,8 @@ namespace Armazon.Controllers
 
         public ActionResult Create()
         {
-            decimal precio = 200000;
+            AdministracionFachada adminFac = new AdministracionFachada();
+            double precio = adminFac.setearMontoProdComprados();
             ViewData["txtMonto"] = precio;
             return View();
         } 
