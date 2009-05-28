@@ -19,7 +19,7 @@ namespace Armazon
             if (this.Tienda != null)
             {
                 dt.Tienda = this.Tienda.TiendaID;
-                dt.ExternalID = this.ExternalID;
+                dt.ExternalID = this.ExternalID.Value;
             }
             if (this.SubCategoria != null)
             {
