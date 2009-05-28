@@ -327,6 +327,23 @@ namespace Armazon.Models
             carrito.Total = monto;
             return monto;
         }
+        public double setearMontoProdComprados()
+        {
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+            Carrito carrito = UsuarioMgr.getCarritoOfUser(userName);
+            List<Producto_Carrito> listProdCarrito =  CarritoMgr.getProductosConfirmados(carrito.CarritoID);
+
+            double monto = 0;
+            foreach (Producto_Carrito auxprodCarr in listProdCarrito)
+            {
+                monto = ProductoMgr.getProducto(auxprodCarr.ProductoID).Precio * auxprodCarr.Cantidad + monto;
+
+            }
+            carrito.Total = monto;
+            CarritoMgr.Save();
+            return monto;
+        }
         public void deleteProducto_Carrito(int idProd, int idCarro)
         {
             CarritoMgr.deleteProducto_Carrito(idProd, idCarro);
@@ -429,15 +446,15 @@ namespace Armazon.Models
         #endregion
         
         #region Carrito
-        public void AddCarritoActivo(Activo activo)
+        public void AddCarritoActivo(Carrito activo)
         {
             CarritoMgr.AddCarritoActivo(activo);
         }
-        public Activo getCarritoActivoByUser(int userId)
+        public Carrito getCarritoActivoByUser(int userId)
         {
             return CarritoMgr.getCarritoActivoByUser(userId);
         }
-        public Activo getCarritoActivoById(int idCarrito)
+        public Carrito getCarritoActivoById(int idCarrito)
         {
             return CarritoMgr.getCarritoActivoById(idCarrito);
         }
@@ -457,6 +474,11 @@ namespace Armazon.Models
         public void cambiarCantidadProducto(int productoId, int carritoId, int cant)
         {
             CarritoMgr.cambiarCantidadProducto(productoId, carritoId, cant);
+        }
+        public void finalizarVentaCarrito(int carritoId)
+        {
+            CarritoMgr.finalizarVentaCarrito(carritoId);
+            CarritoMgr.Save();
         }
         public void SaveCarritoActivo()
         {

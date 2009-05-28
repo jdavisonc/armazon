@@ -23,7 +23,7 @@ namespace Armazon.Controllers.ViewModels
         public ActionResult Details(int id)
         {
             AdministracionFachada adminFac = new AdministracionFachada();
-            Activo activo = adminFac.getCarritoActivoById(id);
+            Carrito activo = adminFac.getCarritoActivoById(id);
             return View(activo);
         }
 

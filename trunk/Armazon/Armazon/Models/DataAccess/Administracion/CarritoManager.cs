@@ -35,35 +35,36 @@ namespace Armazon.Models.DataAccess.Administracion
             return db.Usuarios.SingleOrDefault(c => c.Nombre == userName);
         }*/
 
-        public void AddCarritoActivo(Activo activo)
+        public void AddCarritoActivo(Carrito activo)
         {
+            activo.CarritoType = "Activo";
             db.Carritos.InsertOnSubmit(activo);
         }
-        public Activo getCarritoActivoByUser(int userId)
+        public Carrito getCarritoActivoByUser(int userId)
         {
             var activo = from act in db.Carritos
-                         where act is Activo && act.UsuarioID == userId
+                         where act.CarritoType == "Activo" && act.UsuarioID == userId
                          select act;
             if (activo == null)
                 return null;
             else
             {
-                Activo activoAux = (Activo)activo.ToList().First();
+                Carrito activoAux = activo.ToList().First();
                 return activoAux;
             }
         }
         
         
-        public Activo getCarritoActivoById(int idCarrito)
+        public Carrito getCarritoActivoById(int idCarrito)
         {
             var activo = from act in db.Carritos
-                         where act is Activo && act.CarritoID == idCarrito
+                         where act.CarritoType == "Activo" && act.CarritoID == idCarrito
                          select act;
             if (activo == null)
                 return null;
             else
             {
-                Activo activoAux = (Activo)activo.ToList().First();
+                Carrito activoAux = activo.ToList().First();
                 return activoAux;
             }
         }
@@ -123,6 +124,15 @@ namespace Armazon.Models.DataAccess.Administracion
             }
             db.SubmitChanges();
         }
+
+        public List<Producto_Carrito> getProductosConfirmados(int idCarrito)
+        {
+            var productoCarro = from producto in db.Producto_Carritos
+                                where (producto.CarritoID == idCarrito) && (producto.EstaEnCarrito == '1')
+                                select producto;
+            return productoCarro.ToList();
+            
+        }
         public List<DTPedido> getProductosDeCarrito(int carrito)
         {
             Producto_Carrito prodCarrito = new Producto_Carrito();
@@ -146,6 +156,14 @@ namespace Armazon.Models.DataAccess.Administracion
                 listProd.Add(dtp);
             }
             return listProd;
+        }
+        public void finalizarVentaCarrito(int carritoId)
+        {
+
+            
+            Carrito carrito = getCarritoActivoById(carritoId);
+            carrito.Fecha = DateTime.Now;
+            carrito.CarritoType = "Vendido";
         }
         /*public void Delete(Usuario usuario)
         {
