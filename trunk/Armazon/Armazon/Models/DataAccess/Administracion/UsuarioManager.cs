@@ -46,7 +46,7 @@ namespace Armazon.Models.DataAccess.Administracion
                           select usr;
             Usuario user = usuario.ToList().First();
             var carrito = from cAct in db.Carritos
-                          where cAct is Activo && cAct.UsuarioID == user.UsuarioID
+                          where cAct.CarritoType == "Activo" && cAct.UsuarioID == user.UsuarioID
                           select cAct;
             return carrito.ToList().First();
         }

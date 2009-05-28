@@ -396,7 +396,7 @@ namespace MvcApplication1.Controllers
             user.Nombre = userName;
             adminFach.addUsuario(user);
             adminFach.saveUsuario();
-            Activo carrito = new Activo();
+            Carrito carrito = new Carrito();
             carrito.UsuarioID = user.UsuarioID;
             adminFach.AddCarritoActivo(carrito);
             adminFach.SaveCarritoActivo();
