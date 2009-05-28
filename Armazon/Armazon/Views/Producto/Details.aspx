@@ -28,7 +28,7 @@
         </div>
         <div id="buyBlock">
             Cantidad: 
-            <select type="text" name="cantCompra" style="font-size:9px;width:40px">
+            <select type="text" id="cantCompra" name="cantCompra" style="font-size:9px;width:40px">
               <% for (int i = 1; i < 20; i++){ %><option value="<%= i %>"><%= i %></option><% } %>
             </select><br>
             <img src="<%= ResolveUrl("~/Content/agregar_carrito.png")%>" onclick="llamada(<%=Model.Id %>)" style="cursor:pointer">
