@@ -173,7 +173,7 @@ namespace Armazon.Models.DataAccess.Administracion
         public List<DTCarrito> ventasTotalesXPeriodo(DateTime fechaInicio, DateTime fechaFin)
         {
             var carritos = from c in db.Carritos
-                                    where c.Fecha >= fechaInicio && c.Fecha <= fechaFin && c is Vendido 
+                                    where c.Fecha >= fechaInicio && c.Fecha <= fechaFin && c.CarritoType.Equals("Vendido")
                                     select c;
             
             List<DTCarrito> lsCarrito = new List<DTCarrito>();
