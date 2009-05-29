@@ -16,4 +16,5 @@
         <p><a href="/PayPal">Administación de Metodos de Pago PayPal</a></p>   
         <p><a href="/Tarjeta">Administación de Metodos de Pago Tarjeta</a></p>
         <p><a href="/Tienda">Administación de Tiendas</a></p>
+        <p><a href="/Reporte/VentasTotalesXPeriodo">Ventas Totales por Período</a></p>
 </asp:Content>
