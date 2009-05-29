@@ -24,7 +24,7 @@ namespace Armazon
             if (this.SubCategoria != null)
             {
                 dt.Subcategoria = this.SubCategoria.Nombre;
-                dt.SubcaterogiaID = this.SubCategoriaID;
+                dt.SubcaterogiaID = this.SubCategoriaID.Value;
                 dt.Categoria = this.SubCategoria.Categoria.Nombre;
                 dt.CaterogiaID = this.SubCategoria.CategoriaID;
             }
