@@ -12,7 +12,7 @@
     <table>
         <%foreach (Armazon.Models.DataTypes.DTUsuarioTag item in Model) {%>
             <tr>
-                <%=item.Usuario%> | <%=item.CantTags%>
+                <%=item.Usuario%> | <%=item.CantTags%><br>
             </tr>    
         <%}%>
     </table>
