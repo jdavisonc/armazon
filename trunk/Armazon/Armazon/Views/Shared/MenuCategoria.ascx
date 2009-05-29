@@ -7,8 +7,8 @@ jQuery().ready(function(){
 	    header: 'h3.head',
 	    alwaysOpen: false,
 	    animated: true,
-	    showSpeed: 400,
-	    hideSpeed: 800
+	    showSpeed: 400//,
+	    //hideSpeed: 800
     });
 });	
 </script>

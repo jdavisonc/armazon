@@ -25,7 +25,7 @@ namespace Armazon.Controllers
 
         public ActionResult Index()
         {
-            return View("NotFound");
+            return View("NotFound",null);
         }
         
         public ActionResult AgregarProducto(string cant,string idProducto)
@@ -65,12 +65,19 @@ namespace Armazon.Controllers
             }
             else if (tiendaID.HasValue && externalID != null)
             {
-                ConsultaFachada consultaFachada = new ConsultaFachada();
-                producto = consultaFachada.getProductoTienda(externalID, tiendaID.Value);
+                try
+                {
+                    ConsultaFachada consultaFachada = new ConsultaFachada();
+                    producto = consultaFachada.getProductoTienda(externalID, tiendaID.Value);
+                }
+                catch (Exception e)
+                {
+                    return View("NotFound", e.Message);        
+                }
             }
             if (producto != null)
                 return View("Details",producto.getDataType());
-            return View("NotFound");
+            return View("NotFound",null);
         }
 
         //
@@ -175,7 +182,7 @@ namespace Armazon.Controllers
             AdministracionFachada administracionFachada = new AdministracionFachada();
             var producto = administracionFachada.getProducto(id);
             if (producto == null)
-                return View("NotFound");
+                return View("NotFound",null);
             else
                 return View(producto.getDataType());
         }
@@ -187,7 +194,7 @@ namespace Armazon.Controllers
             var producto = administracionFachada.getProducto(id);
             if (producto == null)
             {
-                return View("NotFound");
+                return View("NotFound",null);
             }
             foreach (Valor v in producto.Valors)
             {
