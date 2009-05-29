@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Armazon.Models.DataTypes;
 
 namespace Armazon.Models.DataAccess.Administracion
 {
@@ -49,6 +50,20 @@ namespace Armazon.Models.DataAccess.Administracion
                           where cAct.CarritoType == "Activo" && cAct.UsuarioID == user.UsuarioID
                           select cAct;
             return carrito.ToList().First();
+        }
+
+        public List<DTUsuarioTag> tagsXUsuario()
+        {
+            List<DTUsuarioTag> tagsXUsuario = new List<DTUsuarioTag>();
+            IQueryable<Usuario> usuarios = findAllUsuarios();
+            foreach (Usuario usuario in usuarios)
+            {
+                DTUsuarioTag dtut = new DTUsuarioTag();
+                dtut.Usuario = usuario.Nombre;
+                dtut.CantTags = usuario.Producto_Tags.Count;
+                tagsXUsuario.Add(dtut);
+            }
+            return tagsXUsuario;
         }
         
         public void Save()
