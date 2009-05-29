@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Armazon.Models.DataTypes;
 using Armazon.AWS;
+using System.Reflection;
 
 namespace Armazon.Models.ServiceAccess
 {
@@ -109,6 +110,33 @@ namespace Armazon.Models.ServiceAccess
                         p.Precio = float.Parse(item.OfferSummary.LowestNewPrice.Amount) / 100;
                         //dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
 
+                        foreach (PropertyInfo infoe in item.ItemAttributes.GetType().GetProperties())
+                        {
+                            if (infoe.CanRead)
+                            {
+                                object os = infoe.GetValue(item.ItemAttributes, null);
+                                if (os != null)
+                                {
+                                    Propiedad prop = new Propiedad();
+                                    prop.Nombre = infoe.Name;
+                                    Valor v = new Valor();
+                                    v.PropiedadID = -1;
+                                    v.Propiedad = prop;
+                                    if (os.GetType() == typeof(string))
+                                    {
+                                        v.Valor1 = (string)os;
+                                        p.Valors.Add(v);
+                                    }
+                                    else if (os.GetType() == typeof(string[]) && ((string[])os).Length > 0)
+                                    {
+                                        v.Valor1 = String.Join(", ", (string[])os);
+                                        p.Valors.Add(v);
+                                    }
+                                }
+                            }
+                        } 
+
+
                         // Comentarios
                         if (item.CustomerReviews != null)
                         {
@@ -130,7 +158,7 @@ namespace Armazon.Models.ServiceAccess
                             }
                         }
                         //dt.Images.Add(new DTImagen(-1, item.ItemAttributes.Title, item.MediumImage.URL));
-                        if (item.LargeImage != null)
+                        /*if (item.LargeImage != null)
                         {
                             Imagen img = new Imagen();
                             img.ImagenURL = item.LargeImage.URL;
@@ -141,6 +169,15 @@ namespace Armazon.Models.ServiceAccess
                             Imagen img = new Imagen();
                             img.ImagenURL = item.MediumImage.URL;
                             p.Imagens.Add(img);
+                        }*/
+                        foreach (ItemImageSets imgset in item.ImageSets)
+                        {
+                            foreach (ImageSet imgsetset in imgset.ImageSet)
+	                        {
+                                Imagen img = new Imagen();
+                                img.ImagenURL = imgsetset.LargeImage.URL;
+                                p.Imagens.Add(img);
+	                        }
                         }
                         return p;
                     }

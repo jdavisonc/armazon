@@ -8,17 +8,17 @@
 
     <div id="contenderLeft">
         <div id="imageProductContender">
-            <% if ((Model.Images.Count > 0) && (Model.Tienda == -1)){ %>
+            <% if ((Model.Images.Count > 0) && (Model.Id > 0)){ %>
                 <img id="PImg" src="<%= Url.Action( "ShowFirstThumbnail", "Producto", new { productID = Model.Id } ) %>"/>
-            <% }else if ((Model.Images.Count > 0) && (Model.Tienda != null)){ %>
-                <img src="<%= Model.Images[0].ImagenURL %>" width="280" height="280"/>
+            <% }else if ((Model.Images.Count > 0) && (Model.Id == 0)){ %>
+                <img id="PImg" src="<%= Model.Images[0].ImagenURL %>" width="280" height="280"/>
             <% }else{ %>
-                 <img src="<%=ResolveUrl("~/Content/noImageAvailable.jpg") %>" width="280" height="280"/>
+                 <img id="PImg" src="<%=ResolveUrl("~/Content/noImageAvailable.jpg") %>" width="280" height="280"/>
             <% } %>
             <br>
             <ul id="imglist">
             <% foreach (Armazon.Models.DataTypes.DTImagen img in Model.Images){ %>
-                <% if (Model.Tienda == -1){ %>
+                <% if (Model.Id > 0){ %>
                     <li><img width="34px" height="34px" src="<%= Url.Action( "ShowThumbnail", "Producto", new { productID = Model.Id, imageID = img.Id } ) %>" alt="<%= img.Nombre %>"/></li>
                  <% }else{ %>
                     <li><img width="34px" height="34px" src="<%= img.ImagenURL %>" alt="<%= img.Nombre %>"/></li>
@@ -37,7 +37,7 @@
     <div class="detailProduct">
         <div class="sectionProduct">
             <h2><%= Html.Encode(Model.Nombre)%>
-            <% if (Page.User.IsInRole("Administrador") && (Model.Tienda == -1)){ %>
+            <% if (Page.User.IsInRole("Administrador") && (Model.Id > 0)){ %>
                 <a href="<%= Url.Action("Edit", new { id = Model.Id, idSubCategoria = Model.SubcaterogiaID }) %>" title="Modificar">
                     <img src="<%=ResolveUrl("~/Content/doc_edit.png")%>"/>
                 </a>
@@ -55,11 +55,12 @@
             <!-- ############## -->
         </div>
         <br>
-        Precio: <span style="color:#990000;font-size:16px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br>
-        <% foreach (Armazon.Models.DataTypes.DTProductAttr attr in Model.Attrs){ %>
-             <%= attr.Nombre %>: <%= ((Armazon.Models.DataTypes.DTProductAttrString)attr).Valor %><br>
-        <%} %>
-    
+        <div style="padding-left:5px">
+            <% foreach (Armazon.Models.DataTypes.DTProductAttr attr in Model.Attrs){ %>
+                 <b><%= attr.Nombre %></b>: <%= ((Armazon.Models.DataTypes.DTProductAttrString)attr).Valor %><br>
+            <%} %>
+            Precio: <span style="color:#990000;font-size:16px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br>
+        </div>
         <div id="Tags" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/tag.png") %>" class="imageMiddle"/> Etiquetas</h3><br>
             <%foreach (String tag in Model.Tags){%> 

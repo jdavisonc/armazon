@@ -7,7 +7,7 @@ namespace Armazon.Models.DataTypes
 {
     public class DTProduct
     {
-        private int _id;
+        private int _id = -1;
         private IList<DTProductAttr> _attrs;
         private int _subcaterogiaID;
         private string _subcategoria;

@@ -327,12 +327,6 @@ div.images:hover{
 	background-color: #eaeabb;
 }
 
-table.listadoProductos
-{
-    width: 100%;
-    border: none;
-}
-
 .nav
 {
     color: Gray;
@@ -340,4 +334,38 @@ table.listadoProductos
 .nav img
 {
     vertical-align: middle;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table 
+{
+  border: solid 1px #e8eef4;
+  border-collapse: collapse;
+}
+
+table td 
+{
+  padding: 5px;   
+  border: solid 1px #e8eef4;
+}
+
+table th
+{
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #e8eef4; 
+  border: solid 1px #e8eef4;   
+}
+
+table.listadoProductos
+{
+    width: 100%;
+    border: none;
+}
+
+table.listadoProductos td,th
+{
+    border: none;
 }

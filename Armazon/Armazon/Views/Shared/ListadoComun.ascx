@@ -17,12 +17,12 @@
            { %>
             <a href="<%=Url.Action("Details", "Producto", new { productID = p.Id })%>" title="<%= p.Nombre %>">
                 <% } %>
-                <% if ((p.Images.Count > 0) && (p.Tienda == -1))
+                <% if ((p.Images.Count > 0) && (p.Id > 0))
                    { %>
                 <img src="<%= Url.Action( "ShowFirstThumbnail", "Producto", new { productID = p.Id } ) %>"
                     alt="<%=p.Nombre %>" width="150" height="150" />
                 <% }
-                   else if ((p.Images.Count > 0) && (p.Tienda != null))
+                   else if ((p.Images.Count > 0) && (p.Id == 0))
                    { %>
                 <img src="<%= p.Images[0].ImagenURL %>" width="150" height="150" />
                 <% }
@@ -34,7 +34,7 @@
                     <%=p.Nombre %><br />
                     $
                     <%=p.Precio.ToString()%>
-                    <% if (Page.User.IsInRole("Administrador") && (p.Tienda == -1)){ %>
+                    <% if (Page.User.IsInRole("Administrador") && (p.Id > 0)){ %>
                         <br><a href="<%= Url.Action("Edit", new { id = p.Id, idSubCategoria = p.SubcaterogiaID }) %>" title="Modificar">
                             <img src="<%=ResolveUrl("~/Content/doc_edit.png")%>"/>
                         </a>
