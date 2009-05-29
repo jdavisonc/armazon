@@ -72,16 +72,20 @@ namespace Armazon
         }
 
 
-        public static void finalizarVentaCarrito()
+        public static Carrito finalizarVentaCarrito()
         {
             AdministracionFachada adminFac = new AdministracionFachada();
             MembershipUser myObject = Membership.GetUser();
             string userName = myObject.UserName.ToString();
             int usuarioId = adminFac.getUsuario(userName).UsuarioID;
             Carrito carroActivo = adminFac.getCarritoActivoByUser(usuarioId);
-            adminFac.finalizarVentaCarrito(carroActivo.CarritoID);
+            return adminFac.finalizarVentaCarrito(carroActivo.CarritoID);
                 
         }
-    
+        public static DTCarroVendido datosVenta()
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            return null;
+        }
     }
 }

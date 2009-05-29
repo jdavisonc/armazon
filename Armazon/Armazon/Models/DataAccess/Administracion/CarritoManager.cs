@@ -45,7 +45,7 @@ namespace Armazon.Models.DataAccess.Administracion
             var activo = from act in db.Carritos
                          where act.CarritoType == "Activo" && act.UsuarioID == userId
                          select act;
-            if (activo == null)
+            if (activo == null || activo.ToList().Count == 0)
                 return null;
             else
             {
@@ -157,13 +157,33 @@ namespace Armazon.Models.DataAccess.Administracion
             }
             return listProd;
         }
-        public void finalizarVentaCarrito(int carritoId)
+        public Carrito finalizarVentaCarrito(int carritoId)
         {
-
-            
             Carrito carrito = getCarritoActivoById(carritoId);
             carrito.Fecha = DateTime.Now;
             carrito.CarritoType = "Vendido";
+            getCarritoActivoById(carritoId);
+            ProductoManager prmgr = new ProductoManager();
+            List<Producto_Carrito> listProdCarrito = getProductosConfirmados(carrito.CarritoID);
+
+            double monto = 0;
+            foreach (Producto_Carrito auxprodCarr in listProdCarrito)
+            {
+                monto = prmgr.getProducto(auxprodCarr.ProductoID).Precio * auxprodCarr.Cantidad + monto;
+
+            }
+            carrito.Fecha = DateTime.Now;
+            carrito.Total = monto;
+
+            
+            
+            
+            
+            Carrito carroNuevo = new Carrito();
+            carroNuevo.CarritoType = "Activo";
+            carroNuevo.Total = 0;
+            carroNuevo.UsuarioID = carrito.UsuarioID;
+            return carroNuevo;
         }
         /*public void Delete(Usuario usuario)
         {

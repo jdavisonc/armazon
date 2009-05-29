@@ -53,6 +53,7 @@ namespace Armazon.Controllers
         {
             AdministracionFachada adminFac = new AdministracionFachada();
             double precio = adminFac.setearMontoProdComprados();
+           
             ViewData["txtMonto"] = precio;
             return View();
         } 

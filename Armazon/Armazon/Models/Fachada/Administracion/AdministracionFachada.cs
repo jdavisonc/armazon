@@ -340,7 +340,8 @@ namespace Armazon.Models
                 monto = ProductoMgr.getProducto(auxprodCarr.ProductoID).Precio * auxprodCarr.Cantidad + monto;
 
             }
-            carrito.Total = monto;
+            carrito.Fecha = DateTime.Now;
+            carrito.Total = float.Parse("12");
             CarritoMgr.Save();
             return monto;
         }
@@ -357,6 +358,13 @@ namespace Armazon.Models
         {
             return ProductoMgr.getNombresProductos(listProd);
         }
+
+        public DTCarroVendido datosVenta()
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            return null;
+        }
+        
         #endregion
 
         #region SubCategoria_Propiedad
@@ -475,10 +483,12 @@ namespace Armazon.Models
         {
             CarritoMgr.cambiarCantidadProducto(productoId, carritoId, cant);
         }
-        public void finalizarVentaCarrito(int carritoId)
+        public Carrito finalizarVentaCarrito(int carritoId)
         {
-            CarritoMgr.finalizarVentaCarrito(carritoId);
+            Carrito carrito = CarritoMgr.finalizarVentaCarrito(carritoId);
+            CarritoMgr.AddCarritoActivo(carrito);
             CarritoMgr.Save();
+            return carrito;
         }
         public void SaveCarritoActivo()
         {
