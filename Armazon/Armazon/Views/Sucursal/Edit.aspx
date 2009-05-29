@@ -49,7 +49,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
-    <script src="../../Scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
     <script src="http://www.google.com/jsapi?key=ABQIAAAAp0Kj6-TRULdy9KWugN_GfxTAdLk6fhpyuNdDdRr81ySzv4W5CRSHcX_iuexOywKZQSEdjN-rXx8BAA" type="text/javascript"></script>
     <script src="../../Scripts/LocationMapAdd.js" type="text/javascript" ></script>
 </asp:Content>

@@ -140,8 +140,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
     <link href="<%= ResolveUrl("~/Content/Products.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%= ResolveUrl("~/Scripts/jquery-1.3.2.js")%>" type="text/javascript" ></script>
-    <script src="<%= ResolveUrl("~/Scripts/jquery.corner.js")%>" type="text/javascript" ></script>
     <script src="<%= ResolveUrl("~/Scripts/CompraProducto.js")%>" type="text/javascript" ></script>
     <script src="<%= ResolveUrl("~/Scripts/jquery.rating.js")%>" type="text/javascript" ></script>
     <link href="<%= ResolveUrl("~/Content/jquery.rating.css")%>" rel="stylesheet" type="text/css" />
