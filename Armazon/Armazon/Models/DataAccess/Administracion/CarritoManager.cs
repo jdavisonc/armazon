@@ -170,6 +170,21 @@ namespace Armazon.Models.DataAccess.Administracion
             db.Usuarios.DeleteOnSubmit(usuario);
         }
         */
+        public List<DTCarrito> ventasTotalesXPeriodo(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var carritos = from c in db.Carritos
+                                    where c.Fecha >= fechaInicio && c.Fecha <= fechaFin && c is Vendido 
+                                    select c;
+            
+            List<DTCarrito> lsCarrito = new List<DTCarrito>();
+            foreach (Carrito carrito in carritos)
+            {
+                lsCarrito.Add(carrito.getDataType());
+            }
+
+            return lsCarrito;
+        }
+
         public void Save()
         {
             db.SubmitChanges();

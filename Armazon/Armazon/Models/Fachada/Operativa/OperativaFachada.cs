@@ -11,6 +11,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
+using Armazon.Models.DataTypes;
+using System.Collections.Generic;
 
 namespace Armazon.Models.Fachada.Operativa
 {
@@ -41,6 +43,12 @@ namespace Armazon.Models.Fachada.Operativa
         {
             TagManager tagMgr = new TagManager();
             tagMgr.Save();
+        }
+
+        public List<DTCarrito> ventasTotalesXPeriodo(DateTime fechaInicio, DateTime fechaFin)
+        {
+            CarritoManager carritoMgr = new CarritoManager();
+            return carritoMgr.ventasTotalesXPeriodo(fechaInicio,fechaFin);
         }
     }
 }
