@@ -31,7 +31,11 @@
             <select type="text" id="cantCompra" name="cantCompra" style="font-size:9px;width:40px">
               <% for (int i = 1; i < 20; i++){ %><option value="<%= i %>"><%= i %></option><% } %>
             </select><br>
-            <img src="<%= ResolveUrl("~/Content/agregar_carrito.png")%>" onclick="llamada(<%=Model.Id %>)" style="cursor:pointer">
+            <% if (Model.Id > 0){ %>
+                <img src="<%= ResolveUrl("~/Content/agregar_carrito.png")%>" onclick="compraAjax(<%=Model.Id %>)" style="cursor:pointer">
+            <% }else{ %>
+                <img src="<%= ResolveUrl("~/Content/agregar_carrito.png")%>" onclick="compraAjaxTienda(<%= Model.Tienda %>,'<%= Model.ExternalID %>')" style="cursor:pointer">
+            <% } %>
         </div>
     </div>
     <div class="detailProduct">
@@ -136,8 +140,8 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
     <link href="<%= ResolveUrl("~/Content/Products.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%= ResolveUrl("~/Scripts/jquery-1.3.2.js")%>" type="text/javascript"></script>
-    <script src="<%= ResolveUrl("~/Scripts/jquery.corner.js")%>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Scripts/jquery-1.3.2.js")%>" type="text/javascript" ></script>
+    <script src="<%= ResolveUrl("~/Scripts/jquery.corner.js")%>" type="text/javascript" ></script>
     <script src="<%= ResolveUrl("~/Scripts/CompraProducto.js")%>" type="text/javascript" ></script>
     <script src="<%= ResolveUrl("~/Scripts/jquery.rating.js")%>" type="text/javascript" ></script>
     <link href="<%= ResolveUrl("~/Content/jquery.rating.css")%>" rel="stylesheet" type="text/css" />

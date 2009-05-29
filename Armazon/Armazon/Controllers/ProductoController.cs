@@ -45,12 +45,31 @@ namespace Armazon.Controllers
             prodsCarrito.MontoActual = montoProductos;
             prodsCarrito.Productos = prods;
             return Json(prodsCarrito);
-
-
-
-
         }
 
+        public ActionResult PersistirProductoTienda(int tiendaID, string externalID)
+        {
+            Producto producto = null;
+            try
+            {
+                ConsultaFachada consultaFachada = new ConsultaFachada();
+                producto = consultaFachada.getProductoTienda(externalID, tiendaID);
+                // Limpio producto para ingresar solo datos atomicos
+                producto.Imagens = new EntitySet<Imagen>();
+                producto.Producto_Tags = new EntitySet<Producto_Tag>();
+                producto.Valors = new EntitySet<Valor>();
+                producto.Producto_Usuarios = new EntitySet<Producto_Usuario>();
+                producto.SubCategoriaID = null;
+                AdministracionFachada adminFachada = new AdministracionFachada();
+                adminFachada.addProducto(producto);
+                adminFachada.saveProducto();
+                return Json(producto.ProductoID);
+            }
+            catch (Exception e)
+            { 
+            }
+            return Json(-1);
+        }
 
         //
         // GET: /Producto/Details/5

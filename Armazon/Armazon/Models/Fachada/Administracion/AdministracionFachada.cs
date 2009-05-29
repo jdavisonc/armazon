@@ -359,11 +359,11 @@ namespace Armazon.Models
             return ProductoMgr.getNombresProductos(listProd);
         }
 
-        public DTCarroVendido datosVenta()
+        /*public DTCarroVendido datosVenta()
         {
             AdministracionFachada adminFac = new AdministracionFachada();
             return null;
-        }
+        }*/
         
         #endregion
 

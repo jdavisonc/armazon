@@ -369,3 +369,14 @@ table.listadoProductos td,th
 {
     border: none;
 }
+
+/* CARRITO
+----------------------------------------------------------*/
+
+div#carrito
+{
+    margin-top: 20px;
+    margin-right:5px;
+    padding: 4px;
+    background-color: #D2E8F1;
+}
