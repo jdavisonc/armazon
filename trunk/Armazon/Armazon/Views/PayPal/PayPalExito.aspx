@@ -7,7 +7,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>La compra se ha efectuado satisfactoriamente</h2>
-<%  Armazon.MenuController.finalizarVentaCarrito();%>
+<%  Armazon.Carrito carrito =  Armazon.MenuController.finalizarVentaCarrito();
+    
+    
+    
+    
+    %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">

@@ -108,6 +108,7 @@
     <Compile Include="Models\DataAccess\Administracion\ValorManager.cs" />
     <Compile Include="Models\DataTypes\AddProductoCarrito.cs" />
     <Compile Include="Models\DataTypes\DTCarrito.cs" />
+    <Compile Include="Models\DataTypes\DTCarroVendido.cs" />
     <Compile Include="Models\DataTypes\DTCategoria.cs" />
     <Compile Include="Models\DataTypes\DTComment.cs" />
     <Compile Include="Models\DataTypes\DTImagen.cs" />
