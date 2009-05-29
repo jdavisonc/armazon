@@ -55,9 +55,15 @@ namespace Armazon
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
             var subCategorias = administracionFachada.findAllSubCategorias(id).ToList();
-
             
             return View(subCategorias);
+        }
+
+        public ActionResult UsuariosQueMasTaguean()
+        {
+            OperativaFachada fachada = new OperativaFachada();
+            List<DTUsuarioTag> usuariosTags = fachada.tagsXUsuario();
+            return View(usuariosTags);
         }
     }
 }

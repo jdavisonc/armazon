@@ -50,5 +50,11 @@ namespace Armazon.Models.Fachada.Operativa
             CarritoManager carritoMgr = new CarritoManager();
             return carritoMgr.ventasTotalesXPeriodo(fechaInicio,fechaFin);
         }
+
+        public List<DTUsuarioTag> tagsXUsuario()
+        {
+            UsuarioManager usuarioMgr = new UsuarioManager();
+            return usuarioMgr.tagsXUsuario();
+        }
     }
 }
