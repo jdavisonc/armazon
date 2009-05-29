@@ -55,6 +55,7 @@ namespace Armazon.Models.DataAccess.Administracion
         public List<DTUsuarioTag> tagsXUsuario()
         {
             List<DTUsuarioTag> tagsXUsuario = new List<DTUsuarioTag>();
+            List<DTUsuarioTag> tagsXUsuarioOrdenado = new List<DTUsuarioTag>();
             IQueryable<Usuario> usuarios = findAllUsuarios();
             foreach (Usuario usuario in usuarios)
             {
@@ -62,14 +63,21 @@ namespace Armazon.Models.DataAccess.Administracion
                 dtut.Usuario = usuario.Nombre;
                 dtut.CantTags = usuario.Producto_Tags.Count;
                 tagsXUsuario.Add(dtut);
-            }
-            return tagsXUsuario;
+            }            
+            while (tagsXUsuario.Count > 0){
+                DTUsuarioTag max = tagsXUsuario.First();
+                foreach (DTUsuarioTag dtut in tagsXUsuario)
+                    if (dtut.CantTags > max.CantTags)
+                        max = dtut;                           
+                tagsXUsuarioOrdenado.Add(max);
+                tagsXUsuario.Remove(max);
+            }            
+            return tagsXUsuarioOrdenado;
         }
         
         public void Save()
         {
             db.SubmitChanges();
         }
-
     }
 }
