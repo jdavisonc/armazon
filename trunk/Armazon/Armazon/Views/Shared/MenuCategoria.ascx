@@ -1,37 +1,39 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <script type="text/javascript">
-jQuery().ready(function(){	
-    // applying the settings
-    jQuery('#theMenu').Accordion({
-	    active: 'h3.selected',
-	    header: 'h3.head',
-	    alwaysOpen: false,
-	    animated: true,
-	    showSpeed: 400//,
-	    //hideSpeed: 800
+    jQuery().ready(function() {
+        $('.basic').corner();
+        $('.head').corner();
+        jQuery('#navigation').accordion({
+            active: true,
+            header: '.head',
+            navigation: true,
+            fillSpace: true,
+        });
     });
-});	
 </script>
-<ul id="theMenu">
+<div class="basic">	
+    <ul id="navigation">
     <%foreach (var categoria in Armazon.MenuController.getCategorias())
       { %>
-        <li>
-	        <h3 class="head"><a href="javascript:;"><%=categoria.Nombre%></a></h3>
-	        <%foreach (var subCategoria in categoria.SubCategorias){ %>
-	            <ul>
-		            <li><a href="/Producto/Listado?idSubCategoria=<%=subCategoria.Id %>"><%=subCategoria.Nombre %></a></li>
-	            </ul>
-            <%} %>
-        </li>
+      <li>
+        <a class="head"><%=categoria.Nombre%></a>
+        <ul>
+        <%foreach (var subCategoria in categoria.SubCategorias){ %>
+	        <li><a href="/Producto/Listado?idSubCategoria=<%=subCategoria.Id %>"><%=subCategoria.Nombre %></a></li>
+        <%} %>
+        </ul>
+      </li>
     <%}%>
-</ul>
+    </ul>
+</div>
 
-<ul id="TagCloud">
+<br><br />
+<div id="TagCloud">
     <%foreach (var tag in Armazon.MenuController.getTags()){%>    
-        <li>
-            <font size=<%=Armazon.MenuController.getSizeTag(tag.Nombre)%>>
+        <span class="tag">
+            <font size="<%= Armazon.MenuController.getSizeTag(tag.Nombre)%>">
                 <a href="/Producto/ListadoPorTag?nombreTag=<%=tag.Nombre%>"><%=tag.Nombre%></a>
             </font>
-        </li>
+        </span>
     <%}%>
-</ul>
+</div>
