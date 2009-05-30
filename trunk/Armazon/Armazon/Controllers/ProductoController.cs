@@ -188,7 +188,7 @@ namespace Armazon.Controllers
                     }
                 }
                 administracionFachada.saveProducto();
-                return View(producto.getDataType());
+                return View("Details",producto.getDataType());
             }
             catch
             {
