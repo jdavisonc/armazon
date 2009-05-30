@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="Armazon" Class="ArmazonDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Armazon.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ArmazonConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Activo" Member="Activos">
+    <Type Name="Activo">
+      <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vendido" Member="Vendidos">
+    <Type Name="Vendido">
+      <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.Carrito" Member="Carritos">
     <Type Name="Carrito">
       <Column Name="CarritoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -29,8 +44,8 @@
       <Column Name="Thumbnail" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="MIMEType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="ImagenURL" Type="System.Data.Linq.Binary" DbType="VarBinary(250)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="ThumbnailURL" Type="System.Data.Linq.Binary" DbType="VarBinary(250)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ImagenURL" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="ThumbnailURL" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Association Name="Producto_Imagen" Member="Producto" ThisKey="ProductoID" OtherKey="ProductoID" Type="Producto" IsForeignKey="true" />
     </Type>
   </Table>
@@ -39,17 +54,19 @@
       <Column Name="MetodoDePagoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MetodoDePagoType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" IsDiscriminator="true" />
       <Column Name="Numero" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="MetodoDePago_Carrito" Member="Carritos" ThisKey="MetodoDePagoID" OtherKey="MetodoDePagoID" Type="Carrito" />
-      <Type Name="PayPal" InheritanceCode="PayPal" IsInheritanceDefault="true" />
-      <Type Name="Tarjeta" InheritanceCode="Tarjeta" />
+      <Association Name="Usuario_MetodoDePago" Member="Usuario" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Usuario" IsForeignKey="true" />
+      <Type Name="PayPal" InheritanceCode="PayPal" />
+      <Type Name="Tarjeta" InheritanceCode="Tarjeta" IsInheritanceDefault="true" />
     </Type>
   </Table>
   <Table Name="dbo.Producto" Member="Productos">
     <Type Name="Producto">
       <Column Name="ProductoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="SubCategoriaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ExternalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(350) NOT NULL" CanBeNull="false" />
+      <Column Name="SubCategoriaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExternalID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
       <Column Name="TiendaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Precio" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="Producto_Imagen" Member="Imagens" ThisKey="ProductoID" OtherKey="ProductoID" Type="Imagen" />
@@ -149,6 +166,7 @@
       <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Usuario_Carrito" Member="Carritos" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Carrito" />
+      <Association Name="Usuario_MetodoDePago" Member="MetodoDePagos" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="MetodoDePago" />
       <Association Name="Usuario_Producto_Tag" Member="Producto_Tags" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Producto_Tag" />
       <Association Name="Usuario_Producto_Usuario" Member="Producto_Usuarios" ThisKey="UsuarioID" OtherKey="UsuarioID" Type="Producto_Usuario" />
     </Type>
