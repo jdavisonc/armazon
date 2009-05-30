@@ -51,5 +51,17 @@ namespace Armazon.Models.Fachada.Operativa
             return carritoMgr.ventasTotalesXPeriodo(fechaInicio,fechaFin);
         }
 
-		 public List<DTUsuarioTag> tagsXUsuario()        {            UsuarioManager usuarioMgr = new UsuarioManager();            return usuarioMgr.tagsXUsuario();        }    }
+		 public List<DTUsuarioTag> tagsXUsuario()
+         {
+             UsuarioManager usuarioMgr = new UsuarioManager();
+             return usuarioMgr.tagsXUsuario();
+         }
+
+         public IQueryable<Producto> ProductosMasVendidos(int idSubCategoria)
+         {
+             OperativaFachada operativaFachada = new OperativaFachada();
+             return operativaFachada.ProductosMasVendidos(idSubCategoria);
+
+         }
+    }
 }
