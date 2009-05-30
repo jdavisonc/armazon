@@ -64,5 +64,21 @@ namespace Armazon
             return View(subCategorias.ToPagedList(currentPageIndex,10));
         }
 
-		 public ActionResult UsuariosQueMasTaguean()        {            OperativaFachada fachada = new OperativaFachada();            List<DTUsuarioTag> usuariosTags = fachada.tagsXUsuario();            return View(usuariosTags);        }		public ActionResult ProductosMasVendidos(int id, int idCategoria,int pagina, int? page)        {            OperativaFachada operativaFachada = new OperativaFachada();            IQueryable<Producto> productos = operativaFachada.ProductosMasVendidos(id);            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;            ViewData["IdCategoria"] = idCategoria;            ViewData["pagina"] = pagina;            return View(productos.ToPagedList(currentPageIndex,10));        }    }
+		 public ActionResult UsuariosQueMasTaguean()        
+         {            
+             OperativaFachada fachada = new OperativaFachada();
+             List<DTUsuarioTag> usuariosTags = fachada.tagsXUsuario();
+             return View(usuariosTags);
+         }
+        
+        public ActionResult ProductosMasVendidos(int id, int idCategoria,int pagina, int? page)
+        {
+            OperativaFachada operativaFachada = new OperativaFachada();
+            IQueryable<Producto> productos = operativaFachada.ProductosMasVendidos(id);
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            ViewData["IdCategoria"] = idCategoria;
+            ViewData["pagina"] = pagina;
+            return View(productos.ToPagedList(currentPageIndex,10));
+        }
+    }
 }
