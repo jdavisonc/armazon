@@ -35,10 +35,10 @@
                     <%=p.Nombre %><br />
                     <span style="font-size:11px;font-weight:bold;color:#990000">$<%=p.Precio.ToString()%></font>
                     <% if (Page.User.IsInRole("Administrador") && (p.Id > 0)){ %>
-                        <br><a href="<%= Url.Action("Edit", new { id = p.Id, idSubCategoria = p.SubcaterogiaID }) %>" title="Modificar">
+                        <br><a href="<%= Url.Action("Edit", "Producto", new { id = p.Id, idSubCategoria = p.SubcaterogiaID }) %>" title="Modificar">
                             <img src="<%=ResolveUrl("~/Content/doc_edit.png")%>"/>
                         </a>
-                        <a href="<%=Url.Action("Delete", new { id = p.Id })%>" title="Eliminar">
+                        <a href="<%=Url.Action("Delete","Producto", new { id = p.Id })%>" title="Eliminar">
                             <img src="<%=ResolveUrl("~/Content/doc_remove.png")%>"/>
                         </a>
                      <% } %>
