@@ -188,7 +188,7 @@ namespace Armazon.Controllers
                     }
                 }
                 administracionFachada.saveProducto();
-                return RedirectToAction("Details", new { id = producto.ProductoID });
+                return View(producto.getDataType());
             }
             catch
             {
