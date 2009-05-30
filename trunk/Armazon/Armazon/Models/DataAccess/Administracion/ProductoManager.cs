@@ -29,6 +29,23 @@ namespace Armazon.Models.DataAccess.Administracion
             return productos;
         }
 
+        public IQueryable<Producto> ProductosMasVendidos(int idSubCategoria)
+        {
+            var prod_carrito = (from Producto_Carrito p in db.Producto_Carritos
+                             group p by p.ProductoID into g
+                             select  new {prod = g.Key, cant = g.Sum(it => it.Cantidad)});
+
+            var productos = (from Producto prod in db.Productos
+                             where prod.SubCategoriaID == idSubCategoria
+                             join p in prod_carrito on prod.ProductoID equals p.prod
+                             orderby p.cant
+                             select prod);
+
+
+
+            return productos;
+        }
+
         public IQueryable<Producto> findAllProductos(String fullText)
         {
             var productos = (from Producto p in db.Productos

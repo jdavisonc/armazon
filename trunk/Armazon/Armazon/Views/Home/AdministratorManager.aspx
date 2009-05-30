@@ -17,5 +17,4 @@
         <p><a href="/Tarjeta">Administación de Metodos de Pago Tarjeta</a></p>
         <p><a href="/Tienda">Administación de Tiendas</a></p>
         <p><a href="/Reporte/VentasTotalesXPeriodo">Ventas Totales por Período</a></p>
-        <p><a href="/Reporte/UsuariosQueMasTaguean">Usuarios Que Mas Taguean</a></p>
-</asp:Content>
+		<p><a href="/Reporte/UsuariosQueMasTaguean">Usuarios Que Mas Taguean</a></p>		<p><a href="/Reporte/ReportesXSubCategoria">Reportes por SubCategoría</a></p></asp:Content>
