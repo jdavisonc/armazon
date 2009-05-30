@@ -359,11 +359,6 @@ namespace Armazon.Models
             return ProductoMgr.getNombresProductos(listProd);
         }
 
-        /*public DTCarroVendido datosVenta()
-        {
-            AdministracionFachada adminFac = new AdministracionFachada();
-            return null;
-        }*/
         
         #endregion
 
@@ -483,12 +478,12 @@ namespace Armazon.Models
         {
             CarritoMgr.cambiarCantidadProducto(productoId, carritoId, cant);
         }
-        public Carrito finalizarVentaCarrito(int carritoId)
+        public DTCarroVendido finalizarVentaCarrito(int carritoId)
         {
-            Carrito carrito = CarritoMgr.finalizarVentaCarrito(carritoId);
-            CarritoMgr.AddCarritoActivo(carrito);
-            CarritoMgr.Save();
-            return carrito;
+
+            DTCarroVendido dtcv = CarritoMgr.finalizarVentaCarrito(carritoId);
+            
+            return dtcv;
         }
         public void SaveCarritoActivo()
         {

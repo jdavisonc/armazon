@@ -157,9 +157,17 @@ namespace Armazon.Models.DataAccess.Administracion
             }
             return listProd;
         }
-        public Carrito finalizarVentaCarrito(int carritoId)
+        public DTCarroVendido datosVenta(int carritoId)
         {
 
+            Carrito carrito = getCarritoActivoById(carritoId);
+            DTCarrito dtc = carrito.getDataType();
+            List<DTPedido> listPedidos = getProductosDeCarrito(carrito.CarritoID);
+            DTCarroVendido carroVendido = new DTCarroVendido(dtc, listPedidos);
+            return carroVendido;
+        }
+        public DTCarroVendido finalizarVentaCarrito(int carritoId)
+        {
             Carrito carrito = getCarritoActivoById(carritoId);
             carrito.Fecha = DateTime.Now;
             carrito.CarritoType = "Vendido";
@@ -176,7 +184,7 @@ namespace Armazon.Models.DataAccess.Administracion
             carrito.Fecha = DateTime.Now;
             carrito.Total = monto;
 
-            
+            DTCarroVendido dtcVendido =  datosVenta(carrito.CarritoID);   
             
             
             
@@ -184,7 +192,11 @@ namespace Armazon.Models.DataAccess.Administracion
             carroNuevo.CarritoType = "Activo";
             carroNuevo.Total = 0;
             carroNuevo.UsuarioID = carrito.UsuarioID;
-            return carroNuevo;
+
+            AddCarritoActivo(carroNuevo);
+            Save();
+            
+            return dtcVendido;
         }
         /*public void Delete(Usuario usuario)
         {
