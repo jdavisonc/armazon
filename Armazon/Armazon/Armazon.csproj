@@ -302,6 +302,8 @@
     <Content Include="Views\Producto\Details.aspx" />
     <Content Include="Views\Producto\Edit.aspx" />
     <Content Include="Views\Producto\List.aspx" />
+    <Content Include="Views\Reporte\ProductosMasVendidos.aspx" />
+    <Content Include="Views\Reporte\UsuariosQueMasTaguean.aspx" />
     <Content Include="Views\Shared\ListadoComun.ascx" />
     <Content Include="Views\Producto\ListadoPorTag.aspx" />
     <Content Include="Views\Producto\NotFound.aspx" />
