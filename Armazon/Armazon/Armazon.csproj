@@ -455,7 +455,6 @@
     <WCFMetadataStorage Include="Service References\AWS\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\NubeTag\" />
     <Folder Include="Models\ServiceAccess\DataContracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
