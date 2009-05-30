@@ -145,10 +145,10 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            Producto producto = administracionFachada.getProducto(id);
             try
             {
-                AdministracionFachada administracionFachada = new AdministracionFachada();
-                Producto producto = administracionFachada.getProducto(id);
                 producto.Nombre = Request.Form["txtNombre"];
                 producto.Precio = Double.Parse(Request.Form["txtPrecio"]);
 
@@ -188,11 +188,11 @@ namespace Armazon.Controllers
                     }
                 }
                 administracionFachada.saveProducto();
-                return View("Details",producto.getDataType());
+                return View(producto.getDataType());
             }
             catch
             {
-                return View();
+                return View("Not Found");
             }
         }
 
