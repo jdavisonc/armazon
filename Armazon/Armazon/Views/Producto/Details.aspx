@@ -27,6 +27,7 @@
             </ul>
         </div>
         <div id="buyBlock">
+            Precio: <span style="color:#990000;font-size:20px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br><br>
             Cantidad: 
             <select type="text" id="cantCompra" name="cantCompra" style="font-size:9px;width:40px">
               <% for (int i = 1; i < 20; i++){ %><option value="<%= i %>"><%= i %></option><% } %>
@@ -63,7 +64,6 @@
             <% foreach (Armazon.Models.DataTypes.DTProductAttr attr in Model.Attrs){ %>
                  <b><%= attr.Nombre %></b>: <%= ((Armazon.Models.DataTypes.DTProductAttrString)attr).Valor %><br>
             <%} %>
-            Precio: <span style="color:#990000;font-size:16px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br>
         </div>
         <div id="Tags" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/tag.png") %>" class="imageMiddle"/> Etiquetas</h3><br>

@@ -15,7 +15,7 @@
     <%= ViewData["SubCategoriaNombre"] %></div>
     <br>
     <div>
-        <% Html.RenderPartial("ListadoComun",Model); %>
+        <% Html.RenderPartial("ListadoComun"); %>
     </div>
 </asp:Content>
 

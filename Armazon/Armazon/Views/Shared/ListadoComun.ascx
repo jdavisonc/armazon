@@ -5,7 +5,8 @@
 <div>
     <%
        Armazon.IPagedList<Armazon.Models.DataTypes.DTProduct> pagedList = (Armazon.IPagedList<Armazon.Models.DataTypes.DTProduct>)ViewData["Collection"];
-       foreach (Armazon.Models.DataTypes.DTProduct p in pagedList){ %>
+       foreach (Armazon.Models.DataTypes.DTProduct p in pagedList)
+       { %>
     <%  %>
     <div class="fltleft prodItem">
         <% if (p.Tienda >= 0)
@@ -30,10 +31,9 @@
                    { %>
                 <img src="/Content/noImageAvailable.jpg" width="150" height="150" />
                 <% } %>
-                <p>
+                <p style="padding:20px;padding-top:0px">
                     <%=p.Nombre %><br />
-                    $
-                    <%=p.Precio.ToString()%>
+                    <span style="font-size:11px;font-weight:bold;color:#990000">$<%=p.Precio.ToString()%></font>
                     <% if (Page.User.IsInRole("Administrador") && (p.Id > 0)){ %>
                         <br><a href="<%= Url.Action("Edit", new { id = p.Id, idSubCategoria = p.SubcaterogiaID }) %>" title="Modificar">
                             <img src="<%=ResolveUrl("~/Content/doc_edit.png")%>"/>

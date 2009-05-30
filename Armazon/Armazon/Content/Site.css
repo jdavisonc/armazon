@@ -310,7 +310,13 @@ div#title
 /* Widgets
 --------------------------------------------------------------- */
 
-.prodItem {text-align:center; width:32%; height: 250px}
+.prodItem 
+{
+    text-align:center; 
+    width:32%; 
+    height: 230px;
+    font-size:9px;
+}
 
 
 /* Extensions
@@ -373,10 +379,19 @@ table.listadoProductos td,th
 /* CARRITO
 ----------------------------------------------------------*/
 
-div#carrito
+div#contentCarrito
 {
+    font-size:9px;
     margin-top: 20px;
     margin-right:5px;
-    padding: 4px;
+    padding: 10px;
     background-color: #D2E8F1;
+}
+
+div#contentCarrito h2
+{
+    margin:0px;
+    margin-bottom:5px;
+    padding:0px;
+    color:#333;
 }

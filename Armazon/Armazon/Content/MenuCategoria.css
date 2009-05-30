@@ -15,10 +15,9 @@
 	color:#000;
 	display:block;
 	font-weight:bold;
-	margin:0px;
-	padding:2px;
+	margin:3px;
 	padding-left:10px;
-	height:15px;
+	height:20px;
 	vertical-align: middle;
 	text-indent:14px;
 	text-decoration: none;
@@ -41,14 +40,12 @@
 #navigation li {
 	list-style:none outside none; display:inline;
 	height:15px;
-	margin:1px;
 	vertical-align: middle;
 }
 #navigation li li a {
 	color:#000000;
 	display:block;
 	text-indent:10px;
-
 	height:15px;
 	vertical-align: middle;
 	text-decoration: none;
@@ -60,8 +57,8 @@
 .basic  
 {
     margin-top: 10px;
-    padding:10px;
 	width: 180px;
+	padding: 5px;
 	font-family: verdana;
 	font-size:9px;
 	background-color:#136EB4;
