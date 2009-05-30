@@ -49,6 +49,13 @@ div#contenderLeft
 div#imageProductContender
 {
     width: 300px;
+    text-align:center;
+}
+
+#imglist
+{
+    margin:0px;
+    padding:0px;
 }
 
 #imglist li

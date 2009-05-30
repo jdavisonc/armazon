@@ -32,7 +32,7 @@ namespace Armazon.Models.DataAccess.Administracion
         public IQueryable<Producto> findAllProductos(String fullText)
         {
             var productos = (from Producto p in db.Productos
-                             where p.Nombre.StartsWith(fullText)
+                             where p.Nombre.StartsWith(fullText) && p.Tienda == null
                              select p);
             return productos;
         }

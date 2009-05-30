@@ -23,57 +23,75 @@ namespace Armazon.Models.ServiceAccess
 
         public List<Producto> searchProducts(string fullText, Tienda tienda)
         {
+            int page = 1;
             List<Producto> list = new List<Producto>();
-            ItemSearchRequest request = new ItemSearchRequest();
-            request.SearchIndex = "All";
-            request.Keywords = fullText;
-            //request.Power = "title: " + fullText;
-            request.ResponseGroup = new string[] { "Small", "Images", "Offers" };
-            //request.Sort = "salesrank";
 
-            ItemSearchRequest[] requests = new ItemSearchRequest[] { request };
-
-            ItemSearch itemSearch = new ItemSearch();
-            itemSearch.AssociateTag = _associateTag;
-            itemSearch.SubscriptionId = _subscriptionId;
-            itemSearch.Request = requests;
-
-            try
+            while (page < 2)
             {
-                ItemSearchResponse response = _aws.ItemSearch(itemSearch);
-                Items info = response.Items[0];
-                if (info.Item != null)
+
+                ItemSearchRequest request = new ItemSearchRequest();
+
+                request.SearchIndex = "All";
+                request.Keywords = fullText;
+                //request.Power = "title: " + fullText;
+                request.ResponseGroup = new string[] { "Small", "Images", "Offers" };
+                //request.Sort = "salesrank";
+                request.ItemPage = page.ToString();
+
+                ItemSearchRequest[] requests = new ItemSearchRequest[] { request };
+
+                ItemSearch itemSearch = new ItemSearch();
+                itemSearch.AssociateTag = _associateTag;
+                itemSearch.SubscriptionId = _subscriptionId;
+                itemSearch.Request = requests;
+
+                try
                 {
-                    Item[] items = info.Item;
-                    for (int i = 0; i < items.Length; i++)
+                    ItemSearchResponse response = _aws.ItemSearch(itemSearch);
+                    Items info = response.Items[0];
+                    if (info.Item != null)
                     {
-                        Item item = items[i];
-                        Producto p = new Producto();
-                        p.Tienda = tienda;
-                        p.Nombre = item.ItemAttributes.Title;
-                        p.ExternalID = item.ASIN;
-                        //string gg = item.OfferSummary.LowestNewPrice.Amount;
-                        p.Precio = float.Parse(item.OfferSummary.LowestNewPrice.Amount)/100;
-                        //dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
-                        
-                        //dt.Images.Add(new DTImagen(-1, item.ItemAttributes.Title, item.MediumImage.URL));
-                        if (item.MediumImage != null)
+                        Item[] items = info.Item;
+                        if (int.Parse(info.TotalPages) > 1)
+                            page++;
+                        for (int i = 0; i < items.Length; i++)
                         {
-                            Imagen img = new Imagen();
-                            img.ImagenURL = item.MediumImage.URL;
-                            p.Imagens.Add(img);
+                            Item item = items[i];
+                            Producto p = new Producto();
+                            p.Tienda = tienda;
+                            p.Nombre = item.ItemAttributes.Title;
+                            p.ExternalID = item.ASIN;
+                            //string gg = item.OfferSummary.LowestNewPrice.Amount;
+                            float price = 0;
+                            if (item.OfferSummary.LowestNewPrice.Amount != null)
+                                price = float.Parse(item.OfferSummary.LowestNewPrice.Amount);
+                            else if (item.OfferSummary.LowestRefurbishedPrice.Amount != null)
+                                price = float.Parse(item.OfferSummary.LowestRefurbishedPrice.Amount);
+                            else if (item.OfferSummary.LowestUsedPrice.Amount != null)
+                                price = float.Parse(item.OfferSummary.LowestUsedPrice.Amount);
+                            else if (item.OfferSummary.LowestCollectiblePrice.Amount != null)
+                                price = float.Parse(item.OfferSummary.LowestCollectiblePrice.Amount);
+                            p.Precio = price/100;
+                            //dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
+
+                            //dt.Images.Add(new DTImagen(-1, item.ItemAttributes.Title, item.MediumImage.URL));
+                            if (item.MediumImage != null)
+                            {
+                                Imagen img = new Imagen();
+                                img.ImagenURL = item.MediumImage.URL;
+                                p.Imagens.Add(img);
+                            }
+                            list.Add(p);
                         }
-                        
-                        list.Add(p);
                     }
                 }
-                return list;
+                catch (Exception ex)
+                {
+                    //throw new Exception("Service Access: AmazonService, Error: " + ex.Message);
+                    return list;
+                }
             }
-            catch (Exception ex)
-            {
-                //throw new Exception("Service Access: AmazonService, Error: " + ex.Message);
-                return list;
-            }
+            return list;
         }
 
         public Producto getProduct(string externalID, Tienda tienda)
@@ -106,8 +124,17 @@ namespace Armazon.Models.ServiceAccess
                         p.Tienda = tienda;
                         p.Nombre = item.ItemAttributes.Title;
                         p.ExternalID = item.ASIN;
-                        //string gg = item.OfferSummary.LowestNewPrice.Amount;
-                        p.Precio = float.Parse(item.OfferSummary.LowestNewPrice.Amount) / 100;
+                        //string gg = item.OfferSummary.LowestNewPrice.Amount;                            
+                        float price = 0;
+                        if (item.OfferSummary.LowestNewPrice.Amount != null)
+                            price = float.Parse(item.OfferSummary.LowestNewPrice.Amount);
+                        else if (item.OfferSummary.LowestRefurbishedPrice.Amount != null)
+                            price = float.Parse(item.OfferSummary.LowestRefurbishedPrice.Amount);
+                        else if (item.OfferSummary.LowestUsedPrice.Amount != null)
+                            price = float.Parse(item.OfferSummary.LowestUsedPrice.Amount);
+                        else if (item.OfferSummary.LowestCollectiblePrice.Amount != null)
+                            price = float.Parse(item.OfferSummary.LowestCollectiblePrice.Amount);
+                        p.Precio = price / 100;
                         //dt.Attrs.Add(new DTProductAttrString(-1,"Nombre", item.ItemAttributes.Title));
 
                         foreach (PropertyInfo infoe in item.ItemAttributes.GetType().GetProperties())

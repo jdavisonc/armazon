@@ -257,7 +257,8 @@ namespace Armazon.Controllers
             }            
             ViewData["Title"] = "Listado de Productos por Tag";
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-            return View("ListadoPorTag",dtCol.ToPagedList(currentPageIndex, 9));
+            ViewData["Collection"] = dtCol.ToPagedList(currentPageIndex, 9);
+            return View("ListadoPorTag");
         }
         
         public ActionResult BuscarProducto(String fullText, int? page)
