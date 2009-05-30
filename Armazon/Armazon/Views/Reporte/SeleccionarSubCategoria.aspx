@@ -1,5 +1,5 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.SubCategoria>>" %>
-
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.IPagedList<Armazon.SubCategoria>>" %>
+<%@ Import Namespace="Armazon"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Lista de SubCategorias
 </asp:Content>
@@ -7,8 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Lista de SubCategorias</h2>
-
-    <table>
+    <hr />
+    <table align="center" style="position:relative; top:40px">
         <tr>
             <th></th>
             <th>
@@ -22,16 +22,9 @@
     <% foreach (var item in Model) { %>
     
         <tr>
-            <td> 
-                <% if (Page.User.IsInRole("Administrador")){ %>
-                    <%= Html.ActionLink("Modificar", "Edit", new { id = item.SubCategoriaID })%> |
-                    <%= Html.ActionLink("Eliminar", "Delete", new { id = item.SubCategoriaID, categoriaID = item.CategoriaID })%> |
-                    <%= Html.ActionLink("Asociar Propiedades", "AsociarPropiedades", new { id = item.SubCategoriaID })%> |                
-                    <%= Html.ActionLink("Crear Producto","CrearProducto",new { idSubCategoria = item.SubCategoriaID, idCategoria = ViewData["CategoriaID"] })%> |                    
-                    <!--<%= Html.ActionLink("Crear Producto","Create","Producto",new{idSubCategoria=item.SubCategoriaID,idCategoria=ViewData["CategoriaID"]},null)%>|-->                                        
-                <%} %>
-                <%= Html.ActionLink("Ver Productos", "Listado", "Producto", new { idSubCategoria = item.SubCategoriaID },null)%> |
-                <%= Html.ActionLink("Detalles", "Details", new { id=item.SubCategoriaID })%>
+            <td>
+                <%= Html.ActionLink("Productos más vendidos", "ProductosMasVendidos", new { id = item.SubCategoriaID, idCategoria = ViewData["IdCategoria"], pagina = Model.PageNumber })%> |
+                <%= Html.ActionLink("Productos mejor calificados", "ProductosMejorCalificados", new { id = item.SubCategoriaID, idCategoria = ViewData["IdCategoria"], pagina = Model.PageNumber })%>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>
@@ -42,9 +35,17 @@
         </tr>
     
     <% } %>
-
+    <tr>
+        <td colspan=3 align="center">
+            <div class="pager">
+                <%= Html.Paginado(Model.PageSize, Model.PageNumber, Model.TotalItemCount)%>
+            </div>
+        </td>
+    </tr>
     </table>
-    
+    <div style="text-align: center;position: relative;top:260px">
+        <%= Html.ActionLink("Volver", "ReportesXSubCategoria", new { page = ViewData["pagina"]})%> 
+   </div>
 
     
 
