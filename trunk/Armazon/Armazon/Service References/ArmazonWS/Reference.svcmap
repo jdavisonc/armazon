@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2b445f63-b6bc-4062-b1ac-b30dc42247b6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1238/ArmazonWS.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ArmazonWS.xsd" MetadataType="Schema" ID="335a49f4-39fd-490a-a29d-69776bbaddda" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="ArmazonWS1.xsd" MetadataType="Schema" ID="44ab8fb9-5556-468a-bdcf-f25ce595f9b5" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="ArmazonWS.wsdl" MetadataType="Wsdl" ID="63f98b6a-15f8-41c1-bf88-9533586eac29" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?wsdl" />
+    <MetadataFile FileName="ArmazonWS2.xsd" MetadataType="Schema" ID="7d44a9e3-531e-45b9-a3cc-c5841b2699c6" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="ArmazonWS.disco" MetadataType="Disco" ID="c23a9990-e3f3-492b-a1ef-3f45cc0d9ea7" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
