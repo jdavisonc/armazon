@@ -1,5 +1,5 @@
-<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="System.Web.Mvc.ViewMasterPage" %>
+       
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -16,14 +16,12 @@
 
 <body>
     <div>
-
         <div>
             <div style="width:150px;height:80px;background-image:url(../../Content/armazon.png);background-repeat:no-repeat"></div>
             <div style="position:absolute; top:0px; left:151px;width:1100px;height:20px;text-align:right">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>  
             <div style="position:absolute; left:151px;top:21px;width:1100px;height:59px;background-image:url(../../Content/fondoBuscador.png);background-repeat:no-repeat">
-                
                 <form action="/Producto/BuscarProducto" method="get">
                     <input type="hidden" id="page" name="page" value="1"/>
                     <div>
@@ -31,8 +29,7 @@
                     </div>
                     <div>
                         <input type="image" src="<%= ResolveUrl("~/Content/lupaSombra.png")%>" id="btnBuscar" 
-                            name="btnBuscar" 
-                            
+                            name="btnBuscar"
                             style="position:absolute; top:16px; left:860px; width:40px; height:40px;"/>
                     </div>
                 </form>
@@ -42,13 +39,11 @@
             <div style="position:absolute; top:81px; width:190px; height:auto;">
                 <% Html.RenderPartial("MenuCategoria"); %>
             </div>
-            
             <div style="position:absolute; width:799px; left:188px; top: 81px; height: auto;padding:10px;">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
             <div style="position:absolute; width:240px; left:1005px; top: 81px; height: auto;">
-                <% Html.RenderPartial("LeftCarrito"); %>
-            
+                <% Html.RenderPartial("LeftCarrito"); %>            
             </div>
         </div>
     </div>
