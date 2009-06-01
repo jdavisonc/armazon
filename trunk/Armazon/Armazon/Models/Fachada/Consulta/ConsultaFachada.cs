@@ -14,6 +14,7 @@ using Armazon.Models.DataAccess.Administracion;
 using Armazon.Models.ServiceAccess;
 using Armazon.Models.DataTypes;
 using System.Collections.Generic;
+using Armazon.ArmazonWS;
 
 namespace Armazon.Models
 {
@@ -90,7 +91,30 @@ namespace Armazon.Models
             {
                 resultadoBusqueda.Add(pTag.Producto);                
             }
-            return resultadoBusqueda;            
+            return resultadoBusqueda;         
         }
+        public bool CartBuy(string user, ICollection<DCCartItem> items)
+        {
+            UsuarioManager usrMgr = new UsuarioManager();
+            ProductoManager prodMgr = new ProductoManager();
+            CarritoManager carrMgr = new CarritoManager();
+            Usuario usr = usrMgr.getUsuario(user);
+            Carrito carrito = new Carrito();
+            carrito.CarritoType = "Vendido";
+            carrito.UsuarioID = usr.UsuarioID;
+            carrMgr.AddCarritoActivo(carrito);
+            List<Producto> lproductos = new List<Producto>();
+            foreach (DCCartItem aux in items)
+            {
+                carrMgr.AgregarProductoCarrito(aux.ProductId, carrMgr.getCarritoActivoByUser(usr.UsuarioID).CarritoID, aux.Quantity);   
+            }
+            double monto = prodMgr.getMontoProductos(items);
+            carrito.Total = monto;
+            carrMgr.Save();
+            return true;
+
+                
+        }
+
     }
 }

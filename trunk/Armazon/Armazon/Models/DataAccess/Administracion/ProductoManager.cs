@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Armazon;
 using Armazon.Models.DataTypes;
+using Armazon.ArmazonWS;
 
 namespace Armazon.Models.DataAccess.Administracion
 {
@@ -83,6 +84,17 @@ namespace Armazon.Models.DataAccess.Administracion
             }
             return MontoTotal;
         }
+        public double getMontoProductos(ICollection<DCCartItem> listProd)
+        {
+            double MontoTotal = 0;
+            foreach (DCCartItem prod in listProd)
+            {
+
+                MontoTotal = getProducto(prod.ProductId).Precio * prod.Quantity + MontoTotal;
+            }
+            return MontoTotal;
+        }
+        
         public List<string> getNombresProductos(List<Producto> listProd)
         {
             List<string> nombres = new List<string>();

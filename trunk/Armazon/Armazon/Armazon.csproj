@@ -236,6 +236,7 @@
     <Content Include="Content\calendario\lang\cn_utf8.js" />
     <Content Include="Content\comment.png" />
     <Content Include="Content\comments.png" />
+    <Content Include="Content\CreditCard_Amex.png" />
     <Content Include="Content\delete.gif" />
     <Content Include="Content\detail.png" />
     <Content Include="Content\doc_edit.png" />
@@ -368,6 +369,7 @@
     <Content Include="Views\Tarjeta\EditPayPal.aspx" />
     <Content Include="Views\Tarjeta\Index.aspx" />
     <Content Include="Views\Tarjeta\NotFoundTarjeta.aspx" />
+    <Content Include="Views\Tarjeta\TarjetaOk.aspx" />
     <Content Include="Views\Tienda\Create.aspx" />
     <Content Include="Views\Tienda\Delete.aspx" />
     <Content Include="Views\Tienda\Deleted.aspx" />

@@ -1183,8 +1183,8 @@ namespace Armazon
 	}
 	
 	[Table(Name="dbo.MetodoDePago")]
-	[InheritanceMapping(Code="PayPal", Type=typeof(PayPal))]
 	[InheritanceMapping(Code="Tarjeta", Type=typeof(Tarjeta), IsDefault=true)]
+	[InheritanceMapping(Code="PayPal", Type=typeof(PayPal))]
 	public partial class MetodoDePago : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1197,6 +1197,14 @@ namespace Armazon
 		private string _Numero;
 		
 		private System.Nullable<int> _UsuarioID;
+		
+		private string _Titular;
+		
+		private string _Vencimiento;
+		
+		private string _Tipo;
+		
+		private System.Nullable<bool> _Validada;
 		
 		private EntitySet<Carrito> _Carritos;
 		
@@ -1214,6 +1222,14 @@ namespace Armazon
     partial void OnNumeroChanged();
     partial void OnUsuarioIDChanging(System.Nullable<int> value);
     partial void OnUsuarioIDChanged();
+    partial void OnTitularChanging(string value);
+    partial void OnTitularChanged();
+    partial void OnVencimientoChanging(string value);
+    partial void OnVencimientoChanged();
+    partial void OnTipoChanging(string value);
+    partial void OnTipoChanged();
+    partial void OnValidadaChanging(System.Nullable<bool> value);
+    partial void OnValidadaChanged();
     #endregion
 		
 		public MetodoDePago()
@@ -1307,6 +1323,86 @@ namespace Armazon
 			}
 		}
 		
+		[Column(Storage="_Titular", DbType="VarChar(50)")]
+		public string Titular
+		{
+			get
+			{
+				return this._Titular;
+			}
+			set
+			{
+				if ((this._Titular != value))
+				{
+					this.OnTitularChanging(value);
+					this.SendPropertyChanging();
+					this._Titular = value;
+					this.SendPropertyChanged("Titular");
+					this.OnTitularChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Vencimiento", DbType="VarChar(50)")]
+		public string Vencimiento
+		{
+			get
+			{
+				return this._Vencimiento;
+			}
+			set
+			{
+				if ((this._Vencimiento != value))
+				{
+					this.OnVencimientoChanging(value);
+					this.SendPropertyChanging();
+					this._Vencimiento = value;
+					this.SendPropertyChanged("Vencimiento");
+					this.OnVencimientoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Tipo", DbType="VarChar(50)")]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this.OnTipoChanging(value);
+					this.SendPropertyChanging();
+					this._Tipo = value;
+					this.SendPropertyChanged("Tipo");
+					this.OnTipoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Validada", DbType="Bit")]
+		public System.Nullable<bool> Validada
+		{
+			get
+			{
+				return this._Validada;
+			}
+			set
+			{
+				if ((this._Validada != value))
+				{
+					this.OnValidadaChanging(value);
+					this.SendPropertyChanging();
+					this._Validada = value;
+					this.SendPropertyChanged("Validada");
+					this.OnValidadaChanged();
+				}
+			}
+		}
+		
 		[Association(Name="MetodoDePago_Carrito", Storage="_Carritos", ThisKey="MetodoDePagoID", OtherKey="MetodoDePagoID")]
 		public EntitySet<Carrito> Carritos
 		{
@@ -1387,21 +1483,6 @@ namespace Armazon
 		}
 	}
 	
-	public partial class PayPal : MetodoDePago
-	{
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    #endregion
-		
-		public PayPal()
-		{
-			OnCreated();
-		}
-	}
-	
 	public partial class Tarjeta : MetodoDePago
 	{
 		
@@ -1412,6 +1493,21 @@ namespace Armazon
     #endregion
 		
 		public Tarjeta()
+		{
+			OnCreated();
+		}
+	}
+	
+	public partial class PayPal : MetodoDePago
+	{
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    #endregion
+		
+		public PayPal()
 		{
 			OnCreated();
 		}
