@@ -90,5 +90,12 @@ namespace Armazon
             AdministracionFachada adminFac = new AdministracionFachada();
             return null;
         }
+
+        public static bool puedeComentar()
+        {
+            //MembershipUser myObject = Membership.GetUser();
+            //string userName = myObject.UserName.ToString();
+            return true;
+        }
     }
 }
