@@ -7,6 +7,13 @@ namespace Armazon.Models.DataTypes
 {
     public class DTComment
     {
+        private string _username;
+
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; }
+        }
         private string _comment;
 
         public string Comment

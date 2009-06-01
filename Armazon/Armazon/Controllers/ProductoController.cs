@@ -27,7 +27,8 @@ namespace Armazon.Controllers
         {
             return View("NotFound",null);
         }
-        
+
+        [Authorize]
         public ActionResult AgregarProducto(string cant,string idProducto)
         {
             AdministracionFachada adminFac = new AdministracionFachada();
@@ -47,6 +48,7 @@ namespace Armazon.Controllers
             return Json(prodsCarrito);
         }
 
+        [Authorize]
         public ActionResult PersistirProductoTienda(int tiendaID, string externalID)
         {
             Producto producto = null;
@@ -71,6 +73,26 @@ namespace Armazon.Controllers
             return Json(-1);
         }
 
+        [Authorize]
+        public ActionResult AgregarComentario(int productoID, int rating, string comentario)
+        {
+            AdministracionFachada adminFach = new AdministracionFachada();
+            Producto p = adminFach.getProducto(productoID);
+            if (p != null)
+            {
+                Producto_Usuario com = new Producto_Usuario();
+                com.Comentario = comentario;
+                com.Puntaje = rating;
+                Usuario u = adminFach.getUsuario(Membership.GetUser().UserName);
+                com.UsuarioID = u.UsuarioID;
+                com.ProductoID = productoID;
+                p.Producto_Usuarios.Add(com);
+                adminFach.saveProducto();
+                return Json(com.getDataType());
+            }
+            return Json(null);
+        }
+            
         //
         // GET: /Producto/Details/5
 
@@ -101,7 +123,7 @@ namespace Armazon.Controllers
 
         //
         // GET: /Producto/Create
-
+        [Authorize(Roles="Administrador")]
         public ActionResult Create()
         {
             return View();
@@ -109,7 +131,7 @@ namespace Armazon.Controllers
 
         //
         // POST: /Producto/Create
-
+        [Authorize(Roles = "Administrador")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
@@ -131,7 +153,7 @@ namespace Armazon.Controllers
 
         //
         // GET: /Producto/Edit/5
- 
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id, int idSubCategoria)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
@@ -141,7 +163,7 @@ namespace Armazon.Controllers
 
         //
         // POST: /Producto/Edit/5
-
+        [Authorize(Roles = "Administrador")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -195,7 +217,7 @@ namespace Armazon.Controllers
                 return View("Not Found");
             }
         }
-
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
@@ -206,6 +228,7 @@ namespace Armazon.Controllers
                 return View(producto.getDataType());
         }
 
+        [Authorize(Roles = "Administrador")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Delete(int id, string confirmButton)
         {
@@ -284,6 +307,7 @@ namespace Armazon.Controllers
         /// <param name="tagCollection">Coleccion de tags</param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize]
         public ActionResult AddTag(int productID, string tagCollection)
         {
             AdministracionFachada adminFach = new AdministracionFachada();
@@ -361,6 +385,7 @@ namespace Armazon.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
+        [Authorize(Roles = "Administrador")]
         public ActionResult DeleteImage(int productID, int imageID)
         {
             AdministracionFachada adminFach = new AdministracionFachada();
@@ -377,7 +402,8 @@ namespace Armazon.Controllers
             }
             return Json(false);
         }		
-        [AcceptVerbs(HttpVerbs.Post)]        
+        [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrador")]
 		public ActionResult CrearProducto(int idSubCategoria, int idCategoria)        
 		{            
 			AdministracionFachada administracionFachada = new AdministracionFachada();            
