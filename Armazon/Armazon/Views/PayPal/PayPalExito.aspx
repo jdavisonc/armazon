@@ -17,7 +17,9 @@
         </p>
         <p>
             MetodoDePago:
-            <%= Html.Encode("") %>
+            
+                   <%= Html.Encode(dtcvendido.DatosCarrito.MetodoDePago.Equals("Armazon.Tarjeta") ? "Tarjeta" : "PayPal")%>;
+                
         </p>
         <p>
             Vendido a:

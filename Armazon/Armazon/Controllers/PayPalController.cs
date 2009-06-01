@@ -71,7 +71,7 @@ namespace Armazon.Controllers
               requestString.Append("&AMT=" + monto);
               string basePath = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, string.Empty) + Request.ApplicationPath;
               requestString.Append("&RETURNURL="+basePath+"PayPal/"+"PayPalExito");
-              requestString.Append("&CANCELURL=" + basePath + "PayPal/" + "PayPalFalla");
+              requestString.Append("&CANCELURL=" + basePath + "Carrito?error=No");
 
               string token;
               string dummy;

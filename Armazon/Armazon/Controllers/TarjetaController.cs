@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Armazon.Models;
+using System.Web.Security;
 
 namespace Armazon.Controllers
 {
@@ -17,6 +18,7 @@ namespace Armazon.Controllers
         {
             AdministracionFachada adminFac = new AdministracionFachada();
             var metodosDePago = adminFac.findAllMetododePago();
+            
             return View(metodosDePago);
         }
 
@@ -46,6 +48,10 @@ namespace Armazon.Controllers
 
         public ActionResult Create()
         {
+            List<string> list = new List<string>();
+            list.Add("Visa");
+            list.Add("Master Card");
+            ViewData["tiposTarjeta"] = new SelectList(list);
             return View();
         } 
 
@@ -61,9 +67,18 @@ namespace Armazon.Controllers
             {
                 // TODO: Add insert logic here
                 UpdateModel(trj);
-                AdministracionFachada adminSuc = new AdministracionFachada();
-                adminSuc.AddTarjeta(trj);
-                return RedirectToAction("Index");
+                AdministracionFachada adminFac = new AdministracionFachada();
+                trj.Validada = false;
+                trj.Tipo = Request.Form["tiposTarjeta"];
+                Usuario usr = adminFac.getUserSession();
+                Carrito carrito = adminFac.getCarritoActivoByUser(usr.UsuarioID);
+                
+                trj.UsuarioID = usr.UsuarioID;
+                adminFac.AddTarjeta(trj);
+                List<Tarjeta> ltarjetas = adminFac.getUsuarioTarjetas(usr.UsuarioID);
+                carrito.MetodoDePagoID = ltarjetas.Last().MetodoDePagoID;
+                adminFac.SaveCarritoActivo();
+                return View("TarjetaOk");
             }
             catch
             {
@@ -76,6 +91,11 @@ namespace Armazon.Controllers
  
         public ActionResult Edit(int id)
         {
+           
+            List<string> list = new List<string>();
+            list.Add("Si");
+            list.Add("No");
+            ViewData["isValida"] = new SelectList(list);
             AdministracionFachada adminFac = new AdministracionFachada();
             var pago = adminFac.getMetododePago(id);
             if (pago == null)
@@ -110,8 +130,18 @@ namespace Armazon.Controllers
                     {
                         Tarjeta trj = (Tarjeta)adminFac.getMetododePago(id);
                         trj.MetodoDePagoID = pago.MetodoDePagoID;
+                        trj.Tipo = pago.Tipo;
+                        trj.Titular = pago.Titular;
+                        trj.UsuarioID = pago.UsuarioID;
+                        trj.Vencimiento = pago.Vencimiento;
+                        string isValida = Request.Form["isValida"];
+                        if (isValida.Equals("Si"))
+                            trj.Validada = true;
+                        else
+                            trj.Validada = false;
+                        
                         trj.MetodoDePagoType = pago.MetodoDePagoType;
-                        trj.Numero = Request.Form["Numero"];
+                        trj.Numero = pago.Numero;
                         adminFac.saveMetodoDePago();
                         return RedirectToAction("Index");
 
@@ -165,7 +195,16 @@ namespace Armazon.Controllers
             return RedirectToAction("Index");
         } 
         
-    
+        public ActionResult getUsuarioTarjetas()
+        {
+           AdministracionFachada adminFac = new AdministracionFachada();
+           MembershipUser myObject = Membership.GetUser();
+           string userName = myObject.UserName.ToString();
+           Usuario userSesion =  adminFac.getUsuario(userName);
+           List<Tarjeta> listTarjetas = adminFac.getUsuarioTarjetas(userSesion.UsuarioID);
+           return null;
+        
+        }
     
     
     

@@ -282,6 +282,13 @@ namespace Armazon.Models
         {
             UsuarioMgr.Delete(UsuarioMgr.getUsuario(userName));
         }
+        public Usuario getUserSession()
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            MembershipUser myObject = Membership.GetUser();
+            string userName = myObject.UserName.ToString();
+            return getUsuario(userName);
+        }
         public void saveUsuario()
         {
             UsuarioMgr.Save();
@@ -446,6 +453,11 @@ namespace Armazon.Models
         {
             MetodoPagoMgr.Save();
         }
+        public List<Tarjeta> getUsuarioTarjetas(int idUsuario)
+        { 
+            return MetodoPagoMgr.getUsuarioTarjetas(idUsuario);
+        }
+        
         #endregion
         
         #region Carrito

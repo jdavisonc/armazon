@@ -16,8 +16,9 @@ namespace Armazon.Controllers
         //
         // GET: /Carrito/
 
-        public ActionResult Index()
+        public ActionResult Index(string error)
         {
+           
             List<string> list = new List<string>();
             list.Add("PayPal");
             list.Add("Tarjeta");
@@ -28,6 +29,7 @@ namespace Armazon.Controllers
             Carrito carrito = adminFac.getCarritoOfUser(userName);
             List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
             return View(listPedido);
+            
         }
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Index(FormCollection collection)
@@ -42,7 +44,7 @@ namespace Armazon.Controllers
                return RedirectToAction("Create", "PayPal");
            else
                if (selecItem.Equals("Tarjeta"))
-                   return RedirectToAction("Index","Tarjeta");
+                   return RedirectToAction("Create", "Tarjeta");
            return null;
         }
         

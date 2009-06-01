@@ -1,19 +1,17 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Armazon.MetodoDePago>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Metodo de Pago
+	Index
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Metodo de Pago</h2>
+    <h2>Index</h2>
 
     <table>
         <tr>
             <th></th>
-            <th>
-                MetodoDePagoID
-            </th>
+            
             <th>
                 MetodoDePagoType
             </th>
@@ -21,19 +19,28 @@
                 Numero
             </th>
             
+            <th>
+                Titular
+            </th>
+            <th>
+                Vencimiento
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th>
+                Validada
+            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
-    
+     <% if(item.MetodoDePagoType == "Tarjeta") { %>
         <tr>
             <td>
-                <%= Html.ActionLink("Editar", "Edit", new { id=item.MetodoDePagoID }) %> |
-                <%= Html.ActionLink("Detalles", "Details", new { id=item.MetodoDePagoID })%>
-                <%= Html.ActionLink("Borrar", "Delete", new { id=item.MetodoDePagoID })%>
+                <%= Html.ActionLink("Edit", "Edit", new { id=item.MetodoDePagoID }) %> |
+                <%= Html.ActionLink("Details", "Details", new { id=item.MetodoDePagoID })%>
             </td>
-            <td>
-                <%= Html.Encode(item.MetodoDePagoID) %>
-            </td>
+            
             <td>
                 <%= Html.Encode(item.MetodoDePagoType) %>
             </td>
@@ -41,15 +48,30 @@
                 <%= Html.Encode(item.Numero) %>
             </td>
             
+            <td>
+                <%= Html.Encode(item.Titular) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Vencimiento) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Tipo) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Validada) %>
+            </td>
         </tr>
-    
+    <%  }%>
     <% } %>
 
     </table>
 
     <p>
-        <%= Html.ActionLink("Crear Nuevo", "Create") %>
+        <%= Html.ActionLink("Create New", "Create") %>
     </p>
 
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
 </asp:Content>
 

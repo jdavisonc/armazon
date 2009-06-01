@@ -169,6 +169,7 @@ namespace Armazon.Models.DataAccess.Administracion
         public DTCarroVendido finalizarVentaCarrito(int carritoId)
         {
             Carrito carrito = getCarritoActivoById(carritoId);
+            
             carrito.Fecha = DateTime.Now;
             carrito.CarritoType = "Vendido";
             getCarritoActivoById(carritoId);

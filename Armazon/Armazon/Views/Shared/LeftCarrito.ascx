@@ -43,3 +43,11 @@
         %></div>
     </div>
 </div>
+
+<div id="adicional">
+<p>
+<a href="/Carrito/" title="Ver Carrito" >
+                            <img src="/Content/Shopping_Cart.png" onclick="window.location('Carrito')"/>
+                        </a>
+</p>
+</div>
