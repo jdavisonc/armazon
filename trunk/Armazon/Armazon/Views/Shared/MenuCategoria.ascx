@@ -1,4 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Register Assembly="System.Web.Silverlight" Namespace="System.Web.UI.SilverlightControls"
+    TagPrefix="asp" %>
 <script type="text/javascript">
     jQuery().ready(function() {
         $('.basic').corner();
@@ -27,13 +29,15 @@
     </ul>
 </div>
 
-<br><br />
-<div id="TagCloud">
-    <%foreach (var tag in Armazon.MenuController.getTags()){%>    
-        <span class="tag">
-            <font size="<%= Armazon.MenuController.getSizeTag(tag.Nombre)%>">
-                <a href="/Producto/ListadoPorTag?nombreTag=<%=tag.Nombre%>"><%=tag.Nombre%></a>
-            </font>
-        </span>
-    <%}%>
+<br><br/>    
+    
+    <div style="width:190px; height:190px;">
+        <form id="form1" runat="server" style="height:100%;">
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <div  style="height:100%;">
+                <asp:Silverlight ID="Xaml1" runat="server" Source="~/ClientBin/DiggSample.xap" MinimumVersion="2.0.31005.0" Width="100%" Height="100%" />
+            </div>
+        </form>
+    </div>
+		    
 </div>
