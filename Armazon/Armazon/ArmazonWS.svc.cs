@@ -98,7 +98,8 @@ namespace Armazon.Models.ServiceAccess
 
         public bool CartBuy(string user, ICollection<DCCartItem> items)
         {
-            throw new NotImplementedException();
+            ConsultaFachada consFac = new ConsultaFachada();
+            return consFac.CartBuy(user, items);
         }
 
         #endregion
