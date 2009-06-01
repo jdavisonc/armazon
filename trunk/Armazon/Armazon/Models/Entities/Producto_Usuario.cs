@@ -14,6 +14,7 @@ namespace Armazon
             DTComment com = new DTComment();
             com.Comment = this.Comentario;
             com.Rating = this.Puntaje.Value;
+            com.Username = this.Usuario.Nombre;
             return com;
         }
         #endregion
