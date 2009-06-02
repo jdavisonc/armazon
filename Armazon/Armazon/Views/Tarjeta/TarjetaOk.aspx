@@ -7,7 +7,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>La compra se ha realizado satisfactoriamente</h2>
+    <% double total = Armazon.MenuController.getMontoEnCarroActivo();%>
+    <%if (total > 70000)
+      {
+          string error = "La compra ha exedido el monto soportado por la tarjeta.";
+          Response.Redirect("/Carrito/index?error="+error);
+    
+
+      } %>
     <%  Armazon.Models.DataTypes.DTCarroVendido dtcvendido = Armazon.MenuController.finalizarVentaCarrito();%>
+    
+    
+    
     
     <fieldset>
         <legend>Carrito Vendido</legend>
