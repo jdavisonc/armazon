@@ -101,7 +101,7 @@ namespace Armazon.Models.ServiceAccess
             ItemLookupRequest request = new ItemLookupRequest();
             request.IdType = ItemLookupRequestIdType.ASIN;
             request.ItemId = new string[] { externalID };
-            request.ResponseGroup = new string[] { "Large", "ItemAttributes", "Images", "Offers" };
+            request.ResponseGroup = new string[] { "Large", "ItemAttributes", "Images", "Offers", "Tags" };
 
             ItemLookupRequest[] requests = new ItemLookupRequest[] { request };
 
@@ -184,7 +184,12 @@ namespace Armazon.Models.ServiceAccess
                         {
                             foreach (Armazon.AWS.Tag tag in item.Tags.Tag)
                             {
-                                string ss = tag.Name;
+                                Tag t = new Tag();
+                                t.Nombre = tag.Name;
+                                Producto_Tag pt = new Producto_Tag();
+                                pt.Producto = p;
+                                pt.Tag = t;
+                                p.Producto_Tags.Add(pt);
                             }
                         }
                         //dt.Images.Add(new DTImagen(-1, item.ItemAttributes.Title, item.MediumImage.URL));
