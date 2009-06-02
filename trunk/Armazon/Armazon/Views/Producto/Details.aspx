@@ -73,9 +73,9 @@
             <%}%>
 
             </div>
-            <%if (Request.IsAuthenticated){%>
+            <%if ((Model.Id > 0) && (Request.IsAuthenticated)){%>
                 <br/><div>
-                <%using (Html.BeginForm("AddTag","Producto",FormMethod.Post)){%>
+                <% using (Html.BeginForm("AddTag","Producto",FormMethod.Post)){%>
                     <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
                     Agregar Etiqueta: <input type="text" id="tagCollection" name="tagCollection" />
                     <input type="submit" value="Agregar!"/>                            
@@ -91,7 +91,7 @@
                 foreach (Armazon.Models.DataTypes.DTComment com in Model.Comments){ %>
                 <div class="commentBlock">
                     <img src="<%= ResolveUrl("~/Content/comment.png") %>" class="imageMiddle"/>
-                    <span class="by">Por <a href="#"><%= com.Username %></a></span><br>
+                    <span class="by">Por <%= com.Username %></span><br>
                     <!-- Rating !!! -->
                     <% j++;
                     for (int i = 1; i < 6; i++){ %>
@@ -116,7 +116,7 @@
               <% } %>
               <div id="commentJson"></div>
             </div>
-            <% if (Armazon.MenuController.puedeComentar()){ %>
+            <% if ((Model.Id > 0) && (Armazon.MenuController.puedeComentar())){ %>
                 <a onclick="$('#formComments').fadeIn('slow');" style="cursor:pointer;float:right" id="linkAddCommnet">
                     <img src="<%= ResolveUrl("~/Content/add_comment.png") %>" class="imageMiddle"/> Agregar Comentario
                 </a>
