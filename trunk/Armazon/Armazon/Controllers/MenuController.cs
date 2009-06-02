@@ -4,14 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
-using System.Web.UI;
-using Armazon.Models.DataTypes;
 using Armazon.Models;
+using DatabaseAccess;
+using Armazon.Controllers.ViewModels;
+using System.Collections.Specialized;
+using Armazon.Models.ServiceAccess;
+using Armazon.Models.DataTypes;
+using System.IO;
+using System.Drawing;
+using System.Web.UI;
 using System.Web.Security;
+using System.Data.Linq;
 
 namespace Armazon
 {
-    public class MenuController : TemplateControl
+    public class MenuController : Controller
     {
         public static List<DTCategoria> getCategorias()
         {
@@ -53,6 +60,18 @@ namespace Armazon
                 }
             }
         }
+        public ActionResult GetTags()
+        {
+            AdministracionFachada administracionFachada = new AdministracionFachada();
+            IEnumerable<Tag> tags = administracionFachada.findAllTags();
+            List<DTTag> DtTags = new List<DTTag>();
+            foreach (Tag item in tags)
+            {
+                DtTags.Add(item.getDataType());
+            }
+            return Json(DtTags);
+        }
+
         public static List<DTTag> getTags()
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
@@ -64,6 +83,7 @@ namespace Armazon
             }
             return DtTags;
         }
+
         public static double getSizeTag(string TagName)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
