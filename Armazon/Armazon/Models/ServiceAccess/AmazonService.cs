@@ -124,6 +124,8 @@ namespace Armazon.Models.ServiceAccess
                         p.Tienda = tienda;
                         p.Nombre = item.ItemAttributes.Title;
                         p.ExternalID = item.ASIN;
+                        Usuario uu = new Usuario();
+                        uu.Nombre = tienda.Nombre;
                         //string gg = item.OfferSummary.LowestNewPrice.Amount;                            
                         float price = 0;
                         if (item.OfferSummary.LowestNewPrice.Amount != null)
@@ -171,6 +173,7 @@ namespace Armazon.Models.ServiceAccess
                             {
                                 Producto_Usuario com = new Producto_Usuario();
                                 com.Comentario = re.Content;
+                                com.Usuario = uu;
                                 com.Puntaje = double.Parse(re.Rating.ToString());
                                 p.Producto_Usuarios.Add(com);
                             }

@@ -222,8 +222,9 @@ legend
     padding: 2px 4px 8px 4px;
 }
 
-input
+input,button,textarea
 {
+    font-family: Arial;
     font-size:11px;
 }
 

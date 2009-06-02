@@ -499,11 +499,7 @@ namespace Armazon.Models
         }
         public void AgregarProductoCarrito(int productoId, int carritoId,int cant)
         {
-
-
             CarritoMgr.AgregarProductoCarrito(productoId, carritoId, cant);
-        
-
         }
         public List<DTPedido> getProductosDeCarrito(int carrito)
         {
