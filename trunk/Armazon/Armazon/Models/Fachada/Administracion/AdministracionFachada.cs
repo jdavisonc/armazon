@@ -284,7 +284,6 @@ namespace Armazon.Models
         }
         public Usuario getUserSession()
         {
-            AdministracionFachada adminFac = new AdministracionFachada();
             MembershipUser myObject = Membership.GetUser();
             string userName = myObject.UserName.ToString();
             return getUsuario(userName);
@@ -297,6 +296,31 @@ namespace Armazon.Models
         {
             return UsuarioMgr.getCarritoOfUser(userName);
         }
+        public List<Carrito> getCarritosVendidosAUsuario()
+        {
+            Usuario usr =  getUserSession();
+            return UsuarioMgr.getCarritosVendidosAUsuario(usr.UsuarioID);
+        }
+        public List<Producto> getProductosComentables(List<Carrito> carritos)
+        {
+            Usuario usr = getUserSession();
+            List<Producto> lprod = new List<Producto>();
+            foreach (Carrito aux in carritos)
+            {
+                List<Producto_Carrito> listProdCarrito = CarritoMgr.getProductosConfirmados(aux.CarritoID);
+                 
+                foreach (Producto_Carrito pcarrito in listProdCarrito)
+                { 
+                    
+                    //var prodUusario = from prodUsr in DBConcurrencyException. Producto_Usuario
+                    bool comentado = ProductoMgr.estaComentado(pcarrito.ProductoID, usr.UsuarioID);
+                    if (!comentado)
+                        lprod.Add(ProductoMgr.getProducto(pcarrito.ProductoID));
+                }
+            }
+            return lprod;
+        }
+        
         #endregion
 
         #region Producto

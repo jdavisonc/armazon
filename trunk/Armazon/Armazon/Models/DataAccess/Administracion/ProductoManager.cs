@@ -111,7 +111,19 @@ namespace Armazon.Models.DataAccess.Administracion
             }
             return MontoTotal;
         }
-        
+
+        public bool estaComentado(int productoId, int usuarioId)
+        {
+            var comentario = from comment in db.Producto_Usuarios
+                             where comment.ProductoID == productoId && comment.UsuarioID == usuarioId
+                             select comment;
+            if (comentario != null)
+                if (comentario.ToList().Count == 0)
+                    return false;
+                else 
+                    return true;
+            return false;
+        }
         public List<string> getNombresProductos(List<Producto> listProd)
         {
             List<string> nombres = new List<string>();
