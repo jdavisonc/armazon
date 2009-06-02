@@ -225,6 +225,11 @@ namespace Armazon.Models.ServiceAccess
             }        
         }
 
+        public bool cartBuy(List<DCCartItem> cart, Tienda tienda)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

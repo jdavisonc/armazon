@@ -9,6 +9,7 @@ namespace Armazon.Models.ServiceAccess
 {
     public class ArmazonService : IAccessStore
     {
+        private const string _username = "TSIGrupo1";
 
         public ArmazonService()
         {
@@ -114,6 +115,13 @@ namespace Armazon.Models.ServiceAccess
                 p.Producto_Usuarios.Add(com);
             }
             return p;
+        }
+
+        public bool cartBuy(List<DCCartItem> cart, Tienda tienda)
+        {
+            Armazon.ArmazonWS.ArmazonWSClient ws = new Armazon.ArmazonWS.ArmazonWSClient();
+            ws.Endpoint.Address = new System.ServiceModel.EndpointAddress(tienda.Url);
+            return ws.CartBuy(_username, cart.ToArray());
         }
 
         #endregion
