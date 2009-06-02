@@ -102,12 +102,14 @@ namespace Armazon.Models.ServiceAccess
             DCProduct dc = ws.getProduct(int.Parse(externalID));
             Producto p = getProductoFromDataContract(dc);
             p.Tienda = tienda;
-
+            Usuario uu = new Usuario();
+            uu.Nombre = tienda.Nombre;
             DCRating [] ratings = ws.getRatings(int.Parse(externalID));
             foreach (DCRating rat in ratings)
             {
                 Producto_Usuario com = new Producto_Usuario();
                 com.Comentario = rat.Comment;
+                com.Usuario = uu;
                 com.Puntaje = rat.Rating;
                 p.Producto_Usuarios.Add(com);
             }

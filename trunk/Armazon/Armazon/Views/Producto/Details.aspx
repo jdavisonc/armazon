@@ -66,38 +66,35 @@
             <%} %>
         </div>
         <div id="Tags" class="sectionProduct">
-            <h3><img src="<%= ResolveUrl("~/Content/tag.png") %>" class="imageMiddle"/> Etiquetas</h3><br>
+            <h3><img src="<%= ResolveUrl("~/Content/tag.png") %>" class="imageMiddle"/> Etiquetas</h3>
+            <div>
             <%foreach (String tag in Model.Tags){%> 
-                <span style="float: left;width:100px"><img src="<%= ResolveUrl("~/Content/tag_list.png") %>" class="imageMiddle"/><%=tag%></span>
+                <span style="margin-right:20px"><img src="<%= ResolveUrl("~/Content/tag_list.png") %>" class="imageMiddle"/><%=tag%></span>
             <%}%>
-            <br><br/>
-            
-            
-            
+
+            </div>
             <%if (Request.IsAuthenticated){%>
-                <div style="display:inline">
-                    <%using (Html.BeginForm("AddTag","Producto",FormMethod.Post)){%>
-                <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
-                Agregar Etiqueta: <input type="text" id="tagCollection" name="tagCollection" />
-                <input type="submit" value="Agregar!"/>                            
+                <br/><div>
+                <%using (Html.BeginForm("AddTag","Producto",FormMethod.Post)){%>
+                    <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
+                    Agregar Etiqueta: <input type="text" id="tagCollection" name="tagCollection" />
+                    <input type="submit" value="Agregar!"/>                            
                 <%}%>            
                 </div>
             <%}%>
-            
-            
-            
         </div>
         <div id="reviews" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/comments.png") %>" class="imageMiddle"/> Comentarios</h3>
-            <br>
+            
+            <div id="comments">
             <%  int j = 0;
                 foreach (Armazon.Models.DataTypes.DTComment com in Model.Comments){ %>
                 <div class="commentBlock">
                     <img src="<%= ResolveUrl("~/Content/comment.png") %>" class="imageMiddle"/>
-                    <span class="by">Por <a href="#">harley</a></span><br>
+                    <span class="by">Por <a href="#"><%= com.Username %></a></span><br>
                     <!-- Rating !!! -->
                     <% j++;
-                    for (int i = 0; i < 5; i++){ %>
+                    for (int i = 1; i < 6; i++){ %>
                         <% if (i == com.Rating){ %>
                            <input name="starComment<%= j%>" type="radio" class="star" disabled="disabled" checked="checked"/>    
                         <%}else{ %>
@@ -107,30 +104,39 @@
                     <!-- ############## -->
                     <br><br>
                     <span class="comment">
-                        <%= com.Comment %>
+                        <% if (com.Comment.Length > 100){%>
+                            <%= com.Comment.Substring(0, 100) + "..."%>
+                            <div class="commentExcced" id="commentExcced<%= j %>"><%= com.Comment.Substring(100, com.Comment.Length-100)%></div>
+                            <a onclick="$('#commentExcced<%= j %>').slideToggle('slow');" style="cursor:pointer">Ver Mas</a>
+                        <% }else{ %>
+                            <%= com.Comment %>
+                        <% } %>
                     </span>
                 </div>       
               <% } %>
-            
-            <a onclick="$('#formComments').fadeIn('slow');" style="cursor:pointer;float:right">
-                <img src="<%= ResolveUrl("~/Content/add_comment.png") %>" class="imageMiddle"/> Agregar Comentario
-            </a>
-            
-            <div id="formComments">
-                <form>
-                    Tu Comentario!<br><br>
-                    <input name="commentRating" type="radio" class="star"/>
-                    <input name="commentRating" type="radio" class="star"/>
-                    <input name="commentRating" type="radio" class="star"/>
-                    <input name="commentRating" type="radio" class="star"/>
-                    <input name="commentRating" type="radio" class="star"/>
-                    <textarea id="commnet_text" name="commnet_text" style="width: 95%; margin: 5px"></textarea>
-                    <br>
-                    <input type="submit" value="Enviar!" />
-                </form>
+              <div id="commentJson"></div>
             </div>
+            <% if (Armazon.MenuController.puedeComentar()){ %>
+                <a onclick="$('#formComments').fadeIn('slow');" style="cursor:pointer;float:right" id="linkAddCommnet">
+                    <img src="<%= ResolveUrl("~/Content/add_comment.png") %>" class="imageMiddle"/> Agregar Comentario
+                </a>
+                <br>
+                <div id="formComments">
+                    <form id="formformComments">
+                        Tu Comentario!<br><br>
+                        <input name="commentRating" type="radio" class="star" value="1"/>
+                        <input name="commentRating" type="radio" class="star" value="2"/>
+                        <input name="commentRating" type="radio" class="star" value="3"/>
+                        <input name="commentRating" type="radio" class="star" value="4"/>
+                        <input name="commentRating" type="radio" class="star" value="5"/>
+                        <textarea id="comment_text" name="commnet_text" style="width: 95%; margin: 5px"></textarea>
+                        <input type="hidden" id="productID" name="productID" value="<%= Model.Id %>"
+                    </form>
+                    <button id="btnComment">Enviar!</button>
+                </div>
+            <% } %>
         </div>
-        <br>
+        
         <div id="recommended" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/recommend.png") %>" class="imageMiddle"/> Te recomendamos</h3>
             <div align="center">
@@ -176,12 +182,13 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
     <link href="<%= ResolveUrl("~/Content/Products.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/Content/jquery.rating.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/Content/jquery.rating.css")%>" rel="stylesheet" type="text/css" />
     <script src="<%= ResolveUrl("~/Scripts/CompraProducto.js")%>" type="text/javascript" ></script>
     <script src="<%= ResolveUrl("~/Scripts/jquery.rating.js")%>" type="text/javascript" ></script>
-    <link href="<%= ResolveUrl("~/Content/jquery.rating.css")%>" rel="stylesheet" type="text/css" />
-    
+    <script src="<%= ResolveUrl("~/Scripts/ProductDetails.js")%>" type="text/javascript" ></script>
+    <script src="<%= ResolveUrl("~/Scripts/jquery.corner.js")%>" type="text/javascript" ></script>
     <link href="<%= ResolveUrl("~/Content/carrousel/style.css") %>" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/jquery-1.2.3.pack.js")%>"></script>
     <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/jquery.jcarousel.pack.js")%>"></script>
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Content/carrousel/jquery.jcarousel.css") %>" />
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Content/carrousel/skins/tango/skin.css") %>" />

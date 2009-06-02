@@ -130,13 +130,13 @@
     <Compile Include="Models\DataTypes\LatLng.cs" />
     <Compile Include="Models\DataTypes\Location.cs" />
     <Compile Include="Models\DataTypes\Map.cs" />
-    <Compile Include="Models\DataTypes\Entities\Carrito.cs" />
-    <Compile Include="Models\DataTypes\Entities\Categoria.cs" />
-    <Compile Include="Models\DataTypes\Entities\Producto.cs" />
-    <Compile Include="Models\DataTypes\Entities\Producto_Usuario.cs" />
-    <Compile Include="Models\DataTypes\Entities\SubCategoria.cs" />
-    <Compile Include="Models\DataTypes\Entities\Sucursal.cs" />
-    <Compile Include="Models\DataTypes\Entities\Tag.cs" />
+    <Compile Include="Models\Entities\Carrito.cs" />
+    <Compile Include="Models\Entities\Categoria.cs" />
+    <Compile Include="Models\Entities\Producto.cs" />
+    <Compile Include="Models\Entities\Producto_Usuario.cs" />
+    <Compile Include="Models\Entities\SubCategoria.cs" />
+    <Compile Include="Models\Entities\Sucursal.cs" />
+    <Compile Include="Models\Entities\Tag.cs" />
     <Compile Include="Models\Fachada\Administracion\AdministracionFachada.cs" />
     <Compile Include="Models\Fachada\Consulta\ConsultaFachada.cs" />
     <Compile Include="Models\Fachada\Operativa\OperativaFachada.cs" />
@@ -172,6 +172,7 @@
     <Content Include="Content\AccordionTab2.gif" />
     <Content Include="Content\add_comment.png" />
     <Content Include="Content\agregar_carrito.png" />
+    <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\armazon.png" />
     <Content Include="Content\calendario\calendar-blue.css" />
     <Content Include="Content\calendario\calendar-blue2.css" />
@@ -279,6 +280,7 @@
     <Content Include="Content\Products.css" />
     <Content Include="Content\recommend.png" />
     <Content Include="Content\remove.png" />
+    <Content Include="Content\Shopping_Cart.png" />
     <Content Include="Content\star.gif" />
     <Content Include="Content\tag.png" />
     <Content Include="Content\tag_list.png" />
@@ -316,6 +318,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\ProductDetails.js" />
     <Content Include="Silverlight.js" />
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
