@@ -13,6 +13,11 @@ namespace Armazon
     public class ReporteController : Controller
     {
 
+        public ActionResult Prueba()
+        {
+            return View();
+        }
+
         public ActionResult VentasTotalesXPeriodo()
         {
             ViewData["txtFechaInicio"] = "";
@@ -79,6 +84,16 @@ namespace Armazon
             ViewData["IdCategoria"] = idCategoria;
             ViewData["pagina"] = pagina;
             return View(productos.ToPagedList(currentPageIndex,10));
+        }
+
+        public ActionResult ProductosMejorCalificados(int id, int idCategoria, int pagina, int? page)
+        {
+            OperativaFachada operativaFachada = new OperativaFachada();
+            IQueryable<Producto> productos = operativaFachada.ProductosMejorCalificados(id);
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            ViewData["IdCategoria"] = idCategoria;
+            ViewData["pagina"] = pagina;
+            return View(productos.ToPagedList(currentPageIndex, 10));
         }
     }
 }

@@ -133,8 +133,44 @@
         <br>
         <div id="recommended" class="sectionProduct">
             <h3><img src="<%= ResolveUrl("~/Content/recommend.png") %>" class="imageMiddle"/> Te recomendamos</h3>
-            
+            <div align="center">
+                
+                    <%List<Armazon.Models.DataTypes.DTProduct> productos = (List<Armazon.Models.DataTypes.DTProduct>)ViewData["LstProductos"];
+                      if (productos != null && productos.Count != 0){ %>
+                    
+                            <ul id="mycarousel" class="jcarousel-skin-tango">
+                            <%  foreach (Armazon.Models.DataTypes.DTProduct item in productos)
+                                { %>
+                                <li>
+                                    <% if ((item.Images.Count > 0) && (item.Id > 0))
+                                       { %>
+                                        <input type="image" src="<%= Url.Action( "ShowFirstThumbnail", "Producto", new { productID = item.Id } ) %>" name="btnDetalle" width="110px" height="110px" alt=""/>
+                                    <% }
+                                       else if ((item.Images.Count > 0) && (item.Id == 0))
+                                       { %>
+                                        <input type="image" src="<%= item.Images[0].ImagenURL %>" name="btnDetalle" width="110px" height="110px" alt=""/>
+                                    <% }
+                                       else
+                                       { %>
+                                        <input type="image" src="/Content/noImageAvailable.jpg" name="btnDetalle" width="110px" height="110px" alt=""/>
+                                    <% } %>
+                                    <p>
+                                        <% if (item.Tienda >= 0)
+                                           {%>
+                                            <a href="<%=Url.Action("Details", "Producto", new { tiendaID = item.Tienda, externalID = item.ExternalID })%>" ><%= item.Nombre%></a>
+                                        <%}
+                                           else
+                                           { %>
+                                            <a href="<%=Url.Action("Details", "Producto", new { productID = item.Id })%>" ><%= item.Nombre%></a>
+                                        <%} %>
+                                    </p>
+                                </li>
+                            <%} %>
+                            </ul>
+                    <%} %>
+            </div> 
         </div>
+        
     </div>
 </asp:Content>
 
@@ -143,7 +179,37 @@
     <script src="<%= ResolveUrl("~/Scripts/CompraProducto.js")%>" type="text/javascript" ></script>
     <script src="<%= ResolveUrl("~/Scripts/jquery.rating.js")%>" type="text/javascript" ></script>
     <link href="<%= ResolveUrl("~/Content/jquery.rating.css")%>" rel="stylesheet" type="text/css" />
+    
+    <link href="<%= ResolveUrl("~/Content/carrousel/style.css") %>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/jquery-1.2.3.pack.js")%>"></script>
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/jquery.jcarousel.pack.js")%>"></script>
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Content/carrousel/jquery.jcarousel.css") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/Content/carrousel/skins/tango/skin.css") %>" />
+
+    
     <script type="text/javascript">
+    
+    // Credits: Robert Penners easing equations (http://www.robertpenner.com/easing/).
+        jQuery.easing['BounceEaseOut'] = function(p, t, b, c, d) {
+	        if ((t/=d) < (1/2.75)) {
+		        return c*(7.5625*t*t) + b;
+	        } else if (t < (2/2.75)) {
+		        return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+	        } else if (t < (2.5/2.75)) {
+		        return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+	        } else {
+		        return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+	        }
+        };
+
+        jQuery(document).ready(function() {
+            jQuery('#mycarousel').jcarousel({
+                easing: 'BounceEaseOut',
+                animation: 1000
+            });
+        });
+        
+        
         $(function() {
             $('#formComments').hide();
             $('#formComments').corner();
@@ -157,5 +223,6 @@
                 }
             );
         });
+
     </script>
 </asp:Content>
