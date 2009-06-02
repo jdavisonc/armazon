@@ -47,6 +47,23 @@ namespace Armazon.Models.DataAccess.Administracion
             return productos;
         }
 
+        public IQueryable<Producto> ProductosMejorCalificados(int idSubCategoria)
+        {
+            var prod_usuario = (from Producto_Usuario p in db.Producto_Usuarios
+                                group p by p.ProductoID into g
+                                select new { prod = g.Key, puntaje = g.Sum(it => it.Puntaje) });
+
+            var productos = (from Producto prod in db.Productos
+                             where prod.SubCategoriaID == idSubCategoria
+                             join p in prod_usuario on prod.ProductoID equals p.prod
+                             orderby p.puntaje
+                             select prod);
+
+
+
+            return productos;
+        }
+
         public IQueryable<Producto> findAllProductos(String fullText)
         {
             var productos = (from Producto p in db.Productos
@@ -108,6 +125,32 @@ namespace Armazon.Models.DataAccess.Administracion
         public void Save()
         {
             db.SubmitChanges();
+        }
+
+        public IQueryable<Producto> productosRecomendados(Producto producto)
+        {
+            var carritos = (from Producto_Carrito pc in db.Producto_Carritos
+                            where pc.ProductoID == producto.ProductoID
+                            select new { idCarrito = pc.CarritoID });
+
+            var productos = (from Producto p in db.Productos
+                             join pc in db.Producto_Carritos on p.ProductoID equals pc.ProductoID
+                             join c in carritos on pc.CarritoID equals c.idCarrito
+                             select p);
+            /*
+            var usuarios = (from Carrito c in db.Carritos
+                            join pc in db.Producto_Carritos on c.CarritoID equals pc.CarritoID
+                            where pc.ProductoID == producto.ProductoID
+                            select new {id = c.UsuarioID});
+
+            var productos = (from Producto_Carrito pc in db.Producto_Carritos
+                             join c in db.Carritos on pc.CarritoID equals c.CarritoID
+                             join u in usuarios on c.UsuarioID equals u.id
+                             join p in db.Productos on pc.ProductoID equals p.ProductoID
+                             select p);
+            */
+            return productos;
+                               
         }
     }
 }

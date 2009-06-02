@@ -93,28 +93,6 @@ namespace Armazon.Models
             }
             return resultadoBusqueda;         
         }
-        public bool CartBuy(string user, ICollection<DCCartItem> items)
-        {
-            UsuarioManager usrMgr = new UsuarioManager();
-            ProductoManager prodMgr = new ProductoManager();
-            CarritoManager carrMgr = new CarritoManager();
-            Usuario usr = usrMgr.getUsuario(user);
-            Carrito carrito = new Carrito();
-            carrito.CarritoType = "Vendido";
-            carrito.UsuarioID = usr.UsuarioID;
-            carrMgr.AddCarritoActivo(carrito);
-            List<Producto> lproductos = new List<Producto>();
-            foreach (DCCartItem aux in items)
-            {
-                carrMgr.AgregarProductoCarrito(aux.ProductId, carrMgr.getCarritoActivoByUser(usr.UsuarioID).CarritoID, aux.Quantity);   
-            }
-            double monto = prodMgr.getMontoProductos(items);
-            carrito.Total = monto;
-            carrMgr.Save();
-            return true;
 
-                
-        }
-
-    }
+		public bool CartBuy(string user, ICollection<DCCartItem> items)        {            UsuarioManager usrMgr = new UsuarioManager();            ProductoManager prodMgr = new ProductoManager();            CarritoManager carrMgr = new CarritoManager();            Usuario usr = usrMgr.getUsuario(user);            Carrito carrito = new Carrito();            carrito.CarritoType = "Vendido";            carrito.UsuarioID = usr.UsuarioID;            carrMgr.AddCarritoActivo(carrito);            List<Producto> lproductos = new List<Producto>();            foreach (DCCartItem aux in items)            {                carrMgr.AgregarProductoCarrito(aux.ProductId, carrMgr.getCarritoActivoByUser(usr.UsuarioID).CarritoID, aux.Quantity);               }            double monto = prodMgr.getMontoProductos(items);            carrito.Total = monto;            carrMgr.Save();            return true;                        }		 public IEnumerable<Producto> productosRecomendados(Producto producto)        {            ProductoManager productoMgr = new ProductoManager();            return productoMgr.productosRecomendados(producto);        }    }
 }

@@ -117,7 +117,18 @@ namespace Armazon.Controllers
                 }
             }
             if (producto != null)
-                return View("Details",producto.getDataType());
+            {
+                ConsultaFachada consultaFachada = new ConsultaFachada();
+                IEnumerable<Producto> lstProductos = consultaFachada.productosRecomendados(producto);
+                List<DTProduct> productos = new List<DTProduct>();
+                foreach (Producto p in lstProductos){
+                    DTProduct dtProd = p.getDataType();
+                    productos.Add(dtProd);
+                }
+                ViewData["LstProductos"] = productos;
+
+                return View("Details", producto.getDataType());
+            }
             return View("NotFound",null);
         }
 

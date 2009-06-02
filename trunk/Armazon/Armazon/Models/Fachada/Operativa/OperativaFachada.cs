@@ -59,10 +59,14 @@ namespace Armazon.Models.Fachada.Operativa
 
          public IQueryable<Producto> ProductosMasVendidos(int idSubCategoria)
          {
-             
              ProductoManager productoMgr = new ProductoManager();
              return productoMgr.ProductosMasVendidos(idSubCategoria);
+         }
 
+         public IQueryable<Producto> ProductosMejorCalificados(int idSubCategoria)
+         {
+             ProductoManager productoMgr = new ProductoManager();
+             return productoMgr.ProductosMasVendidos(idSubCategoria);
          }
     }
 }
