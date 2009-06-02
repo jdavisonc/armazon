@@ -118,11 +118,19 @@ namespace Armazon
             Carrito activo = adminFac.getCarritoActivoByUser(usr.UsuarioID);
             return adminFac.getMontoCarritoActivo();
         }
-        public static bool puedeComentar()
+        public static bool puedeComentar(int productID)
         {
-            //MembershipUser myObject = Membership.GetUser();
-            //string userName = myObject.UserName.ToString();
-            return true;
+            AdministracionFachada adminFach = new AdministracionFachada();
+            List<Producto> listado = adminFach.getProductosComentables(adminFach.getCarritosVendidosAUsuario());
+            Producto p = listado.Find(c => c.ProductoID == productID);
+            if (p != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

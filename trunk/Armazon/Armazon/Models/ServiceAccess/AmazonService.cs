@@ -5,6 +5,7 @@ using System.Web;
 using Armazon.Models.DataTypes;
 using Armazon.AWS;
 using System.Reflection;
+using Armazon.ArmazonWS;
 
 namespace Armazon.Models.ServiceAccess
 {
