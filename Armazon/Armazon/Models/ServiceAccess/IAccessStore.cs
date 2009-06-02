@@ -10,5 +10,6 @@ namespace Armazon.Models.ServiceAccess
     {
         List<Producto> searchProducts(string fullText, Tienda tienda);
         Producto getProduct(string externalID, Tienda tienda);
+        bool cartBuy(List<DCCartItem> cart, Tienda tienda);
     }
 }
