@@ -6,12 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Administrar Carro</h2>
+    
     <% using (Html.BeginForm())
        {%>
-    <div type="label" id="error" name="error"><%=ViewData["errorTarjeta"] %>
+    <div type="label" id="error" name="error" ><%=ViewData["errorTarjeta"] %>
     </div>
- 
+ <h2>Administrar Carro</h2>
     <table>
         <tr>
             <th></th>

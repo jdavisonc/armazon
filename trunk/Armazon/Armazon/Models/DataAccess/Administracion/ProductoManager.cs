@@ -101,6 +101,9 @@ namespace Armazon.Models.DataAccess.Administracion
             }
             return MontoTotal;
         }
+        
+        
+        
         public double getMontoProductos(ICollection<DCCartItem> listProd)
         {
             double MontoTotal = 0;

@@ -2,6 +2,7 @@
 <script type="text/javascript">
     jQuery().ready(function() {
         $("#contentCarrito").corner();
+        $("#adicional").corner();
     });
 </script>
 <div id="contentCarrito">
@@ -48,6 +49,6 @@
 <p>
 <a href="/Carrito/" title="Ver Carrito" >
                             <img src="/Content/Shopping_Cart.png" onclick="window.location('Carrito')"/>
-                        </a>
+                        </a>  Ver Carrito
 </p>
 </div>

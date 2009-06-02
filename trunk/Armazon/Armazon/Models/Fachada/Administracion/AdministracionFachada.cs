@@ -358,6 +358,13 @@ namespace Armazon.Models
             carrito.Total = monto;
             return monto;
         }
+        public double getMontoCarritoActivo()
+        {
+            Usuario usr = getUserSession();
+            Carrito activo = getCarritoActivoByUser(usr.UsuarioID);
+            List<DTPedido> listProd = getProductosDeCarrito(activo.CarritoID);
+            return getMontoProductos(listProd);
+        }
         public double setearMontoProdComprados()
         {
             MembershipUser myObject = Membership.GetUser();

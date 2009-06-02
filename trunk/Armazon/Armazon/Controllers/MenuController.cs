@@ -91,6 +91,13 @@ namespace Armazon
             return null;
         }
 
+        public static double getMontoEnCarroActivo()
+        {
+            AdministracionFachada adminFac = new AdministracionFachada();
+            Usuario usr = adminFac.getUserSession();
+            Carrito activo = adminFac.getCarritoActivoByUser(usr.UsuarioID);
+            return adminFac.getMontoCarritoActivo();
+        }
         public static bool puedeComentar()
         {
             //MembershipUser myObject = Membership.GetUser();

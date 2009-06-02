@@ -18,17 +18,23 @@ namespace Armazon.Controllers
 
         public ActionResult Index(string error)
         {
-           
-            List<string> list = new List<string>();
-            list.Add("PayPal");
-            list.Add("Tarjeta");
-            ViewData["pagos"] = new SelectList(list);            
-            AdministracionFachada adminFac = new AdministracionFachada();
-            MembershipUser myObject = Membership.GetUser();
-            string userName = myObject.UserName.ToString();
-            Carrito carrito = adminFac.getCarritoOfUser(userName);
-            List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
-            return View(listPedido);
+
+            if (error != null)
+            {
+                ViewData["errorTarjeta"] = error;
+            }
+                
+                List<string> list = new List<string>();
+                list.Add("PayPal");
+                list.Add("Tarjeta");
+                ViewData["pagos"] = new SelectList(list);
+                AdministracionFachada adminFac = new AdministracionFachada();
+                MembershipUser myObject = Membership.GetUser();
+                string userName = myObject.UserName.ToString();
+                Carrito carrito = adminFac.getCarritoOfUser(userName);
+                List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
+                return View(listPedido);
+                
             
         }
         [AcceptVerbs(HttpVerbs.Post)]
