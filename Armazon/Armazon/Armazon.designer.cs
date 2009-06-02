@@ -30,9 +30,6 @@ namespace Armazon
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertActivo(Activo instance);
-    partial void UpdateActivo(Activo instance);
-    partial void DeleteActivo(Activo instance);
     partial void InsertVendido(Vendido instance);
     partial void UpdateVendido(Vendido instance);
     partial void DeleteVendido(Vendido instance);
@@ -114,14 +111,6 @@ namespace Armazon
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Activo> Activos
-		{
-			get
-			{
-				return this.GetTable<Activo>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Vendido> Vendidos
@@ -257,92 +246,6 @@ namespace Armazon
 			get
 			{
 				return this.GetTable<Valor>();
-			}
-		}
-	}
-	
-	[Table(Name="dbo.Activo")]
-	public partial class Activo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CarritoID;
-		
-		private int _UsuarioID;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCarritoIDChanging(int value);
-    partial void OnCarritoIDChanged();
-    partial void OnUsuarioIDChanging(int value);
-    partial void OnUsuarioIDChanged();
-    #endregion
-		
-		public Activo()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_CarritoID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int CarritoID
-		{
-			get
-			{
-				return this._CarritoID;
-			}
-			set
-			{
-				if ((this._CarritoID != value))
-				{
-					this.OnCarritoIDChanging(value);
-					this.SendPropertyChanging();
-					this._CarritoID = value;
-					this.SendPropertyChanged("CarritoID");
-					this.OnCarritoIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UsuarioID", DbType="Int NOT NULL")]
-		public int UsuarioID
-		{
-			get
-			{
-				return this._UsuarioID;
-			}
-			set
-			{
-				if ((this._UsuarioID != value))
-				{
-					this.OnUsuarioIDChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioID = value;
-					this.SendPropertyChanged("UsuarioID");
-					this.OnUsuarioIDChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

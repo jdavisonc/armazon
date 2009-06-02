@@ -8,6 +8,7 @@
 
     <h2>La compra se ha realizado satisfactoriamente</h2>
     <%  Armazon.Models.DataTypes.DTCarroVendido dtcvendido = Armazon.MenuController.finalizarVentaCarrito();%>
+    
     <fieldset>
         <legend>Carrito Vendido</legend>
         <p>

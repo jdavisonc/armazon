@@ -52,6 +52,15 @@ namespace Armazon.Models.DataAccess.Administracion
             return carrito.ToList().First();
         }
 
+        public List<Carrito> getCarritosVendidosAUsuario(int usuarioId)
+        {
+            var vendido = from vend in db.Carritos
+                          where vend.UsuarioID == usuarioId && vend.CarritoType == "Vendido"
+                          select vend;
+            return vendido.ToList();
+
+        }
+
         public List<DTUsuarioTag> tagsXUsuario()
         {
             List<DTUsuarioTag> tagsXUsuario = new List<DTUsuarioTag>();
