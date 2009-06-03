@@ -116,7 +116,7 @@
               <% } %>
               <div id="commentJson"></div>
             </div>
-            <% if ((Model.Id > 0) && (Armazon.MenuController.puedeComentar(Model.Id))){ %>
+            <% if ((Model.Id > 0) && (Request.IsAuthenticated) && (Armazon.MenuController.puedeComentar(Model.Id))){ %>
                 <a onclick="$('#formComments').fadeIn('slow');" style="cursor:pointer;float:right" id="linkAddCommnet">
                     <img src="<%= ResolveUrl("~/Content/add_comment.png") %>" class="imageMiddle"/> Agregar Comentario
                 </a>
