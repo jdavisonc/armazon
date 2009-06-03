@@ -53,8 +53,23 @@ namespace Armazon.Models.DataAccess.Administracion
                 return activoAux;
             }
         }
-        
-        
+
+        public Carrito getCarrito(int idCarrito)
+        {
+            var carr = from act in db.Carritos
+                         where act.CarritoID == idCarrito
+                         select act;
+            if (carr == null)
+                return null;
+            else
+            {
+                Carrito activoAux = carr.ToList().First();
+                return activoAux;
+            }
+        }
+
+
+
         public Carrito getCarritoActivoById(int idCarrito)
         {
             var activo = from act in db.Carritos

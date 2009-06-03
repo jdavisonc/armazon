@@ -29,12 +29,15 @@ namespace Armazon.Controllers
                 list.Add("Tarjeta");
                 ViewData["pagos"] = new SelectList(list);
                 AdministracionFachada adminFac = new AdministracionFachada();
-                MembershipUser myObject = Membership.GetUser();
-                string userName = myObject.UserName.ToString();
-                Carrito carrito = adminFac.getCarritoOfUser(userName);
-                List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
-                return View(listPedido);
-                
+                Usuario usr =  adminFac.getUserSession();
+                if (usr != null)
+                {
+                    Carrito carrito = adminFac.getCarritoActivoByUser(usr.UsuarioID);
+                    List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
+                    return View(listPedido);
+                }
+                else
+                    return RedirectToAction("logOn","Account");
             
         }
         [AcceptVerbs(HttpVerbs.Post)]
