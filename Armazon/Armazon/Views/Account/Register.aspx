@@ -1,25 +1,25 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Register
+    Registrar
 </asp:Content>
 
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Create a New Account</h2>
+    <h2>Crear nueva cuenta</h2>
     <p>
-        Use the form below to create a new account. 
+        Utilice el siguiente formulario para crear una cuenta. 
     </p>
     <p>
-        Passwords are required to be a minimum of <%=Html.Encode(ViewData["PasswordLength"])%> characters in length.
+        La contraseña requiere un mínimo de <%=Html.Encode(ViewData["PasswordLength"])%> caracteres de largo.
     </p>
-    <%= Html.ValidationSummary("Account creation was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("Error al registrar la nueva cuenta.") %>
 
     <% using (Html.BeginForm()) { %>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
+                <legend>Información de la cuenta</legend>
                 <p>
-                    <label for="username">Username:</label>
+                    <label for="username">Usuario:</label>
                     <%= Html.TextBox("username") %>
                     <%= Html.ValidationMessage("username") %>
                 </p>
@@ -29,17 +29,17 @@
                     <%= Html.ValidationMessage("email") %>
                 </p>
                 <p>
-                    <label for="password">Password:</label>
+                    <label for="password">Contraseña:</label>
                     <%= Html.Password("password") %>
                     <%= Html.ValidationMessage("password") %>
                 </p>
                 <p>
-                    <label for="confirmPassword">Confirm password:</label>
+                    <label for="confirmPassword">Confirmar contraseña:</label>
                     <%= Html.Password("confirmPassword") %>
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
                 <p>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value="Registrar" />
                 </p>
             </fieldset>
         </div>
