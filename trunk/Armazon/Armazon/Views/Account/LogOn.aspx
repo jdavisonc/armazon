@@ -33,5 +33,6 @@
                 </p>
             </fieldset>
         </div>
+      </form>
     <% } %>
 </asp:Content>
