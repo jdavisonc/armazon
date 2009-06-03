@@ -16,7 +16,10 @@ namespace Armazon.Models.DataAccess.Administracion
 
         public IQueryable<Tag> findAllTags()
         {
-            return db.Tags;
+            var tags = (from t in db.Tags
+                        orderby t.CantAp
+                        select t);
+            return tags;
         }
 
         public Tag getTag(int id)
