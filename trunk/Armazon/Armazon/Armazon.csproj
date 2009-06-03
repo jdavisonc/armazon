@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
+    <Compile Include="Controllers\CarrosVendidosController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
@@ -355,6 +356,7 @@
     <Content Include="Views\Carrito\Create.aspx" />
     <Content Include="Views\Carrito\Edit.aspx" />
     <Content Include="Views\Carrito\Index.aspx" />
+    <Content Include="Views\CarrosVendidos\Index.aspx" />
     <Content Include="Views\Categoria\Create.aspx" />
     <Content Include="Views\Categoria\Delete.aspx" />
     <Content Include="Views\Categoria\Deleted.aspx" />
