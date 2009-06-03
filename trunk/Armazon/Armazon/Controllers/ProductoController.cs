@@ -118,10 +118,31 @@ namespace Armazon.Controllers
             }
             if (producto != null)
             {
+                AdministracionFachada administracionFachada = new AdministracionFachada();
                 ConsultaFachada consultaFachada = new ConsultaFachada();
-                IEnumerable<Producto> lstProductos = consultaFachada.productosRecomendados(producto);
+
+                IEnumerable<Producto> lstProductos = null;
+
+                Usuario usuario = administracionFachada.getUserSession();
+                if (usuario != null)
+                {
+                    lstProductos = consultaFachada.productosRecomendados(usuario);
+                }
+                if (lstProductos == null || lstProductos.Count() == 0)
+                {
+                    lstProductos = consultaFachada.productosRecomendados(producto);
+                }
+                if (lstProductos == null || lstProductos.Count() == 0)
+                {
+                    lstProductos = consultaFachada.productosRecomendados();
+                }
+                if (lstProductos == null || lstProductos.Count() == 0)
+                {
+                    lstProductos = consultaFachada.productosAleatorios();
+                }
+                
                 List<DTProduct> productos = new List<DTProduct>();
-                foreach (Producto p in lstProductos){
+                foreach (Producto p in lstProductos.Take(10)){
                     DTProduct dtProd = p.getDataType();
                     productos.Add(dtProd);
                 }

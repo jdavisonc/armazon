@@ -145,27 +145,57 @@ namespace Armazon.Models.DataAccess.Administracion
         public IQueryable<Producto> productosRecomendados(Producto producto)
         {
             var carritos = (from Producto_Carrito pc in db.Producto_Carritos
-                            where pc.ProductoID == producto.ProductoID
+                            join c in db.Carritos on pc.CarritoID equals c.CarritoID
+                            where pc.ProductoID == producto.ProductoID && c.CarritoType.Equals("Vendido")
                             select new { idCarrito = pc.CarritoID });
 
             var productos = (from Producto p in db.Productos
                              join pc in db.Producto_Carritos on p.ProductoID equals pc.ProductoID
                              join c in carritos on pc.CarritoID equals c.idCarrito
+                             where p.ProductoID != producto.ProductoID && p.Tienda == null
                              select p);
-            /*
-            var usuarios = (from Carrito c in db.Carritos
-                            join pc in db.Producto_Carritos on c.CarritoID equals pc.CarritoID
-                            where pc.ProductoID == producto.ProductoID
-                            select new {id = c.UsuarioID});
-
-            var productos = (from Producto_Carrito pc in db.Producto_Carritos
-                             join c in db.Carritos on pc.CarritoID equals c.CarritoID
-                             join u in usuarios on c.UsuarioID equals u.id
-                             join p in db.Productos on pc.ProductoID equals p.ProductoID
-                             select p);
-            */
+            
             return productos;
                                
+        }
+
+        public IQueryable<Producto> productosRecomendados(Usuario usuario)
+        {
+            var productos = (from Producto p in db.Productos
+                             join pc in db.Producto_Carritos on p.ProductoID equals pc.ProductoID
+                             join c in db.Carritos on pc.CarritoID equals c.CarritoID
+                             where c.UsuarioID != usuario.UsuarioID && p.Tienda == null && c.CarritoType.Equals("Vendido")
+                             select p);
+
+            return productos;
+
+        }
+
+        public IQueryable<Producto> productosRecomendados()
+        {
+            var prodMasVendidos = (from Producto_Carrito pc in db.Producto_Carritos
+                                   join c in db.Carritos on pc.CarritoID equals c.CarritoID
+                                   where c.CarritoType.Equals("Vendido")
+                                   group pc by pc.ProductoID into g
+                                   select new { idProducto = g.Key, cant = g.Count() });
+
+            var productos = (from Producto p in db.Productos
+                             join pv in prodMasVendidos on p.ProductoID equals pv.idProducto
+                             where p.Tienda == null
+                             orderby pv.cant
+                             select p);
+
+            return productos;
+
+        }
+
+        public IQueryable<Producto> productosAleatorios()
+        {
+            var productos = (from Producto p in db.Productos
+                             select p);
+
+            return productos;
+
         }
     }
 }
