@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAC3253F-9071-4798-A46C-16F7A01F1A55}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -269,6 +269,26 @@
     <Content Include="Content\doc_remove.png" />
     <Content Include="Content\flecha_derecha.png" />
     <Content Include="Content\fondoBuscador.png" />
+    <Content Include="Content\img\0.png" />
+    <Content Include="Content\img\button-left.png" />
+    <Content Include="Content\img\button-right.png" />
+    <Content Include="Content\img\button.png" />
+    <Content Include="Content\img\checkbox.png" />
+    <Content Include="Content\img\file.png" />
+    <Content Include="Content\img\input-left.png" />
+    <Content Include="Content\img\input-right.png" />
+    <Content Include="Content\img\input.png" />
+    <Content Include="Content\img\radio.png" />
+    <Content Include="Content\img\select-left.png" />
+    <Content Include="Content\img\select-right.png" />
+    <Content Include="Content\img\textarea-bl.png" />
+    <Content Include="Content\img\textarea-br.png" />
+    <Content Include="Content\img\textarea-l-off.png" />
+    <Content Include="Content\img\textarea-l-over.png" />
+    <Content Include="Content\img\textarea-r-off.png" />
+    <Content Include="Content\img\textarea-r-over.png" />
+    <Content Include="Content\img\textarea-tl.png" />
+    <Content Include="Content\img\textarea-tr.png" />
     <Content Include="Content\jquery.rating.css" />
     <Content Include="Content\lupa.png" />
     <Content Include="Content\lupaSombra.png" />
@@ -541,6 +561,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
