@@ -5,7 +5,7 @@
 <script type="text/javascript">
     setTimeout(function() {
         $.getJSON("/Menu/GetTags", silver);
-    }, 1000);
+    }, 2000);
     
     function silver(variable) {
         var control = document.getElementsByName("Xaml1")[0];
