@@ -15,5 +15,5 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
     <!--<script src="http://www.google.com/jsapi?key=ABQIAAAAPywn24BLjZz4J8wGxSmDYBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxS-a7EL29HXobr7gLj77MS16aXbIQ" type="text/javascript"></script>-->
     <script src="http://www.google.com/jsapi?key=ABQIAAAAp0Kj6-TRULdy9KWugN_GfxTAdLk6fhpyuNdDdRr81ySzv4W5CRSHcX_iuexOywKZQSEdjN-rXx8BAA" type="text/javascript"></script>
-    <script src="../../Scripts/LocationsMap.js" type="text/javascript" ></script>
+    <script src="<%= ResolveUrl("~/Scripts/LocationsMap.js") %>" type="text/javascript" ></script>
 </asp:Content>

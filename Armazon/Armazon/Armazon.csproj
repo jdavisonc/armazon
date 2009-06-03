@@ -274,6 +274,7 @@
     <Content Include="Content\lupaSombra.png" />
     <Content Include="Content\MenuCategoria.css" />
     <Content Include="Content\nerdinner.gif" />
+    <Content Include="Content\niceforms-default.css" />
     <Content Include="Content\noImageAvailable.jpg" />
     <Content Include="Content\Paginado.css" />
     <Content Include="Content\pencil.png" />
@@ -319,6 +320,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\niceforms.js" />
     <Content Include="Scripts\ProductDetails.js" />
     <Content Include="Silverlight.js" />
     <Content Include="Views\Account\ChangePassword.aspx" />
