@@ -4,10 +4,10 @@
   
 <script type="text/javascript">
     setTimeout(function() {
-        $.getJSON("/Menu/GetTags", popup);
+        $.getJSON("/Menu/GetTags", silver);
     }, 1000);
     
-    function popup(variable) {
+    function silver(variable) {
         var control = document.getElementsByName("Xaml1")[0];
         var ruta = document.getElementById("hdnRuta").value;
         for(var i in variable){
@@ -24,7 +24,7 @@
             active: true,
             header: '.head',
             navigation: true,
-            fillSpace: true,
+            fillSpace: true
         });
     });
 </script>
