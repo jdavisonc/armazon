@@ -79,9 +79,14 @@ namespace Armazon.Models.DataAccess.Administracion
                 return null;
             else
             {
-                Carrito activoAux = activo.ToList().First();
-                return activoAux;
-            }
+                if (activo.ToList().Count == 0)
+                    return null;
+                else
+                {
+                    Carrito activoAux = activo.ToList().First();
+                    return activoAux;
+                } 
+           }
         }
         public void AgregarProductoCarrito(int productoId, int carritoId,int cant)
         {

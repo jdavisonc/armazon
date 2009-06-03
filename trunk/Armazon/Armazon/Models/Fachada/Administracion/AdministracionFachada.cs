@@ -545,7 +545,7 @@ namespace Armazon.Models
         {
 
             DTCarroVendido dtcv = CarritoMgr.finalizarVentaCarrito(carritoId);
-            Carrito vendido = getCarritoActivoById(carritoId);
+            Carrito vendido = getCarrito(carritoId);
             List<DTPedido> productos = CarritoMgr.getProductosDeCarrito(vendido.CarritoID);
             List<Tienda> ltiendas = TiendaMgr.findAllTiendas().ToList();
             foreach (Tienda auxTienda in ltiendas)
