@@ -285,8 +285,15 @@ namespace Armazon.Models
         public Usuario getUserSession()
         {
             MembershipUser myObject = Membership.GetUser();
-            string userName = myObject.UserName.ToString();
-            return getUsuario(userName);
+            if (myObject == null)
+            {
+                return null;
+            }
+            else
+            {
+                string userName = myObject.UserName.ToString();
+                return getUsuario(userName);
+            }
         }
         public void saveUsuario()
         {
