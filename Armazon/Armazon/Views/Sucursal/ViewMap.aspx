@@ -8,7 +8,7 @@
 
     <h2>Mapa de Sucursales</h2>
     
-    <div id="map" style="width : 100%; height : 400px; margin : 0px; padding : 10px; float : middle;"></div>
+    <div id="map" style="width : 780px; height : 400px; margin : 0px; padding : 10px; float : middle;"></div>
 
 </asp:Content>
 
