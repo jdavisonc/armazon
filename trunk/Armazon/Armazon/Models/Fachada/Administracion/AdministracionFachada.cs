@@ -13,6 +13,8 @@ using DatabaseAccess;
 using Armazon.Models.DataAccess.Administracion;
 using System.Collections.Generic;
 using Armazon.Models.DataTypes;
+using Armazon.ArmazonWS;
+using Armazon.Models.ServiceAccess;
 
 namespace Armazon.Models
 {
@@ -327,7 +329,18 @@ namespace Armazon.Models
             }
             return lprod;
         }
-        
+        public void getProductosDeOtraTienda()
+        {
+            List<Carrito> carritosVendidos = getCarritosVendidosAUsuario();
+            List<DTPedido> productos = new List<DTPedido>();
+            List<Tienda> ltiendas  = TiendaMgr.findAllTiendas().ToList();
+            foreach (Carrito aux in carritosVendidos)
+            {
+                 
+           }
+        }
+
+
         #endregion
 
         #region Producto
@@ -507,6 +520,10 @@ namespace Armazon.Models
         {
             return CarritoMgr.getCarritoActivoByUser(userId);
         }
+        public Carrito getCarrito(int idCarrito)
+        {
+            return CarritoMgr.getCarrito(idCarrito);
+        }
         public Carrito getCarritoActivoById(int idCarrito)
         {
             return CarritoMgr.getCarritoActivoById(idCarrito);
@@ -528,9 +545,33 @@ namespace Armazon.Models
         {
 
             DTCarroVendido dtcv = CarritoMgr.finalizarVentaCarrito(carritoId);
-            
+            Carrito vendido = getCarritoActivoById(carritoId);
+            List<DTPedido> productos = CarritoMgr.getProductosDeCarrito(vendido.CarritoID);
+            List<Tienda> ltiendas = TiendaMgr.findAllTiendas().ToList();
+            foreach (Tienda auxTienda in ltiendas)
+            {
+                List<DCCartItem> lprod = new List<DCCartItem>();
+                foreach (DTPedido dtp in productos)
+                {
+                    Producto prod = getProducto(dtp.Id);
+
+                    if (prod.TiendaID != null && prod.TiendaID == auxTienda.TiendaID)
+                    {
+                        DCCartItem dtci = new DCCartItem();
+                        dtci.ProductId = int.Parse(prod.ExternalID);
+                        dtci.Quantity = dtp.Cant;
+                        lprod.Add(dtci);
+
+                    }
+                }
+                if (lprod.Count != 0)
+                {
+                    IAccessStore iservicios = FabricAccessStore.getInstance().createArmazonServiceAccess();
+                    iservicios.cartBuy(lprod, auxTienda);
+                }
+            }
             return dtcv;
-        }
+        }            
         public void SaveCarritoActivo()
         {
             CarritoMgr.Save();
