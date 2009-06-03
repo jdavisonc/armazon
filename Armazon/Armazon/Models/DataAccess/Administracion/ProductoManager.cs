@@ -192,6 +192,7 @@ namespace Armazon.Models.DataAccess.Administracion
         public IQueryable<Producto> productosAleatorios()
         {
             var productos = (from Producto p in db.Productos
+                             where p.Tienda == null
                              select p);
 
             return productos;
