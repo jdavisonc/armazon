@@ -19,15 +19,12 @@
                 <label> Monto de compra: <%=ViewData["txtMonto"] %></label>
             </p>
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Comprar" />
             </p>
         </fieldset>
 
     <% } %>
 
-    <div>
-        <%=Html.ActionLink("Volver", "Index") %>
-    </div>
      
     </asp:Content>
 

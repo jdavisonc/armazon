@@ -32,7 +32,9 @@
             <select type="text" id="cantCompra" name="cantCompra" style="font-size:9px;width:40px">
               <% for (int i = 1; i < 20; i++){ %><option value="<%= i %>"><%= i %></option><% } %>
             </select><br>
-            <% if (Model.Id > 0){ %>
+            <% if (!Request.IsAuthenticated){ %>
+                <img src="<%= ResolveUrl("~/Content/agregar_carrito.png")%>" onclick="window.location='/Account/LogOn?returnUrl=/Producto/Details?productID=<%= Model.Id %>'" style="cursor:pointer">
+            <% }else if (Model.Id > 0){ %>
                 <img src="<%= ResolveUrl("~/Content/agregar_carrito.png")%>" onclick="compraAjax(<%=Model.Id %>)" style="cursor:pointer">
             <% }else{ %>
                 <img src="<%= ResolveUrl("~/Content/agregar_carrito.png")%>" onclick="compraAjaxTienda(<%= Model.Tienda %>,'<%= Model.ExternalID %>')" style="cursor:pointer">

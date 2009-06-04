@@ -2,13 +2,19 @@
 <%
     if (Request.IsAuthenticated) {
 %>
-        Hello, <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
-        [ <%= Html.ActionLink("Log Off", "LogOff", "Account") %> ] [ <%= Html.ActionLink("Profile", "Profile", "Account") %> ] [ <%= Html.ActionLink("Administrar", "AdministratorManager", "Home") %> ]
+        Bienvenido, <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
+        | <%= Html.ActionLink("Cuenta", "Profile", "Account") %>
+        
+        <% if (Page.User.IsInRole("Administrador")){ %>
+            | <%=Html.ActionLink("Administrar", "AdministratorManager", "Home")%>
+        <% } %>
+        
+        | <%= Html.ActionLink("Salir", "LogOff", "Account") %>
 <%
     }
     else {
 %> 
-        [ <%= Html.ActionLink("Log On", "LogOn", "Account") %> ]
+         <%= Html.ActionLink("Ingresar", "LogOn", "Account") %> 
 <%
     }
 %>
