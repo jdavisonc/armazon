@@ -79,7 +79,7 @@ namespace Armazon.Models
         public IQueryable<Producto> productosMasImportantes()
         {
             ProductoManager productoMgr = new ProductoManager();
-            return productoMgr.findAllProductos();
+            return productoMgr.productosRecomendados();
         }
 
         public IEnumerable<Producto> findProductosPorTag(String nombreTag)
