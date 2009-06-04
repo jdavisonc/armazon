@@ -508,7 +508,10 @@ namespace Armazon.Models
         { 
             return MetodoPagoMgr.getUsuarioTarjetas(idUsuario);
         }
-        
+        public List<PayPal> getUsuarioPayPals(int idUsuario)
+        {
+            return MetodoPagoMgr.getUsuarioPayPals(idUsuario);
+        }
         #endregion
         
         #region Carrito

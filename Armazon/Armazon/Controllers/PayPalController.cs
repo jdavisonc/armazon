@@ -53,7 +53,12 @@ namespace Armazon.Controllers
         {
             AdministracionFachada adminFac = new AdministracionFachada();
             double precio = adminFac.setearMontoProdComprados();
-           
+            Usuario usr = adminFac.getUserSession();
+            PayPal paypal = new PayPal();
+            paypal.MetodoDePagoType = "PayPal";
+            paypal.Validada = false;
+            paypal.UsuarioID = usr.UsuarioID;
+            adminFac.AddPayPal(paypal);
             ViewData["txtMonto"] = precio;
             return View();
         } 
@@ -65,8 +70,14 @@ namespace Armazon.Controllers
         public ActionResult Create(FormCollection collection)
         {
             string monto = Request.Form["hdnMonto"];
+            AdministracionFachada adminFac = new AdministracionFachada();
+            Usuario usr = adminFac.getUserSession();
+            Carrito carrito = adminFac.getCarritoActivoByUser(usr.UsuarioID);
+            List<PayPal> lpaypal = adminFac.getUsuarioPayPals(usr.UsuarioID);
+            carrito.MetodoDePagoID = lpaypal.Last().MetodoDePagoID;
+            adminFac.SaveCarritoActivo();
             
-              StringBuilder requestString = InitializeRequest("SetExpressCheckout");
+            StringBuilder requestString = InitializeRequest("SetExpressCheckout");
               
               requestString.Append("&AMT=" + monto);
               string basePath = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, string.Empty) + Request.ApplicationPath;

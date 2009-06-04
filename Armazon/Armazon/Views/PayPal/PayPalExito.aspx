@@ -18,7 +18,7 @@
         <p>
             MetodoDePago:
             
-                   <%= Html.Encode(dtcvendido.DatosCarrito.MetodoDePago.Equals("Armazon.Tarjeta") ? "Tarjeta" : "PayPal")%>;
+                   <%= Html.Encode(dtcvendido.DatosCarrito.MetodoDePago.Equals("Armazon.Tarjeta") ? "Tarjeta" : "PayPal")%>
                 
         </p>
         <p>

@@ -94,7 +94,13 @@ namespace Armazon.Models.DataAccess.Administracion
             return tarjetas.ToList();
                                 
         }
-        
+        public List<PayPal> getUsuarioPayPals(int idUsuario)
+        {
+            var paypals = from prod in db.MetodoDePagos
+                           where prod is PayPal && prod.UsuarioID == idUsuario
+                           select (PayPal)prod;
+            return paypals.ToList();
+        }
         public void AddPayPal(PayPal pago)
         {
 
