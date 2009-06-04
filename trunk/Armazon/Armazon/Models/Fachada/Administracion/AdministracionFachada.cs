@@ -569,8 +569,16 @@ namespace Armazon.Models
                 }
                 if (lprod.Count != 0)
                 {
-                    IAccessStore iservicios = FabricAccessStore.getInstance().createArmazonServiceAccess();
-                    iservicios.cartBuy(lprod, auxTienda);
+                    if (auxTienda.TipoAPI.CompareTo("AMAZON") == 0)
+                    {
+                        IAccessStore iservicios = FabricAccessStore.getInstance().createAmazonServiceAccess();
+                        iservicios.cartBuy(lprod, auxTienda);
+                    }
+                    else if (auxTienda.TipoAPI.CompareTo("ARMAZON") == 0)
+                    {
+                        IAccessStore iservicios = FabricAccessStore.getInstance().createArmazonServiceAccess();
+                        iservicios.cartBuy(lprod, auxTienda);                    
+                    }
                 }
             }
             return dtcv;

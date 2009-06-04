@@ -23,7 +23,7 @@
     <div>
         <div>
             <div style="width:150px;height:80px;background-image:url(../../Content/armazon.png);background-repeat:no-repeat"></div>
-            <div style="position:absolute; top:0px; left:151px;width:1100px;height:20px;text-align:right">
+            <div style="position:absolute; top:0px; left:151px;width:1090px;height:20px;text-align:right;padding-top:3px">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>  
             <div style="position:absolute; left:151px;top:21px;width:1100px;height:59px;background-image:url(../../Content/fondoBuscador.png);background-repeat:no-repeat">

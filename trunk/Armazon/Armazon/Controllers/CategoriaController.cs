@@ -66,7 +66,7 @@ namespace Armazon.Controllers
 
         //
         // GET: /Categoria/Edit/5
- 
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
@@ -77,7 +77,7 @@ namespace Armazon.Controllers
         //
         // POST: /Categoria/Edit/5
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Post),Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -93,7 +93,7 @@ namespace Armazon.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();
@@ -104,7 +104,7 @@ namespace Armazon.Controllers
                 return View(categoria);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Post),Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id, string confirmButton)
         {
             AdministracionFachada administracionFachada = new AdministracionFachada();

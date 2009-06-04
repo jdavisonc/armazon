@@ -64,7 +64,7 @@ h1
 }
 h2
 {
-    padding: 0 0 10px 0;
+    font-size: 1.3em;
 }
 h3
 {
@@ -336,6 +336,7 @@ div.images:hover{
 
 .nav
 {
+    margin:0px;
     color: Gray;
 }
 .nav img
