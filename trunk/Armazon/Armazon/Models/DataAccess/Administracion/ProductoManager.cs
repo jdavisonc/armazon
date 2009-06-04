@@ -153,7 +153,7 @@ namespace Armazon.Models.DataAccess.Administracion
                              join pc in db.Producto_Carritos on p.ProductoID equals pc.ProductoID
                              join c in carritos on pc.CarritoID equals c.idCarrito
                              where p.ProductoID != producto.ProductoID && p.Tienda == null
-                             select p);
+                             select p).Distinct();
             
             return productos;
                                
@@ -161,11 +161,19 @@ namespace Armazon.Models.DataAccess.Administracion
 
         public IQueryable<Producto> productosRecomendados(Usuario usuario)
         {
+            var productos_usuario = (from Producto p in db.Productos
+                                     join pc in db.Producto_Carritos on p.ProductoID equals pc.ProductoID
+                                     join c in db.Carritos on pc.CarritoID equals c.CarritoID
+                                     where c.UsuarioID == usuario.UsuarioID && p.Tienda == null && c.CarritoType.Equals("Vendido")
+                                     select p).Distinct();
+
+            
+
             var productos = (from Producto p in db.Productos
                              join pc in db.Producto_Carritos on p.ProductoID equals pc.ProductoID
                              join c in db.Carritos on pc.CarritoID equals c.CarritoID
-                             where c.UsuarioID != usuario.UsuarioID && p.Tienda == null && c.CarritoType.Equals("Vendido")
-                             select p);
+                             where p.Tienda == null && c.CarritoType.Equals("Vendido") 
+                             select p).Except(productos_usuario.AsEnumerable<Producto>());
 
             return productos;
 
@@ -183,7 +191,7 @@ namespace Armazon.Models.DataAccess.Administracion
                              join pv in prodMasVendidos on p.ProductoID equals pv.idProducto
                              where p.Tienda == null
                              orderby pv.cant
-                             select p);
+                             select p).Distinct();
 
             return productos;
 
@@ -193,7 +201,7 @@ namespace Armazon.Models.DataAccess.Administracion
         {
             var productos = (from Producto p in db.Productos
                              where p.Tienda == null
-                             select p);
+                             select p).Distinct();
 
             return productos;
 
