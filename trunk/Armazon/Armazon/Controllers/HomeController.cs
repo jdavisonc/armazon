@@ -15,7 +15,7 @@ namespace Armazon.Controllers
         {
             List<DTProduct> dtCollection = new List<DTProduct>();
             ConsultaFachada consultaFachada = new ConsultaFachada();
-            foreach (Producto prod in consultaFachada.productosMasImportantes())
+            foreach (Producto prod in consultaFachada.productosMasImportantes().Take(9))
             {
                 dtCollection.Add(prod.getDataType());
             }
