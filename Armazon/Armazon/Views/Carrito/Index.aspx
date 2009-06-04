@@ -60,7 +60,7 @@
     <p>
     <button onclick="$('#metodos').fadeIn('slow');$(this).hide()">Seleccionar Metodo de Pago</button>
     
-    <div id="metodos" style="background-color:#EDF8FF; width:60%; height:50px;margin-left:110px; padding: 20px;">
+    <div id="metodos" style="background-color:#D2E8F1; width:60%; height:50px;margin-left:110px; padding: 20px;">
         <% using (Html.BeginForm()){%>
             Metodo de Pago: <%= Html.DropDownList("pagos", ViewData["pagos"] as SelectList)%><br><br>
                 

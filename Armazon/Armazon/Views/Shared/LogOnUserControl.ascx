@@ -3,18 +3,18 @@
     if (Request.IsAuthenticated) {
 %>
         Bienvenido, <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
-        | <%= Html.ActionLink("Cuenta", "Profile", "Account") %>
+        | <img style="vertical-align:middle;" src="<%= ResolveUrl("~/Content/cuenta.png") %>"> <%= Html.ActionLink("Cuenta", "Profile", "Account") %>
         
         <% if (Page.User.IsInRole("Administrador")){ %>
-            | <%=Html.ActionLink("Administrar", "AdministratorManager", "Home")%>
+            | <img style="vertical-align:middle;" src="<%= ResolveUrl("~/Content/administrador.png") %>"> <%=Html.ActionLink("Administrar", "AdministratorManager", "Home")%>
         <% } %>
         
-        | <%= Html.ActionLink("Salir", "LogOff", "Account") %>
+        | <img style="vertical-align:middle;" src="<%= ResolveUrl("~/Content/salir.png") %>"> <%= Html.ActionLink("Salir", "LogOff", "Account") %>
 <%
     }
     else {
 %> 
-         <%= Html.ActionLink("Ingresar", "LogOn", "Account") %> 
+        <img style="vertical-align:middle;" src="<%= ResolveUrl("~/Content/logeo.png") %>"> <%= Html.ActionLink("Ingresar", "LogOn", "Account") %> 
 <%
     }
 %>

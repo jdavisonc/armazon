@@ -11,13 +11,16 @@
 #navigation a.head {
 	cursor:pointer;
 	border:1px solid #136EB4;
-	background:#EDF8FF;
+	background-color:#D2E8F1;
+	background-image: url(li_menu_head.png);
+	background-position:97% center;
+	background-repeat:no-repeat; 
 	color:#000;
 	display:block;
 	font-weight:bold;
 	margin:3px;
 	padding-top:6px;
-	padding-left:10px;
+	padding-left:9px;
 	height:20px;
 	vertical-align: middle;
 	text-indent:14px;
@@ -25,9 +28,12 @@
 }
 #navigation a.head:hover {
 	color:#136EB4;
+	background-color: #C2D5DD;
 }
 #navigation a.selected {
-	background-image: url(expanded.gif);
+	background-image: url(li_menu_head_selected.png);
+	background-position:97% center;
+	background-repeat:no-repeat; 
 }
 #navigation a.current {
 	color: #136EB4;
@@ -51,7 +57,12 @@
 	height:15px;
 	vertical-align: middle;
 	text-decoration: none;
+	margin-left: 15px;
+	margin-right: 15px;
+	padding:1px;
 	padding-left: 6px;
+	background-image: url(li_menu.png);
+	background-repeat:no-repeat;
 }
 #navigation li li a:hover {
 	color: #136EB4;
