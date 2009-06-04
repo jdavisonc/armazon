@@ -7,8 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     
-    <% using (Html.BeginForm())
-       {%>
+    
     <div type="label" id="error" name="error" ><%=ViewData["errorTarjeta"] %>
     </div>
  <h2>Administrar Carro</h2>
@@ -57,18 +56,30 @@
 
     </table>
     <br />
-    <br />
     
     <p>
+    <button onclick="$('#metodos').fadeIn('slow');$(this).hide()">Seleccionar Metodo de Pago</button>
+    
+    <div id="metodos" style="background-color:#EDF8FF; width:60%; height:50px;margin-left:110px; padding: 20px;">
+        <% using (Html.BeginForm()){%>
+            Metodo de Pago: <%= Html.DropDownList("pagos", ViewData["pagos"] as SelectList)%><br><br>
+                
+            <input type="submit" id="comprar" value="Comprar"  />
         
-        <input type="submit" id="comprar" value="Comprar"  />
-    <%= Html.DropDownList("pagos", ViewData["pagos"] as SelectList)%>
+        <% }%>
+    </div>
+    
  
     </p>
-    <% }%>
 </asp:Content>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
+    <script type="text/javascript">
+        $(function() {
+            $('#metodos').hide();
+            $('#metodos').corner();    
+        });
+    </script>
 </asp:Content>
 

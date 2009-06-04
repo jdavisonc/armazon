@@ -15,6 +15,7 @@
             <b>Soy un ADMINISTRADOR!!</b><br>
     <% } %>
     <br><br>
+    <%= Html.ActionLink("Ver historial de compras", "Index","CarrosVendidos", null,null)%><br /><br />
     <%= Html.ActionLink("Cambiar Contrasena", "ChangePassword")%>
     
 </asp:Content>

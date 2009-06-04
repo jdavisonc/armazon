@@ -16,6 +16,7 @@
 	display:block;
 	font-weight:bold;
 	margin:3px;
+	padding-top:6px;
 	padding-left:10px;
 	height:20px;
 	vertical-align: middle;
@@ -29,7 +30,8 @@
 	background-image: url(expanded.gif);
 }
 #navigation a.current {
-	background-color:#FFFF99;
+	color: #136EB4;
+	font-weight:bold;
 }
 #navigation ul {
 	border-width:0px;
@@ -49,9 +51,11 @@
 	height:15px;
 	vertical-align: middle;
 	text-decoration: none;
+	padding-left: 6px;
 }
 #navigation li li a:hover {
-	color:#FFF;
+	color: #136EB4;
+	font-weight:bold;
 }
 
 .basic  
@@ -61,7 +65,7 @@
 	padding: 5px;
 	font-family: verdana;
 	font-size:9px;
-	background-color:#136EB4;
+	/*background-color:#136EB4;*/
 	border: 1px solid black;
 }
 

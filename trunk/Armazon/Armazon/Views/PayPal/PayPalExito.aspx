@@ -25,7 +25,7 @@
             Vendido a:
             <%= Html.Encode(dtcvendido.DatosCarrito.Usuario.Nombre) %>
         </p>
-</fieldset>
+
 
 <table>
         <tr>
@@ -64,7 +64,7 @@
 
 
 
-
+</fieldset>
 
 
 

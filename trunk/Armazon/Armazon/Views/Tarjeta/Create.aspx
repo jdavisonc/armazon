@@ -1,19 +1,19 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Armazon.Tarjeta>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	Ingresar datos de tarjeta
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
+    <h2>Ingresar datos de tarjeta</h2>
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Datos</legend>
             
             
             <p>
@@ -38,7 +38,7 @@
             </p>
             
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Aceptar" />
             </p>
         </fieldset>
 
