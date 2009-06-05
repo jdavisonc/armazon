@@ -51,6 +51,10 @@
 	height:15px;
 	vertical-align: middle;
 }
+#navigation ul li ul 
+{
+    height: 300px;
+}
 #navigation li li a {
 	color:#000000;
 	display:block;
