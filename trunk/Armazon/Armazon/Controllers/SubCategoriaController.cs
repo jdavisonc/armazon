@@ -345,7 +345,7 @@ namespace Armazon.Controllers
             nuevoProducto.Nombre = strNombre;
             nuevoProducto.Precio = precio;
             administracionFachada.addProducto(nuevoProducto);
-            //administracionFachada.saveProducto();
+            administracionFachada.saveProducto();
 
             //Producto producto = administracionFachada.getProducto(strNombre);
             //int idProducto = producto.ProductoID;
@@ -360,22 +360,23 @@ namespace Armazon.Controllers
                 {
                     Propiedad pp = administracionFachada.getPropiedad(parametro);
                     Valor nuevo = new Valor();
-                    nuevo.Producto = nuevoProducto;
-                    //nuevo.ProductoID = idProducto;
-                    //nuevo.PropiedadID = parametro;
-                    nuevo.Propiedad = pp;
+                    //nuevo.Producto = nuevoProducto;
+                    nuevo.ProductoID = nuevoProducto.ProductoID;
+                    nuevo.PropiedadID = pp.PropiedadID;
+                    //nuevo.Propiedad = pp;
                     nuevo.Valor1 = strValor;
-                    //administracionFachada.addValor(nuevo);
-                    //administracionFachada.saveValor();
+                    administracionFachada.addValor(nuevo);
+                    
                 }
             }
-
+            
             var subCategorias = administracionFachada.findAllSubCategorias(idCategoria).ToList();
 
             ViewData["CategoriaID"] = idCategoria;
 
-
-            /**/administracionFachada.saveProducto();
+            //administracionFachada.savePropiedad();
+            administracionFachada.saveValor();
+            //administracionFachada.saveProducto();
 
 
             return View("ListarSubCategoria",subCategorias);
