@@ -34,7 +34,7 @@
     <%foreach (var categoria in Armazon.MenuController.getCategorias())
       { %>
       <li>
-        <a class="head"><%=categoria.Nombre%></a>
+        <a class="head back"><%=categoria.Nombre%></a>
         <ul>
         <%foreach (var subCategoria in categoria.SubCategorias){ %>
 	        <li><a href="/Producto/Listado?idSubCategoria=<%=subCategoria.Id %>"><%=subCategoria.Nombre %></a></li>
