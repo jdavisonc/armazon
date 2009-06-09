@@ -44,21 +44,8 @@
         %></div>
     </div>
 </div>
-
+<br>
 <div id="adicional">
-    <div>
-        <a href="/Carrito/" title="Ver Carrito" ><img src="/Content/Shopping_Cart.png" onclick="window.location('Carrito')"/></a>
-    </div>
-    <div style="position:relative; top: -30px; left:70px;">
-        <a href="/Carrito/" title="Ver Carrito" >Ver Carrito</a>
-    </div>
-</div>
-
-<div>
-    <div style="position:relative; left:10px;">
-        <a href="/Sucursal/ViewMap" title="Ver Sucursales" ><img src="/Content/sucursales.jpg"/></a>
-    </div>
-    <div style="position:relative; top: -30px; left:60px;">
-        <a href="/Sucursal/ViewMap" title="Ver Sucursales" >Ver Sucursales</a>
-    </div>
+    <a href="/Carrito/" title="Ver Carrito" ><img src="<%= ResolveUrl("~/Content/ver_carrito.png") %>"/></a>
+    <a href="/Sucursal/ViewMap" title="Ver Carrito" ><img src="<%= ResolveUrl("~/Content/ver_sucursales.png") %>"/></a>
 </div>

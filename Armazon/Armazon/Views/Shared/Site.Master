@@ -22,20 +22,20 @@
 <body>
     <div>
         <div>
-            <div style="width:150px;height:80px;background-image:url(../../Content/armazon.png);background-repeat:no-repeat"></div>
+            <div style="width:240px;height:92px;margin-left:20px"><a href="<%= ResolveUrl("~") %>"><img height=92 width=240 src="<%= ResolveUrl("~/Content/armazon.png") %>" /></a></div>
             <div style="position:absolute; top:0px; left:151px;width:1090px;height:20px;text-align:right;padding-top:3px">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>  
-            <div style="position:absolute; left:151px;top:21px;width:1100px;height:59px;background-image:url(../../Content/fondoBuscador.png);background-repeat:no-repeat">
+            <div style="position:absolute; left:251px;top:21px;width:975px;height:59px;padding-left:20px;background-image:url('../Content/fondoBuscador.png');background-repeat:no-repeat;background-position: bottom left">
                 <form action="/Producto/BuscarProducto" method="get">
                     <input type="hidden" id="page" name="page" value="1"/>
                     <div>
-                        <input type="text" id="fullText" name="fullText" style="position:absolute; top:27px; left:100px;width:750px;height:20px"/>
+                        <input type="text" id="fullText" name="fullText" style="position:absolute; top:21px; left:55px;width:800px;height:20px;font-size:16px;font-weight:bold;color:#333;font-family: Arial;background-color:#FFF5E6"/>
                     </div>
                     <div>
-                        <input type="image" src="<%= ResolveUrl("~/Content/lupaSombra.png")%>" id="btnBuscar" 
+                        <input type="image" src="<%= ResolveUrl("~/Content/btn_buscar.png")%>" id="btnBuscar" 
                             name="btnBuscar"
-                            style="position:absolute; top:16px; left:860px; width:40px; height:40px;"/>
+                            style="position:absolute; top:21px; left:856px; width:90px; height:24px;"/>
                     </div>
                 </form>
             </div>
@@ -44,7 +44,7 @@
             <div style="position:absolute; top:81px; width:190px; height:auto;">
                 <% Html.RenderPartial("MenuCategoria"); %>
             </div>
-            <div style="position:absolute; width:799px; left:188px; top: 81px; height: auto;padding:10px;">
+            <div style="position:absolute; width:799px; left:183px; top: 81px; height: auto;padding:10px">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
             <div style="position:absolute; width:240px; left:1005px; top: 81px; height: auto;">
