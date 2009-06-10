@@ -69,7 +69,7 @@ namespace Armazon.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
-            string monto = Request.Form["hdnMonto"];
+            string monto = Request.Form["hdnMonto"].Replace(",",".");
             AdministracionFachada adminFac = new AdministracionFachada();
             Usuario usr = adminFac.getUserSession();
             Carrito carrito = adminFac.getCarritoActivoByUser(usr.UsuarioID);
