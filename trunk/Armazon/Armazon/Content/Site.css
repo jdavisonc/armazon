@@ -384,16 +384,62 @@ table.listadoProductos td,th
 div#contentCarrito
 {
     font-size:9px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-right:5px;
-    padding: 10px;
-    background-color: #D2E8F1;
+}
+div#adicional
+{
+    margin-right:5px;
 }
 
-div#contentCarrito h2
+div#carrito
 {
     margin:0px;
+    margin-left:12px;
+    margin-top:-2px;
     margin-bottom:5px;
+    padding-bottom:15px;
+    background-color: #EAEAEA;
+    background-image: url(bottom.png);
+    background-position: bottom center;
+    background-repeat:no-repeat;
+    width:212px;
+}
+div#productos
+{
+    background-color: #EAEAEA;
+}
+div#monto
+{
+    margin-top:15px;
+    color:#F59C00;
+    font-weight:bold;
+    font-family:Arial;
+    font-size:16px;
+    text-align:center;
+}
+
+table#tabCarrito
+{
+    background-color: #EAEAEA;
+    border:0px;
+    margin-left:15px;
     padding:0px;
-    color:#333;
+}
+
+table#tabCarrito td
+{
+    background-color: #EAEAEA;
+    border:0px;
+    padding:0px;
+}
+
+table#tabCarrito td.prod
+{
+    width:130px;
+}
+
+table#tabCarrito td.precio
+{
+    text-align:right;
 }
