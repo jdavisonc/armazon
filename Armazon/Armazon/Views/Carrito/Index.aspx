@@ -13,7 +13,6 @@
  <h2>Administrar Carro</h2>
     <table>
         <tr>
-            <th></th>
             
             <th>
                 Nombre
@@ -25,18 +24,13 @@
             <th>
                 Precio
             </th>
+            <th></th>
         </tr>
 
     <%  int i = 0;
         foreach (var item in Model) { %>
     
         <tr>
-            <td>
-                <%= Html.ActionLink("Editar", "Edit", new {  id=i }) %> |
-                <%= Html.ActionLink("Detalles", "Details", new { id=i })%>
-                <%= Html.ActionLink("Borrar", "Delete", new { id=i })%>
-                <%i++; %>
-            </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>
             </td>
@@ -45,7 +39,13 @@
             </td>
             
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.Precio)) %>
+                <%= Html.Encode("$" + String.Format("{0:F}", item.Precio)) %>
+            </td>
+            <td>
+            <%= Html.ActionLink("Detalles", "Details", new { id = i }).Replace("Detalles", "<img style=\"border:none\" src= \"/Content/detail.png\" TITLE=\"Detalle\" />")%> |
+                <%= Html.ActionLink("Editar", "Edit", new { id = i }).Replace("Editar", "<img style=\"border:none\" src= \"/Content/pencil.png\" TITLE=\"Editar\" />")%> |                
+                <%= Html.ActionLink("Borrar", "Delete", new { id = i }).Replace("Borrar", "<img style=\"border:none\" src= \"/Content/remove.png\" TITLE=\"Eliminar\" />")%>
+                <%i++; %>
             </td>
             
                 
@@ -58,13 +58,13 @@
     <br />
     
     <p>
-    <button onclick="$('#metodos').fadeIn('slow');$(this).hide()">Seleccionar Metodo de Pago</button>
+    <input type="image" onclick="$('#metodos').fadeIn('slow');$(this).hide()" src="<%= ResolveUrl("~/Content/btn_pagos.png") %>" style="vertical-align:middle"/>     
     
     <div id="metodos" style="background-color:#D2E8F1; width:60%; height:50px;margin-left:110px; padding: 20px;">
         <% using (Html.BeginForm()){%>
             Metodo de Pago: <%= Html.DropDownList("pagos", ViewData["pagos"] as SelectList)%><br><br>
                 
-            <input type="submit" id="comprar" value="Comprar"  />
+            <input type="image" src="<%= ResolveUrl("~/Content/btn_comprar.png") %>" value="Submit" alt="Submit" style="vertical-align:middle">     
         
         <% }%>
     </div>

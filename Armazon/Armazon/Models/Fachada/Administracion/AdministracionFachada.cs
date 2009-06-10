@@ -553,31 +553,26 @@ namespace Armazon.Models
             List<Tienda> ltiendas = TiendaMgr.findAllTiendas().ToList();
             foreach (Tienda auxTienda in ltiendas)
             {
-                List<DCCartItem> lprod = new List<DCCartItem>();
-                foreach (DTPedido dtp in productos)
+                if (auxTienda.TipoAPI.CompareTo("ARMAZON") == 0)
                 {
-                    Producto prod = getProducto(dtp.Id);
-
-                    if (prod.TiendaID != null && prod.TiendaID == auxTienda.TiendaID)
+                    List<DCCartItem> lprod = new List<DCCartItem>();
+                    foreach (DTPedido dtp in productos)
                     {
-                        DCCartItem dtci = new DCCartItem();
-                        dtci.ProductId = int.Parse(prod.ExternalID);
-                        dtci.Quantity = dtp.Cant;
-                        lprod.Add(dtci);
+                        Producto prod = getProducto(dtp.Id);
 
+                        if (prod.TiendaID != null && prod.TiendaID == auxTienda.TiendaID)
+                        {
+                            DCCartItem dtci = new DCCartItem();
+                            dtci.ProductId = int.Parse(prod.ExternalID);
+                            dtci.Quantity = dtp.Cant;
+                            lprod.Add(dtci);
+
+                        }
                     }
-                }
-                if (lprod.Count != 0)
-                {
-                    if (auxTienda.TipoAPI.CompareTo("AMAZON") == 0)
-                    {
-                        IAccessStore iservicios = FabricAccessStore.getInstance().createAmazonServiceAccess();
-                        iservicios.cartBuy(lprod, auxTienda);
-                    }
-                    else if (auxTienda.TipoAPI.CompareTo("ARMAZON") == 0)
+                    if (lprod.Count != 0)
                     {
                         IAccessStore iservicios = FabricAccessStore.getInstance().createArmazonServiceAccess();
-                        iservicios.cartBuy(lprod, auxTienda);                    
+                        iservicios.cartBuy(lprod, auxTienda); 
                     }
                 }
             }

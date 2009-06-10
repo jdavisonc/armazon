@@ -178,7 +178,12 @@
     <Content Include="Content\armazon.png" />
     <Content Include="Content\back_menu.png" />
     <Content Include="Content\back_menu_sel.png" />
+    <Content Include="Content\bottom.png" />
     <Content Include="Content\btn_buscar.png" />
+    <Content Include="Content\btn_buscar_sel.png" />
+    <Content Include="Content\btn_comprar.png" />
+    <Content Include="Content\btn_pagos.png" />
+    <Content Include="Content\btn_tag.png" />
     <Content Include="Content\calendario\calendar-blue.css" />
     <Content Include="Content\calendario\calendar-blue2.css" />
     <Content Include="Content\calendario\calendar-brown.css" />
@@ -299,6 +304,7 @@
     <Content Include="Content\li_menu.png" />
     <Content Include="Content\li_menu_head.png" />
     <Content Include="Content\li_menu_head_selected.png" />
+    <Content Include="Content\logeo.png" />
     <Content Include="Content\lupa.png" />
     <Content Include="Content\lupaSombra.png" />
     <Content Include="Content\MenuCategoria.css" />
@@ -310,6 +316,7 @@
     <Content Include="Content\Products.css" />
     <Content Include="Content\recommend.png" />
     <Content Include="Content\remove.png" />
+    <Content Include="Content\salir.png" />
     <Content Include="Content\Shopping_Cart.png" />
     <Content Include="Content\star.gif" />
     <Content Include="Content\sucursales.jpg" />

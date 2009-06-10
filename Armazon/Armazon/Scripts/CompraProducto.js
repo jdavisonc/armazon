@@ -1,5 +1,5 @@
 ﻿function compraAjax(id) {
-    $("#carrito").slideUp();
+    $("#productos").slideUp();
     var num = document.getElementById("cantCompra").value;
     var url = "/Producto/AgregarProducto?cant="+num+ "&idProducto="+id;
     $.getJSON(url, popup);
@@ -15,11 +15,16 @@ function compraAjaxTienda(tiendaID, externalID) {
 }
 
 function popup(variable) {
-    $("#monto").html("Monto actual del Carrito= " + variable.MontoActual+"<br />"+"<br />"+"Productos en el carrito:");
     $("#productos").html("");
+    var table = jQuery('<table></table>').attr('id', 'tabCarrito');
     for (var obj in variable.Productos) {
-        $("#productos").append("<div id=" + "producto" + obj + ">" + variable.Productos[obj].Nombre + " cant: " + variable.Productos[obj].Cant + " precio: " + variable.Productos[obj].Precio + "</div>");
+        var name = variable.Productos[obj].Nombre;
+        if (name.length > 18)
+            name = name.substring(0,18) + "...";
+        table.append("<tr><td class='prod'>" + variable.Productos[obj].Cant + " · " + name + "</td><td class='precio'>$" + variable.Productos[obj].Precio + "</td></tr>");
     }
-    $("#carrito").slideDown();
+    $("#productos").append(table);
+    $("#monto").html("Total: $" + variable.MontoActual);
+    $("#productos").slideDown();
     
 }

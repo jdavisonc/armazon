@@ -79,8 +79,8 @@
                 <br/><div>
                 <% using (Html.BeginForm("AddTag","Producto",FormMethod.Post)){%>
                     <input type="hidden" id="productID" name="productID" value="<%=Model.Id%>"/>
-                    Agregar Etiqueta: <input type="text" id="tagCollection" name="tagCollection" />
-                    <input type="submit" value="Agregar!"/>                            
+                    Agregar Etiqueta: <input type="text" id="tagCollection" name="tagCollection" style="width:285px"/>
+                    <input type="image" src="<%= ResolveUrl("~/Content/btn_tag.png") %>" value="Submit" alt="Submit" style="vertical-align:middle">                       
                 <%}%>            
                 </div>
             <%}%>
