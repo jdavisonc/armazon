@@ -38,7 +38,7 @@
             </p>
             
             <p>
-                <input type="submit" value="Aceptar" />
+                <input type="image" src="<%= ResolveUrl("~/Content/btn_comprar.png") %>" value="Submit" alt="Submit" style="vertical-align:middle">     
             </p>
         </fieldset>
 

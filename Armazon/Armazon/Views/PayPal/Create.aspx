@@ -19,7 +19,7 @@
                 <label> Monto de compra: <%=ViewData["txtMonto"] %></label>
             </p>
             <p>
-                <input type="submit" value="Comprar" />
+                <input type="image" src="<%= ResolveUrl("~/Content/btn_comprar.png") %>" value="Submit" alt="Submit" style="vertical-align:middle">     
             </p>
         </fieldset>
 
