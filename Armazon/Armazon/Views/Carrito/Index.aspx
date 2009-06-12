@@ -14,7 +14,7 @@
     <table>
         <tr>
             
-            <th>
+            <th style="width: 490px">
                 Nombre
             </th>
             <th>

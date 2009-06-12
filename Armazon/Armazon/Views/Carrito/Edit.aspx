@@ -6,14 +6,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit</h2>
+    <h2>Editar</h2>
 
     <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
         
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Datos del Producto</legend>
             <input type="hidden" id="Id" name="Id" value="<%=Model.Id %>"/>
             <p>
                 <label for="Cant">Cant:</label>
@@ -26,18 +26,15 @@
             </p>
             <p>
                 <label for="Precio">Precio:</label>
-                <label for="lbPrecio"><%=Model.Precio%></label>
+                <label for="lbPrecio">$<%=Model.Precio%></label>
             </p>
             <p>
-                <input type="submit" value="Save" />
+                <input type="image" value="submit" src="<%= ResolveUrl("~/Content/btn_guardar.png") %>" />
             </p>
         </fieldset>
 
     <% } %>
 
-    <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
-    </div>
 
 </asp:Content>
 

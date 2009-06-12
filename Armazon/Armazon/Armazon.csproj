@@ -181,7 +181,10 @@
     <Content Include="Content\bottom.png" />
     <Content Include="Content\btn_buscar.png" />
     <Content Include="Content\btn_buscar_sel.png" />
+    <Content Include="Content\btn_cambiar_pass.png" />
     <Content Include="Content\btn_comprar.png" />
+    <Content Include="Content\btn_guardar.png" />
+    <Content Include="Content\btn_historial_compras.png" />
     <Content Include="Content\btn_pagos.png" />
     <Content Include="Content\btn_tag.png" />
     <Content Include="Content\calendario\calendar-blue.css" />
@@ -322,6 +325,7 @@
     <Content Include="Content\sucursales.jpg" />
     <Content Include="Content\tag.png" />
     <Content Include="Content\tag_list.png" />
+    <Content Include="Content\User.png" />
     <Content Include="Content\ver_carrito.png" />
     <Content Include="Content\ver_sucursales.png" />
     <Content Include="Default.aspx" />

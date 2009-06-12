@@ -195,9 +195,11 @@ ul#menu li.selected a
 
 fieldset 
 {
-    margin: 1em 0;
+    margin: 20px;
     padding: 1em;
-    border: 1px solid #CCC;
+    border: 1px solid #D2E8F1;
+    font-size:9px;
+    color: #666;
 }
 
 fieldset p 
@@ -351,19 +353,27 @@ table
 {
   border: solid 1px #e8eef4;
   border-collapse: collapse;
+  margin-left: 50px;
 }
 
 table td 
 {
   padding: 5px;   
   border: solid 1px #e8eef4;
+  font-size: 9px;
+}
+
+table tr:hover
+{
+    background-color: #EEF4F9;
 }
 
 table th
 {
   padding: 6px 5px;
   text-align: left;
-  background-color: #e8eef4; 
+  color: #333;
+  background-color: #AFD8F5;
   border: solid 1px #e8eef4;   
 }
 
