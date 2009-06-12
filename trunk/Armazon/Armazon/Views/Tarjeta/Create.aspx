@@ -44,10 +44,6 @@
 
     <% } %>
 
-    <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
-    </div>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
