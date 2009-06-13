@@ -12,7 +12,7 @@
     <% foreach (var item in Model) { %>
        
          <fieldset>
-        <legend>Carrito Vendido <%=i %></legend>
+        <legend>Compra <%=i %></legend>
         <p>
             Fecha:
             <%= Html.Encode(item.DatosCarrito.Fecha) %>
@@ -22,16 +22,14 @@
             <%string aux = item.DatosCarrito.MetodoDePago.ToString();%>
             <%= Html.Encode(item.DatosCarrito.MetodoDePago.ToString().Equals("Armazon.Tarjeta") ? "Tarjeta" : "PayPal")%>
         </p>
-        <p>
-            Vendido a:
-            <%= Html.Encode(item.DatosCarrito.Usuario.Nombre)%>
-        </p>
+        <img src="<%= ResolveUrl("~/Content/btn_ver_detalle.png") %>" onclick="$('#compra<%= i %>').slideDown('slow');$(this).hide();" style="cursor:pointer"/>
 
-
-<table>
+<div id="compra<%= i %>" class="compratable">
+<br>
+<table >
         <tr>
             
-            <th>
+            <th style="width: 490px">
                 Nombre
             </th>
             <th>
@@ -62,25 +60,17 @@
     <% } %>
 
     </table>
+    </div>
     </fieldset>
     <%i++; %>   
     <% } %>
-
-
 </asp:Content>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
+    <script type="text/javascript">
+        $(function() {
+            $('.compratable').hide();  
+        });
+    </script>
 </asp:Content>
 

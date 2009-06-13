@@ -15,7 +15,7 @@
             <% }else{ %>
                  <img id="PImg" src="<%=ResolveUrl("~/Content/noImageAvailable.jpg") %>" width="280" height="280"/>
             <% } %>
-            <br>
+            <br><br>
             <ul id="imglist">
             <% foreach (Armazon.Models.DataTypes.DTImagen img in Model.Images){ %>
                 <% if (Model.Id > 0){ %>
@@ -27,7 +27,7 @@
             </ul>
         </div>
         <div id="buyBlock">
-            Precio: <span style="color:#990000;font-size:20px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br><br>
+            Precio: <span style="color:#F59C00;font-size:18px;font-weight:bold;font-family:Arial">$<%= Model.Precio %></span><br><br>
             Cantidad: 
             <select type="text" id="cantCompra" name="cantCompra" style="font-size:9px;width:40px">
               <% for (int i = 1; i < 20; i++){ %><option value="<%= i %>"><%= i %></option><% } %>
@@ -200,7 +200,6 @@
         $(function() {
             $('#formComments').hide();
             $('#formComments').corner();
-            $('#buyBlock').corner();
             $('.commentBlock').corner();
             $('#imglist li img').hover(
                 function() {

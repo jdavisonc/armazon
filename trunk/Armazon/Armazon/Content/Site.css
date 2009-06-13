@@ -387,6 +387,10 @@ table.listadoProductos td,th
 {
     border: none;
 }
+table.listadoProductos tr:hover
+{
+    background-color:#FFF;
+}
 
 /* CARRITO
 ----------------------------------------------------------*/

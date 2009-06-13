@@ -66,10 +66,15 @@ div#imageProductContender
 
 #imglist li img
 {
-    margin:1px;
+    margin:3px;
     border: 1px solid #999;
     padding: 3px;
     cursor: pointer;
+}
+
+#imglist li img:hover
+{
+    border: 1px solid #6CAEE1;
 }
 
 #buyBlock
@@ -77,9 +82,11 @@ div#imageProductContender
     font-size: 11px;
     margin-top: 15px;
     margin-left: 60px;
-    width: 150px;
-    padding: 10px;
-    background-color: #AED3EE;   
+    width: 175px;
+    height: 150px;
+    padding-top:15px;
+    background-image: url(back_buyblock.png);
+    background-repeat: no-repeat;
     border: 1px solid #6CAEE1;
 }
 

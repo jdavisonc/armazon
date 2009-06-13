@@ -187,6 +187,7 @@
     <Content Include="Content\btn_historial_compras.png" />
     <Content Include="Content\btn_pagos.png" />
     <Content Include="Content\btn_tag.png" />
+    <Content Include="Content\btn_ver_detalle.png" />
     <Content Include="Content\calendario\calendar-blue.css" />
     <Content Include="Content\calendario\calendar-blue2.css" />
     <Content Include="Content\calendario\calendar-brown.css" />
