@@ -2,7 +2,7 @@
 <%@ Import Namespace="Armazon"%>
 <table class="listadoProductos">
 <tr><td>
-<div>
+<div >
     <%
        Armazon.IPagedList<Armazon.Models.DataTypes.DTProduct> pagedList = (Armazon.IPagedList<Armazon.Models.DataTypes.DTProduct>)ViewData["Collection"];
        foreach (Armazon.Models.DataTypes.DTProduct p in pagedList)
@@ -48,8 +48,9 @@
     <%} %>
 </div>
 </td></tr>
-<tr><td align="center">
-<div class="pager">
+<tr><td>
+<div class="pager" style="width:100%;text-align:center">
     <%= Html.Paginado(pagedList.PageSize, pagedList.PageNumber, pagedList.TotalItemCount, new { fullText = ViewData["FullText"] })%>
 </div>
-</td></tr></table>
+</td></tr>
+</table>
