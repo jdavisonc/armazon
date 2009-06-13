@@ -76,7 +76,7 @@
 
 <br/><br/>    
     
-<div style="width:190px; height:190px;">
+<div style="width:240px; height:240px;">
     <form id="form1" runat="server" style="height:100%;">
         <input type="hidden" id="hdnRuta" value="<%="http://" + Request.Url.Host + ":" + Request.Url.Port%>" />
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>

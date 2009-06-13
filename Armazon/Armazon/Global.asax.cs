@@ -22,6 +22,12 @@ namespace Armazon
                 new { controller = "Home", action = "Index", id = "1" }  // Parameter defaults
             );
 
+            routes.Add(new Route(
+                "{controller}.mvc/{action}/{id}",
+                new RouteValueDictionary(new { action = "Index", id = (string)null }),
+                new MvcRouteHandler()
+            ));
+
         }
 
         protected void Application_Start()
