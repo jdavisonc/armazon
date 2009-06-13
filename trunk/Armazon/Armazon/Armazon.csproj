@@ -176,6 +176,7 @@
     <Content Include="Content\agregar_carrito.png" />
     <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\armazon.png" />
+    <Content Include="Content\back_buyblock.png" />
     <Content Include="Content\back_menu.png" />
     <Content Include="Content\back_menu_sel.png" />
     <Content Include="Content\bottom.png" />
@@ -284,6 +285,7 @@
     <Content Include="Content\doc_remove.png" />
     <Content Include="Content\flecha_derecha.png" />
     <Content Include="Content\fondoBuscador.png" />
+    <Content Include="Content\Home.png" />
     <Content Include="Content\img\0.png" />
     <Content Include="Content\img\button-left.png" />
     <Content Include="Content\img\button-right.png" />

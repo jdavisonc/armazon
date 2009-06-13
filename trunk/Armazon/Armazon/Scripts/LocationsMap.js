@@ -25,8 +25,15 @@ function initialise(mapData) {
 }
 
 function setupLocationMarker(map, location) {
+    // Create our "tiny" marker icon
+    var blueIcon = new GIcon(G_DEFAULT_ICON);
+    blueIcon.image = "/Content/Home.png";
+
+    // Set up our GMarkerOptions object
+    markerOptions = { icon: blueIcon };
+
     var latlng = new google.maps.LatLng(location.LatLng.Latitude, location.LatLng.Longitude);
-    var marker = new google.maps.Marker(latlng);
+    var marker = new google.maps.Marker(latlng, markerOptions);
     map.addOverlay(marker);
 
     GEvent.addListener(marker, "click", function(latlng) {
