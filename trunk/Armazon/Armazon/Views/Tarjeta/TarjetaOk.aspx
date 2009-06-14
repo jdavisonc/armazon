@@ -37,16 +37,16 @@
         </p>
 
 
-<table>
+<table style="width:85%">
         <tr>
             
-            <th>
+            <th style="width:70%">
                 Nombre
             </th>
             <th>
                 Precio
             </th>
-            <th>
+            <th style="width:8%">
                 Cantidad
             </th>
             

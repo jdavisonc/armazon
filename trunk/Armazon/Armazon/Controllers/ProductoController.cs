@@ -296,6 +296,8 @@ namespace Armazon.Controllers
             ViewData["CategoriaID"] = aFachada.getSubCategoria(idSubCategoria).CategoriaID;
             ViewData["CategoriaNombre"] = aFachada.getSubCategoria(idSubCategoria).Categoria.Nombre;
             ViewData["Title"] = "Listado de Productos";
+            if (dtCol.Count == 0)
+                ViewData["Error"] = "No se ha encontrado ningun producto para esta categoria.";
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             ViewData["Collection"] = dtCol.ToPagedList(currentPageIndex, 9);
             return View("List");
@@ -329,6 +331,8 @@ namespace Armazon.Controllers
             ViewData["navigationbar"] = false;
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             ViewData["Collection"] = dtCollection.ToPagedList(currentPageIndex, 9);
+            if (dtCollection.Count == 0)
+                ViewData["Error"] = "No se ha encontrado ningun producto segun sus parametros de busqueda.";
             return View("List");
         }
 

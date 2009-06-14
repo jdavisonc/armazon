@@ -61,8 +61,7 @@
             <input name="starPro" type="radio" class="star" disabled="disabled"/>
             <!-- ############## -->
         </div>
-        <br>
-        <div style="padding-left:5px">
+        <div style="padding-left:5px;margin-top:20px">
             <% foreach (Armazon.Models.DataTypes.DTProductAttr attr in Model.Attrs){ %>
                  <b><%= attr.Nombre %></b>: <%= ((Armazon.Models.DataTypes.DTProductAttrString)attr).Valor %><br>
             <%} %>
