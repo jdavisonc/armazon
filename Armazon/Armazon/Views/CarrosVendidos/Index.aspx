@@ -7,6 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Mi historial de compras</h2>
+    
+    <% if (Model == null || Model.Count() == 0) {%>
+        <div style="margin:20px">Usted no ha realizo ninguna compra aun.</div>
+    <% } %>
 
  <%int i = 1; %>
     <% foreach (var item in Model) { %>
@@ -65,7 +69,9 @@
     <%i++; %>   
     <% } %>
     <br>
-    <%= Html.ActionLink("Volver","Profile","Account",null,null) %>
+    <a href="<%= Url.Action("Profile","Account",null,null) %>">
+    <img src="<%= ResolveUrl("~/Content/btn_volver.png") %>" style="margin-left:20px;" />
+    </a>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">

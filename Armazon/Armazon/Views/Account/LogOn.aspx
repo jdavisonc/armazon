@@ -29,7 +29,7 @@
                     <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Recuerdame?</label>
                 </p>
                 <p>
-                    <input type="submit" value="Ingresar" />
+                    <input type="image" value="submit" src="<%= ResolveUrl("~/Content/btn_ingresar.png") %>" />
                 </p>
             </fieldset>
         </div>

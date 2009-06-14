@@ -34,7 +34,7 @@
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
                 <p>
-                    <input type="submit" value="Cambiar Contraseña" />
+                    <input type=image src="<%= ResolveUrl("~/Content/btn_cambiar_pass.png") %>" value="submit" />
                 </p>
             </fieldset>
         </div>

@@ -39,7 +39,7 @@
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
                 <p>
-                    <input type="submit" value="Registrar" />
+                    <input type="image" src="<%= ResolveUrl("~/Content/btn_registrar.png") %>" value="submit" />
                 </p>
             </fieldset>
         </div>
