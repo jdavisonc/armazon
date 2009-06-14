@@ -9,7 +9,7 @@
     <h2>Detalle Carrito</h2>
     <hr />
     <div style="position:relative; top:20px">
-        <table align="center">
+        <table align="center" style="width:88%">
             <tr>
                 <th>
                     Producto
@@ -43,7 +43,7 @@
 	            </td>
 	        </tr>
 	        </table>
-	   </div>
+	   </div><br />
 	   <p>
 	        <form action="/Reporte/VentasTotalesXPeriodo" id="frmVolver" method="post">
 	            

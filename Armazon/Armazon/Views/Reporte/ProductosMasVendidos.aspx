@@ -8,9 +8,9 @@
 
     <h2>Productos más vendidos</h2>
     <hr />
-    <div style="position: relative; top: 40px">
+    <div style="position: relative; top: 20px">
         
-        <table align="center">
+        <table align="center" style="width:85%">
             <tr>
                 <th>
                     Nombre

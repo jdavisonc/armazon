@@ -326,6 +326,7 @@ namespace Armazon.Controllers
             }
             ViewData["Title"] = "Resultado de Busqueda";
             ViewData["FullText"] = fullText;
+            ViewData["navigationbar"] = false;
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             ViewData["Collection"] = dtCollection.ToPagedList(currentPageIndex, 9);
             return View("List");

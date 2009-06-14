@@ -7,12 +7,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%= ViewData["Title"] %></h2>
-    
-    <div class="nav">
-    <img src="<%=ResolveUrl("~/Content/flecha_derecha.png") %>" />
-    <%= ViewData["CategoriaNombre"] %>
-    <img src="<%=ResolveUrl("~/Content/flecha_derecha.png") %>" />
-    <%= ViewData["SubCategoriaNombre"] %></div>
+    <% if (ViewData["navigationbar"] == null || bool.Parse(ViewData["navigationbar"].ToString()) == true){%>
+        <div class="nav">
+        <img src="<%=ResolveUrl("~/Content/flecha_derecha.png") %>" />
+        <%= ViewData["CategoriaNombre"]%>
+        <img src="<%=ResolveUrl("~/Content/flecha_derecha.png") %>" />
+        <%= ViewData["SubCategoriaNombre"]%></div>
+    <% } %>
     <br>
     <div>
         <% Html.RenderPartial("ListadoComun"); %>
