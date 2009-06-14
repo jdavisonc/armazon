@@ -7,23 +7,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Lista de Categorías</h2>
-    <hr />
-    <table align="center" style="position:relative; top:40px">
+    <table align="center" style="position:relative; top:20px; width:85%">
         <tr>
-            <th></th>
             <th>
                 Nombre
             </th>
+            <th style="width:20px"></th>
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Ver SubCategoría", "SeleccionarSubCategoria", new { id=item.CategoriaID, pagina = ViewData["pagina"] })%>
+                <%= Html.Encode(item.Nombre) %>
             </td>
             <td>
-                <%= Html.Encode(item.Nombre) %>
+                <a href="<%= Url.Action("SeleccionarSubCategoria", new { id=item.CategoriaID, pagina = ViewData["pagina"] }) %>">
+                    <img src="<%= ResolveUrl("~/Content/detail.png") %>" title="Ver SubCategoria"/>
+                </a>
             </td>
         </tr>
     

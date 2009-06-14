@@ -30,28 +30,30 @@
 	    
 	<%} %>
 	<%if (Model != null){ %>
-	    <div style="position: relative; top: 40px">
+	    <div style="position: relative; top: 40px;">
 	        <hr />
-	        <table align="center">
+	        <table align="center" style="width:81%">
                 <tr>
-                    <th></th>
                     <th>
                         Fecha
                     </th>
                     <th>
                         Total
                     </th>
+                    <th style="width:20px"></th>
                 </tr>
 	        <% foreach (DTCarrito item in Model){ %>
 	            <tr>
-                    <td>
-                        <%= Html.ActionLink("Ver Detalle", "DetalleCarrito", new { id = item.IdCarrito, fechaInicio = ViewData["txtFechaInicio"], fechaFin = ViewData["txtFechaFin"], pagina = ViewData["page"] })%> 
-                    </td>
                     <td>
                         <%=item.Fecha %>
                     </td>
                     <td>
                         <%=item.Total %>
+                    </td>
+                    <td>
+                        <a href="<%= Url.Action("DetalleCarrito", new { id = item.IdCarrito, fechaInicio = ViewData["txtFechaInicio"], fechaFin = ViewData["txtFechaFin"], pagina = ViewData["page"] }) %>">
+                            <img src="<%= ResolveUrl("~/Content/detail.png") %>" />
+                        </a>
                     </td>
                 </tr>
     	    

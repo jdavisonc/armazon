@@ -32,7 +32,7 @@
                 <form action="/Producto/BuscarProducto" method="get">
                     <input type="hidden" id="page" name="page" value="1"/>
                     <div>
-                        <input type="text" id="fullText" name="fullText" style="position:absolute; top:21px; left:55px;width:800px;height:20px;font-size:16px;font-weight:bold;color:#333;font-family: Arial;background-color:#FFF5E6"/>
+                        <input type="text" id="fullText" name="fullText" style="position:absolute; top:21px; left:55px;width:800px;height:20px;font-size:16px;font-weight:bold;color:#333;font-family: Arial;background-color:#FFF5E6" value="<%= ViewData["FullText"] %>"/>
                     </div>
                     <div>
                         <input type="image" src="<%= ResolveUrl("~/Content/btn_buscar.png")%>" id="btnBuscar" 
