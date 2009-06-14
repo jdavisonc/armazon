@@ -28,7 +28,7 @@
             <div style="position:absolute; top:0px; left:151px;width:1090px;height:20px;text-align:right;padding-top:3px">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>  
-            <div style="position:absolute; left:251px;top:21px;width:975px;height:59px;padding-left:20px;background-image:url('../Content/fondoBuscador.png');background-repeat:no-repeat;background-position: bottom left">
+            <div style="position:absolute; left:251px;top:21px;width:975px;height:59px;padding-left:20px;background-image:url('<%= ResolveUrl("~/Content/fondoBuscador.png")%>');background-repeat:no-repeat;background-position: bottom left">
                 <form action="/Producto/BuscarProducto" method="get">
                     <input type="hidden" id="page" name="page" value="1"/>
                     <div>

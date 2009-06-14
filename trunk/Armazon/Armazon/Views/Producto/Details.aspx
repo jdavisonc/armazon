@@ -208,7 +208,7 @@
                 function() {
                 }
             );
-            });
+        });
 
 
             // Credits: Robert Penners easing equations (http://www.robertpenner.com/easing/).

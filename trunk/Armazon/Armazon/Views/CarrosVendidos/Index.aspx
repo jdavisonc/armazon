@@ -64,6 +64,8 @@
     </fieldset>
     <%i++; %>   
     <% } %>
+    <br>
+    <%= Html.ActionLink("Volver","Profile","Account",null,null) %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JavaScriptsContent" runat="server">
