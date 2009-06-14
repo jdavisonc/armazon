@@ -28,6 +28,10 @@ function setupLocationMarker(map, location) {
     // Create our "tiny" marker icon
     var blueIcon = new GIcon(G_DEFAULT_ICON);
     blueIcon.image = "/Content/Home.png";
+    blueIcon.iconSize = new GSize(24, 24);
+    blueIcon.iconAnchor = new GPoint(9, 9);
+    blueIcon.shadow = "";
+
 
     // Set up our GMarkerOptions object
     markerOptions = { icon: blueIcon };

@@ -17,17 +17,6 @@
         }
         control.content.TagCloud.ProcessTags();
     }
-        
-    jQuery().ready(function() {
-        $('.basic').corner();
-        $('.head').corner();
-        jQuery('#navigation').accordion({
-            active: true,
-            header: '.head',
-            navigation: true,
-            fillSpace: true
-        });
-    });
 </script>
 
 
@@ -72,9 +61,7 @@
 </div>
 <div id="adicional">
     <a href="/Sucursal/ViewMap" title="Ver Carrito" ><img src="<%= ResolveUrl("~/Content/ver_sucursales.png") %>"/></a>
-</div>
-
-<br/><br/>    
+</div>  
     
 <div style="width:240px; height:240px;">
     <form id="form1" runat="server" style="height:100%;">
