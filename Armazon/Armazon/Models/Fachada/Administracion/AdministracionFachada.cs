@@ -356,6 +356,10 @@ namespace Armazon.Models
         {
             return ProductoMgr.getProducto(nombre);
         }
+        public Producto getProducto(int tiendaID, string externalID)
+        {
+            return ProductoMgr.getProducto(tiendaID, externalID);
+        }
         public void addProducto(Producto Producto)
         {
             ProductoMgr.Add(Producto);

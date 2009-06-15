@@ -186,7 +186,9 @@
     <Content Include="Content\btn_comprar.png" />
     <Content Include="Content\btn_guardar.png" />
     <Content Include="Content\btn_historial_compras.png" />
+    <Content Include="Content\btn_ingresar.png" />
     <Content Include="Content\btn_pagos.png" />
+    <Content Include="Content\btn_registrar.png" />
     <Content Include="Content\btn_tag.png" />
     <Content Include="Content\btn_ver_detalle.png" />
     <Content Include="Content\btn_volver.png" />

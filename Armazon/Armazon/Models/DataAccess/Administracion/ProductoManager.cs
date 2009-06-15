@@ -206,5 +206,10 @@ namespace Armazon.Models.DataAccess.Administracion
             return productos;
 
         }
+
+        internal Producto getProducto(int tiendaID, string externalID)
+        {
+            return db.Productos.SingleOrDefault(c => (c.TiendaID == tiendaID && c.ExternalID == externalID ));
+        }
     }
 }
