@@ -54,17 +54,25 @@ namespace Armazon.Controllers
             Producto producto = null;
             try
             {
-                ConsultaFachada consultaFachada = new ConsultaFachada();
-                producto = consultaFachada.getProductoTienda(externalID, tiendaID);
-                // Limpio producto para ingresar solo datos atomicos
-                producto.Imagens = new EntitySet<Imagen>();
-                producto.Producto_Tags = new EntitySet<Producto_Tag>();
-                producto.Valors = new EntitySet<Valor>();
-                producto.Producto_Usuarios = new EntitySet<Producto_Usuario>();
-                producto.SubCategoriaID = null;
                 AdministracionFachada adminFachada = new AdministracionFachada();
-                adminFachada.addProducto(producto);
-                adminFachada.saveProducto();
+                producto = adminFachada.getProducto(tiendaID, externalID);
+                if (producto == null)
+                {
+                    ConsultaFachada consultaFachada = new ConsultaFachada();
+                    producto = consultaFachada.getProductoTienda(externalID, tiendaID);
+                    // Limpio producto para ingresar solo datos atomicos
+                    producto.Imagens = new EntitySet<Imagen>();
+                    producto.Producto_Tags = new EntitySet<Producto_Tag>();
+                    producto.Valors = new EntitySet<Valor>();
+                    producto.Producto_Usuarios = new EntitySet<Producto_Usuario>();
+                    producto.SubCategoriaID = null;
+                    producto.Tienda = null;
+
+                    Tienda t = adminFachada.getTienda(tiendaID);
+                    producto.Tienda = t;
+                    t.Productos.Add(producto);
+                    adminFachada.saveTienda();
+                }
                 return Json(producto.ProductoID);
             }
             catch (Exception e)
