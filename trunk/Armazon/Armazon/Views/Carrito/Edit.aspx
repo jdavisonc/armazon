@@ -17,7 +17,7 @@
             <input type="hidden" id="Id" name="Id" value="<%=Model.Id %>"/>
             <p>
                 <label for="Cant">Cant:</label>
-                <%= Html.TextBox("Cant", Model.Cant) %>
+                <%= Html.DropDownList("Cant", ViewData["CantProd"] as SelectList)%>
                 <%= Html.ValidationMessage("Cant", "*") %>
             </p>
             <p>
