@@ -104,6 +104,11 @@ namespace Armazon.Controllers
             string userName = myObject.UserName.ToString();
             Carrito carrito = adminFac.getCarritoOfUser(userName);
             List<DTPedido> listPedido = adminFac.getProductosDeCarrito(carrito.CarritoID);
+            List<string> list = new List<string>();
+            for (int i = 1; i <= 19; i++)
+                list.Add(i.ToString());
+            
+            ViewData["CantProd"] = new SelectList(list);
             return View(listPedido[id]);
         }
 
