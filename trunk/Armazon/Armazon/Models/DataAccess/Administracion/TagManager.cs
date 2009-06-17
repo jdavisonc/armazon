@@ -17,7 +17,7 @@ namespace Armazon.Models.DataAccess.Administracion
         public IQueryable<Tag> findAllTags()
         {
             var tags = (from t in db.Tags
-                        orderby t.CantAp
+                        orderby t.CantAp 
                         select t);
             return tags;
         }

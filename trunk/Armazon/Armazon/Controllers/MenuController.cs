@@ -69,7 +69,17 @@ namespace Armazon
             {
                 DtTags.Add(item.getDataType());
             }
-            return Json(DtTags);
+            if (DtTags.Count > 10)
+            {
+                DtTags.Reverse();
+                DtTags = DtTags.Take(10).ToList();
+                DtTags.Reverse();
+                return Json(DtTags);
+            }
+            else
+            {
+                return Json(DtTags);
+            }
         }
 
         public static List<DTTag> getTags()
@@ -81,7 +91,14 @@ namespace Armazon
             {
                 DtTags.Add(item.getDataType());
             }
-            return DtTags;
+            if (DtTags.Count > 20)
+            {
+                return DtTags.GetRange(0, 20);
+            }
+            else
+            {
+                return DtTags;
+            }
         }
 
         public static double getSizeTag(string TagName)
