@@ -34,7 +34,6 @@ namespace Armazon.Models.DataAccess.Administracion
         {
             return db.Usuarios.SingleOrDefault(c => c.Nombre == userName);
         }*/
-
         public void AddCarritoActivo(Carrito activo)
         {
             activo.CarritoType = "Activo";
@@ -192,7 +191,6 @@ namespace Armazon.Models.DataAccess.Administracion
             
             carrito.Fecha = DateTime.Now;
             carrito.CarritoType = "Vendido";
-            getCarritoActivoById(carritoId);
             ProductoManager prmgr = new ProductoManager();
             List<Producto_Carrito> listProdCarrito = getProductosConfirmados(carrito.CarritoID);
 
@@ -202,13 +200,9 @@ namespace Armazon.Models.DataAccess.Administracion
                 monto = prmgr.getProducto(auxprodCarr.ProductoID).Precio * auxprodCarr.Cantidad + monto;
 
             }
-            carrito.Fecha = DateTime.Now;
             carrito.Total = monto;
-
             DTCarroVendido dtcVendido =  datosVenta(carrito.CarritoID);   
-            
-            
-            
+
             Carrito carroNuevo = new Carrito();
             carroNuevo.CarritoType = "Activo";
             carroNuevo.Total = 0;

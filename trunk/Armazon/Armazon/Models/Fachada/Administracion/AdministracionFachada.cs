@@ -570,7 +570,6 @@ namespace Armazon.Models
                             dtci.ProductId = int.Parse(prod.ExternalID);
                             dtci.Quantity = dtp.Cant;
                             lprod.Add(dtci);
-
                         }
                     }
                     if (lprod.Count != 0)

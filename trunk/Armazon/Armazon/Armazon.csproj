@@ -361,7 +361,6 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <None Include="Service References\ArmazonWS\ArmazonWS.disco" />
     <None Include="Service References\ArmazonWS\configuration91.svcinfo" />
     <None Include="Service References\ArmazonWS\configuration.svcinfo" />
     <None Include="Service References\ArmazonWS\Reference.svcmap">
@@ -370,6 +369,7 @@
     </None>
     <Content Include="Scripts\niceforms.js" />
     <Content Include="Scripts\ProductDetails.js" />
+    <None Include="Service References\ArmazonWS\ArmazonWS1.disco" />
     <Content Include="Silverlight.js" />
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
@@ -486,10 +486,16 @@
     <None Include="Armazon.dbml.layout">
       <DependentUpon>Armazon.dbml</DependentUpon>
     </None>
-    <None Include="Service References\ArmazonWS\ArmazonWS.wsdl" />
-    <None Include="Service References\ArmazonWS\ArmazonWS.xsd" />
-    <None Include="Service References\ArmazonWS\ArmazonWS1.xsd" />
-    <None Include="Service References\ArmazonWS\ArmazonWS2.xsd" />
+    <None Include="Service References\ArmazonWS\Armazon.ArmazonWS.DCProduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ArmazonWS\Armazon.ArmazonWS.DCRating.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ArmazonWS\ArmazonWS1.wsdl" />
+    <None Include="Service References\ArmazonWS\ArmazonWS3.xsd" />
+    <None Include="Service References\ArmazonWS\ArmazonWS31.xsd" />
+    <None Include="Service References\ArmazonWS\ArmazonWS32.xsd" />
     <None Include="Service References\AWS\Armazon.AWS.BrowseNodeLookupResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

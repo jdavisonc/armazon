@@ -17,14 +17,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:1238/ArmazonWS.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://192.168.0.1/ArmazonInterface/ArmazonWS.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ArmazonWS.xsd" MetadataType="Schema" ID="335a49f4-39fd-490a-a29d-69776bbaddda" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?xsd=xsd0" />
-    <MetadataFile FileName="ArmazonWS1.xsd" MetadataType="Schema" ID="44ab8fb9-5556-468a-bdcf-f25ce595f9b5" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?xsd=xsd2" />
-    <MetadataFile FileName="ArmazonWS.wsdl" MetadataType="Wsdl" ID="63f98b6a-15f8-41c1-bf88-9533586eac29" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?wsdl" />
-    <MetadataFile FileName="ArmazonWS2.xsd" MetadataType="Schema" ID="7d44a9e3-531e-45b9-a3cc-c5841b2699c6" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?xsd=xsd1" />
-    <MetadataFile FileName="ArmazonWS.disco" MetadataType="Disco" ID="c23a9990-e3f3-492b-a1ef-3f45cc0d9ea7" SourceId="1" SourceUrl="http://localhost:1238/ArmazonWS.svc?disco" />
+    <MetadataFile FileName="ArmazonWS3.xsd" MetadataType="Schema" ID="d409f11e-dd3e-4d41-b837-4dd04ab9048f" SourceId="1" SourceUrl="http://maxi-laptop/ArmazonInterface/ArmazonWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="ArmazonWS31.xsd" MetadataType="Schema" ID="78c9408d-9e20-4864-8cd2-ecd8cecd187e" SourceId="1" SourceUrl="http://maxi-laptop/ArmazonInterface/ArmazonWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="ArmazonWS1.wsdl" MetadataType="Wsdl" ID="00e87b9e-93c2-49d3-9123-52b9384b2dd3" SourceId="1" SourceUrl="http://maxi-laptop/ArmazonInterface/ArmazonWS.svc?wsdl" />
+    <MetadataFile FileName="ArmazonWS32.xsd" MetadataType="Schema" ID="d125ad3a-1cae-468c-a80a-7519abeaa312" SourceId="1" SourceUrl="http://maxi-laptop/ArmazonInterface/ArmazonWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="ArmazonWS1.disco" MetadataType="Disco" ID="cbbf9ecd-a7ad-4f91-ba99-96a6b980c295" SourceId="1" SourceUrl="http://maxi-laptop/ArmazonInterface/ArmazonWS.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
