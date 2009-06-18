@@ -23,9 +23,16 @@
         </p>
         <p>
             MetodoDePago:
-            <%string aux = item.DatosCarrito.MetodoDePago.ToString();%>
-            <%= Html.Encode(item.DatosCarrito.MetodoDePago.ToString().Equals("Armazon.Tarjeta") ? "Tarjeta" : "PayPal")%>
+            <% if (item.DatosCarrito.MetodoDePago != null)
+               { %>
+            
+                <%string aux = item.DatosCarrito.MetodoDePago.ToString();%>
+                <%= Html.Encode(item.DatosCarrito.MetodoDePago.ToString().Equals("Armazon.Tarjeta") ? "Tarjeta" : "PayPal")%>
+        <% }else{ %>
+                Venta por Web Service
+        <% } %>
         </p>
+        
         <img src="<%= ResolveUrl("~/Content/btn_ver_detalle.png") %>" onclick="$('#compra<%= i %>').slideDown('slow');$(this).hide();" style="cursor:pointer"/>
 
 <div id="compra<%= i %>" class="compratable">

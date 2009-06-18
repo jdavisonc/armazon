@@ -15,7 +15,7 @@ namespace Armazon.ArmazonWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProduct", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProduct", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
     [System.SerializableAttribute()]
     public partial class DCProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -92,13 +92,13 @@ namespace Armazon.ArmazonWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttr", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttr", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrDouble))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrInt))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrBool))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrFloat))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrImage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrInt))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrFloat))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrBool))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Armazon.ArmazonWS.DCProductAttrString))]
     public partial class DCProductAttr : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -159,7 +159,7 @@ namespace Armazon.ArmazonWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrDouble", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrDouble", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
     [System.SerializableAttribute()]
     public partial class DCProductAttrDouble : Armazon.ArmazonWS.DCProductAttr {
         
@@ -182,76 +182,7 @@ namespace Armazon.ArmazonWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrInt", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
-    [System.SerializableAttribute()]
-    public partial class DCProductAttrInt : Armazon.ArmazonWS.DCProductAttr {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ValueField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Value {
-            get {
-                return this.ValueField;
-            }
-            set {
-                if ((this.ValueField.Equals(value) != true)) {
-                    this.ValueField = value;
-                    this.RaisePropertyChanged("Value");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrBool", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
-    [System.SerializableAttribute()]
-    public partial class DCProductAttrBool : Armazon.ArmazonWS.DCProductAttr {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ValueField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Value {
-            get {
-                return this.ValueField;
-            }
-            set {
-                if ((this.ValueField.Equals(value) != true)) {
-                    this.ValueField = value;
-                    this.RaisePropertyChanged("Value");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrFloat", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
-    [System.SerializableAttribute()]
-    public partial class DCProductAttrFloat : Armazon.ArmazonWS.DCProductAttr {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float ValueField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public float Value {
-            get {
-                return this.ValueField;
-            }
-            set {
-                if ((this.ValueField.Equals(value) != true)) {
-                    this.ValueField = value;
-                    this.RaisePropertyChanged("Value");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrImage", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrImage", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
     [System.SerializableAttribute()]
     public partial class DCProductAttrImage : Armazon.ArmazonWS.DCProductAttr {
         
@@ -274,7 +205,76 @@ namespace Armazon.ArmazonWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrString", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrInt", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
+    [System.SerializableAttribute()]
+    public partial class DCProductAttrInt : Armazon.ArmazonWS.DCProductAttr {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((this.ValueField.Equals(value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrFloat", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
+    [System.SerializableAttribute()]
+    public partial class DCProductAttrFloat : Armazon.ArmazonWS.DCProductAttr {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private float ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public float Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((this.ValueField.Equals(value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrBool", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
+    [System.SerializableAttribute()]
+    public partial class DCProductAttrBool : Armazon.ArmazonWS.DCProductAttr {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((this.ValueField.Equals(value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCProductAttrString", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
     [System.SerializableAttribute()]
     public partial class DCProductAttrString : Armazon.ArmazonWS.DCProductAttr {
         
@@ -297,7 +297,7 @@ namespace Armazon.ArmazonWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCRating", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCRating", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
     [System.SerializableAttribute()]
     public partial class DCRating : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -358,7 +358,7 @@ namespace Armazon.ArmazonWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DCCartItem", Namespace="http://schemas.datacontract.org/2004/07/Armazon.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DCCartItem", Namespace="http://schemas.datacontract.org/2004/07/ArmazonGr6.ArmazonInterface")]
     [System.SerializableAttribute()]
     public partial class DCCartItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

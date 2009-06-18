@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	PayPalExito
+	Compra
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -10,7 +10,7 @@
 <%  Armazon.Models.DataTypes.DTCarroVendido dtcvendido = Armazon.MenuController.finalizarVentaCarrito();%>
 
 <fieldset>
-        <legend>Carrito Vendido</legend>
+        <legend>Compra</legend>
         <p>
             Fecha:
             <%= Html.Encode(dtcvendido.DatosCarrito.Fecha) %>

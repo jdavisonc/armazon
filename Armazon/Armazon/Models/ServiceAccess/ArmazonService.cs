@@ -40,10 +40,14 @@ namespace Armazon.Models.ServiceAccess
                 }
                 else if (attr.GetType() == typeof(DCProductAttrImage))
                 {
-                    Imagen img = new Imagen();
-                    img.Nombre = attr.Name;
-                    img.ImagenURL = ((DCProductAttrImage)attr).Url;
-                    producto.Imagens.Add(img);
+                    DCProductAttrImage dcimg = (DCProductAttrImage)attr;
+                    if (dcimg.Url != null && dcimg.Url.Length > 0)
+                    {
+                        Imagen img = new Imagen();
+                        img.Nombre = dcimg.Name;
+                        img.ImagenURL = dcimg.Url;
+                        producto.Imagens.Add(img);
+                    }
                 }
                 else
                 {
@@ -84,16 +88,24 @@ namespace Armazon.Models.ServiceAccess
         public List<Producto> searchProducts(string fullText, Tienda tienda)
         {
             List<Producto> productos = new List<Producto>();
-            Armazon.ArmazonWS.ArmazonWSClient ws = new Armazon.ArmazonWS.ArmazonWSClient();
-            ws.Endpoint.Address = new System.ServiceModel.EndpointAddress(tienda.Url);
-            DCProduct[] col = ws.search(fullText);
-            foreach (DCProduct item in col)
+            try
             {
-                Producto p = getProductoFromDataContract(item);
-                p.Tienda = tienda;
-                productos.Add(p);
+                Armazon.ArmazonWS.ArmazonWSClient ws = new Armazon.ArmazonWS.ArmazonWSClient();
+                ws.Endpoint.Address = new System.ServiceModel.EndpointAddress(tienda.Url);
+                DCProduct[] col = ws.search(fullText);
+                foreach (DCProduct item in col)
+                {
+                    Producto p = getProductoFromDataContract(item);
+                    p.Tienda = tienda;
+                    productos.Add(p);
+                }
+                return productos;
             }
-            return productos;
+            catch (Exception e)
+            {
+                return productos;
+            }
+            
         }
 
         public Producto getProduct(string externalID, Tienda tienda)

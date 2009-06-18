@@ -97,22 +97,23 @@ namespace Armazon.Models
 		public bool CartBuy(string user, ICollection<DCCartItem> items)
         {
             UsuarioManager usrMgr = new UsuarioManager();
-            ProductoManager prodMgr = new ProductoManager();
             CarritoManager carrMgr = new CarritoManager();
             Usuario usr = usrMgr.getUsuario(user);
-            Carrito carrito = new Carrito();
-            carrito.CarritoType = "Vendido";
-            carrito.UsuarioID = usr.UsuarioID;
-            carrMgr.AddCarritoActivo(carrito);
-            List<Producto> lproductos = new List<Producto>();
-            foreach (DCCartItem aux in items)
-            {                
-                carrMgr.AgregarProductoCarrito(aux.ProductId, carrMgr.getCarritoActivoByUser(usr.UsuarioID).CarritoID, aux.Quantity);
+            if (usr != null)
+            {
+                Carrito carrito = carrMgr.getCarritoActivoByUser(usr.UsuarioID);
+                List<Producto> lproductos = new List<Producto>();
+                foreach (DCCartItem aux in items)
+                {
+                    carrMgr.AgregarProductoCarrito(aux.ProductId, carrito.CarritoID, aux.Quantity);
+                }
+                carrMgr.finalizarVentaCarrito(carrito.CarritoID);
+                return true;
             }
-            double monto = prodMgr.getMontoProductos(items);
-            carrito.Total = monto;
-            carrMgr.Save();
-            return true;
+            else 
+            {
+                return false;
+            }
         }
         
         public IEnumerable<Producto> productosRecomendados(Producto producto)
