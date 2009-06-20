@@ -91,9 +91,9 @@ namespace Armazon.Controllers
                   Session["OrderTotal"] = monto;
                   Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout" + "&token=" + token);
                 }
-                
 
-            return RedirectToAction("Index");
+
+              return RedirectToAction("PayPalFalla");
             
         }
 
