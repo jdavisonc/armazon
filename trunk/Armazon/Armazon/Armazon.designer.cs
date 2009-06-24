@@ -1599,7 +1599,7 @@ namespace Armazon
 				{
 					this.OnPrecioChanging(value);
 					this.SendPropertyChanging();
-					this._Precio = value;
+					this._Precio = Math.Round(value,2);
 					this.SendPropertyChanged("Precio");
 					this.OnPrecioChanged();
 				}
@@ -3765,7 +3765,7 @@ namespace Armazon
 			}
 		}
 		
-		[Column(Name="Valor", Storage="_Valor1", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		[Column(Name="Valor", Storage="_Valor1", DbType="VarChar(350) NOT NULL", CanBeNull=false)]
 		public string Valor1
 		{
 			get
@@ -3778,7 +3778,14 @@ namespace Armazon
 				{
 					this.OnValor1Changing(value);
 					this.SendPropertyChanging();
-					this._Valor1 = value;
+                    if (value.Length > 350)
+                    {
+                        this._Valor1 = value.Substring(0, 350);
+                    }
+                    else
+                    {
+                        this._Valor1 = value;
+                    }
 					this.SendPropertyChanged("Valor1");
 					this.OnValor1Changed();
 				}
